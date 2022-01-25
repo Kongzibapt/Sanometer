@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function Chapter1() {
+const Chapter1 = function() {
   return (
     <View style={styles.container}>
       <Text>First chapter</Text>
@@ -9,6 +9,8 @@ export default function Chapter1() {
     </View>
   );
 }
+
+export {Chapter1};
 
 const styles = StyleSheet.create({
   container: {
