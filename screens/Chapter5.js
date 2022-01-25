@@ -15,6 +15,8 @@ export default function Chapter5() {
   );
 }
 
+export {Chapter5};
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
