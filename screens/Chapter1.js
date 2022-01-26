@@ -14,12 +14,12 @@ const Chapter1 = function() {
 
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <Text  style = {styles.headerText}>Enter your personal data : </Text>
       <Text style={styles.label}>Last Name</Text>
       <TextInput
         style={styles.input}
-        onChangeText1={onChangeText1}
+        onChangeText={onChangeText1}
         value={lastname}
         placeholder="Your lastname"
         keyboardType="default"
@@ -27,7 +27,7 @@ const Chapter1 = function() {
       <Text style={styles.label}>First Name</Text>
       <TextInput
         style={styles.input}
-        onChangeText2={onChangeText2}
+        onChangeText={onChangeText2}
         value={firstname}
         placeholder="Your firstname"
         keyboardType="default"
@@ -35,7 +35,7 @@ const Chapter1 = function() {
       <Text style={styles.label}>Birth Date</Text>
       <TextInput
         style={styles.input}
-        onChangeText3={onChangeText3}
+        onChangeText={onChangeText3}
         value={birthdate}
         placeholder="Your birthdate"
         keyboardType="default"
@@ -43,7 +43,7 @@ const Chapter1 = function() {
       <Text style={styles.label}>Your country of residence</Text>
       <TextInput
         style={styles.input}
-        onChangeText4={onChangeText4}
+        onChangeText={onChangeText4}
         value={country}
         placeholder="Your country of residence"
         keyboardType="default"
@@ -74,22 +74,26 @@ const Chapter1 = function() {
 export {Chapter1};
 
 const styles = StyleSheet.create({
+  container:{
+    backgroundColor:'#18acb9',
+  },
   input: {
     height: 40,
     margin: 12,
     top: 100,
     borderWidth: 1,
     padding: 10,
+    backgroundColor:'white'
   },
   headerText: {
     fontSize: 20,
-    color: 'black',
+    color: 'white',
     top: 100,
     margin: 12,
   },
   headerText2: {
     fontSize: 16,
-    color: 'black',
+    color: 'white',
     top: 100,
     margin: 12,
   },
