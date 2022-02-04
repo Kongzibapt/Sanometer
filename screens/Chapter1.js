@@ -6,13 +6,12 @@ import { Slider, Icon } from 'react-native-elements';
 import Checkbox from 'expo-checkbox';
 import { RadioButton } from 'react-native-paper';
 import {Picker} from '@react-native-picker/picker';
+// import {DatePicker} from 'react-native-date-picker';
 
 
 
 const Chapter1 = function() {
-  const setMine = function(){
-    
-  }
+  
   const [lastname, onChangeText1] = react.useState(null);
   const [firstname, onChangeText2] = react.useState(null);
   const [birthdate, onChangeText3] = react.useState(null);
@@ -26,46 +25,84 @@ const Chapter1 = function() {
   const [checked4, setChecked4] = react.useState('');
   const [selectedgeo, setSelectedgeo] = react.useState();
   const [selectededuc, setSelectededuc] = react.useState();
+  const [borderColorInputLastName,setBorderColorInputLastName] = react.useState("black");
+  const [borderColorInputFirstName,setBorderColorInputFirstName] = react.useState("black");
+  const [borderColorInputBirthDate,setBorderColorInputBirthDate] = react.useState("black");
+  const [borderColorInputBirthPlace,setBorderColorInputBirthPlace] = react.useState("black");
+  const [borderColorInputBirthTown,setBorderColorInputBirthTown] = react.useState("black");
+  const [borderColorInputCountry,setBorderColorInputCountry] = react.useState("black");
+
+  let dates = [];
+  for(var i=1920;i<2022;i++){
+    dates.push(<Picker.Item label={i} value={i} />);
+  }
 
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
         <Text  style = {styles.headerText}>Enter your personal data : </Text>
-        <Text style={styles.label}>Last Name</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={onChangeText1}
-          value={lastname}
-          placeholder="Your lastname"
-          keyboardType="default"
-        />
-        <Text style={styles.label}>First Name</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={onChangeText2}
-          value={firstname}
-          placeholder="Your firstname"
-          keyboardType="default"
-        />
+        <View style={styles.names}>
+          <View style={styles.firstname}>
+            <Text style={styles.label}>First Name</Text>
+            <TextInput
+              style={{...styles.input,borderColor:borderColorInputFirstName}}
+              onFocus={() => {
+                setBorderColorInputFirstName("cyan");
+              }}
+              onBlur={() => {
+                setBorderColorInputFirstName("black");
+              }}
+              onChangeText={onChangeText2}
+              value={firstname}
+              placeholder="Your firstname"
+              keyboardType="default"
+            />
+          </View>
+          <View style={styles.lastname}>
+            <Text style={styles.label}>Last Name</Text>
+          <TextInput
+            style={{...styles.input,borderColor:borderColorInputLastName}}
+            onFocus={() => {
+              setBorderColorInputLastName("cyan");
+            }}
+            onBlur={() => {
+              setBorderColorInputLastName("black");
+            }}
+            onChangeText={onChangeText1}
+            value={lastname}
+            placeholder="Your lastname"
+            keyboardType="default"
+          />
+          </View>
+          
+        </View>
         <Text style={styles.label}>Birth Date</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={onChangeText3}
-          value={birthdate}
-          placeholder="Your birthdate"
-          keyboardType="default"
-        />
+        <DatePicker>
+
+        </DatePicker>
 
         <Text style={styles.label}>Birth place</Text>
         <TextInput
-          style={styles.input}
+         style={{...styles.input,borderColor:borderColorInputBirthPlace}}
+         onFocus={() => {
+           setBorderColorInputBirthPlace("cyan");
+         }}
+         onBlur={() => {
+           setBorderColorInputBirthPlace("black");
+         }}
           onChangeText={onChangeText5}
           value={birthcountry}
           placeholder="Country"
           keyboardType="default"
         />
         <TextInput
-          style={styles.input}
+         style={{...styles.input,borderColor:borderColorInputBirthTown}}
+         onFocus={() => {
+          setBorderColorInputBirthTown("cyan");
+        }}
+        onBlur={() => {
+          setBorderColorInputBirthTown("black");
+        }}
           onChangeText={onChangeText6}
           value={birthtown}
           placeholder="Town"
@@ -96,7 +133,13 @@ const Chapter1 = function() {
 
         <Text style={styles.label}>Your country of residence</Text>
         <TextInput
-          style={styles.input}
+          style={{...styles.input,borderColor:borderColorInputCountry}}
+          onFocus={() => {
+            setBorderColorInputCountry("cyan");
+          }}
+          onBlur={() => {
+            setBorderColorInputCountry("black");
+          }}
           onChangeText={onChangeText4}
           value={country}
           placeholder="Your country of residence"
@@ -244,35 +287,52 @@ const styles = StyleSheet.create({
     paddingTop: StatusBar.currentHeight,
     flex :1,
   },
+  names:{
+    display:'flex',
+    flexDirection:'row'
+  },
+  firstname:{
+    flex:1,
+    paddingRight:10
+  },
+  lastname:{
+    flex:1,
+    paddingRight:10
+  },
   input: {
     height: 40,
-    margin: 12,
-    
+    // margin: 12, 
+    marginBottom:15,   
     borderWidth: 1,
     padding: 10,
-    backgroundColor:'white'
+    backgroundColor:'white',
+    fontFamily:"Montserrat_400Regular",
+    borderWidth:2,
+    borderRadius:5
   },
   headerText: {
     fontSize: 20,
     color: 'white',
     marginTop : 50,
     margin: 12,
+    fontFamily:"Montserrat_400Regular"
   },
   headerText2: {
     fontSize: 16,
     color: 'white',
- 
     margin: 12,
+    fontFamily:"Montserrat_400Regular"
   },
   label: {
     fontSize: 16,
-    color: 'cyan',
-  
+    color: 'black',
+    fontFamily:"Montserrat_700Bold",
     margin: 12,
   },
   checkboxContainer: {
     flexDirection: "row",
     marginBottom: 20,
+    fontFamily:"Montserrat_400Regular"
   },
   checkbox: {
     alignSelf: "center",
@@ -283,6 +343,7 @@ const styles = StyleSheet.create({
     margin: 12,
   },
   paragraph : {
+    fontFamily:"Montserrat_400Regular"
   },
   scrollView: {
     backgroundColor: '#18acb9',
