@@ -1,13 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import react from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button} from 'react-native';
 import { SafeAreaView, TextInput, ScrollView} from "react-native";
 import { Slider, Icon } from 'react-native-elements';
 // import Checkbox from 'expo-checkbox';
 import { RadioButton } from 'react-native-paper';
 import {Picker} from '@react-native-picker/picker';
-import {DatePicker} from 'react-native-date-picker';
-
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 
 const Chapter1 = function() {
@@ -31,11 +30,24 @@ const Chapter1 = function() {
   const [borderColorInputBirthPlace,setBorderColorInputBirthPlace] = react.useState("black");
   const [borderColorInputBirthTown,setBorderColorInputBirthTown] = react.useState("black");
   const [borderColorInputCountry,setBorderColorInputCountry] = react.useState("black");
+  const [date, setDate] = react.useState(new Date());
+  const [mode, setMode] = react.useState('date');
+  const [show, setShow] = react.useState(false);
 
-  let dates = [];
-  for(var i=1920;i<2022;i++){
-    dates.push(<Picker.Item label={i} value={i} />);
-  }
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShow(Platform.OS === 'ios');
+    setDate(currentDate);
+  };
+
+  const showMode = (currentMode) => {
+    setShow(true);
+    setMode(currentMode);
+  };
+
+  const showDatepicker = () => {
+    showMode('date');
+  };  
 
   return (
     <SafeAreaView style={styles.container}>
@@ -77,7 +89,17 @@ const Chapter1 = function() {
           
         </View>
         <Text style={styles.label}>Birth Date</Text>
-
+        <View style={styles.chooseDate}>
+          <Button color="black" onPress={showDatepicker} title="Choose" />
+        </View>
+        {show && (<DateTimePicker
+          testID="dateTimePicker"
+          value={date}
+          mode={mode}
+          is24Hour={true}
+          display="default"
+          onChange={onChange}
+        />)}
         <Text style={styles.label}>Birth place</Text>
         <TextInput
          style={{...styles.input,borderColor:borderColorInputBirthPlace}}
@@ -306,6 +328,9 @@ const styles = StyleSheet.create({
     fontFamily:"Montserrat_400Regular",
     borderWidth:2,
     borderRadius:5
+  },
+  chooseDate: {
+    width:"50%"
   },
   headerText: {
     fontSize: 20,
