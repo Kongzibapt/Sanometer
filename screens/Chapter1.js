@@ -24,6 +24,8 @@ const Chapter1 = function() {
   const [checked4, setChecked4] = react.useState('');
   const [selectedgeo, setSelectedgeo] = react.useState();
   const [selectededuc, setSelectededuc] = react.useState();
+  const [selectederace, setSelectederace] = react.useState();
+  const [selectedarea, setSelectedarea] = react.useState();
   const [borderColorInputLastName,setBorderColorInputLastName] = react.useState("black");
   const [borderColorInputFirstName,setBorderColorInputFirstName] = react.useState("black");
   const [borderColorInputBirthDate,setBorderColorInputBirthDate] = react.useState("black");
@@ -129,25 +131,32 @@ const Chapter1 = function() {
         />
 
         <Text style={styles.label}>Sex</Text>
-        <View style={styles.section}>
-          <Text style={styles.paragraph}>Male</Text>
-          <RadioButton
-            value="male"
-            status={ checked === 'male' ? 'checked' : 'unchecked' }
-            onPress={() => setChecked('male')}
-          />
-          <Text style={styles.paragraph}>Female</Text>
-          <RadioButton
-            value="female"
-            status={ checked === 'female' ? 'checked' : 'unchecked' }
-            onPress={() => setChecked('female')}
-          />
-          <Text style={styles.paragraph}>Neutral</Text>
-          <RadioButton
-            value="neutral"
-            status={ checked === 'neutral' ? 'checked' : 'unchecked' }
-            onPress={() => setChecked('neutral')}
-          /> 
+        <View style={styles.checkboxview}>
+          <View style={styles.containerbutton}>
+            <Text style={styles.paragraph}>Male</Text>
+            <RadioButton
+              value="male"
+              status={ checked === 'male' ? 'checked' : 'unchecked' }
+              onPress={() => setChecked('male')}
+            />
+          </View>
+          <View style={styles.containerbutton}>
+            <Text style={styles.paragraph}>Female</Text>
+            <RadioButton
+              value="female"
+              status={ checked === 'female' ? 'checked' : 'unchecked' }
+              onPress={() => setChecked('female')}
+            />
+          </View>
+          <View style={styles.containerbutton}>
+            <Text style={styles.paragraph}>Neutral</Text>
+            <RadioButton
+              value="neutral"
+              status={ checked === 'neutral' ? 'checked' : 'unchecked' }
+              onPress={() => setChecked('neutral')}
+            /> 
+          </View>
+
         </View>
 
         <Text style={styles.label}>Your country of residence</Text>
@@ -165,39 +174,20 @@ const Chapter1 = function() {
           keyboardType="default"
         />
 
+
         <Text style={styles.label}>Race</Text>
-        <View style={styles.section}>
-          <Text style={styles.paragraph}>White</Text>
-          <RadioButton
-            value="white"
-            status={ checked2 === 'white' ? 'checked' : 'unchecked' }
-            onPress={() => setChecked2('white')}
-          />
-          <Text style={styles.paragraph}>Black</Text>
-          <RadioButton
-            value="black"
-            status={ checked2 === 'black' ? 'checked' : 'unchecked' }
-            onPress={() => setChecked2('black')}
-          />
-          <Text style={styles.paragraph}>Asian</Text>
-          <RadioButton
-            value="asian"
-            status={ checked2 === 'asian' ? 'checked' : 'unchecked' }
-            onPress={() => setChecked2('asian')}
-          />
-          <Text style={styles.paragraph}>Metis</Text>
-          <RadioButton
-            value="metis"
-            status={ checked2 === 'metis' ? 'checked' : 'unchecked' }
-            onPress={() => setChecked2('metis')}
-          />
-          <Text style={styles.paragraph}>Ethnicity</Text>
-          <RadioButton
-            value="ethnicity"
-            status={ checked2 === 'ethnicity' ? 'checked' : 'unchecked' }
-            onPress={() => setChecked2('ethnicity')}
-          />
-        </View>
+        <Picker
+          selectedValue={selectederace}
+          onValueChange={(itemValue, itemIndex) =>
+            setSelectederace(itemValue)
+          }
+          mode='dropdown'>
+          <Picker.Item label="White" value="white" />
+          <Picker.Item label="Black" value="black" />
+          <Picker.Item label="Asian" value="asian" />
+          <Picker.Item label="Metis" value="metis" />
+          <Picker.Item label="Ethnicity" value="ethnicity" />
+        </Picker>
 
         <Text style={styles.label}>Geographical form</Text>
         <Picker
@@ -214,26 +204,16 @@ const Chapter1 = function() {
         </Picker>
 
         <Text style={styles.label}>Urban area</Text>
-        <View style={styles.section}>
-          <Text style={styles.paragraph}>Below 100.000</Text>
-          <RadioButton
-            value="choice1"
-            status={ checked3 === 'choice1' ? 'checked' : 'unchecked' }
-            onPress={() => setChecked3('choice1')}
-          />
-          <Text style={styles.paragraph}>100.01 - 1.000.000</Text>
-          <RadioButton
-            value="choice2"
-            status={ checked3 === 'choice2' ? 'checked' : 'unchecked' }
-            onPress={() => setChecked3('choice2')}
-          />
-          <Text style={styles.paragraph}>Above 1.000.000</Text>
-          <RadioButton
-            value="choice3"
-            status={ checked3 === 'choice3' ? 'checked' : 'unchecked' }
-            onPress={() => setChecked3('choice3')}
-          />
-        </View>
+        <Picker
+          selectedValue={selectedarea}
+          onValueChange={(itemValue, itemIndex) =>
+            setSelectedarea(itemValue)
+          }
+          mode='dropdown'>
+          <Picker.Item label="Below 100.000" value="below" />
+          <Picker.Item label="100.01 - 1.000.000" value="equal" />
+          <Picker.Item label="Above 1.000.000" value="above" />
+        </Picker>
 
         <Text style={styles.label}>Physical effort related to your job</Text>
         <View style={[styles.contentView]}>
@@ -263,19 +243,23 @@ const Chapter1 = function() {
         </View>
 
         <Text style={styles.label}>Major Professional change during the last 5 years</Text>
-        <View style={styles.section}>
-          <Text style={styles.paragraph}>Yes</Text>
-          <RadioButton
-            value="yes"
-            status={ checked4 === 'yes' ? 'checked' : 'unchecked' }
-            onPress={() => setChecked4('yes')}
-          />
-          <Text style={styles.paragraph}>No</Text>
-          <RadioButton
-            value="no"
-            status={ checked4 === 'no' ? 'checked' : 'unchecked' }
-            onPress={() => setChecked4('no')}
-          />
+        <View style={styles.checkboxview}>
+          <View style={styles.containerbutton}>
+            <Text style={styles.paragraph}>Yes</Text>
+            <RadioButton
+              value="yes"
+              status={ checked4 === 'yes' ? 'checked' : 'unchecked' }
+              onPress={() => setChecked4('yes')}
+            />
+          </View>
+          <View style={styles.containerbutton}>
+            <Text style={styles.paragraph}>No</Text>
+            <RadioButton
+              value="no"
+              status={ checked4 === 'no' ? 'checked' : 'unchecked' }
+              onPress={() => setChecked4('no')}
+            />
+          </View>
         </View>
         <Text style={styles.label}>Education</Text>
         <Picker
@@ -284,7 +268,7 @@ const Chapter1 = function() {
             setSelectededuc(itemValue)
           }
           mode='dropdown'>
-          <Picker.Item label="<highschool" value="<highschool" />
+          <Picker.Item label="Below highschool" value="below" />
           <Picker.Item label="High school" value="high_school" />
           <Picker.Item label="Professional school" value="professional_school" />
           <Picker.Item label="Bachelor" value="bachelor" />
@@ -309,6 +293,17 @@ const styles = StyleSheet.create({
   names:{
     display:'flex',
     flexDirection:'row'
+  },
+  checkboxview:{
+    display:'flex',
+    flexDirection:'row',
+    margin:'auto',
+    alignItems:'center',
+    justifyContent:'center'
+  },
+  containerbutton:{
+    flex:1,
+    paddingRight:10
   },
   firstname:{
     flex:1,
