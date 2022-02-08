@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import {Chapter1} from './screens/Chapter1.js';
-//import {Chapter5} from './screens/Chapter5.js';
+import {Chapter5} from './screens/Chapter5.js';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 // import { AppLoading } from "expo-app-loading";
@@ -37,6 +37,10 @@ function HomeScreen({ navigation }) {
       <Button
         title="Personal data"
         onPress={() => navigation.navigate('Personal data')}
+      />
+      <Button
+        title="Physical parameters"
+        onPress={() => navigation.navigate('Physical parameters')}
       />
     </View>
   );
@@ -79,6 +83,7 @@ export default function App() {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Personal data" component={Chapter1} />
+        <Stack.Screen name="Physical parameters" component={Chapter5} />
       </Stack.Navigator>
     </NavigationContainer>  
   );
