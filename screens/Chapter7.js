@@ -10,7 +10,8 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 
 const Chapter7 = function() {
 
-  const [tolerance_to_the_effort, onChangeText1] = react.useState(null);
+  const [analysis, onChangeText1] = react.useState(null);
+  const [selectederace, setSelectedanalysis] = react.useState();
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -30,15 +31,28 @@ const Chapter7 = function() {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
-        <Text  style = {styles.headerText}>About your life style : </Text>
-        <Text style={styles.label}>Tolerance to the effort</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={onChangeText1}
-          value={tolerance_to_the_effort}
-          placeholder="Your tolerance to the effort :"
-          keyboardType="default"
-        />
+        <Text  style = {styles.headerText}>Your paraclinical data : inferior to 3 months : </Text>
+        <Text style={styles.label}>List analysis</Text>
+        <Picker
+          selectedValue={selectederace}
+          onValueChange={(itemValue, itemIndex) =>
+            setSelectedanalysis(itemValue)
+          }
+          mode='dropdown'>
+          <Picker.Item label="Complete hemoleucogram" value="complete_hemoleucogram" />
+          <Picker.Item label="CRP" value="CRP" />
+          <Picker.Item label="Blood glucose" value="blood_glucose" />
+          <Picker.Item label="Urea" value="urea" />
+          <Picker.Item label="Creatinine" value="creatinine" />
+          <Picker.Item label="Full lipidogram" value="full_lipidogram" />
+          <Picker.Item label="GOT" value="GOT" />
+          <Picker.Item label="GPT" value="GPT" />
+          <Picker.Item label="GGT" value="GGT" />
+          <Picker.Item label="VIT D3" value="VIT_D3" />
+          <Picker.Item label="TSH" value="TSH" />
+        </Picker>
+
+        {/*if it is a men > 65 years old, ask for the PSA*/}
       </ScrollView>
     </SafeAreaView>
   );
