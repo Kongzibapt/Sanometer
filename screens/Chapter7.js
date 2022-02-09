@@ -11,7 +11,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 const Chapter7 = function() {
 
   const [analysis, onChangeText1] = react.useState(null);
-  const [selectederace, setSelectedanalysis] = react.useState();
+  const [selectedanalysis, setSelectedanalysis] = react.useState();
   const [checked, setChecked] = react.useState('');
   const [checked2, setChecked2] = react.useState('');
   const [checked3, setChecked3] = react.useState('');
@@ -46,7 +46,7 @@ const Chapter7 = function() {
         <Text  style = {styles.headerText}>Your paraclinical data : inferior to 3 months : </Text>
         <Text style={styles.label}>List analysis</Text>
         <Picker
-          selectedValue={selectederace}
+          selectedValue={selectedanalysis}
           onValueChange={(itemValue, itemIndex) =>
             setSelectedanalysis(itemValue)
           }
