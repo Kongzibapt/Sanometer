@@ -3,7 +3,6 @@ import react from 'react';
 import { StyleSheet, Text, View, Button} from 'react-native';
 import { SafeAreaView, TextInput, ScrollView} from "react-native";
 import { Slider, Icon } from 'react-native-elements';
-// import Checkbox from 'expo-checkbox';
 import { RadioButton } from 'react-native-paper';
 import {Picker} from '@react-native-picker/picker';
 import DateTimePicker from '@react-native-community/datetimepicker';
