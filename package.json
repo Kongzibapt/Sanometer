@@ -19,6 +19,7 @@
     "@react-navigation/native-stack": "^6.4.1",
     "axios": "^0.25.0",
     "expo": "~44.0.0",
+    "expo-checkbox": "^2.0.0",
     "expo-dev-client": "~0.8.3",
     "expo-status-bar": "~1.2.0",
     "react": "17.0.1",
@@ -39,6 +40,7 @@
     "redux-thunk": "^2.3.0",
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "~3.10.1",
+    "react-native-select-multiple": "^2.1.0",
     "react-native-web": "0.17.1"
   },
   "devDependencies": {
