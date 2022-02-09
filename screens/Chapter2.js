@@ -8,7 +8,7 @@ import {Picker} from '@react-native-picker/picker';
 import SelectMultiple from 'react-native-select-multiple'
 import { VirtualizedList } from 'react-native-web';
 import DateTimePicker from '@react-native-community/datetimepicker';
-
+import DatePicker from 'react-native-date-picker';
 
 
 
@@ -28,6 +28,7 @@ const Chapter2 = function() {
   const [checked_allergies, setChecked_allergies] = react.useState('');
   const [visible, setVisible] = react.useState(false);
 
+  const [checked_chro, setChecked_chro] = react.useState('');
 
   const toggleDropdown = () => {
     setVisible(!visible);
@@ -57,6 +58,31 @@ const Chapter2 = function() {
   const [isEnabled_vax1, setIsEnabled_vax1] = react.useState(false);
   const toggleSwitch_vax1 = () => setIsEnabled_vax1(previousState => !previousState);
 
+  const [isEnabled_vax2, setIsEnabled_vax2] = react.useState(false);
+  const toggleSwitch_vax2 = () => setIsEnabled_vax2(previousState => !previousState);
+
+  const [isEnabled_vax3, setIsEnabled_vax3] = react.useState(false);
+  const toggleSwitch_vax3 = () => setIsEnabled_vax3(previousState => !previousState);
+  const [isEnabled_vax4, setIsEnabled_vax4] = react.useState(false);
+  const toggleSwitch_vax4 = () => setIsEnabled_vax4(previousState => !previousState);
+  const [isEnabled_vax5, setIsEnabled_vax5] = react.useState(false);
+  const toggleSwitch_vax5 = () => setIsEnabled_vax5(previousState => !previousState);
+  const [isEnabled_vax6, setIsEnabled_vax6] = react.useState(false);
+  const toggleSwitch_vax6 = () => setIsEnabled_vax6(previousState => !previousState);
+  const [isEnabled_vax7, setIsEnabled_vax7] = react.useState(false);
+  const toggleSwitch_vax7 = () => setIsEnabled_vax7(previousState => !previousState);
+  const [isEnabled_vax8, setIsEnabled_vax8] = react.useState(false);
+  const toggleSwitch_vax8 = () => setIsEnabled_vax8(previousState => !previousState);
+  const [isEnabled_vax9, setIsEnabled_vax9] = react.useState(false);
+  const toggleSwitch_vax9 = () => setIsEnabled_vax9(previousState => !previousState);
+  const [isEnabled_vax10, setIsEnabled_vax10] = react.useState(false);
+  const toggleSwitch_vax10 = () => setIsEnabled_vax10(previousState => !previousState);
+  const [isEnabled_vax11, setIsEnabled_vax11] = react.useState(false);
+  const toggleSwitch_vax11 = () => setIsEnabled_vax11(previousState => !previousState);
+
+  const [isEnabled_cancer, setIsEnabled_cancer] = react.useState(false);
+  const toggleSwitch_cancer = () => setIsEnabled_cancer(previousState => !previousState);
+  const [loc_cancer, onChangeText_loc] = react.useState(null);
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShow(Platform.OS === 'ios');
@@ -71,6 +97,9 @@ const Chapter2 = function() {
   const showDatepicker = () => {
     showMode('date');
   }; 
+
+  const [date2, setDate2] = react.useState(new Date())
+  const [open2, setOpen2] = react.useState(false)
 
   const renderDropdown = () => {
     if (visible) {
@@ -415,9 +444,187 @@ const Chapter2 = function() {
                 />
               </View>
             </View>
+            <View style={styles.switchbox}>
+              <Text style={styles.label}> Diphtheria </Text>
+              <View style={styles.checkboxview}>
+                <Switch
+                  trackColor={{ false: "#767577", true: "cyan" }}
+                  thumbColor={isEnabled_vax2 ? "#024e4e" : "#024e4e"}
+                  ios_backgroundColor="#3e3e3e"
+                  onValueChange={toggleSwitch_vax2}
+                  value={isEnabled_vax2}
+                />
+              </View>
+            </View>
+            <View style={styles.switchbox}>
+              <Text style={styles.label}> Polio </Text>
+              <View style={styles.checkboxview}>
+                <Switch
+                  trackColor={{ false: "#767577", true: "cyan" }}
+                  thumbColor={isEnabled_vax3 ? "#024e4e" : "#024e4e"}
+                  ios_backgroundColor="#3e3e3e"
+                  onValueChange={toggleSwitch_vax3}
+                  value={isEnabled_vax3}
+                />
+              </View>
+            </View>
+            <View style={styles.switchbox}>
+              <Text style={styles.label}> TETANUS </Text>
+              <View style={styles.checkboxview}>
+                <Switch
+                  trackColor={{ false: "#767577", true: "cyan" }}
+                  thumbColor={isEnabled_vax4 ? "#024e4e" : "#024e4e"}
+                  ios_backgroundColor="#3e3e3e"
+                  onValueChange={toggleSwitch_vax4}
+                  value={isEnabled_vax4}
+                />
+              </View>
+            </View>
+            <View style={styles.switchbox}>
+              <Text style={styles.label}> Pertussis </Text>
+              <View style={styles.checkboxview}>
+                <Switch
+                  trackColor={{ false: "#767577", true: "cyan" }}
+                  thumbColor={isEnabled_vax5 ? "#024e4e" : "#024e4e"}
+                  ios_backgroundColor="#3e3e3e"
+                  onValueChange={toggleSwitch_vax5}
+                  value={isEnabled_vax5}
+                />
+              </View>
+            </View>
+            <View style={styles.switchbox}>
+              <Text style={styles.label}> RUBELLA </Text>
+              <View style={styles.checkboxview}>
+                <Switch
+                  trackColor={{ false: "#767577", true: "cyan" }}
+                  thumbColor={isEnabled_vax6 ? "#024e4e" : "#024e4e"}
+                  ios_backgroundColor="#3e3e3e"
+                  onValueChange={toggleSwitch_vax6}
+                  value={isEnabled_vax6}
+                />
+              </View>
+            </View>
+            <View style={styles.switchbox}>
+              <Text style={styles.label}> Rujeola </Text>
+              <View style={styles.checkboxview}>
+                <Switch
+                  trackColor={{ false: "#767577", true: "cyan" }}
+                  thumbColor={isEnabled_vax7 ? "#024e4e" : "#024e4e"}
+                  ios_backgroundColor="#3e3e3e"
+                  onValueChange={toggleSwitch_vax7}
+                  value={isEnabled_vax7}
+                />
+              </View>
+            </View>
+            <View style={styles.switchbox}>
+              <Text style={styles.label}> Mumps </Text>
+              <View style={styles.checkboxview}>
+                <Switch
+                  trackColor={{ false: "#767577", true: "cyan" }}
+                  thumbColor={isEnabled_vax8 ? "#024e4e" : "#024e4e"}
+                  ios_backgroundColor="#3e3e3e"
+                  onValueChange={toggleSwitch_vax8}
+                  value={isEnabled_vax8}
+                />
+              </View>
+            </View>
+            <View style={styles.switchbox}>
+              <Text style={styles.label}> Seasonal flu </Text>
+              <View style={styles.checkboxview}>
+                <Switch
+                  trackColor={{ false: "#767577", true: "cyan" }}
+                  thumbColor={isEnabled_vax9 ? "#024e4e" : "#024e4e"}
+                  ios_backgroundColor="#3e3e3e"
+                  onValueChange={toggleSwitch_vax9}
+                  value={isEnabled_vax9}
+                />
+              </View>
+            </View>
+            <View style={styles.switchbox}>
+              <Text style={styles.label}> Covid 19 </Text>
+              <View style={styles.checkboxview}>
+                <Switch
+                  trackColor={{ false: "#767577", true: "cyan" }}
+                  thumbColor={isEnabled_vax10 ? "#024e4e" : "#024e4e"}
+                  ios_backgroundColor="#3e3e3e"
+                  onValueChange={toggleSwitch_vax10}
+                  value={isEnabled_vax10}
+                />
+              </View>
+            </View>
+            <View style={styles.switchbox}>
+              <Text style={styles.label}> HPV </Text>
+              <View style={styles.checkboxview}>
+                <Switch
+                  trackColor={{ false: "#767577", true: "cyan" }}
+                  thumbColor={isEnabled_vax11 ? "#024e4e" : "#024e4e"}
+                  ios_backgroundColor="#3e3e3e"
+                  onValueChange={toggleSwitch_vax11}
+                  value={isEnabled_vax11}
+                />
+              </View>
+            </View>
           </View>
         }
+        <Text style={styles.label}>Do you have/had any chronical disease ? </Text>
+        <View style={styles.checkboxview}>
+          <View style={styles.containerbutton}>
+            <Text style={styles.paragraph}>Yes</Text>
+            <RadioButton
+              value="yes"
+              status={ checked_chro === 'yes' ? 'checked' : 'unchecked' }
+              onPress={() => setChecked_chro('yes')}
+            />
+          </View>
+          <View style={styles.containerbutton}>
+            <Text style={styles.paragraph}>No</Text>
+            <RadioButton
+              value="no"
+              status={ checked_chro === 'no' ? 'checked' : 'unchecked' }
+              onPress={() => setChecked_chro('no')}
+            />
+          </View>
+        </View>
+        {checked_chro=="yes" &&
+          <View>
 
+          
+            <View style={styles.switchbox}>
+              <Text style={styles.label}> Cancer </Text>
+              <View style={styles.checkboxview}>
+                <Switch
+                  trackColor={{ false: "#767577", true: "cyan" }}
+                  thumbColor={isEnabled_cancer ? "#024e4e" : "#024e4e"}
+                  ios_backgroundColor="#3e3e3e"
+                  onValueChange={toggleSwitch_cancer}
+                  value={isEnabled_cancer}
+                />
+              </View>
+            </View>
+            {isEnabled_cancer &&
+            
+              <View>
+
+                <Text style={styles.label}>Location</Text>
+                <TextInput
+                  style={{...styles.input,borderColor:borderColorInput}}
+                  onFocus={() => {
+                    setBorderColorInput("cyan");
+                  }}
+                  onBlur={() => {
+                    setBorderColorInput("black");
+                  }}
+                  onChangeText={onChangeText_loc}
+                  value={loc_cancer}
+                  placeholder="What was the Location?"
+                  keyboardType="default"
+                />
+              </View>
+
+            }
+          </View>
+          
+        }
       </ScrollView>
     </SafeAreaView>
   );
