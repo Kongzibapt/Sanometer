@@ -1,16 +1,29 @@
 import { StatusBar } from 'expo-status-bar';
-import react from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import react, { FC, useState } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { SafeAreaView, TextInput, ScrollView} from "react-native";
 import { Slider, Icon } from 'react-native-elements';
 import { RadioButton } from 'react-native-paper';
 import {Picker} from '@react-native-picker/picker';
+import Dropdown from 'react-native-element-dropdown';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 const Chapter7 = function() {
 
   const [analysis, onChangeText1] = react.useState(null);
   const [selectederace, setSelectedanalysis] = react.useState();
+  const [checked, setChecked] = react.useState('');
+  const [checked2, setChecked2] = react.useState('');
+  const [checked3, setChecked3] = react.useState('');
+  const [checked4, setChecked4] = react.useState('');
+  const [selected, setSelected] = useState(undefined);
+  const data = [
+    { label: 'One', value: '1' },
+    { label: 'Two', value: '2' },
+    { label: 'Three', value: '3' },
+    { label: 'Four', value: '4' },
+    { label: 'Five', value: '5' },
+  ];
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -52,8 +65,98 @@ const Chapter7 = function() {
         </Picker>
 
         {/*if it is a men > 65 years old, ask for the PSA*/}
+        {/*???? PT diabetics and blood glucose> 1g */}
+
+        <Text style={styles.label}>Is HbA1C and glucose challenge test ?</Text>
+        <View style={styles.checkboxview}>
+          <View style={styles.containerbutton}>
+            <Text style={styles.paragraph}>Yes</Text>
+            <RadioButton
+              value="yes"
+              status={ checked === 'yes' ? 'checked' : 'unchecked' }
+              onPress={() => setChecked('yes')}
+            />
+          </View>
+          <View style={styles.containerbutton}>
+            <Text style={styles.paragraph}>No</Text>
+            <RadioButton
+              value="no"
+              status={ checked === 'no' ? 'checked' : 'unchecked' }
+              onPress={() => setChecked('no')}
+            />
+          </View>
+        </View>
+
+        {/*when ? result*/}
+
+        <Text style={styles.label}>For vertebral pain: you did MRI ?</Text>
+        <View style={styles.checkboxview}>
+          <View style={styles.containerbutton}>
+            <Text style={styles.paragraph}>Yes</Text>
+            <RadioButton
+              value="yes"
+              status={ checked2 === 'yes' ? 'checked' : 'unchecked' }
+              onPress={() => setChecked2('yes')}
+            />
+          </View>
+          <View style={styles.containerbutton}>
+            <Text style={styles.paragraph}>No</Text>
+            <RadioButton
+              value="no"
+              status={ checked2 === 'no' ? 'checked' : 'unchecked' }
+              onPress={() => setChecked2('no')}
+            />
+          </View>
+        </View>
+
+        {/*when ? result*/}
+
+        <Text style={styles.label}>For abdominal pain: did you make ultrasound ?</Text>
+        <View style={styles.checkboxview}>
+          <View style={styles.containerbutton}>
+            <Text style={styles.paragraph}>Yes</Text>
+            <RadioButton
+              value="yes"
+              status={ checked3 === 'yes' ? 'checked' : 'unchecked' }
+              onPress={() => setChecked3('yes')}
+            />
+          </View>
+          <View style={styles.containerbutton}>
+            <Text style={styles.paragraph}>No</Text>
+            <RadioButton
+              value="no"
+              status={ checked3 === 'no' ? 'checked' : 'unchecked' }
+              onPress={() => setChecked3('no')}
+            />
+          </View>
+        </View>
+
+        {/*when ? result*/}
+
+        <Text style={styles.label}>For heart pain: Did you do ECG ?</Text>
+        <View style={styles.checkboxview}>
+          <View style={styles.containerbutton}>
+            <Text style={styles.paragraph}>Yes</Text>
+            <RadioButton
+              value="yes"
+              status={ checked4 === 'yes' ? 'checked' : 'unchecked' }
+              onPress={() => setChecked4('yes')}
+            />
+          </View>
+          <View style={styles.containerbutton}>
+            <Text style={styles.paragraph}>No</Text>
+            <RadioButton
+              value="no"
+              status={ checked4 === 'no' ? 'checked' : 'unchecked' }
+              onPress={() => setChecked4('no')}
+            />
+          </View>
+        </View>
+        {/*when ? result*/}
+
       </ScrollView>
     </SafeAreaView>
+
   );
 }
 
