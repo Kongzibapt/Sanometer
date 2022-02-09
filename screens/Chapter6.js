@@ -8,10 +8,23 @@ import {Picker} from '@react-native-picker/picker';
 
 const Chapter6 = function() {
   
+  const [selectedperim, setSelectedperim] = react.useState();
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
-        <Text  style = {styles.headerText}>Enter your personal data : </Text>
+        <Text  style = {styles.headerText}>Tolerance to the effort: </Text>
+        <Text style={styles.label}>Walking perimeter (flat):</Text>
+        <Picker
+          selectedValue={selectedperim}
+          onValueChange={(itemValue, itemIndex) =>
+            setSelectedanalysis(itemValue)
+          }
+          mode='dropdown'>
+          <Picker.Item label="< 1km" value="<1km" />
+          <Picker.Item label="1-4km" value="1-4km" />
+          <Picker.Item label="> 4km" value=">4km" />
+        </Picker>
       </ScrollView>
     </SafeAreaView>
   );
