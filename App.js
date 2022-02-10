@@ -9,6 +9,11 @@ import { Chapter6 } from './screens/Chapter6.js';
 import { Chapter7 } from './screens/Chapter7.js';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import store from './redux/store';
+import { Provider as StoreProvider } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { setFirstname, setLastname } from './redux/chapter1App'
+import react from 'react';
 // import { AppLoading } from "expo-app-loading";
 import {
   useFonts,
@@ -31,14 +36,33 @@ import {
   Montserrat_900Black,
   Montserrat_900Black_Italic
 } from '@expo-google-fonts/montserrat'
+import { TextInput } from 'react-native-paper';
 
 const Stack = createNativeStackNavigator();
 
 function HomeScreen({ navigation }) {
+  const [firstname, onChangeFirstName] = react.useState(null);
+  const params = useSelector(state => state);
+  const dispatch = useDispatch()
+  const setfirstname = firstname => dispatch(setFirstname(firstname));
+  console.log(params);
 
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen</Text>
+      <Text>{params[0].value}</Text>
+      <TextInput
+      style={styles.input}
+      onChangeText={onChangeFirstName}
+      value={firstname}
+      placeholder="Your firstname"
+      keyboardType="default">
+
+      </TextInput>
+      <Button
+      title="Set"
+      style={styles.button}
+      onPress={() => setfirstname(firstname)}
+      />
       <View style={styles.button}>
         <Button
           title="Chapter 1"
@@ -48,7 +72,6 @@ function HomeScreen({ navigation }) {
       <View style={styles.button}>
         <Button
           title="Chapter 2"
-          style={styles.button}
           onPress={() => navigation.navigate('Chapter 2')}
         />
       </View>
@@ -124,18 +147,20 @@ export default function App() {
   //   );
   // } else {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Chapter 1" component={Chapter1} />
-        <Stack.Screen name="Chapter 2" component={Chapter2} />
-        <Stack.Screen name="Chapter 3" component={Chapter3} />
-        <Stack.Screen name="Chapter 4" component={Chapter4} />
-        <Stack.Screen name="Chapter 5" component={Chapter5} />
-        <Stack.Screen name="Chapter 6" component={Chapter6} />
-        <Stack.Screen name="Chapter 7" component={Chapter7} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <StoreProvider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="Chapter 1" component={Chapter1} />
+          <Stack.Screen name="Chapter 2" component={Chapter2} />
+          <Stack.Screen name="Chapter 3" component={Chapter3} />
+          <Stack.Screen name="Chapter 4" component={Chapter4} />
+          <Stack.Screen name="Chapter 5" component={Chapter5} />
+          <Stack.Screen name="Chapter 6" component={Chapter6} />
+          <Stack.Screen name="Chapter 7" component={Chapter7} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </StoreProvider>
   );
   // }
 }
@@ -149,5 +174,17 @@ const styles = StyleSheet.create({
   },
   button: {
     marginBottom: 5
-  }
+  },
+  input: {
+    flex:0.2,
+    height: 40,
+    // margin: 12, 
+    marginBottom:15,   
+    borderWidth: 1,
+    padding: 10,
+    backgroundColor:'white',
+    fontFamily:"Montserrat_400Regular",
+    borderWidth:2,
+    borderRadius:5
+  },
 });
