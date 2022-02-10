@@ -83,6 +83,29 @@ const Chapter2 = function() {
   const [isEnabled_cancer, setIsEnabled_cancer] = react.useState(false);
   const toggleSwitch_cancer = () => setIsEnabled_cancer(previousState => !previousState);
   const [loc_cancer, onChangeText_loc] = react.useState(null);
+  const [phase_cancer, onChangeText_phase] = react.useState(null);
+  const [treatment_cancer, onChangeText_treatment] = react.useState(null);
+  const [begin_cancer, onChangeText_begin] = react.useState(null);
+  const [end_cancer, onChangeText_end] = react.useState(null);
+  const [checked_end, setChecked_end] = react.useState('');
+
+  const [treatment_hyper, onChangeText_treatment_hyper] = react.useState(null);
+  const [isEnabled_hypertension, setIsEnabled_hypertension] = react.useState(false);
+  const toggleSwitch_hypertension = () => setIsEnabled_hypertension(previousState => !previousState);
+
+  const [booster1, onChangeText_booster1] = react.useState(null);
+  const [booster2, onChangeText_booster2] = react.useState(null);
+  const [booster3, onChangeText_booster3] = react.useState(null);
+  const [booster4, onChangeText_booster4] = react.useState(null);
+  const [booster5, onChangeText_booster5] = react.useState(null);
+  const [booster6, onChangeText_booster6] = react.useState(null);
+  const [booster7, onChangeText_booster7] = react.useState(null);
+  const [booster8, onChangeText_booster8] = react.useState(null);
+  const [booster9, onChangeText_booster9] = react.useState(null);
+  const [booster10, onChangeText_booster10] = react.useState(null);
+  const [booster11, onChangeText_booster11] = react.useState(null);
+
+
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShow(Platform.OS === 'ios');
@@ -442,8 +465,27 @@ const Chapter2 = function() {
                   onValueChange={toggleSwitch_vax1}
                   value={isEnabled_vax1}
                 />
+                <Text style={styles.paragraph}>No</Text>
               </View>
             </View>
+            {isEnabled_vax1 &&
+              <View>
+                <Text style={styles.label}>Date of your last booster</Text>
+                <TextInput
+                  style={{...styles.input,borderColor:borderColorInput}}
+                  onFocus={() => {
+                    setBorderColorInput("cyan");
+                  }}
+                  onBlur={() => {
+                    setBorderColorInput("black");
+                  }}
+                  onChangeText={onChangeText_booster1}
+                  value={booster1}
+                  placeholder="Last Booster"
+                  keyboardType="default"
+                />
+              </View>
+            }
             <View style={styles.switchbox}>
               <Text style={styles.label}> Diphtheria </Text>
               <View style={styles.checkboxview}>
@@ -454,8 +496,27 @@ const Chapter2 = function() {
                   onValueChange={toggleSwitch_vax2}
                   value={isEnabled_vax2}
                 />
+                <Text style={styles.paragraph}>No</Text>
               </View>
             </View>
+            {isEnabled_vax2 &&
+              <View>
+                <Text style={styles.label}>Date of your last booster</Text>
+                <TextInput
+                  style={{...styles.input,borderColor:borderColorInput}}
+                  onFocus={() => {
+                    setBorderColorInput("cyan");
+                  }}
+                  onBlur={() => {
+                    setBorderColorInput("black");
+                  }}
+                  onChangeText={onChangeText_booster2}
+                  value={booster2}
+                  placeholder="Last Booster"
+                  keyboardType="default"
+                />
+              </View>
+            }
             <View style={styles.switchbox}>
               <Text style={styles.label}> Polio </Text>
               <View style={styles.checkboxview}>
@@ -466,8 +527,27 @@ const Chapter2 = function() {
                   onValueChange={toggleSwitch_vax3}
                   value={isEnabled_vax3}
                 />
+                <Text style={styles.paragraph}>No</Text>
               </View>
             </View>
+            {isEnabled_vax3 &&
+              <View>
+                <Text style={styles.label}>Date of your last booster</Text>
+                <TextInput
+                  style={{...styles.input,borderColor:borderColorInput}}
+                  onFocus={() => {
+                    setBorderColorInput("cyan");
+                  }}
+                  onBlur={() => {
+                    setBorderColorInput("black");
+                  }}
+                  onChangeText={onChangeText_booster3}
+                  value={booster3}
+                  placeholder="Last Booster"
+                  keyboardType="default"
+                />
+              </View>
+            }
             <View style={styles.switchbox}>
               <Text style={styles.label}> TETANUS </Text>
               <View style={styles.checkboxview}>
@@ -478,8 +558,27 @@ const Chapter2 = function() {
                   onValueChange={toggleSwitch_vax4}
                   value={isEnabled_vax4}
                 />
+                <Text style={styles.paragraph}>No</Text>
               </View>
             </View>
+            {isEnabled_vax4 &&
+              <View>
+                <Text style={styles.label}>Date of your last booster</Text>
+                <TextInput
+                  style={{...styles.input,borderColor:borderColorInput}}
+                  onFocus={() => {
+                    setBorderColorInput("cyan");
+                  }}
+                  onBlur={() => {
+                    setBorderColorInput("black");
+                  }}
+                  onChangeText={onChangeText_booster4}
+                  value={booster4}
+                  placeholder="Last Booster"
+                  keyboardType="default"
+                />
+              </View>
+            }
             <View style={styles.switchbox}>
               <Text style={styles.label}> Pertussis </Text>
               <View style={styles.checkboxview}>
@@ -490,8 +589,27 @@ const Chapter2 = function() {
                   onValueChange={toggleSwitch_vax5}
                   value={isEnabled_vax5}
                 />
+                <Text style={styles.paragraph}>No</Text>
               </View>
             </View>
+            {isEnabled_vax5 &&
+              <View>
+                <Text style={styles.label}>Date of your last booster</Text>
+                <TextInput
+                  style={{...styles.input,borderColor:borderColorInput}}
+                  onFocus={() => {
+                    setBorderColorInput("cyan");
+                  }}
+                  onBlur={() => {
+                    setBorderColorInput("black");
+                  }}
+                  onChangeText={onChangeText_booster5}
+                  value={booster5}
+                  placeholder="Last Booster"
+                  keyboardType="default"
+                />
+              </View>
+            }
             <View style={styles.switchbox}>
               <Text style={styles.label}> RUBELLA </Text>
               <View style={styles.checkboxview}>
@@ -502,8 +620,27 @@ const Chapter2 = function() {
                   onValueChange={toggleSwitch_vax6}
                   value={isEnabled_vax6}
                 />
+                <Text style={styles.paragraph}>No</Text>
               </View>
             </View>
+            {isEnabled_vax6 &&
+              <View>
+                <Text style={styles.label}>Date of your last booster</Text>
+                <TextInput
+                  style={{...styles.input,borderColor:borderColorInput}}
+                  onFocus={() => {
+                    setBorderColorInput("cyan");
+                  }}
+                  onBlur={() => {
+                    setBorderColorInput("black");
+                  }}
+                  onChangeText={onChangeText_booster6}
+                  value={booster6}
+                  placeholder="Last Booster"
+                  keyboardType="default"
+                />
+              </View>
+            }
             <View style={styles.switchbox}>
               <Text style={styles.label}> Rujeola </Text>
               <View style={styles.checkboxview}>
@@ -514,8 +651,27 @@ const Chapter2 = function() {
                   onValueChange={toggleSwitch_vax7}
                   value={isEnabled_vax7}
                 />
+                <Text style={styles.paragraph}>No</Text>
               </View>
             </View>
+            {isEnabled_vax7 &&
+              <View>
+                <Text style={styles.label}>Date of your last booster</Text>
+                <TextInput
+                  style={{...styles.input,borderColor:borderColorInput}}
+                  onFocus={() => {
+                    setBorderColorInput("cyan");
+                  }}
+                  onBlur={() => {
+                    setBorderColorInput("black");
+                  }}
+                  onChangeText={onChangeText_booster7}
+                  value={booster7}
+                  placeholder="Last Booster"
+                  keyboardType="default"
+                />
+              </View>
+            }
             <View style={styles.switchbox}>
               <Text style={styles.label}> Mumps </Text>
               <View style={styles.checkboxview}>
@@ -526,8 +682,27 @@ const Chapter2 = function() {
                   onValueChange={toggleSwitch_vax8}
                   value={isEnabled_vax8}
                 />
+                <Text style={styles.paragraph}>No</Text>
               </View>
             </View>
+            {isEnabled_vax8 &&
+              <View>
+                <Text style={styles.label}>Date of your last booster</Text>
+                <TextInput
+                  style={{...styles.input,borderColor:borderColorInput}}
+                  onFocus={() => {
+                    setBorderColorInput("cyan");
+                  }}
+                  onBlur={() => {
+                    setBorderColorInput("black");
+                  }}
+                  onChangeText={onChangeText_booster8}
+                  value={booster8}
+                  placeholder="Last Booster"
+                  keyboardType="default"
+                />
+              </View>
+            }
             <View style={styles.switchbox}>
               <Text style={styles.label}> Seasonal flu </Text>
               <View style={styles.checkboxview}>
@@ -538,8 +713,27 @@ const Chapter2 = function() {
                   onValueChange={toggleSwitch_vax9}
                   value={isEnabled_vax9}
                 />
+                <Text style={styles.paragraph}>No</Text>
               </View>
             </View>
+            {isEnabled_vax9 &&
+              <View>
+                <Text style={styles.label}>Date of your last booster</Text>
+                <TextInput
+                  style={{...styles.input,borderColor:borderColorInput}}
+                  onFocus={() => {
+                    setBorderColorInput("cyan");
+                  }}
+                  onBlur={() => {
+                    setBorderColorInput("black");
+                  }}
+                  onChangeText={onChangeText_booster9}
+                  value={booster9}
+                  placeholder="Last Booster"
+                  keyboardType="default"
+                />
+              </View>
+            }
             <View style={styles.switchbox}>
               <Text style={styles.label}> Covid 19 </Text>
               <View style={styles.checkboxview}>
@@ -550,8 +744,27 @@ const Chapter2 = function() {
                   onValueChange={toggleSwitch_vax10}
                   value={isEnabled_vax10}
                 />
+                <Text style={styles.paragraph}>No</Text>
               </View>
             </View>
+            {isEnabled_vax10 &&
+              <View>
+                <Text style={styles.label}>Date of your last booster</Text>
+                <TextInput
+                  style={{...styles.input,borderColor:borderColorInput}}
+                  onFocus={() => {
+                    setBorderColorInput("cyan");
+                  }}
+                  onBlur={() => {
+                    setBorderColorInput("black");
+                  }}
+                  onChangeText={onChangeText_booster10}
+                  value={booster10}
+                  placeholder="Last Booster"
+                  keyboardType="default"
+                />
+              </View>
+            }
             <View style={styles.switchbox}>
               <Text style={styles.label}> HPV </Text>
               <View style={styles.checkboxview}>
@@ -562,8 +775,27 @@ const Chapter2 = function() {
                   onValueChange={toggleSwitch_vax11}
                   value={isEnabled_vax11}
                 />
+                <Text style={styles.paragraph}>No</Text>
               </View>
             </View>
+            {isEnabled_vax11 &&
+              <View>
+                <Text style={styles.label}>Date of your last booster</Text>
+                <TextInput
+                  style={{...styles.input,borderColor:borderColorInput}}
+                  onFocus={() => {
+                    setBorderColorInput("cyan");
+                  }}
+                  onBlur={() => {
+                    setBorderColorInput("black");
+                  }}
+                  onChangeText={onChangeText_booster11}
+                  value={booster11}
+                  placeholder="Last Booster"
+                  keyboardType="default"
+                />
+              </View>
+            }
           </View>
         }
         <Text style={styles.label}>Do you have/had any chronical disease ? </Text>
@@ -586,9 +818,7 @@ const Chapter2 = function() {
           </View>
         </View>
         {checked_chro=="yes" &&
-          <View>
-
-          
+          <View>    
             <View style={styles.switchbox}>
               <Text style={styles.label}> Cancer </Text>
               <View style={styles.checkboxview}>
@@ -599,6 +829,9 @@ const Chapter2 = function() {
                   onValueChange={toggleSwitch_cancer}
                   value={isEnabled_cancer}
                 />
+                <Text>
+                {isEnabled_cancer ? 'Yes' : 'No'}
+                </Text>
               </View>
             </View>
             {isEnabled_cancer &&
@@ -616,14 +849,132 @@ const Chapter2 = function() {
                   }}
                   onChangeText={onChangeText_loc}
                   value={loc_cancer}
-                  placeholder="What was the Location?"
+                  placeholder="Location"
+                  keyboardType="default"
+                />
+                <Text style={styles.label}>Is it finished ? </Text>
+                <View style={styles.checkboxview}>
+                  <View style={styles.containerbutton}>
+                    <Text style={styles.paragraph}>Yes</Text>
+                    <RadioButton
+                      value="yes"
+                      status={ checked_end === 'yes' ? 'checked' : 'unchecked' }
+                      onPress={() => setChecked_end('yes')}
+                    />
+                  </View>
+                  <View style={styles.containerbutton}>
+                    <Text style={styles.paragraph}>No</Text>
+                    <RadioButton
+                      value="no"
+                      status={ checked_end === 'no' ? 'checked' : 'unchecked' }
+                      onPress={() => setChecked_end('no')}
+                    />
+                  </View>
+                </View>
+                <View style={styles.names}>
+                  <View style={styles.firstname}>
+                    <Text style={styles.label}>From</Text>
+                    <TextInput
+                      style={{...styles.input,borderColor:borderColorInput}}
+                      onFocus={() => {
+                        setBorderColorInput("cyan");
+                      }}
+                      onBlur={() => {
+                        setBorderColorInput("black");
+                      }}
+                      onChangeText={onChangeText_begin}
+                      value={begin_cancer}
+                      placeholder="Year of Start"
+                      keyboardType="default"
+                    />
+                  </View>
+                  { checked_end === 'yes' &&
+                    <View style={styles.lastname}>
+                      <Text style={styles.label}>To</Text>
+                      <TextInput
+                        style={{...styles.input,borderColor:borderColorInput}}
+                        onFocus={() => {
+                          setBorderColorInput("cyan");
+                        }}
+                        onBlur={() => {
+                          setBorderColorInput("black");
+                        }}
+                        onChangeText={onChangeText_end}
+                        value={end_cancer}
+                        placeholder="Year of end"
+                        keyboardType="default"
+                      />
+                    </View> 
+                  }
+                </View>
+
+                <Text style={styles.label}>Treatment</Text>
+                <TextInput
+                  style={{...styles.input,borderColor:borderColorInput}}
+                  onFocus={() => {
+                    setBorderColorInput("cyan");
+                  }}
+                  onBlur={() => {
+                    setBorderColorInput("black");
+                  }}
+                  onChangeText={onChangeText_treatment}
+                  value={treatment_cancer}
+                  placeholder="Treatment"
+                  keyboardType="default"
+                />
+                <Text style={styles.label}>Current Phase</Text>
+                <TextInput
+                  style={{...styles.input,borderColor:borderColorInput}}
+                  onFocus={() => {
+                    setBorderColorInput("cyan");
+                  }}
+                  onBlur={() => {
+                    setBorderColorInput("black");
+                  }}
+                  onChangeText={onChangeText_phase}
+                  value={phase_cancer}
+                  placeholder="Current Phase"
                   keyboardType="default"
                 />
               </View>
 
             }
+            <View style={styles.switchbox}>
+              <Text style={styles.label}> HyperTension </Text>
+              <View style={styles.checkboxview}>
+                <Switch
+                  trackColor={{ false: "#767577", true: "cyan" }}
+                  thumbColor={isEnabled_hypertension ? "#024e4e" : "#024e4e"}
+                  ios_backgroundColor="#3e3e3e"
+                  onValueChange={toggleSwitch_hypertension}
+                  value={isEnabled_hypertension}
+                />
+                <Text>
+                {isEnabled_hypertension ? 'Yes' : 'No'}
+                </Text>
+              </View>
+            </View>
+            {isEnabled_hypertension &&
+              <View>
+                <Text style={styles.label}>How long have you been under Treatment ?</Text>
+                <TextInput
+                  style={{...styles.input,borderColor:borderColorInput}}
+                  onFocus={() => {
+                    setBorderColorInput("cyan");
+                  }}
+                  onBlur={() => {
+                    setBorderColorInput("black");
+                  }}
+                  onChangeText={onChangeText_treatment_hyper}
+                  value={treatment_hyper}
+                  placeholder="Duration of Treatment"
+                  keyboardType="default"
+                />
+              </View>
+            }
+ 
           </View>
-          
+
         }
       </ScrollView>
     </SafeAreaView>
@@ -634,6 +985,10 @@ export {Chapter2};
 
 const styles = StyleSheet.create({
   switchbox:{
+    display:'flex',
+    flexDirection:'row'
+  },
+  names:{
     display:'flex',
     flexDirection:'row'
   },
@@ -726,6 +1081,14 @@ const styles = StyleSheet.create({
     position: 'absolute',
     backgroundColor: '#fff',
     top: 50,
+  },
+  firstname:{
+    flex:1,
+    paddingRight:10
+  },
+  lastname:{
+    flex:1,
+    paddingRight:10
   },
 });
 
