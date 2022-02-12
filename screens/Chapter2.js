@@ -1639,7 +1639,6 @@ const styles = StyleSheet.create({
     display:'flex',
     flexDirection:'row',
     margin:'auto',
-    alignItems:'center',
     justifyContent:'center'
   },
   containerbutton:{
