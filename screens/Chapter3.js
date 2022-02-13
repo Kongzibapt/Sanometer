@@ -204,7 +204,6 @@ const styles = StyleSheet.create({
     display:'flex',
     flexDirection:'row',
     margin:'auto',
-    alignItems:'left',
     justifyContent:'center'
   },
   containerbutton:{
