@@ -144,14 +144,22 @@ const Chapter2 = function() {
 
   const [borderColorInput,setBorderColorInput] = react.useState("black");
   const [checked_allergies, setChecked_allergies] = react.useState('');
-  const [visible, setVisible] = react.useState(false);
+  const [visible_allergies, setVisible1] = react.useState(false);
+  const [visible_family, setVisible2] = react.useState(false);
+  const [visible_vaccine, setVisible3] = react.useState(false);
 
   const [checked_chro, setChecked_chro] = react.useState('');
 
   const [checked_conflict, setChecked_conflict] = react.useState('');
 
-  const toggleDropdown = () => {
-    setVisible(!visible);
+  const toggleDropdown1 = () => {
+    setVisible1(!visible_allergies);
+  };
+  const toggleDropdown2 = () => {
+    setVisible2(!visible_family);
+  };
+  const toggleDropdown3 = () => {
+    setVisible3(!visible_vaccine);
   };
 
 
@@ -334,7 +342,7 @@ const Chapter2 = function() {
   
 
   const renderDropdown_family = () => {
-    if(visible){
+    if(visible_family){
       return (
         <View>
           <Text style={styles.label}>Allergies antecedent? </Text>
@@ -679,7 +687,7 @@ const Chapter2 = function() {
   };
 
   const renderDropdown_vaccine = () => {
-    if (visible) {
+    if (visible_vaccine) {
       return (
         <View style={styles.container}>
         <Text style={styles.label}>Adverse events which needed medical advise ? </Text>
@@ -1067,7 +1075,7 @@ const Chapter2 = function() {
   };
 
   const renderDropdown_allergies = () => {
-    if (visible) {
+    if (visible_allergies) {
       return (
         <View>
           <View style={styles.switchbox}>
@@ -1444,7 +1452,7 @@ const Chapter2 = function() {
           <View style={styles.container}>
             <TouchableOpacity
               style={styles.button}
-              onPress={toggleDropdown}
+              onPress={toggleDropdown1}
             >
               <View style={styles.drop}>
                 <Text style={styles.titledrop}>Fill in your info about your allergies.</Text>
@@ -1483,7 +1491,7 @@ const Chapter2 = function() {
           <View style={styles.container}>
             <TouchableOpacity
               style={styles.button}
-              onPress={toggleDropdown}
+              onPress={toggleDropdown3}
             >
               <View style={styles.drop}>
                 <Text style={styles.titledrop}>Fill in your info about your vaccines.</Text>
@@ -1853,7 +1861,7 @@ const Chapter2 = function() {
                 </Text>
               </View>
             </View>
-            {isEnabled_heart &&
+            {isEnabled_digestive &&
               <View style={styles.checkboxContainer}>
                 <View style={styles.section_checkbox}>
                   <Checkbox
@@ -3390,7 +3398,7 @@ const Chapter2 = function() {
         <View style={styles.container}>
             <TouchableOpacity
               style={styles.button}
-              onPress={toggleDropdown}
+              onPress={toggleDropdown2}
             >
               <View style={styles.drop}>
                 <Text style={styles.titledrop}>Family medical data</Text>
