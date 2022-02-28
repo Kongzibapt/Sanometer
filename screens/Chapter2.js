@@ -124,6 +124,7 @@ const Chapter2 = function() {
   const [checked_severeseason, setChecked_severeseason] = react.useState('');
   const [isEnabled_others, setIsEnabled_others] = react.useState(false);
   const toggleSwitch_others = () => setIsEnabled_others(previousState => !previousState);
+  const [checked_severeothers, setChecked_severeothers] = react.useState('');
   
   const [checked_severeother, setChecked_severother] = react.useState('');
   const [trigger, onChangeText_trigger] = react.useState(null);
@@ -147,6 +148,12 @@ const Chapter2 = function() {
   const [visible_allergies, setVisible1] = react.useState(false);
   const [visible_family, setVisible2] = react.useState(false);
   const [visible_vaccine, setVisible3] = react.useState(false);
+  const [visible_chro, setVisible4] = react.useState(false);
+  const [visible_male, setVisible5] = react.useState(false);
+  const [visible_female, setVisible6] = react.useState(false);
+  const [visible_surgery, setVisible7] = react.useState(false);
+  const [visible_injuries, setVisible8] = react.useState(false);
+  const [visible_treatment, setVisible9] = react.useState(false);
 
   const [checked_chro, setChecked_chro] = react.useState('');
 
@@ -160,6 +167,24 @@ const Chapter2 = function() {
   };
   const toggleDropdown3 = () => {
     setVisible3(!visible_vaccine);
+  };
+  const toggleDropdown4 = () => {
+    setVisible4(!visible_chro);
+  };
+  const toggleDropdown5 = () => {
+    setVisible5(!visible_male);
+  };
+  const toggleDropdown6 = () => {
+    setVisible6(!visible_female);
+  };
+  const toggleDropdown7 = () => {
+    setVisible7(!visible_surgery);
+  };
+  const toggleDropdown8 = () => {
+    setVisible8(!visible_injuries);
+  };
+  const toggleDropdown9 = () => {
+    setVisible9(!visible_treatment);
   };
 
 
@@ -338,13 +363,1856 @@ const Chapter2 = function() {
     showMode_lastmenst('date');
   }; 
 
+  const renderDropdown_female = () => {
+    if (visible_female){
+      return(
+        <View style={styles.containerDropdown}>
+            <Text style={styles.label}>Date of first menstruation (Menarha) </Text>
+            <View style={styles.chooseDate}>
+              <Button color="black" onPress={showDatepicker_firstmenst} title="Choose" />
+            </View>
+            {show_firstmenst && (<DateTimePicker
+              testID="dateTimePicker"
+              value={date_firstmenst}
+              mode={mode_firstmenst}
+              is24Hour={true}
+              display="default"
+              onChange={onChange_firstmenst}
+            />)}
+            <Text style={styles.label}>Date of last menstruation </Text>
+            <View style={styles.chooseDate}>
+              <Button color="black" onPress={showDatepicker_lastmenst} title="Choose" />
+            </View>
+            {show_lastmenst && (<DateTimePicker
+              testID="dateTimePicker"
+              value={date_lastmenst}
+              mode={mode_lastmenst}
+              is24Hour={true}
+              display="default"
+              onChange={onChange_lastmenst}
+            />)}
+
+            <Text style={styles.label}>Are you menopaused ? </Text>
+            <View style={styles.checkboxview}>
+              <View style={styles.containerbutton}>
+                <Text style={styles.paragraph}>Yes</Text>
+                <RadioButton
+                  value="yes"
+                  status={ checked_menopause === 'yes' ? 'checked' : 'unchecked' }
+                  onPress={() => setChecked_menopause('yes')}
+                  color='cyan'
+                />
+              </View>
+              <View style={styles.containerbutton}>
+                <Text style={styles.paragraph}>No</Text>
+                <RadioButton
+                  value="no"
+                  status={ checked_menopause === 'no' ? 'checked' : 'unchecked' }
+                  onPress={() => setChecked_menopause('no')}
+                  color='cyan'
+                />
+              </View>
+            </View>
+            {checked_menopause=='yes' &&
+              <View style={styles.subcontainer2}>
+                <Text style={styles.label}>Since When ?</Text>
+                <TextInput
+                  style={{...styles.input,borderColor:borderColorInput}}
+                  onFocus={() => {
+                    setBorderColorInput("cyan");
+                  }}
+                  onBlur={() => {
+                    setBorderColorInput("black");
+                  }}
+                  onChangeText={onChangeText_menopausedate}
+                  value={menopause_date}
+                  placeholder="Year"
+                  keyboardType="default"
+                />
+                <Text style={styles.label}>Are you on Hormonal substitutions? </Text>
+                <View style={styles.checkboxview}>
+                  <View style={styles.containerbutton}>
+                    <Text style={styles.paragraph}>Yes</Text>
+                    <RadioButton
+                      value="yes"
+                      status={ checked_hormone === 'yes' ? 'checked' : 'unchecked' }
+                      onPress={() => setChecked_hormone('yes')}
+                      color='cyan'
+                    />
+                  </View>
+                  <View style={styles.containerbutton}>
+                    <Text style={styles.paragraph}>No</Text>
+                    <RadioButton
+                      value="no"
+                      status={ checked_hormone === 'no' ? 'checked' : 'unchecked' }
+                      onPress={() => setChecked_hormone('no')}
+                      color='cyan'
+                    />
+                  </View>
+                </View>
+                {checked_hormone=='yes' &&
+                  <View>
+                    <Text style={styles.label}> What substance ? </Text>
+                    <TextInput
+                      style={{...styles.input,borderColor:borderColorInput}}
+                      onFocus={() => {
+                        setBorderColorInput("cyan");
+                      }}
+                        onBlur={() => {
+                          setBorderColorInput("black");
+                        }}
+                          onChangeText={onChangeText_medications_hormone}
+                          value={medications_hormone}
+                          placeholder="Your medications"
+                          keyboardType="default"
+                    />
+
+                    <Text style={styles.label}> For how long ? </Text>
+                    <TextInput
+                      style={{...styles.input,borderColor:borderColorInput}}
+                      onFocus={() => {
+                        setBorderColorInput("cyan");
+                      }}
+                      onBlur={() => {
+                        setBorderColorInput("black");
+                      }}
+                      onChangeText={onChangeText_medications_hormonedate}
+                      value={hormonedate}
+                      placeholder="Year"
+                      keyboardType="default"
+                    />
+                  </View>
+                }
+              </View>
+            }
+
+            <Text style={styles.label}>Are you on a contraceptive treatment? </Text>
+            <View style={styles.checkboxview}>
+              <View style={styles.containerbutton}>
+                <Text style={styles.paragraph}>Yes</Text>
+                <RadioButton
+                  value="yes"
+                  status={ checked_contra === 'yes' ? 'checked' : 'unchecked' }
+                  onPress={() => setChecked_contra('yes')}
+                  color='cyan'
+                />
+              </View>
+              <View style={styles.containerbutton}>
+                <Text style={styles.paragraph}>No</Text>
+                <RadioButton
+                  value="no"
+                  status={ checked_contra === 'no' ? 'checked' : 'unchecked' }
+                  onPress={() => setChecked_contra('no')}
+                  color='cyan'
+                />
+              </View>
+            </View>
+            {checked_contra=='yes' &&
+              <View style={styles.subcontainer2}>
+                <Text style={styles.label}> What substance ? </Text>
+                <TextInput
+                  style={{...styles.input,borderColor:borderColorInput}}
+                  onFocus={() => {
+                    setBorderColorInput("cyan");
+                  }}
+                  onBlur={() => {
+                    setBorderColorInput("black");
+                  }}
+                  onChangeText={onChangeText_medications_contra}
+                  value={medications_contra}
+                  placeholder="Your medications"
+                  keyboardType="default"
+                />
+
+                <Text style={styles.label}> For how long ? </Text>
+                <TextInput
+                  style={{...styles.input,borderColor:borderColorInput}}
+                  onFocus={() => {
+                    setBorderColorInput("cyan");
+                  }}
+                  onBlur={() => {
+                    setBorderColorInput("black");
+                  }}
+                  onChangeText={onChangeText_medications_contradate}
+                  value={contradate}
+                  placeholder="Year"
+                  keyboardType="default"
+                />
+              </View>
+            }
+
+
+            <Text style={styles.label}>Did you gave Birth ? </Text>
+            <View style={styles.checkboxview}>
+              <View style={styles.containerbutton}>
+                <Text style={styles.paragraph}>Yes</Text>
+                <RadioButton
+                  value="yes"
+                  status={ checked_birth === 'yes' ? 'checked' : 'unchecked' }
+                  onPress={() => setChecked_birth('yes')}
+                  color='cyan'
+                />
+              </View>
+              <View style={styles.containerbutton}>
+                <Text style={styles.paragraph}>No</Text>
+                <RadioButton
+                  value="no"
+                  status={ checked_birth === 'no' ? 'checked' : 'unchecked' }
+                  onPress={() => setChecked_birth('no')}
+                  color='cyan'
+                />
+              </View>
+            </View>
+            {checked_birth=='yes' &&
+              <View style={styles.subcontainer2}>
+                <Text style={styles.label}>Did you breastfeed ? </Text>
+                <View style={styles.checkboxview}>
+                  <View style={styles.containerbutton}>
+                    <Text style={styles.paragraph}>Yes</Text>
+                    <RadioButton
+                      value="yes"
+                      status={ checked_breastfeed === 'yes' ? 'checked' : 'unchecked' }
+                      onPress={() => setChecked_breastfeed('yes')}
+                      color='cyan'
+                    />
+                  </View>
+                  <View style={styles.containerbutton}>
+                    <Text style={styles.paragraph}>No</Text>
+                    <RadioButton
+                      value="no"
+                      status={ checked_breastfeed === 'no' ? 'checked' : 'unchecked' }
+                      onPress={() => setChecked_breastfeed('no')}
+                      color='cyan'
+                    />
+                  </View>
+                </View>
+                <Text style={styles.label}>Did you got a Caesarean ? </Text>
+                <View style={styles.checkboxview}>
+                  <View style={styles.containerbutton}>
+                    <Text style={styles.paragraph}>Yes</Text>
+                    <RadioButton
+                      value="yes"
+                      status={ checked_caesarean === 'yes' ? 'checked' : 'unchecked' }
+                      onPress={() => setChecked_caesarean('yes')}
+                      color='cyan'
+                    />
+                  </View>
+                  <View style={styles.containerbutton}>
+                    <Text style={styles.paragraph}>No</Text>
+                    <RadioButton
+                      value="no"
+                      status={ checked_caesarean === 'no' ? 'checked' : 'unchecked' }
+                      onPress={() => setChecked_caesarean('no')}
+                      color='cyan'
+                    />
+                  </View>
+                </View>
+                {checked_caesarean=='yes' &&
+                  <View>
+                    <Text style={styles.label}> When ? </Text>
+                    <TextInput
+                      style={{...styles.input,borderColor:borderColorInput}}
+                      onFocus={() => {
+                        setBorderColorInput("cyan");
+                      }}
+                      onBlur={() => {
+                        setBorderColorInput("black");
+                      }}
+                      onChangeText={onChangeText_caesarean}
+                      value={caesareandate}
+                      placeholder="Year"
+                      keyboardType="default"
+                    />
+                    <Text style={styles.label}> How many ? </Text>
+                    <TextInput
+                      style={{...styles.input,borderColor:borderColorInput}}
+                      onFocus={() => {
+                        setBorderColorInput("cyan");
+                      }}
+                      onBlur={() => {
+                        setBorderColorInput("black");
+                      }}
+                      onChangeText={onChangeText_nbcaesarean}
+                      value={nbcaesarean}
+                      placeholder=""
+                      keyboardType="default"
+                    />
+                  </View>
+                }
+              </View>
+            }    
+
+            <Text style={styles.label}>Did you got an abortion ? </Text>
+            <View style={styles.checkboxview}>
+              <View style={styles.containerbutton}>
+                <Text style={styles.paragraph}>Yes</Text>
+                <RadioButton
+                  value="yes"
+                  status={ checked_abort === 'yes' ? 'checked' : 'unchecked' }
+                  onPress={() => setChecked_abort('yes')}
+                  color='cyan'
+                />
+              </View>
+              <View style={styles.containerbutton}>
+                <Text style={styles.paragraph}>No</Text>
+                <RadioButton
+                  value="no"
+                  status={ checked_abort === 'no' ? 'checked' : 'unchecked' }
+                  onPress={() => setChecked_abort('no')}
+                  color='cyan'
+                />
+              </View>
+            </View>
+            {checked_abort=='yes' &&
+              <View style={styles.subcontainer2}>
+                <Text style={styles.label}> When ? </Text>
+                <TextInput
+                  style={{...styles.input,borderColor:borderColorInput}}
+                  onFocus={() => {
+                    setBorderColorInput("cyan");
+                  }}
+                  onBlur={() => {
+                    setBorderColorInput("black");
+                  }}
+                  onChangeText={onChangeText_abortionwhen}
+                  value={abortionwhen}
+                  placeholder="Year"
+                  keyboardType="default"
+                />
+                <Text style={styles.label}> How ? </Text>
+                <TextInput
+                  style={{...styles.input,borderColor:borderColorInput}}
+                  onFocus={() => {
+                    setBorderColorInput("cyan");
+                  }}
+                  onBlur={() => {
+                    setBorderColorInput("black");
+                  }}
+                  onChangeText={onChangeText_abortionhow}
+                  value={abortionhow}
+                  placeholder=""
+                  keyboardType="default"
+                />
+                <Text style={styles.label}> How many ? </Text>
+                <TextInput
+                  style={{...styles.input,borderColor:borderColorInput}}
+                  onFocus={() => {
+                    setBorderColorInput("cyan");
+                  }}
+                  onBlur={() => {
+                    setBorderColorInput("black");
+                  }}
+                  onChangeText={onChangeText_abortionmany}
+                  value={abortionmany}
+                  placeholder=""
+                  keyboardType="default"
+                />
+              </View>
+            }
+
+            <Text style={styles.label}>Did you had lost in pregnancies ? </Text>
+            <View style={styles.checkboxview}>
+              <View style={styles.containerbutton}>
+                <Text style={styles.paragraph}>Yes</Text>
+                <RadioButton
+                  value="yes"
+                  status={ checked_lostpreg === 'yes' ? 'checked' : 'unchecked' }
+                  onPress={() => setChecked_lostpreg('yes')}
+                  color='cyan'
+                />
+              </View>
+              <View style={styles.containerbutton}>
+                <Text style={styles.paragraph}>No</Text>
+                <RadioButton
+                  value="no"
+                  status={ checked_lostpreg === 'no' ? 'checked' : 'unchecked' }
+                  onPress={() => setChecked_lostpreg('no')}
+                  color='cyan'
+                />
+              </View>
+            </View>
+            {checked_lostpreg=='yes' &&
+              <View style={styles.subcontainer2}>
+                <Text style={styles.label}> When ? </Text>
+                <TextInput
+                  style={{...styles.input,borderColor:borderColorInput}}
+                  onFocus={() => {
+                    setBorderColorInput("cyan");
+                  }}
+                  onBlur={() => {
+                    setBorderColorInput("black");
+                  }}
+                  onChangeText={onChangeText_lostpregwhen}
+                  value={lostpregwhen}
+                  placeholder="Year"
+                  keyboardType="default"
+                />
+                <Text style={styles.label}> How ? </Text>
+                <TextInput
+                  style={{...styles.input,borderColor:borderColorInput}}
+                  onFocus={() => {
+                    setBorderColorInput("cyan");
+                  }}
+                  onBlur={() => {
+                    setBorderColorInput("black");
+                  }}
+                  onChangeText={onChangeText_lostpreghow}
+                  value={lostpreghow}
+                  placeholder=""
+                  keyboardType="default"
+                />
+                <Text style={styles.label}> How many ? </Text>
+                <TextInput
+                  style={{...styles.input,borderColor:borderColorInput}}
+                  onFocus={() => {
+                    setBorderColorInput("cyan");
+                  }}
+                  onBlur={() => {
+                    setBorderColorInput("black");
+                  }}
+                  onChangeText={onChangeText_lostpregmany}
+                  value={lostpregmany}
+                  placeholder=""
+                  keyboardType="default"
+                />
+              </View>
+            }
+
+            <Text style={styles.label}>Any Pathological tasks ? </Text>
+            <View style={styles.checkboxview}>
+              <View style={styles.containerbutton}>
+                <Text style={styles.paragraph}>Yes</Text>
+                <RadioButton
+                  value="yes"
+                  status={ checked_path === 'yes' ? 'checked' : 'unchecked' }
+                  onPress={() => setChecked_path('yes')}
+                  color='cyan'
+                />
+              </View>
+              <View style={styles.containerbutton}>
+                <Text style={styles.paragraph}>No</Text>
+                <RadioButton
+                  value="no"
+                  status={ checked_path === 'no' ? 'checked' : 'unchecked' }
+                  onPress={() => setChecked_path('no')}
+                  color='cyan'
+                />
+              </View>
+            </View>
+            {checked_path=='yes' &&
+              <View style={styles.subcontainer2}>
+                <Text style={styles.label}> When ? </Text>
+                <TextInput
+                  style={{...styles.input,borderColor:borderColorInput}}
+                  onFocus={() => {
+                    setBorderColorInput("cyan");
+                  }}
+                  onBlur={() => {
+                    setBorderColorInput("black");
+                  }}
+                  onChangeText={onChangeText_pathodate}
+                  value={pathodate}
+                  placeholder="Your medications"
+                  keyboardType="default"
+                />
+                <Text style={styles.label}> How ? </Text>
+                <TextInput
+                  style={{...styles.input,borderColor:borderColorInput}}
+                  onFocus={() => {
+                    setBorderColorInput("cyan");
+                  }}
+                  onBlur={() => {
+                    setBorderColorInput("black");
+                  }}
+                  onChangeText={onChangeText_pathohow}
+                  value={pathohow}
+                  placeholder=""
+                  keyboardType="default"
+                />
+                <Text style={styles.label}> How many ? </Text>
+                <TextInput
+                  style={{...styles.input,borderColor:borderColorInput}}
+                  onFocus={() => {
+                    setBorderColorInput("cyan");
+                  }}
+                  onBlur={() => {
+                    setBorderColorInput("black");
+                  }}
+                  onChangeText={onChangeText_pathomany}
+                  value={pathomany}
+                  placeholder=""
+                  keyboardType="default"
+                />
+              </View>
+            }
+
+            <Text style={styles.label}>Any breast problems ? </Text>
+            <View style={styles.checkboxview}>
+              <View style={styles.containerbutton}>
+                <Text style={styles.paragraph}>Yes</Text>
+                <RadioButton
+                  value="yes"
+                  status={ checked_breastpb === 'yes' ? 'checked' : 'unchecked' }
+                  onPress={() => setChecked_breastpb('yes')}
+                  color='cyan'
+                />
+              </View>
+              <View style={styles.containerbutton}>
+                <Text style={styles.paragraph}>No</Text>
+                <RadioButton
+                  value="no"
+                  status={ checked_breastpb === 'no' ? 'checked' : 'unchecked' }
+                  onPress={() => setChecked_breastpb('no')}
+                  color='cyan'
+                />
+              </View>
+            </View>
+            {checked_breastpb=='yes' &&
+              <View style={styles.subcontainer2}>
+                <Text style={styles.label}> Do you get periodic inspection ? </Text>   
+                <View style={styles.checkboxview}>
+                  <View style={styles.containerbutton}>
+                    <Text style={styles.paragraph}>Yes</Text>
+                    <RadioButton
+                      value="yes"
+                      status={ checked_inspect === 'yes' ? 'checked' : 'unchecked' }
+                      onPress={() => setChecked_inspect('yes')}
+                      color='cyan'
+                    />
+                  </View>
+                  <View style={styles.containerbutton}>
+                    <Text style={styles.paragraph}>No</Text>
+                    <RadioButton
+                      value="no"
+                      status={ checked_inspect === 'no' ? 'checked' : 'unchecked' }
+                      onPress={() => setChecked_inspect('no')}
+                      color='cyan'
+                    />
+                  </View>
+                </View>
+                {checked_inspect =='yes' &&
+                  <View style={styles.container}>
+                    <Text style={styles.label}> When ? </Text>
+                    <TextInput
+                      style={{...styles.input,borderColor:borderColorInput}}
+                      onFocus={() => {
+                        setBorderColorInput("cyan");
+                      }}
+                      onBlur={() => {
+                        setBorderColorInput("black");
+                      }}
+                      onChangeText={onChangeText_inspect}
+                      value={inspect}
+                      placeholder="Year"
+                      keyboardType="default"
+                    />
+                  </View>
+                }
+              </View>
+            }
+
+            <Text style={styles.label}>Did you got pregnancies issues? </Text>
+            <View style={styles.checkboxview}>
+              <View style={styles.containerbutton}>
+                <Text style={styles.paragraph}>Yes</Text>
+                <RadioButton
+                  value="yes"
+                  status={ checked_pregpb === 'yes' ? 'checked' : 'unchecked' }
+                  onPress={() => setChecked_pregpb('yes')}
+                  color='cyan'
+                />
+              </View>
+              <View style={styles.containerbutton}>
+                <Text style={styles.paragraph}>No</Text>
+                <RadioButton
+                  value="no"
+                  status={ checked_pregpb === 'no' ? 'checked' : 'unchecked' }
+                  onPress={() => setChecked_pregpb('no')}
+                  color='cyan'
+                />
+              </View>
+            </View>
+            {checked_pregpb =='yes' &&
+              <View style={styles.subcontainer2}>
+                <View style={styles.switchbox}>
+                  <Text style={styles.label}> Gestational diabetes </Text>
+                  <View style={styles.checkboxview}>
+                    <Switch
+                      trackColor={{ false: "#767577", true: "cyan" }}
+                      thumbColor={isEnabled_gestdiab ? "#024e4e" : "#024e4e"}
+                      ios_backgroundColor="#3e3e3e"
+                      onValueChange={toggleSwitch_gestdiab}
+                      value={isEnabled_gestdiab}
+                    />
+                    
+                  </View>
+                </View>
+
+                <View style={styles.switchbox}>
+                  <Text style={styles.label}> Others problems ? </Text>
+                  <View style={styles.checkboxview}>
+                    <Switch
+                      trackColor={{ false: "#767577", true: "cyan" }}
+                      thumbColor={isEnabled_othergestpb ? "#024e4e" : "#024e4e"}
+                      ios_backgroundColor="#3e3e3e"
+                      onValueChange={toggleSwitch_othergestpb}
+                      value={isEnabled_othergestpb}
+                    />
+                    
+                  </View>
+                </View>
+                {isEnabled_othergestpb &&
+                  <View style={styles.subcontainer}>
+                    <Text style={styles.sublabel}> What type ? </Text>
+                    <TextInput
+                      style={{...styles.input,borderColor:borderColorInput}}
+                      onFocus={() => {
+                        setBorderColorInput("cyan");
+                      }}
+                      onBlur={() => {
+                        setBorderColorInput("black");
+                      }}
+                      onChangeText={onChangeText_othersgynpb}
+                      value={gynpb_others}
+                      placeholder="Describe"
+                      keyboardType="default"
+                    />
+                  </View>
+                }
+              </View>       
+            }
+
+            <Text style={styles.label}> Do you get periodic gynecological consult ? </Text>   
+            <View style={styles.checkboxview}>
+              <View style={styles.containerbutton}>
+                <Text style={styles.paragraph}>Yes</Text>
+                <RadioButton
+                  value="yes"
+                  status={ checked_consultgyn === 'yes' ? 'checked' : 'unchecked' }
+                  onPress={() => setChecked_consultgyn('yes')}
+                  color='cyan'
+                />
+              </View>
+              <View style={styles.containerbutton}>
+                <Text style={styles.paragraph}>No</Text>
+                <RadioButton
+                  value="no"
+                  status={ checked_consultgyn === 'no' ? 'checked' : 'unchecked' }
+                  onPress={() => setChecked_consultgyn('no')}
+                  color='cyan'
+                />
+              </View>
+            </View>
+            {checked_consultgyn =='yes' &&
+              <View style={styles.subcontainer2}>
+                <Text style={styles.sublabel}> When was the last one ? </Text>
+                <TextInput
+                  style={{...styles.input,borderColor:borderColorInput}}
+                  onFocus={() => {
+                    setBorderColorInput("cyan");
+                  }}
+                  onBlur={() => {
+                    setBorderColorInput("black");
+                  }}
+                  onChangeText={onChangeText_gyneco}
+                  value={medications_gyneco}
+                  placeholder="Year"
+                  keyboardType="default"
+                />
+              </View>
+            }
+
+            <Text style={styles.label}> Did you got Papanicolau test ? </Text>   
+            <View style={styles.checkboxview}>
+              <View style={styles.containerbutton}>
+                <Text style={styles.paragraph}>Yes</Text>
+                <RadioButton
+                  value="yes"
+                  status={ checked_papanicolau === 'yes' ? 'checked' : 'unchecked' }
+                  onPress={() => setChecked_papanicolau('yes')}
+                  color='cyan'
+                />
+              </View>
+              <View style={styles.containerbutton}>
+                <Text style={styles.paragraph}>No</Text>
+                <RadioButton
+                  value="no"
+                  status={ checked_papanicolau === 'no' ? 'checked' : 'unchecked' }
+                  onPress={() => setChecked_papanicolau('no')}
+                  color='cyan'
+                />
+              </View>
+            </View>
+            {checked_papanicolau =='yes' &&
+              <View style={styles.subcontainer2}>
+                <Text style={styles.sublabel}> When was the last one ? </Text>
+                <TextInput
+                  style={{...styles.input,borderColor:borderColorInput}}
+                  onFocus={() => {
+                    setBorderColorInput("cyan");
+                  }}
+                  onBlur={() => {
+                    setBorderColorInput("black");
+                  }}
+                  onChangeText={onChangeText_papanicolau}
+                  value={papanicolau}
+                  placeholder="Year"
+                  keyboardType="default"
+                />
+              </View>
+            }
+          </View>
+
+      );
+    }
+  };
+
+  const renderDropdown_surgery = () => {
+    if (visible_surgery){
+      return(
+        <View style={styles.containerDropdown}>
+              <View style={styles.checkboxContainer}>
+                <View style={styles.section_checkbox}>
+                    <Checkbox
+                      style={styles.checkbox}
+                      value={isChecked_appendic}
+                      onValueChange={setChecked_appendic}
+                      color={isChecked_appendic ? 'cyan' : undefined}
+                    />
+                    <Text style={styles.paragraph}>Appendic surgery</Text>
+                </View>
+                <View style={styles.section_checkbox}>
+                  <Checkbox
+                    style={styles.checkbox}
+                    value={isChecked_tonsilssurgery}
+                    onValueChange={setChecked_tonsilssurgery}
+                    color={isChecked_tonsilssurgery ? 'cyan' : undefined}
+                  />
+                  <Text style={styles.paragraph}> Tonsils surgery </Text>
+                </View>
+
+                <View style={styles.section_checkbox}>
+                  <Checkbox
+                    style={styles.checkbox}
+                    value={isChecked_gallbladdersurgery}
+                    onValueChange={setChecked_gallbladdersurgery}
+                    color={isChecked_gallbladdersurgery ? 'cyan' : undefined}
+                  />
+                  <Text style={styles.paragraph}> Gallbladder surgery </Text>
+                </View>
+
+                <View style={styles.section_checkbox}>
+                  <Checkbox
+                    style={styles.checkbox}
+                    value={isChecked_innguinal}
+                    onValueChange={setChecked_innguinal}
+                    color={isChecked_innguinal ? 'cyan' : undefined}
+                  />
+                  <Text style={styles.paragraph}>Innguinal hernia</Text>
+                </View>
+
+                <View style={styles.section_checkbox}>
+                  <Checkbox
+                    style={styles.checkbox}
+                    value={isChecked_umbilical}
+                    onValueChange={setChecked_umbilical}
+                    color={isChecked_umbilical ? 'cyan' : undefined}
+                  />
+                  <Text style={styles.paragraph}>Umbilical hernia</Text>
+                </View>
+
+              </View>
+        </View>
+
+      );
+    }
+  };
+
+  const renderDropdown_injuries = () => {
+    if (visible_injuries){
+      return(
+        <View style={styles.containerDropdown}>
+            <Text style={styles.label}> Did you had any accidents (car/sport) ? </Text>
+            <View style={styles.checkboxview}>
+              <View style={styles.containerbutton}>
+                <Text style={styles.paragraph}>Yes</Text>
+                <RadioButton
+                  value="yes"
+                  status={ checked_accident === 'yes' ? 'checked' : 'unchecked' }
+                  onPress={() => setChecked_accident('yes')}
+                  color='cyan'
+                />
+              </View>
+              <View style={styles.containerbutton}>
+                <Text style={styles.paragraph}>No</Text>
+                <RadioButton
+                  value="no"
+                  status={ checked_accident === 'no' ? 'checked' : 'unchecked' }
+                  onPress={() => setChecked_accident('no')}
+                  color='cyan'
+                />
+              </View>
+            </View>
+            <Text style={styles.label}> Did you had any sprains ? </Text>
+            <View style={styles.checkboxview}>
+              <View style={styles.containerbutton}>
+                <Text style={styles.paragraph}>Yes</Text>
+                <RadioButton
+                  value="yes"
+                  status={ checked_sprains === 'yes' ? 'checked' : 'unchecked' }
+                  onPress={() => setChecked_sprains('yes')}
+                  color='cyan'
+                />
+              </View>
+              <View style={styles.containerbutton}>
+                <Text style={styles.paragraph}>No</Text>
+                <RadioButton
+                  value="no"
+                  status={ checked_sprains === 'no' ? 'checked' : 'unchecked' }
+                  onPress={() => setChecked_sprains('no')}
+                  color='cyan'
+                />
+              </View>
+            </View>
+            <Text style={styles.label}> Did you had any Luxuries or fractures ? </Text>
+            <View style={styles.checkboxview}>
+              <View style={styles.containerbutton}>
+                <Text style={styles.paragraph}>Yes</Text>
+                <RadioButton
+                  value="yes"
+                  status={ checked_luxuries_fractures === 'yes' ? 'checked' : 'unchecked' }
+                  onPress={() => setChecked_luxuries_fractures('yes')}
+                  color='cyan'
+                />
+              </View>
+              <View style={styles.containerbutton}>
+                <Text style={styles.paragraph}>No</Text>
+                <RadioButton
+                  value="no"
+                  status={ checked_luxuries_fractures === 'no' ? 'checked' : 'unchecked' }
+                  onPress={() => setChecked_luxuries_fractures('no')}
+                  color='cyan'
+                />
+              </View>
+            </View>
+        </View>
+
+      );
+    }
+  };
+
+  const renderDropdown_male = () => {
+    if (visible_male){
+      return(
+        <View style={styles.containerDropdown}>
+            <Text style={styles.label}> Your age range </Text>
+            <Picker
+              selectedValue={selectedage}
+              onValueChange={(itemValue, itemIndex) =>
+                setSelectedage(itemValue)
+              }
+              mode='dropdown'>
+              <Picker.Item label="Age <4O" value="less_40" />
+              <Picker.Item label="Age 40-65" value="40_65" />
+              <Picker.Item label="Age >65" value="more_65" />
+
+            </Picker>
+
+            {selectedage =='less_40' &&
+              <View style={styles.subcontainer2}>
+                <Text style={styles.label}> Are you in a toxic environnement ? </Text>
+                <View style={styles.checkboxview}>
+                  <View style={styles.containerbutton}>
+                    <Text style={styles.paragraph}>Yes</Text>
+                    <RadioButton
+                      value="yes"
+                      status={ checked_toxic === 'yes' ? 'checked' : 'unchecked' }
+                      onPress={() => setChecked_toxic('yes')}
+                      color='cyan'
+                    />
+                  </View>
+                  <View style={styles.containerbutton}>
+                    <Text style={styles.paragraph}>No</Text>
+                    <RadioButton
+                      value="no"
+                      status={ checked_toxic === 'no' ? 'checked' : 'unchecked' }
+                      onPress={() => setChecked_toxic('no')}
+                      color='cyan'
+                    />
+                  </View>
+                </View>
+                <Text style={styles.label}> Do you practice extreme sport ? </Text>
+                <View style={styles.checkboxview}>
+                  <View style={styles.containerbutton}>
+                    <Text style={styles.paragraph}>Yes</Text>
+                    <RadioButton
+                      value="yes"
+                      status={ checked_sport === 'yes' ? 'checked' : 'unchecked' }
+                      onPress={() => setChecked_sport('yes')}
+                      color='cyan'
+                    />
+                  </View>
+                  <View style={styles.containerbutton}>
+                    <Text style={styles.paragraph}>No</Text>
+                    <RadioButton
+                      value="no"
+                      status={ checked_sport === 'no' ? 'checked' : 'unchecked' }
+                      onPress={() => setChecked_sport('no')}
+                      color='cyan'
+                    />
+                  </View>
+                </View>
+              </View>
+
+            }
+            {selectedage=='40_65' &&
+              <View style={styles.subcontainer2}>
+                <Text style={styles.label}>Level of stress</Text>
+                <View style={[styles.contentView]}>
+                  <Slider
+                    value={value}
+                    onValueChange={setValue}
+                    maximumValue={10}
+                    minimumValue={0}
+                    step={1}
+                    allowTouchTrack
+                    trackStyle={{ height: 5, backgroundColor: 'transparent' }}
+                    thumbStyle={{ height: 20, width: 20, backgroundColor: 'transparent' }}
+                    thumbProps={{
+                      children: (
+                        <Icon
+                        name="heartbeat"
+                        type="font-awesome"
+                        size={20}
+                        reverse
+                        containerStyle={{ bottom: 20, right: 20 }}
+                        color={'#fbe31c'}
+                      />
+                      ),
+                    }}
+                  />
+                  <Text style={{ paddingTop: 10 }}>Value: {value}</Text>
+                </View>
+
+              </View>
+            }
+            {selectedage=='more_65' &&
+              <View style={styles.subcontainer2}>
+                <Text style={styles.label}> Wake up at night to urinate more than once ? </Text>
+                <View style={styles.checkboxview}>
+                  <View style={styles.containerbutton}>
+                    <Text style={styles.paragraph}>Yes</Text>
+                    <RadioButton
+                      value="yes"
+                      status={ checked_urinate === 'yes' ? 'checked' : 'unchecked' }
+                      onPress={() => setChecked_urinate('yes')}
+                      color='cyan'
+                    />
+                  </View>
+                  <View style={styles.containerbutton}>
+                    <Text style={styles.paragraph}>No</Text>
+                    <RadioButton
+                      value="no"
+                      status={ checked_urinate === 'no' ? 'checked' : 'unchecked' }
+                      onPress={() => setChecked_urinate('no')}
+                      color='cyan'
+                    />
+                  </View>
+                </View>
+              </View>
+
+            }
+          </View>
+
+      );
+    }
+  };
+
+  const renderDropdown_treatment = () => {
+    if (visible_treatment){
+      return(
+        <View style={styles.containerDropdown}>
+            <View style={styles.switchbox}>
+              <View style={styles.checkboxview}>
+                <Switch
+                  trackColor={{ false: "#767577", true: "cyan" }}
+                  thumbColor={isEnabled_treatmentpressure? "#024e4e" : "#024e4e"}
+                  ios_backgroundColor="#3e3e3e"
+                  onValueChange={toggleSwitch_treatmentpressure}
+                  value={isEnabled_treatmentpressure}
+                />
+                <Text style={styles.label}> Pressure </Text>
+                <Text>
+                
+                </Text>
+              </View>
+            </View>
+            <View style={styles.switchbox}>
+              <View style={styles.checkboxview}>
+                <Switch
+                  trackColor={{ false: "#767577", true: "cyan" }}
+                  thumbColor={isEnabled_treatmentinfection? "#024e4e" : "#024e4e"}
+                  ios_backgroundColor="#3e3e3e"
+                  onValueChange={toggleSwitch_treatmentinfection}
+                  value={isEnabled_treatmentinfection}
+                />
+                <Text style={styles.label}> Infection </Text>
+                <Text>
+               
+                </Text>
+              </View>
+            </View>
+            <View style={styles.switchbox}>
+              <View style={styles.checkboxview}>
+                <Switch
+                  trackColor={{ false: "#767577", true: "cyan" }}
+                  thumbColor={isEnabled_treatmentother? "#024e4e" : "#024e4e"}
+                  ios_backgroundColor="#3e3e3e"
+                  onValueChange={toggleSwitch_treatmentother}
+                  value={isEnabled_treatmentother}
+                />
+                <Text style={styles.label}> Other </Text>
+                <Text>
+                
+                </Text>
+              </View>
+
+            </View>
+            {isEnabled_treatmentother &&
+                  <View style={styles.subcontainer2}>
+                    <Text style={styles.label}>Which one ?</Text>
+                    <TextInput
+                      style={{...styles.input,borderColor:borderColorInput}}
+                      onFocus={() => {
+                        setBorderColorInput("cyan");
+                      }}
+                      onBlur={() => {
+                        setBorderColorInput("black");
+                      }}
+                      onChangeText={onChangeText_treatother}
+                      value={treatother}
+                      placeholder="Treatment "
+                      keyboardType="default"
+                    />
+                  </View>
+                }
+            <View style={styles.switchbox}>
+              <View style={styles.checkboxview}>
+                <Switch
+                  trackColor={{ false: "#767577", true: "cyan" }}
+                  thumbColor={isEnabled_treatmentnaturist? "#024e4e" : "#024e4e"}
+                  ios_backgroundColor="#3e3e3e"
+                  onValueChange={toggleSwitch_treatmentnaturist}
+                  value={isEnabled_treatmentnaturist}
+                />
+                <Text style={styles.label}> Naturist treatment </Text>
+                <Text>
+               
+                </Text>
+              </View>
+            </View>
+            {isEnabled_treatmentnaturist &&
+              <View style={styles.subcontainer2}>
+                <View style={styles.section_checkbox}>
+                  <Checkbox
+                    style={styles.checkbox}
+                    value={isChecked_plants}
+                    onValueChange={setChecked_plants}
+                    color={isChecked_plants ? 'cyan' : undefined}
+                  />
+                  <Text style={styles.paragraph}> Plants </Text>
+                </View>
+
+                <View style={styles.section_checkbox}>
+                  <Checkbox
+                    style={styles.checkbox}
+                    value={isChecked_ayur}
+                    onValueChange={setChecked_ayur}
+                    color={isChecked_ayur ? 'cyan' : undefined}
+                  />
+                  <Text style={styles.paragraph}> Ayurveda </Text>
+                </View>
+
+                <View style={styles.section_checkbox}>
+                  <Checkbox
+                    style={styles.checkbox}
+                    value={isChecked_natother}
+                    onValueChange={setChecked_natother}
+                    color={isChecked_natother ? 'cyan' : undefined}
+                  />
+                  <Text style={styles.paragraph}>Other</Text>
+                </View>
+                {isChecked_natother &&
+                  <View>
+                    <Text style={styles.label}>Which one ?</Text>
+                    <TextInput
+                      style={{...styles.input,borderColor:borderColorInput}}
+                      onFocus={() => {
+                        setBorderColorInput("cyan");
+                      }}
+                      onBlur={() => {
+                        setBorderColorInput("black");
+                      }}
+                      onChangeText={onChangeText_treatnatureother}
+                      value={treatnatureother}
+                      placeholder="Treatment "
+                      keyboardType="default"
+                    />
+                  </View>
+                }
+              </View>
+            }
+          </View>
+
+      );
+    }
+  };
+
+  const renderDropdown_chro = () => {
+    if(visible_chro){
+      return (  
+        <View style={styles.containerDropdown}>
+          <View style={styles.switchbox}>
+              
+              <View style={styles.checkboxview}>
+                <Switch
+                  trackColor={{ false: "#767577", true: "cyan" }}
+                  thumbColor={isEnabled_cancer ? "#024e4e" : "#024e4e"}
+                  ios_backgroundColor="#3e3e3e"
+                  onValueChange={toggleSwitch_cancer}
+                  value={isEnabled_cancer}
+                />
+                <Text style={styles.label}> Cancer </Text>
+                <Text>
+              
+                </Text>
+              </View>
+            </View>
+            {isEnabled_cancer &&
+            
+              <View style={styles.subcontainer2}>
+
+                <Text style={styles.label}>Location</Text>
+                <TextInput
+                  style={{...styles.input,borderColor:borderColorInput}}
+                  onFocus={() => {
+                    setBorderColorInput("cyan");
+                  }}
+                  onBlur={() => {
+                    setBorderColorInput("black");
+                  }}
+                  onChangeText={onChangeText_loc}
+                  value={loc_cancer}
+                  placeholder="Location"
+                  keyboardType="default"
+                />
+                <Text style={styles.label}>Is it finished ? </Text>
+                <View style={styles.checkboxview}>
+                  <View style={styles.containerbutton}>
+                    <Text style={styles.paragraph}>Yes</Text>
+                    <RadioButton
+                      value="yes"
+                      status={ checked_end === 'yes' ? 'checked' : 'unchecked' }
+                      onPress={() => setChecked_end('yes')}
+                      color='cyan'
+                    />
+                  </View>
+                  <View style={styles.containerbutton}>
+                    <Text style={styles.paragraph}>No</Text>
+                    <RadioButton
+                      value="no"
+                      status={ checked_end === 'no' ? 'checked' : 'unchecked' }
+                      onPress={() => setChecked_end('no')}
+                      color='cyan'
+                    />
+                  </View>
+                </View>
+                <View style={styles.names}>
+                  <View style={styles.firstname}>
+                    <Text style={styles.label}>From</Text>
+                    <TextInput
+                      style={{...styles.input,borderColor:borderColorInput}}
+                      onFocus={() => {
+                        setBorderColorInput("cyan");
+                      }}
+                      onBlur={() => {
+                        setBorderColorInput("black");
+                      }}
+                      onChangeText={onChangeText_begin}
+                      value={begin_cancer}
+                      placeholder="Year of Start"
+                      keyboardType="default"
+                    />
+                  </View>
+                  { checked_end === 'yes' &&
+                    <View style={styles.lastname}>
+                      <Text style={styles.label}>To</Text>
+                      <TextInput
+                        style={{...styles.input,borderColor:borderColorInput}}
+                        onFocus={() => {
+                          setBorderColorInput("cyan");
+                        }}
+                        onBlur={() => {
+                          setBorderColorInput("black");
+                        }}
+                        onChangeText={onChangeText_end}
+                        value={end_cancer}
+                        placeholder="Year of end"
+                        keyboardType="default"
+                      />
+                    </View> 
+                  }
+                </View>
+
+                <Text style={styles.label}>Treatment</Text>
+                <TextInput
+                  style={{...styles.input,borderColor:borderColorInput}}
+                  onFocus={() => {
+                    setBorderColorInput("cyan");
+                  }}
+                  onBlur={() => {
+                    setBorderColorInput("black");
+                  }}
+                  onChangeText={onChangeText_treatment}
+                  value={treatment_cancer}
+                  placeholder="Treatment"
+                  keyboardType="default"
+                />
+                <Text style={styles.label}>Current Phase</Text>
+                <TextInput
+                  style={{...styles.input,borderColor:borderColorInput}}
+                  onFocus={() => {
+                    setBorderColorInput("cyan");
+                  }}
+                  onBlur={() => {
+                    setBorderColorInput("black");
+                  }}
+                  onChangeText={onChangeText_phase}
+                  value={phase_cancer}
+                  placeholder="Current Phase"
+                  keyboardType="default"
+                />
+              </View>
+
+            }
+            <View style={styles.switchbox}>
+              
+              <View style={styles.checkboxview}>
+                <Switch
+                  trackColor={{ false: "#767577", true: "cyan" }}
+                  thumbColor={isEnabled_hypertension ? "#024e4e" : "#024e4e"}
+                  ios_backgroundColor="#3e3e3e"
+                  onValueChange={toggleSwitch_hypertension}
+                  value={isEnabled_hypertension}
+                />
+                <Text style={styles.label}> HyperTension </Text>
+                <Text>
+               
+                </Text>
+              </View>
+            </View>
+            {isEnabled_hypertension &&
+              <View style={styles.subcontainer2}>
+                <Text style={styles.label}>How long have you been under Treatment ?</Text>
+                <TextInput
+                  style={{...styles.input,borderColor:borderColorInput}}
+                  onFocus={() => {
+                    setBorderColorInput("cyan");
+                  }}
+                  onBlur={() => {
+                    setBorderColorInput("black");
+                  }}
+                  onChangeText={onChangeText_treatment_hyper}
+                  value={treatment_hyper}
+                  placeholder="Duration of Treatment"
+                  keyboardType="default"
+                />
+              </View>
+            }
+ 
+            <View style={styles.switchbox}>
+              
+              <View style={styles.checkboxview}>
+                <Switch
+                  trackColor={{ false: "#767577", true: "cyan" }}
+                  thumbColor={isEnabled_vascular ? "#024e4e" : "#024e4e"}
+                  ios_backgroundColor="#3e3e3e"
+                  onValueChange={toggleSwitch_vascular}
+                  value={isEnabled_vascular}
+                />
+                <Text style={styles.label}> Vascular diseases </Text>
+                <Text>
+                
+                </Text>
+              </View>
+            </View>
+            {isEnabled_vascular &&
+              <View style={styles.subcontainer2}>
+                <View style={styles.section_checkbox}>
+                  <Checkbox
+                    style={styles.checkbox}
+                    value={isChecked_venous}
+                    onValueChange={setChecked_venous}
+                    color={isChecked_venous ? 'cyan' : undefined}
+                  />
+                  <Text style={styles.paragraph}>Venous insufficiency</Text>
+                </View>
+
+                <View style={styles.section_checkbox}>
+                  <Checkbox
+                    style={styles.checkbox}
+                    value={isChecked_arterita}
+                    onValueChange={setChecked_arterita}
+                    color={isChecked_arterita ? 'cyan' : undefined}
+                  />
+                  <Text style={styles.paragraph}>Arterita</Text>
+                </View>
+
+                <View style={styles.section_checkbox}>
+                  <Checkbox
+                    style={styles.checkbox}
+                    value={isChecked_aneurysm}
+                    onValueChange={setChecked_aneurysm}
+                    color={isChecked_aneurysm ? 'cyan' : undefined}
+                  />
+                  <Text style={styles.paragraph}>Aneurysm</Text>
+                </View>
+              </View>
+            }
+
+            <View style={styles.switchbox}>
+              
+              <View style={styles.checkboxview}>
+                <Switch
+                  trackColor={{ false: "#767577", true: "cyan" }}
+                  thumbColor={isEnabled_heart ? "#024e4e" : "#024e4e"}
+                  ios_backgroundColor="#3e3e3e"
+                  onValueChange={toggleSwitch_heart}
+                  value={isEnabled_heart}
+                />
+                <Text style={styles.label}> Heart diseases </Text>
+                <Text>
+                
+                </Text>
+              </View>
+            </View>
+            {isEnabled_heart &&
+              <View style={styles.subcontainer2}>
+                <View style={styles.section_checkbox}>
+                  <Checkbox
+                    style={styles.checkbox}
+                    value={isChecked_insuf}
+                    onValueChange={setChecked_insuf}
+                    color={isChecked_insuf ? 'cyan' : undefined}
+                  />
+                  <Text style={styles.paragraph}>Cardiac insufficiency</Text>
+                </View>
+
+                <View style={styles.section_checkbox}>
+                  <Checkbox
+                    style={styles.checkbox}
+                    value={isChecked_arrhythmia}
+                    onValueChange={setChecked_arrhythmia}
+                    color={isChecked_arrhythmia ? 'cyan' : undefined}
+                  />
+                  <Text style={styles.paragraph}>Cardiac arrhythmia</Text>
+                </View>
+
+                <View style={styles.section_checkbox}>
+                  <Checkbox
+                    style={styles.checkbox}
+                    value={isChecked_angina}
+                    onValueChange={setChecked_angina}
+                    color={isChecked_angina ? 'cyan' : undefined}
+                  />
+                  <Text style={styles.paragraph}>Angina cardiac</Text>
+                </View>
+
+                <View style={styles.section_checkbox}>
+                  <Checkbox
+                    style={styles.checkbox}
+                    value={isChecked_stents}
+                    onValueChange={setChecked_stents}
+                    color={isChecked_stents ? 'cyan' : undefined}
+                  />
+                  <Text style={styles.paragraph}>Stents</Text>
+                </View>
+
+              </View>
+            }
+
+
+            <View style={styles.switchbox}>
+              
+              <View style={styles.checkboxview}>
+                <Switch
+                  trackColor={{ false: "#767577", true: "cyan" }}
+                  thumbColor={isEnabled_lungs ? "#024e4e" : "#024e4e"}
+                  ios_backgroundColor="#3e3e3e"
+                  onValueChange={toggleSwitch_lungs}
+                  value={isEnabled_lungs}
+                />
+                <Text style={styles.label}> Lungs diseases </Text>
+                <Text>
+               
+                </Text>
+              </View>
+            </View>
+            {isEnabled_lungs &&
+              <View style={styles.subcontainer2}>
+                <View style={styles.section_checkbox}>
+                  <Checkbox
+                    style={styles.checkbox}
+                    value={isChecked_bronchitis}
+                    onValueChange={setChecked_bronchitis}
+                    color={isChecked_bronchitis ? 'cyan' : undefined}
+                  />
+                  <Text style={styles.paragraph}>Chronic Bronchitis</Text>
+                </View>
+
+                <View style={styles.section_checkbox}>
+                  <Checkbox
+                    style={styles.checkbox}
+                    value={isChecked_asthma}
+                    onValueChange={setChecked_asthma}
+                    color={isChecked_asthma ? 'cyan' : undefined}
+                  />
+                  <Text style={styles.paragraph}>Asthma</Text>
+                </View>
+
+                <View style={styles.section_checkbox}>
+                  <Checkbox
+                    style={styles.checkbox}
+                    value={isChecked_repiratoryinsuf}
+                    onValueChange={setChecked_respiratoryinsuf}
+                    color={isChecked_repiratoryinsuf ? 'cyan' : undefined}
+                  />
+                  <Text style={styles.paragraph}>Respiratory insufficiency</Text>
+                </View>
+
+              </View>
+            }
+
+            <View style={styles.switchbox}>
+              
+              <View style={styles.checkboxview}>
+                <Switch
+                  trackColor={{ false: "#767577", true: "cyan" }}
+                  thumbColor={isEnabled_digestive ? "#024e4e" : "#024e4e"}
+                  ios_backgroundColor="#3e3e3e"
+                  onValueChange={toggleSwitch_digestive}
+                  value={isEnabled_digestive}
+                />
+                <Text style={styles.label}> Digestive diseases </Text>
+                <Text>
+               
+                </Text>
+              </View>
+            </View>
+            {isEnabled_digestive &&
+              <View style={styles.subcontainer2}>
+                <View style={styles.section_checkbox}>
+                  <Checkbox
+                    style={styles.checkbox}
+                    value={isChecked_ulcer}
+                    onValueChange={setChecked_ulcer}
+                    color={isChecked_ulcer ? 'cyan' : undefined}
+                  />
+                  <Text style={styles.paragraph}>Ulcer</Text>
+                </View>
+
+                <View style={styles.section_checkbox}>
+                  <Checkbox
+                    style={styles.checkbox}
+                    value={isChecked_gastritis}
+                    onValueChange={setChecked_gastritis}
+                    color={isChecked_gastritis ? 'cyan' : undefined}
+                  />
+                  <Text style={styles.paragraph}>Gastritis</Text>
+                </View>
+
+                <View style={styles.section_checkbox}>
+                  <Checkbox
+                    style={styles.checkbox}
+                    value={isChecked_colonirrit}
+                    onValueChange={setChecked_colonirrit}
+                    color={isChecked_colonirrit ? 'cyan' : undefined}
+                  />
+                  <Text style={styles.paragraph}>Colon irritable</Text>
+                </View>
+
+              </View>
+            }
+
+            <View style={styles.switchbox}>
+              
+              <View style={styles.checkboxview}>
+                <Switch
+                  trackColor={{ false: "#767577", true: "cyan" }}
+                  thumbColor={isEnabled_genetic? "#024e4e" : "#024e4e"}
+                  ios_backgroundColor="#3e3e3e"
+                  onValueChange={toggleSwitch_genetic}
+                  value={isEnabled_genetic}
+                />
+                <Text style={styles.label}> Genetic diseases </Text>
+                <Text>
+               
+                </Text>
+              </View>
+            </View>
+            {isEnabled_genetic &&
+              <View style={styles.subcontainer2}>
+                <Text style={styles.label}>Which one ?</Text>
+                <TextInput
+                  style={{...styles.input,borderColor:borderColorInput}}
+                  onFocus={() => {
+                    setBorderColorInput("cyan");
+                  }}
+                  onBlur={() => {
+                    setBorderColorInput("black");
+                  }}
+                  onChangeText={onChangeText_diseasegenetic}
+                  value={diseasegenetic}
+                  placeholder="Disease "
+                  keyboardType="default"
+                />
+                <Text style={styles.label}>Are you under treatment? </Text>
+                <View style={styles.checkboxview}>
+                  <View style={styles.containerbutton}>
+                    <Text style={styles.paragraph}>Yes</Text>
+                    <RadioButton
+                      value="yes"
+                      status={ checked_treatmentgenetic === 'yes' ? 'checked' : 'unchecked' }
+                      onPress={() => setChecked_treatmentgenetic('yes')}
+                      color='cyan'
+                    />
+                  </View>
+                  <View style={styles.containerbutton}>
+                    <Text style={styles.paragraph}>No</Text>
+                    <RadioButton
+                      value="no"
+                      status={ checked_treatmentgenetic === 'no' ? 'checked' : 'unchecked' }
+                      onPress={() => setChecked_treatmentgenetic('no')}
+                      color='cyan'
+                    />
+                  </View>
+                </View>
+              </View>
+
+            }
+
+            <View style={styles.switchbox}>
+              
+              <View style={styles.checkboxview}>
+                <Switch
+                  trackColor={{ false: "#767577", true: "cyan" }}
+                  thumbColor={isEnabled_diabetes? "#024e4e" : "#024e4e"}
+                  ios_backgroundColor="#3e3e3e"
+                  onValueChange={toggleSwitch_diabetes}
+                  value={isEnabled_diabetes}
+                />
+                <Text style={styles.label}> Diabetes </Text>
+                <Text>
+                
+                </Text>
+              </View>
+            </View>
+            {isEnabled_diabetes &&
+              <View style={styles.subcontainer2}>
+              
+                <Text style={styles.label}>Are you under treatment? </Text>
+                <View style={styles.checkboxview}>
+                  <View style={styles.containerbutton}>
+                    <Text style={styles.paragraph}>Yes</Text>
+                    <RadioButton
+                      value="yes"
+                      status={ checked_treatmentdiabetes === 'yes' ? 'checked' : 'unchecked' }
+                      onPress={() => setChecked_treatmentdiabetes('yes')}
+                      color='cyan'
+                    />
+                  </View>
+                  <View style={styles.containerbutton}>
+                    <Text style={styles.paragraph}>No</Text>
+                    <RadioButton
+                      value="no"
+                      status={ checked_treatmentdiabetes === 'no' ? 'checked' : 'unchecked' }
+                      onPress={() => setChecked_treatmentdiabetes('no')}
+                      color='cyan'
+                    />
+                  </View>
+                </View>
+              </View>
+
+            }
+            
+            
+            <View style={styles.switchbox}>
+              
+              <View style={styles.checkboxview}>
+                <Switch
+                  trackColor={{ false: "#767577", true: "cyan" }}
+                  thumbColor={isEnabled_kidney? "#024e4e" : "#024e4e"}
+                  ios_backgroundColor="#3e3e3e"
+                  onValueChange={toggleSwitch_kidney}
+                  value={isEnabled_kidney}
+                />
+                <Text style={styles.label}> Kidney diseases </Text>
+                <Text>
+               
+                </Text>
+              </View>
+            </View>
+            {isEnabled_kidney &&
+              <View style={styles.subcontainer2}>
+                <View style={styles.section_checkbox}>
+                  <Checkbox
+                    style={styles.checkbox}
+                    value={isChecked_stones}
+                    onValueChange={setChecked_stones}
+                    color={isChecked_stones ? 'cyan' : undefined}
+                  />
+                  <Text style={styles.paragraph}>Kidney Stones</Text>
+                </View>
+
+                <View style={styles.section_checkbox}>
+                  <Checkbox
+                    style={styles.checkbox}
+                    value={isChecked_renalinsuf}
+                    onValueChange={setChecked_renalinsuf}
+                    color={isChecked_renalinsuf ? 'cyan' : undefined}
+                  />
+                  <Text style={styles.paragraph}>Renal insufficiency</Text>
+                </View>
+
+              </View>
+            }
+
+            <View style={styles.switchbox}>
+              
+              <View style={styles.checkboxview}>
+                <Switch
+                  trackColor={{ false: "#767577", true: "cyan" }}
+                  thumbColor={isEnabled_infection ? "#024e4e" : "#024e4e"}
+                  ios_backgroundColor="#3e3e3e"
+                  onValueChange={toggleSwitch_infection}
+                  value={isEnabled_infection}
+                />
+                <Text style={styles.label}> Infection </Text>
+                <Text>
+               
+                </Text>
+              </View>
+            </View>
+            {isEnabled_infection &&
+              <View style={styles.subcontainer2}>
+                <View style={styles.section_checkbox}>
+                  <Checkbox
+                    style={styles.checkbox}
+                    value={isChecked_urinary}
+                    onValueChange={setChecked_urinary}
+                    color={isChecked_urinary ? 'cyan' : undefined}
+                  />
+                  <Text style={styles.paragraph}>Urinary</Text>
+                </View>
+
+                <View style={styles.section_checkbox}>
+                  <Checkbox
+                    style={styles.checkbox}
+                    value={isChecked_sinuses}
+                    onValueChange={setChecked_sinuses}
+                    color={isChecked_sinuses ? 'cyan' : undefined}
+                  />
+                  <Text style={styles.paragraph}>Sinuses</Text>
+                </View>
+
+                <View style={styles.section_checkbox}>
+                  <Checkbox
+                    style={styles.checkbox}
+                    value={isChecked_tonsils}
+                    onValueChange={setChecked_tonsils}
+                    color={isChecked_tonsils ? 'cyan' : undefined}
+                  />
+                  <Text style={styles.paragraph}>Tonsils</Text>
+                </View>
+
+                <View style={styles.section_checkbox}>
+                  <Checkbox
+                    style={styles.checkbox}
+                    value={isChecked_gallbladder}
+                    onValueChange={setChecked_gallbladder}
+                    color={isChecked_gallbladder ? 'cyan' : undefined}
+                  />
+                  <Text style={styles.paragraph}>Gallbladder</Text>
+                </View>
+
+              </View>
+            }
+
+            <View style={styles.switchbox}>
+              
+              <View style={styles.checkboxview}>
+                <Switch
+                  trackColor={{ false: "#767577", true: "cyan" }}
+                  thumbColor={isEnabled_hormonalpb? "#024e4e" : "#024e4e"}
+                  ios_backgroundColor="#3e3e3e"
+                  onValueChange={toggleSwitch_homonalpb}
+                  value={isEnabled_hormonalpb}
+                />
+                <Text style={styles.label}> Hormonal Problems </Text>
+                <Text>
+               
+                </Text>
+              </View>
+            </View>
+            {isEnabled_hormonalpb &&
+              <View style={styles.subcontainer2}>
+                <View style={styles.section_checkbox}>
+                  <Checkbox
+                    style={styles.checkbox}
+                    value={isChecked_thyroid}
+                    onValueChange={setChecked_thyroid}
+                    color={isChecked_thyroid ? 'cyan' : undefined}
+                  />
+                  <Text style={styles.paragraph}> Thyroid </Text>
+                </View>
+
+                <View style={styles.section_checkbox}>
+                  <Checkbox
+                    style={styles.checkbox}
+                    value={isChecked_pituitary}
+                    onValueChange={setChecked_pituitary}
+                    color={isChecked_pituitary ? 'cyan' : undefined}
+                  />
+                  <Text style={styles.paragraph}> Pituitary </Text>
+                </View>
+
+                <View style={styles.section_checkbox}>
+                  <Checkbox
+                    style={styles.checkbox}
+                    value={isChecked_polycystics}
+                    onValueChange={setChecked_polycystics}
+                    color={isChecked_polycystics ? 'cyan' : undefined}
+                  />
+                  <Text style={styles.paragraph}> Polycystics ovaries</Text>
+                </View>
+
+                <View style={styles.section_checkbox}>
+                  <Checkbox
+                    style={styles.checkbox}
+                    value={isChecked_prostate}
+                    onValueChange={setChecked_prostate}
+                    color={isChecked_prostate ? 'cyan' : undefined}
+                  />
+                  <Text style={styles.paragraph}>Prostate</Text>
+                </View>
+
+              </View>
+            }
+
+            <View style={styles.switchbox}>
+              
+              <View style={styles.checkboxview}>
+                <Switch
+                  trackColor={{ false: "#767577", true: "cyan" }}
+                  thumbColor={isEnabled_sightpb? "#024e4e" : "#024e4e"}
+                  ios_backgroundColor="#3e3e3e"
+                  onValueChange={toggleSwitch_sightpb}
+                  value={isEnabled_sightpb}
+                />
+                <Text style={styles.label}> Sight problems </Text>
+                <Text>
+                
+                </Text>
+              </View>
+            </View>
+
+            <View style={styles.switchbox}>
+              
+              <View style={styles.checkboxview}>
+                <Switch
+                  trackColor={{ false: "#767577", true: "cyan" }}
+                  thumbColor={isEnabled_sleepingpb? "#024e4e" : "#024e4e"}
+                  ios_backgroundColor="#3e3e3e"
+                  onValueChange={toggleSwitch_sleepingpb}
+                  value={isEnabled_sleepingpb}
+                />
+                <Text style={styles.label}> Sleeping disorders </Text>
+                <Text>
+               
+                </Text>
+              </View>
+            </View>
+            {isEnabled_sleepingpb &&
+              <View style={styles.subcontainer2}>
+                
+                <Text style={styles.label}>How many hours do you sleep ?</Text>
+                <Picker
+                  selectedValue={selectedsleep}
+                  onValueChange={(itemValue, itemIndex) =>
+                    setSelectedsleep(itemValue)
+                  }
+                  mode='dropdown'>
+                  <Picker.Item label="sleep <4h" value="less_4" />
+                  <Picker.Item label="4-6h" value="4_6" />
+                  <Picker.Item label=">6h" value="more_6" />
   
+                </Picker>
+                <Text style={styles.label}> Sleep discontinuously ? </Text>
+                <View style={styles.checkboxview}>
+                  <View style={styles.containerbutton}>
+                    <Text style={styles.paragraph}>Yes</Text>
+                    <RadioButton
+                      value="yes"
+                      status={ checked_dis_sleep === 'yes' ? 'checked' : 'unchecked' }
+                      onPress={() => setChecked_dis_sleep('yes')}
+                      color='cyan'
+                    />
+                  </View>
+                  <View style={styles.containerbutton}>
+                    <Text style={styles.paragraph}>No</Text>
+                    <RadioButton
+                      value="no"
+                      status={ checked_dis_sleep === 'no' ? 'checked' : 'unchecked' }
+                      onPress={() => setChecked_dis_sleep('no')}
+                      color='cyan'
+                    />
+                  </View>
+                </View>
+                <Text style={styles.label}> Do you have a sleeping treatment ? </Text>
+                <View style={styles.checkboxview}>
+                  <View style={styles.containerbutton}>
+                    <Text style={styles.paragraph}>Yes</Text>
+                    <RadioButton
+                      value="yes"
+                      status={ checked_treat_sleep === 'yes' ? 'checked' : 'unchecked' }
+                      onPress={() => setChecked_treat_sleep('yes')}
+                      color='cyan'
+                    />
+                  </View>
+                  <View style={styles.containerbutton}>
+                    <Text style={styles.paragraph}>No</Text>
+                    <RadioButton
+                      value="no"
+                      status={ checked_treat_sleep === 'no' ? 'checked' : 'unchecked' }
+                      onPress={() => setChecked_treat_sleep('no')}
+                      color='cyan'
+                    />
+                  </View>
+                </View>
+              </View>
+            }
+
+
+        </View>
+      );
+    }
+  };
   
 
   const renderDropdown_family = () => {
     if(visible_family){
       return (
-        <View>
+        <View style={styles.containerDropdown}>
           <Text style={styles.label}>Allergies antecedent? </Text>
           <View style={styles.checkboxview}>
             <View style={styles.containerbutton}>
@@ -353,6 +2221,7 @@ const Chapter2 = function() {
                 value="yes"
                 status={ checked_allergiesante === 'yes' ? 'checked' : 'unchecked' }
                 onPress={() => setChecked_allergiesante('yes')}
+                color='cyan'
               />
             </View>
             <View style={styles.containerbutton}>
@@ -361,11 +2230,12 @@ const Chapter2 = function() {
                 value="no"
                 status={ checked_allergiesante === 'no' ? 'checked' : 'unchecked' }
                 onPress={() => setChecked_allergiesante('no')}
+                color='cyan'
               />
             </View>
           </View>
           {checked_allergiesante=='yes' &&
-            <View>
+            <View style={styles.subcontainer2}>
               <Text style={styles.label}>Under treatment? </Text>
               <View style={styles.checkboxview}>
                 <View style={styles.containerbutton}>
@@ -374,6 +2244,7 @@ const Chapter2 = function() {
                     value="yes"
                     status={ checked_treatmentallergiesante === 'yes' ? 'checked' : 'unchecked' }
                     onPress={() => setChecked_treatmentallergiesante('yes')}
+                    color='cyan'
                   />
                 </View>
                 <View style={styles.containerbutton}>
@@ -382,6 +2253,7 @@ const Chapter2 = function() {
                     value="no"
                     status={ checked_treatmentallergiesante === 'no' ? 'checked' : 'unchecked' }
                     onPress={() => setChecked_treatmentallergiesante('no')}
+                    color='cyan'
                   />
                 </View>
               </View>
@@ -395,6 +2267,7 @@ const Chapter2 = function() {
                 value="yes"
                 status={ checked_pressureante === 'yes' ? 'checked' : 'unchecked' }
                 onPress={() => setChecked_pressureante('yes')}
+                color='cyan'
               />
             </View>
             <View style={styles.containerbutton}>
@@ -403,11 +2276,12 @@ const Chapter2 = function() {
                 value="no"
                 status={ checked_pressureante === 'no' ? 'checked' : 'unchecked' }
                 onPress={() => setChecked_pressureante('no')}
+                color='cyan'
               />
             </View>
           </View>
           {checked_pressureante=='yes' &&
-            <View>
+            <View style={styles.subcontainer2}>
               <Text style={styles.label}>Under treatment? </Text>
               <View style={styles.checkboxview}>
                 <View style={styles.containerbutton}>
@@ -416,6 +2290,7 @@ const Chapter2 = function() {
                     value="yes"
                     status={ checked_treatmentpressureante === 'yes' ? 'checked' : 'unchecked' }
                     onPress={() => setChecked_treatmentpressureante('yes')}
+                    color='cyan'
                   />
                 </View>
                 <View style={styles.containerbutton}>
@@ -424,6 +2299,7 @@ const Chapter2 = function() {
                     value="no"
                     status={ checked_treatmentpressureante === 'no' ? 'checked' : 'unchecked' }
                     onPress={() => setChecked_treatmentpressureante('no')}
+                    color='cyan'
                   />
                 </View>
               </View>
@@ -437,6 +2313,7 @@ const Chapter2 = function() {
                 value="yes"
                 status={ checked_infectionante === 'yes' ? 'checked' : 'unchecked' }
                 onPress={() => setChecked_infectionante('yes')}
+                color='cyan'
               />
             </View>
             <View style={styles.containerbutton}>
@@ -445,11 +2322,12 @@ const Chapter2 = function() {
                 value="no"
                 status={ checked_infectionante === 'no' ? 'checked' : 'unchecked' }
                 onPress={() => setChecked_infectionante('no')}
+                color='cyan'
               />
             </View>
           </View>
           {checked_infectionante=='yes' &&
-            <View>
+            <View style={styles.subcontainer2}>
               <Text style={styles.label}>Under treatment? </Text>
               <View style={styles.checkboxview}>
                 <View style={styles.containerbutton}>
@@ -458,6 +2336,7 @@ const Chapter2 = function() {
                     value="yes"
                     status={ checked_treatmentinfectionante === 'yes' ? 'checked' : 'unchecked' }
                     onPress={() => setChecked_treatmentinfectionante('yes')}
+                    color='cyan'
                   />
                 </View>
                 <View style={styles.containerbutton}>
@@ -466,6 +2345,7 @@ const Chapter2 = function() {
                     value="no"
                     status={ checked_treatmentinfectionante === 'no' ? 'checked' : 'unchecked' }
                     onPress={() => setChecked_treatmentinfectionante('no')}
+                    color='cyan'
                   />
                 </View>
               </View>
@@ -479,6 +2359,7 @@ const Chapter2 = function() {
                 value="yes"
                 status={ checked_heartante === 'yes' ? 'checked' : 'unchecked' }
                 onPress={() => setChecked_heartante('yes')}
+                color='cyan'
               />
             </View>
             <View style={styles.containerbutton}>
@@ -487,11 +2368,12 @@ const Chapter2 = function() {
                 value="no"
                 status={ checked_heartante === 'no' ? 'checked' : 'unchecked' }
                 onPress={() => setChecked_heartante('no')}
+                color='cyan'
               />
             </View>
           </View>
           {checked_heartante=='yes' &&
-            <View>
+            <View style={styles.subcontainer2}>
               <Text style={styles.label}>Under treatment? </Text>
               <View style={styles.checkboxview}>
                 <View style={styles.containerbutton}>
@@ -500,6 +2382,7 @@ const Chapter2 = function() {
                     value="yes"
                     status={ checked_treatmentheartante === 'yes' ? 'checked' : 'unchecked' }
                     onPress={() => setChecked_treatmentheartante('yes')}
+                    color='cyan'
                   />
                 </View>
                 <View style={styles.containerbutton}>
@@ -508,6 +2391,7 @@ const Chapter2 = function() {
                     value="no"
                     status={ checked_treatmentheartante === 'no' ? 'checked' : 'unchecked' }
                     onPress={() => setChecked_treatmentheartante('no')}
+                    color='cyan'
                   />
                 </View>
               </View>
@@ -521,6 +2405,7 @@ const Chapter2 = function() {
                 value="yes"
                 status={ checked_vascularante === 'yes' ? 'checked' : 'unchecked' }
                 onPress={() => setChecked_vascularante('yes')}
+                color='cyan'
               />
             </View>
             <View style={styles.containerbutton}>
@@ -529,11 +2414,12 @@ const Chapter2 = function() {
                 value="no"
                 status={ checked_vascularante === 'no' ? 'checked' : 'unchecked' }
                 onPress={() => setChecked_vascularante('no')}
+                color='cyan'
               />
             </View>
           </View>
           {checked_vascularante=='yes' &&
-            <View>
+            <View style={styles.subcontainer2}>
               <Text style={styles.label}>Under treatment? </Text>
               <View style={styles.checkboxview}>
                 <View style={styles.containerbutton}>
@@ -542,6 +2428,7 @@ const Chapter2 = function() {
                     value="yes"
                     status={ checked_treatmentvascularante === 'yes' ? 'checked' : 'unchecked' }
                     onPress={() => setChecked_treatmentvascularante('yes')}
+                    color='cyan'
                   />
                 </View>
                 <View style={styles.containerbutton}>
@@ -550,6 +2437,7 @@ const Chapter2 = function() {
                     value="no"
                     status={ checked_treatmentvascularante === 'no' ? 'checked' : 'unchecked' }
                     onPress={() => setChecked_treatmentvascularante('no')}
+                    color='cyan'
                   />
                 </View>
               </View>
@@ -563,6 +2451,7 @@ const Chapter2 = function() {
                 value="yes"
                 status={ checked_digestiveante === 'yes' ? 'checked' : 'unchecked' }
                 onPress={() => setChecked_digestiveante('yes')}
+                color='cyan'
               />
             </View>
             <View style={styles.containerbutton}>
@@ -571,11 +2460,12 @@ const Chapter2 = function() {
                 value="no"
                 status={ checked_digestiveante === 'no' ? 'checked' : 'unchecked' }
                 onPress={() => setChecked_digestiveante('no')}
+                color='cyan'
               />
             </View>
           </View>
           {checked_digestiveante=='yes' &&
-            <View>
+            <View style={styles.subcontainer2}>
               <Text style={styles.label}>Under treatment? </Text>
               <View style={styles.checkboxview}>
                 <View style={styles.containerbutton}>
@@ -584,6 +2474,7 @@ const Chapter2 = function() {
                     value="yes"
                     status={ checked_treatmentdigestiveante === 'yes' ? 'checked' : 'unchecked' }
                     onPress={() => setChecked_treatmentdigestiveante('yes')}
+                    color='cyan'
                   />
                 </View>
                 <View style={styles.containerbutton}>
@@ -592,6 +2483,7 @@ const Chapter2 = function() {
                     value="no"
                     status={ checked_treatmentdigestiveante === 'no' ? 'checked' : 'unchecked' }
                     onPress={() => setChecked_treatmentdigestiveante('no')}
+                    color='cyan'
                   />
                 </View>
               </View>
@@ -605,6 +2497,7 @@ const Chapter2 = function() {
                 value="yes"
                 status={ checked_renalante === 'yes' ? 'checked' : 'unchecked' }
                 onPress={() => setChecked_renalante('yes')}
+                color='cyan'
               />
             </View>
             <View style={styles.containerbutton}>
@@ -613,11 +2506,12 @@ const Chapter2 = function() {
                 value="no"
                 status={ checked_renalante === 'no' ? 'checked' : 'unchecked' }
                 onPress={() => setChecked_renalante('no')}
+                color='cyan'
               />
             </View>
           </View>
           {checked_renalante=='yes' &&
-            <View>
+            <View style={styles.subcontainer2}>
               <Text style={styles.label}>Under treatment? </Text>
               <View style={styles.checkboxview}>
                 <View style={styles.containerbutton}>
@@ -626,6 +2520,7 @@ const Chapter2 = function() {
                     value="yes"
                     status={ checked_treatmentrenalante === 'yes' ? 'checked' : 'unchecked' }
                     onPress={() => setChecked_treatmentrenalante('yes')}
+                    color='cyan'
                   />
                 </View>
                 <View style={styles.containerbutton}>
@@ -634,6 +2529,7 @@ const Chapter2 = function() {
                     value="no"
                     status={ checked_treatmentrenalante === 'no' ? 'checked' : 'unchecked' }
                     onPress={() => setChecked_treatmentrenalante('no')}
+                    color='cyan'
                   />
                 </View>
               </View>
@@ -647,6 +2543,7 @@ const Chapter2 = function() {
                 value="yes"
                 status={ checked_otherante === 'yes' ? 'checked' : 'unchecked' }
                 onPress={() => setChecked_otherante('yes')}
+                color='cyan'
               />
             </View>
             <View style={styles.containerbutton}>
@@ -655,11 +2552,12 @@ const Chapter2 = function() {
                 value="no"
                 status={ checked_otherante === 'no' ? 'checked' : 'unchecked' }
                 onPress={() => setChecked_otherante('no')}
+                color='cyan'
               />
             </View>
           </View>
           {checked_otherante=='yes' &&
-            <View>
+            <View style={styles.subcontainer2}>
               <Text style={styles.label}>Under treatment? </Text>
               <View style={styles.checkboxview}>
                 <View style={styles.containerbutton}>
@@ -668,6 +2566,7 @@ const Chapter2 = function() {
                     value="yes"
                     status={ checked_treatmentotherante === 'yes' ? 'checked' : 'unchecked' }
                     onPress={() => setChecked_treatmentotherante('yes')}
+                    color='cyan'
                   />
                 </View>
                 <View style={styles.containerbutton}>
@@ -676,6 +2575,7 @@ const Chapter2 = function() {
                     value="no"
                     status={ checked_treatmentotherante === 'no' ? 'checked' : 'unchecked' }
                     onPress={() => setChecked_treatmentotherante('no')}
+                    color='cyan'
                   />
                 </View>
               </View>
@@ -689,7 +2589,7 @@ const Chapter2 = function() {
   const renderDropdown_vaccine = () => {
     if (visible_vaccine) {
       return (
-        <View style={styles.container}>
+        <View style={styles.containerDropdown}>
         <Text style={styles.label}>Adverse events which needed medical advise ? </Text>
         <View style={styles.checkboxview}>
           <View style={styles.containerbutton}>
@@ -698,6 +2598,7 @@ const Chapter2 = function() {
               value="yes"
               status={ checked_events === 'yes' ? 'checked' : 'unchecked' }
               onPress={() => setChecked_events('yes')}
+              color='cyan'
             />
           </View>
           <View style={styles.containerbutton}>
@@ -706,11 +2607,12 @@ const Chapter2 = function() {
               value="no"
               status={ checked_events === 'no' ? 'checked' : 'unchecked' }
               onPress={() => setChecked_events('no')}
+              color='cyan'
             />
           </View>
         </View>
         {checked_events=='yes' &&
-          <View>
+          <View >
             <TextInput
               style={{...styles.input,borderColor:borderColorInput}}
               onFocus={() => {
@@ -742,7 +2644,7 @@ const Chapter2 = function() {
           </View>
         </View>
         {isEnabled_vax1 &&
-          <View>
+          <View style={styles.subcontainer2}>
             <Text style={styles.label}>Date of your last booster</Text>
             <TextInput
               style={{...styles.input,borderColor:borderColorInput}}
@@ -773,7 +2675,7 @@ const Chapter2 = function() {
           </View>
         </View>
         {isEnabled_vax2 &&
-          <View>
+          <View style={styles.subcontainer2}>
             <Text style={styles.label}>Date of your last booster</Text>
             <TextInput
               style={{...styles.input,borderColor:borderColorInput}}
@@ -804,7 +2706,7 @@ const Chapter2 = function() {
           </View>
         </View>
         {isEnabled_vax3 &&
-          <View>
+          <View style={styles.subcontainer2}>
             <Text style={styles.label}>Date of your last booster</Text>
             <TextInput
               style={{...styles.input,borderColor:borderColorInput}}
@@ -835,7 +2737,7 @@ const Chapter2 = function() {
           </View>
         </View>
         {isEnabled_vax4 &&
-          <View>
+          <View style={styles.subcontainer2}>
             <Text style={styles.label}>Date of your last booster</Text>
             <TextInput
               style={{...styles.input,borderColor:borderColorInput}}
@@ -866,7 +2768,7 @@ const Chapter2 = function() {
           </View>
         </View>
         {isEnabled_vax5 &&
-          <View>
+          <View style={styles.subcontainer2}>
             <Text style={styles.label}>Date of your last booster</Text>
             <TextInput
               style={{...styles.input,borderColor:borderColorInput}}
@@ -897,7 +2799,7 @@ const Chapter2 = function() {
           </View>
         </View>
         {isEnabled_vax6 &&
-          <View>
+          <View style={styles.subcontainer2}>
             <Text style={styles.label}>Date of your last booster</Text>
             <TextInput
               style={{...styles.input,borderColor:borderColorInput}}
@@ -928,7 +2830,7 @@ const Chapter2 = function() {
           </View>
         </View>
         {isEnabled_vax7 &&
-          <View>
+          <View style={styles.subcontainer2}>
             <Text style={styles.label}>Date of your last booster</Text>
             <TextInput
               style={{...styles.input,borderColor:borderColorInput}}
@@ -959,7 +2861,7 @@ const Chapter2 = function() {
           </View>
         </View>
         {isEnabled_vax8 &&
-          <View>
+          <View style={styles.subcontainer2}>
             <Text style={styles.label}>Date of your last booster</Text>
             <TextInput
               style={{...styles.input,borderColor:borderColorInput}}
@@ -1021,7 +2923,7 @@ const Chapter2 = function() {
           </View>
         </View>
         {isEnabled_vax10 &&
-          <View>
+          <View style={styles.subcontainer2}>
             <Text style={styles.label}>Date of your last booster</Text>
             <TextInput
               style={{...styles.input,borderColor:borderColorInput}}
@@ -1052,7 +2954,7 @@ const Chapter2 = function() {
           </View>
         </View>
         {isEnabled_vax11 &&
-          <View>
+          <View style={styles.subcontainer2}>
             <Text style={styles.label}>Date of your last booster</Text>
             <TextInput
               style={{...styles.input,borderColor:borderColorInput}}
@@ -1077,9 +2979,8 @@ const Chapter2 = function() {
   const renderDropdown_allergies = () => {
     if (visible_allergies) {
       return (
-        <View>
+        <View style={styles.containerDropdown}>
           <View style={styles.switchbox}>
-            
             <View style={styles.checkboxview}>
               <Switch
                 trackColor={{ false: "#767577", true: "cyan" }}
@@ -1092,7 +2993,7 @@ const Chapter2 = function() {
             <Text style={styles.label}> Food </Text>
           </View>
           {isEnabled_food && 
-            <View style={styles.container}>
+            <View style={styles.subcontainer2}>
               <Text style={styles.label}> Severe form ? </Text>
               <View style={styles.checkboxview}>
                   <View style={styles.containerbutton}>
@@ -1101,6 +3002,7 @@ const Chapter2 = function() {
                       value="yes"
                       status={ checked_severefood === 'yes' ? 'checked' : 'unchecked' }
                       onPress={() => setChecked_severefood('yes')}
+                      color='cyan'
                     />
                   </View>
                   <View style={styles.containerbutton}>
@@ -1109,6 +3011,7 @@ const Chapter2 = function() {
                       value="no"
                       status={ checked_severefood === 'no' ? 'checked' : 'unchecked' }
                       onPress={() => setChecked_severefood('no')}
+                      color='cyan'
                     />
                   </View>
               </View>
@@ -1144,7 +3047,6 @@ const Chapter2 = function() {
           }
         
           <View style={styles.switchbox}>
-            
             <View style={styles.checkboxview}>
               <Switch
                 trackColor={{ false: "#767577", true: "cyan" }}
@@ -1159,7 +3061,7 @@ const Chapter2 = function() {
 
 
           {isEnabled_drugs && 
-            <View style={styles.subcontainer}>
+            <View style={styles.subcontainer2}>
               <Text style={styles.label}> Severe form ? </Text>
               <View style={styles.checkboxview}>
                   <View style={styles.containerbutton}>
@@ -1168,6 +3070,7 @@ const Chapter2 = function() {
                       value="yes"
                       status={ checked_severedrugs === 'yes' ? 'checked' : 'unchecked' }
                       onPress={() => setChecked_severedrugs('yes')}
+                      color='cyan'
                     />
                   </View>
                   <View style={styles.containerbutton}>
@@ -1176,6 +3079,7 @@ const Chapter2 = function() {
                       value="no"
                       status={ checked_severedrugs === 'no' ? 'checked' : 'unchecked' }
                       onPress={() => setChecked_severedrugs('no')}
+                      color='cyan'
                     />
                   </View>
               </View>
@@ -1224,7 +3128,7 @@ const Chapter2 = function() {
           </View>
 
           {isEnabled_seasonal && 
-            <View style={styles.subcontainer}>
+            <View style={styles.subcontainer2}>
               <Text style={styles.label}> Severe form ? </Text>
               <View style={styles.checkboxview}>
                   <View style={styles.containerbutton}>
@@ -1233,6 +3137,7 @@ const Chapter2 = function() {
                       value="yes"
                       status={ checked_severeseason === 'yes' ? 'checked' : 'unchecked' }
                       onPress={() => setChecked_severeseason('yes')}
+                      color='cyan'
                     />
                   </View>
                   <View style={styles.containerbutton}>
@@ -1241,6 +3146,7 @@ const Chapter2 = function() {
                       value="no"
                       status={ checked_severeseason === 'no' ? 'checked' : 'unchecked' }
                       onPress={() => setChecked_severeseason('no')}
+                      color='cyan'
                     />
                   </View>
               </View>
@@ -1290,15 +3196,16 @@ const Chapter2 = function() {
             </View>
           </View>
           {isEnabled_others && 
-            <View style={styles.subcontainer}>
+            <View style={styles.subcontainer2}>
               <Text style={styles.label}> Severe form ? </Text>
               <View style={styles.checkboxview}>
                   <View style={styles.containerbutton}>
                     <Text style={styles.paragraph}>Yes</Text>
                     <RadioButton
                       value="yes"
-                      status={ checked_severefood === 'yes' ? 'checked' : 'unchecked' }
-                      onPress={() => setChecked_severefood('yes')}
+                      status={ checked_severeothers === 'yes' ? 'checked' : 'unchecked' }
+                      onPress={() => setChecked_severeothers('yes')}
+                      color='cyan'
                     />
                   </View>
                   <View style={styles.containerbutton}>
@@ -1306,7 +3213,8 @@ const Chapter2 = function() {
                     <RadioButton
                       value="no"
                       status={ checked_severefood === 'no' ? 'checked' : 'unchecked' }
-                      onPress={() => setChecked_severefood('no')}
+                      onPress={() => setChecked_severeothers('no')}
+                      color='cyan'
                     />
                   </View>
               </View>
@@ -1350,6 +3258,8 @@ const Chapter2 = function() {
                   value="yes"
                   status={ checked_pb === 'yes' ? 'checked' : 'unchecked' }
                   onPress={() => setChecked_pb('yes')}
+                  color='cyan'
+                  
                 />
               </View>
               <View style={styles.containerbutton}>
@@ -1358,6 +3268,7 @@ const Chapter2 = function() {
                   value="no"
                   status={ checked_pb === 'no' ? 'checked' : 'unchecked' }
                   onPress={() => setChecked_pb('no')}
+                  color='cyan'
                 />
               </View>
           </View>
@@ -1366,7 +3277,7 @@ const Chapter2 = function() {
 
           {checked_pb=='yes' && 
           
-            <View style={styles.subcontainer}>
+            <View style={styles.subcontainer2}>
               <Text style={styles.label}>When</Text>
               <View style={styles.chooseDate}>
                 <Button color="black" onPress={showDatepicker} title="Choose" />
@@ -1401,6 +3312,7 @@ const Chapter2 = function() {
                     value="yes"
                     status={ checked_hospit === 'yes' ? 'checked' : 'unchecked' }
                     onPress={() => setChecked_hospit('yes')}
+                    color='cyan'
                   />
                 </View>
                 <View style={styles.containerbutton}>
@@ -1409,6 +3321,7 @@ const Chapter2 = function() {
                     value="no"
                     status={ checked_hospit === 'no' ? 'checked' : 'unchecked' }
                     onPress={() => setChecked_hospit('no')}
+                    color='cyan'
                   />
                 </View>
               </View>
@@ -1525,730 +3438,19 @@ const Chapter2 = function() {
           </View>
         </View>
         {checked_chro=="yes" &&
-          <View>    
-            <View style={styles.switchbox}>
-              
-              <View style={styles.checkboxview}>
-                <Switch
-                  trackColor={{ false: "#767577", true: "cyan" }}
-                  thumbColor={isEnabled_cancer ? "#024e4e" : "#024e4e"}
-                  ios_backgroundColor="#3e3e3e"
-                  onValueChange={toggleSwitch_cancer}
-                  value={isEnabled_cancer}
-                />
-                <Text style={styles.label}> Cancer </Text>
-                <Text>
-                {isEnabled_cancer ? 'Yes' : 'No'}
-                </Text>
+          <View style={styles.container}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={toggleDropdown4}
+            >
+              <View style={styles.drop}>
+                <Text style={styles.titledrop}>Fill in your info about your Chronical disease.</Text>
+                <Icon style={styles.symboldrop} type='font-awesome' name='chevron-down'/>
               </View>
-            </View>
-            {isEnabled_cancer &&
+
+              {renderDropdown_chro()}
             
-              <View>
-
-                <Text style={styles.label}>Location</Text>
-                <TextInput
-                  style={{...styles.input,borderColor:borderColorInput}}
-                  onFocus={() => {
-                    setBorderColorInput("cyan");
-                  }}
-                  onBlur={() => {
-                    setBorderColorInput("black");
-                  }}
-                  onChangeText={onChangeText_loc}
-                  value={loc_cancer}
-                  placeholder="Location"
-                  keyboardType="default"
-                />
-                <Text style={styles.label}>Is it finished ? </Text>
-                <View style={styles.checkboxview}>
-                  <View style={styles.containerbutton}>
-                    <Text style={styles.paragraph}>Yes</Text>
-                    <RadioButton
-                      value="yes"
-                      status={ checked_end === 'yes' ? 'checked' : 'unchecked' }
-                      onPress={() => setChecked_end('yes')}
-                    />
-                  </View>
-                  <View style={styles.containerbutton}>
-                    <Text style={styles.paragraph}>No</Text>
-                    <RadioButton
-                      value="no"
-                      status={ checked_end === 'no' ? 'checked' : 'unchecked' }
-                      onPress={() => setChecked_end('no')}
-                    />
-                  </View>
-                </View>
-                <View style={styles.names}>
-                  <View style={styles.firstname}>
-                    <Text style={styles.label}>From</Text>
-                    <TextInput
-                      style={{...styles.input,borderColor:borderColorInput}}
-                      onFocus={() => {
-                        setBorderColorInput("cyan");
-                      }}
-                      onBlur={() => {
-                        setBorderColorInput("black");
-                      }}
-                      onChangeText={onChangeText_begin}
-                      value={begin_cancer}
-                      placeholder="Year of Start"
-                      keyboardType="default"
-                    />
-                  </View>
-                  { checked_end === 'yes' &&
-                    <View style={styles.lastname}>
-                      <Text style={styles.label}>To</Text>
-                      <TextInput
-                        style={{...styles.input,borderColor:borderColorInput}}
-                        onFocus={() => {
-                          setBorderColorInput("cyan");
-                        }}
-                        onBlur={() => {
-                          setBorderColorInput("black");
-                        }}
-                        onChangeText={onChangeText_end}
-                        value={end_cancer}
-                        placeholder="Year of end"
-                        keyboardType="default"
-                      />
-                    </View> 
-                  }
-                </View>
-
-                <Text style={styles.label}>Treatment</Text>
-                <TextInput
-                  style={{...styles.input,borderColor:borderColorInput}}
-                  onFocus={() => {
-                    setBorderColorInput("cyan");
-                  }}
-                  onBlur={() => {
-                    setBorderColorInput("black");
-                  }}
-                  onChangeText={onChangeText_treatment}
-                  value={treatment_cancer}
-                  placeholder="Treatment"
-                  keyboardType="default"
-                />
-                <Text style={styles.label}>Current Phase</Text>
-                <TextInput
-                  style={{...styles.input,borderColor:borderColorInput}}
-                  onFocus={() => {
-                    setBorderColorInput("cyan");
-                  }}
-                  onBlur={() => {
-                    setBorderColorInput("black");
-                  }}
-                  onChangeText={onChangeText_phase}
-                  value={phase_cancer}
-                  placeholder="Current Phase"
-                  keyboardType="default"
-                />
-              </View>
-
-            }
-            <View style={styles.switchbox}>
-              
-              <View style={styles.checkboxview}>
-                <Switch
-                  trackColor={{ false: "#767577", true: "cyan" }}
-                  thumbColor={isEnabled_hypertension ? "#024e4e" : "#024e4e"}
-                  ios_backgroundColor="#3e3e3e"
-                  onValueChange={toggleSwitch_hypertension}
-                  value={isEnabled_hypertension}
-                />
-                <Text style={styles.label}> HyperTension </Text>
-                <Text>
-                {isEnabled_hypertension ? 'Yes' : 'No'}
-                </Text>
-              </View>
-            </View>
-            {isEnabled_hypertension &&
-              <View>
-                <Text style={styles.label}>How long have you been under Treatment ?</Text>
-                <TextInput
-                  style={{...styles.input,borderColor:borderColorInput}}
-                  onFocus={() => {
-                    setBorderColorInput("cyan");
-                  }}
-                  onBlur={() => {
-                    setBorderColorInput("black");
-                  }}
-                  onChangeText={onChangeText_treatment_hyper}
-                  value={treatment_hyper}
-                  placeholder="Duration of Treatment"
-                  keyboardType="default"
-                />
-              </View>
-            }
- 
-            <View style={styles.switchbox}>
-              
-              <View style={styles.checkboxview}>
-                <Switch
-                  trackColor={{ false: "#767577", true: "cyan" }}
-                  thumbColor={isEnabled_vascular ? "#024e4e" : "#024e4e"}
-                  ios_backgroundColor="#3e3e3e"
-                  onValueChange={toggleSwitch_vascular}
-                  value={isEnabled_vascular}
-                />
-                <Text style={styles.label}> Vascular diseases </Text>
-                <Text>
-                {isEnabled_vascular ? 'Yes' : 'No'}
-                </Text>
-              </View>
-            </View>
-            {isEnabled_vascular &&
-              <View style={styles.checkboxContainer}>
-                <View style={styles.section_checkbox}>
-                  <Checkbox
-                    style={styles.checkbox}
-                    value={isChecked_venous}
-                    onValueChange={setChecked_venous}
-                    color={isChecked_venous ? 'cyan' : undefined}
-                  />
-                  <Text style={styles.paragraph}>Venous insufficiency</Text>
-                </View>
-
-                <View style={styles.section_checkbox}>
-                  <Checkbox
-                    style={styles.checkbox}
-                    value={isChecked_arterita}
-                    onValueChange={setChecked_arterita}
-                    color={isChecked_arterita ? 'cyan' : undefined}
-                  />
-                  <Text style={styles.paragraph}>Arterita</Text>
-                </View>
-
-                <View style={styles.section_checkbox}>
-                  <Checkbox
-                    style={styles.checkbox}
-                    value={isChecked_aneurysm}
-                    onValueChange={setChecked_aneurysm}
-                    color={isChecked_aneurysm ? 'cyan' : undefined}
-                  />
-                  <Text style={styles.paragraph}>Aneurysm</Text>
-                </View>
-              </View>
-            }
-
-            <View style={styles.switchbox}>
-              
-              <View style={styles.checkboxview}>
-                <Switch
-                  trackColor={{ false: "#767577", true: "cyan" }}
-                  thumbColor={isEnabled_heart ? "#024e4e" : "#024e4e"}
-                  ios_backgroundColor="#3e3e3e"
-                  onValueChange={toggleSwitch_heart}
-                  value={isEnabled_heart}
-                />
-                <Text style={styles.label}> Heart diseases </Text>
-                <Text>
-                {isEnabled_heart ? 'Yes' : 'No'}
-                </Text>
-              </View>
-            </View>
-            {isEnabled_heart &&
-              <View style={styles.checkboxContainer}>
-                <View style={styles.section_checkbox}>
-                  <Checkbox
-                    style={styles.checkbox}
-                    value={isChecked_insuf}
-                    onValueChange={setChecked_insuf}
-                    color={isChecked_insuf ? 'cyan' : undefined}
-                  />
-                  <Text style={styles.paragraph}>Cardiac insufficiency</Text>
-                </View>
-
-                <View style={styles.section_checkbox}>
-                  <Checkbox
-                    style={styles.checkbox}
-                    value={isChecked_arrhythmia}
-                    onValueChange={setChecked_arrhythmia}
-                    color={isChecked_arrhythmia ? 'cyan' : undefined}
-                  />
-                  <Text style={styles.paragraph}>Cardiac arrhythmia</Text>
-                </View>
-
-                <View style={styles.section_checkbox}>
-                  <Checkbox
-                    style={styles.checkbox}
-                    value={isChecked_angina}
-                    onValueChange={setChecked_angina}
-                    color={isChecked_angina ? 'cyan' : undefined}
-                  />
-                  <Text style={styles.paragraph}>Angina cardiac</Text>
-                </View>
-
-                <View style={styles.section_checkbox}>
-                  <Checkbox
-                    style={styles.checkbox}
-                    value={isChecked_stents}
-                    onValueChange={setChecked_stents}
-                    color={isChecked_stents ? 'cyan' : undefined}
-                  />
-                  <Text style={styles.paragraph}>Stents</Text>
-                </View>
-
-              </View>
-            }
-
-
-            <View style={styles.switchbox}>
-              
-              <View style={styles.checkboxview}>
-                <Switch
-                  trackColor={{ false: "#767577", true: "cyan" }}
-                  thumbColor={isEnabled_lungs ? "#024e4e" : "#024e4e"}
-                  ios_backgroundColor="#3e3e3e"
-                  onValueChange={toggleSwitch_lungs}
-                  value={isEnabled_lungs}
-                />
-                <Text style={styles.label}> Lungs diseases </Text>
-                <Text>
-                {isEnabled_lungs ? 'Yes' : 'No'}
-                </Text>
-              </View>
-            </View>
-            {isEnabled_lungs &&
-              <View style={styles.checkboxContainer}>
-                <View style={styles.section_checkbox}>
-                  <Checkbox
-                    style={styles.checkbox}
-                    value={isChecked_bronchitis}
-                    onValueChange={setChecked_bronchitis}
-                    color={isChecked_bronchitis ? 'cyan' : undefined}
-                  />
-                  <Text style={styles.paragraph}>Chronic Bronchitis</Text>
-                </View>
-
-                <View style={styles.section_checkbox}>
-                  <Checkbox
-                    style={styles.checkbox}
-                    value={isChecked_asthma}
-                    onValueChange={setChecked_asthma}
-                    color={isChecked_asthma ? 'cyan' : undefined}
-                  />
-                  <Text style={styles.paragraph}>Asthma</Text>
-                </View>
-
-                <View style={styles.section_checkbox}>
-                  <Checkbox
-                    style={styles.checkbox}
-                    value={isChecked_repiratoryinsuf}
-                    onValueChange={setChecked_respiratoryinsuf}
-                    color={isChecked_repiratoryinsuf ? 'cyan' : undefined}
-                  />
-                  <Text style={styles.paragraph}>Respiratory insufficiency</Text>
-                </View>
-
-              </View>
-            }
-
-            <View style={styles.switchbox}>
-              
-              <View style={styles.checkboxview}>
-                <Switch
-                  trackColor={{ false: "#767577", true: "cyan" }}
-                  thumbColor={isEnabled_digestive ? "#024e4e" : "#024e4e"}
-                  ios_backgroundColor="#3e3e3e"
-                  onValueChange={toggleSwitch_digestive}
-                  value={isEnabled_digestive}
-                />
-                <Text style={styles.label}> Digestive diseases </Text>
-                <Text>
-                {isEnabled_digestive ? 'Yes' : 'No'}
-                </Text>
-              </View>
-            </View>
-            {isEnabled_digestive &&
-              <View style={styles.checkboxContainer}>
-                <View style={styles.section_checkbox}>
-                  <Checkbox
-                    style={styles.checkbox}
-                    value={isChecked_ulcer}
-                    onValueChange={setChecked_ulcer}
-                    color={isChecked_ulcer ? 'cyan' : undefined}
-                  />
-                  <Text style={styles.paragraph}>Ulcer</Text>
-                </View>
-
-                <View style={styles.section_checkbox}>
-                  <Checkbox
-                    style={styles.checkbox}
-                    value={isChecked_gastritis}
-                    onValueChange={setChecked_gastritis}
-                    color={isChecked_gastritis ? 'cyan' : undefined}
-                  />
-                  <Text style={styles.paragraph}>Gastritis</Text>
-                </View>
-
-                <View style={styles.section_checkbox}>
-                  <Checkbox
-                    style={styles.checkbox}
-                    value={isChecked_colonirrit}
-                    onValueChange={setChecked_colonirrit}
-                    color={isChecked_colonirrit ? 'cyan' : undefined}
-                  />
-                  <Text style={styles.paragraph}>Colon irritable</Text>
-                </View>
-
-              </View>
-            }
-
-            <View style={styles.switchbox}>
-              
-              <View style={styles.checkboxview}>
-                <Switch
-                  trackColor={{ false: "#767577", true: "cyan" }}
-                  thumbColor={isEnabled_genetic? "#024e4e" : "#024e4e"}
-                  ios_backgroundColor="#3e3e3e"
-                  onValueChange={toggleSwitch_genetic}
-                  value={isEnabled_genetic}
-                />
-                <Text style={styles.label}> Genetic diseases </Text>
-                <Text>
-                {isEnabled_genetic ? 'Yes' : 'No'}
-                </Text>
-              </View>
-            </View>
-            {isEnabled_genetic &&
-              <View>
-                <Text style={styles.label}>Which one ?</Text>
-                <TextInput
-                  style={{...styles.input,borderColor:borderColorInput}}
-                  onFocus={() => {
-                    setBorderColorInput("cyan");
-                  }}
-                  onBlur={() => {
-                    setBorderColorInput("black");
-                  }}
-                  onChangeText={onChangeText_diseasegenetic}
-                  value={diseasegenetic}
-                  placeholder="Disease "
-                  keyboardType="default"
-                />
-                <Text style={styles.label}>Are you under treatment? </Text>
-                <View style={styles.checkboxview}>
-                  <View style={styles.containerbutton}>
-                    <Text style={styles.paragraph}>Yes</Text>
-                    <RadioButton
-                      value="yes"
-                      status={ checked_treatmentgenetic === 'yes' ? 'checked' : 'unchecked' }
-                      onPress={() => setChecked_treatmentgenetic('yes')}
-                    />
-                  </View>
-                  <View style={styles.containerbutton}>
-                    <Text style={styles.paragraph}>No</Text>
-                    <RadioButton
-                      value="no"
-                      status={ checked_treatmentgenetic === 'no' ? 'checked' : 'unchecked' }
-                      onPress={() => setChecked_treatmentgenetic('no')}
-                    />
-                  </View>
-                </View>
-              </View>
-
-            }
-
-            <View style={styles.switchbox}>
-              
-              <View style={styles.checkboxview}>
-                <Switch
-                  trackColor={{ false: "#767577", true: "cyan" }}
-                  thumbColor={isEnabled_diabetes? "#024e4e" : "#024e4e"}
-                  ios_backgroundColor="#3e3e3e"
-                  onValueChange={toggleSwitch_diabetes}
-                  value={isEnabled_diabetes}
-                />
-                <Text style={styles.label}> Diabetes </Text>
-                <Text>
-                {isEnabled_diabetes ? 'Yes' : 'No'}
-                </Text>
-              </View>
-            </View>
-            {isEnabled_diabetes &&
-              <View>
-              
-                <Text style={styles.label}>Are you under treatment? </Text>
-                <View style={styles.checkboxview}>
-                  <View style={styles.containerbutton}>
-                    <Text style={styles.paragraph}>Yes</Text>
-                    <RadioButton
-                      value="yes"
-                      status={ checked_treatmentdiabetes === 'yes' ? 'checked' : 'unchecked' }
-                      onPress={() => setChecked_treatmentdiabetes('yes')}
-                    />
-                  </View>
-                  <View style={styles.containerbutton}>
-                    <Text style={styles.paragraph}>No</Text>
-                    <RadioButton
-                      value="no"
-                      status={ checked_treatmentdiabetes === 'no' ? 'checked' : 'unchecked' }
-                      onPress={() => setChecked_treatmentdiabetes('no')}
-                    />
-                  </View>
-                </View>
-              </View>
-
-            }
-            
-            
-            <View style={styles.switchbox}>
-              
-              <View style={styles.checkboxview}>
-                <Switch
-                  trackColor={{ false: "#767577", true: "cyan" }}
-                  thumbColor={isEnabled_kidney? "#024e4e" : "#024e4e"}
-                  ios_backgroundColor="#3e3e3e"
-                  onValueChange={toggleSwitch_kidney}
-                  value={isEnabled_kidney}
-                />
-                <Text style={styles.label}> Kidney diseases </Text>
-                <Text>
-                {isEnabled_kidney ? 'Yes' : 'No'}
-                </Text>
-              </View>
-            </View>
-            {isEnabled_kidney &&
-              <View style={styles.checkboxContainer}>
-                <View style={styles.section_checkbox}>
-                  <Checkbox
-                    style={styles.checkbox}
-                    value={isChecked_stones}
-                    onValueChange={setChecked_stones}
-                    color={isChecked_stones ? 'cyan' : undefined}
-                  />
-                  <Text style={styles.paragraph}>Kidney Stones</Text>
-                </View>
-
-                <View style={styles.section_checkbox}>
-                  <Checkbox
-                    style={styles.checkbox}
-                    value={isChecked_renalinsuf}
-                    onValueChange={setChecked_renalinsuf}
-                    color={isChecked_renalinsuf ? 'cyan' : undefined}
-                  />
-                  <Text style={styles.paragraph}>Renal insufficiency</Text>
-                </View>
-
-              </View>
-            }
-
-            <View style={styles.switchbox}>
-              
-              <View style={styles.checkboxview}>
-                <Switch
-                  trackColor={{ false: "#767577", true: "cyan" }}
-                  thumbColor={isEnabled_infection ? "#024e4e" : "#024e4e"}
-                  ios_backgroundColor="#3e3e3e"
-                  onValueChange={toggleSwitch_infection}
-                  value={isEnabled_infection}
-                />
-                <Text style={styles.label}> Infection </Text>
-                <Text>
-                {isEnabled_infection ? 'Yes' : 'No'}
-                </Text>
-              </View>
-            </View>
-            {isEnabled_infection &&
-              <View style={styles.checkboxContainer}>
-                <View style={styles.section_checkbox}>
-                  <Checkbox
-                    style={styles.checkbox}
-                    value={isChecked_urinary}
-                    onValueChange={setChecked_urinary}
-                    color={isChecked_urinary ? 'cyan' : undefined}
-                  />
-                  <Text style={styles.paragraph}>Urinary</Text>
-                </View>
-
-                <View style={styles.section_checkbox}>
-                  <Checkbox
-                    style={styles.checkbox}
-                    value={isChecked_sinuses}
-                    onValueChange={setChecked_sinuses}
-                    color={isChecked_sinuses ? 'cyan' : undefined}
-                  />
-                  <Text style={styles.paragraph}>Sinuses</Text>
-                </View>
-
-                <View style={styles.section_checkbox}>
-                  <Checkbox
-                    style={styles.checkbox}
-                    value={isChecked_tonsils}
-                    onValueChange={setChecked_tonsils}
-                    color={isChecked_tonsils ? 'cyan' : undefined}
-                  />
-                  <Text style={styles.paragraph}>Tonsils</Text>
-                </View>
-
-                <View style={styles.section_checkbox}>
-                  <Checkbox
-                    style={styles.checkbox}
-                    value={isChecked_gallbladder}
-                    onValueChange={setChecked_gallbladder}
-                    color={isChecked_gallbladder ? 'cyan' : undefined}
-                  />
-                  <Text style={styles.paragraph}>Gallbladder</Text>
-                </View>
-
-              </View>
-            }
-
-            <View style={styles.switchbox}>
-              
-              <View style={styles.checkboxview}>
-                <Switch
-                  trackColor={{ false: "#767577", true: "cyan" }}
-                  thumbColor={isEnabled_hormonalpb? "#024e4e" : "#024e4e"}
-                  ios_backgroundColor="#3e3e3e"
-                  onValueChange={toggleSwitch_homonalpb}
-                  value={isEnabled_hormonalpb}
-                />
-                <Text style={styles.label}> Hormonal Problems </Text>
-                <Text>
-                {isEnabled_hormonalpb ? 'Yes' : 'No'}
-                </Text>
-              </View>
-            </View>
-            {isEnabled_hormonalpb &&
-              <View style={styles.checkboxContainer}>
-                <View style={styles.section_checkbox}>
-                  <Checkbox
-                    style={styles.checkbox}
-                    value={isChecked_thyroid}
-                    onValueChange={setChecked_thyroid}
-                    color={isChecked_thyroid ? 'cyan' : undefined}
-                  />
-                  <Text style={styles.paragraph}> Thyroid </Text>
-                </View>
-
-                <View style={styles.section_checkbox}>
-                  <Checkbox
-                    style={styles.checkbox}
-                    value={isChecked_pituitary}
-                    onValueChange={setChecked_pituitary}
-                    color={isChecked_pituitary ? 'cyan' : undefined}
-                  />
-                  <Text style={styles.paragraph}> Pituitary </Text>
-                </View>
-
-                <View style={styles.section_checkbox}>
-                  <Checkbox
-                    style={styles.checkbox}
-                    value={isChecked_polycystics}
-                    onValueChange={setChecked_polycystics}
-                    color={isChecked_polycystics ? 'cyan' : undefined}
-                  />
-                  <Text style={styles.paragraph}> Polycystics ovaries</Text>
-                </View>
-
-                <View style={styles.section_checkbox}>
-                  <Checkbox
-                    style={styles.checkbox}
-                    value={isChecked_prostate}
-                    onValueChange={setChecked_prostate}
-                    color={isChecked_prostate ? 'cyan' : undefined}
-                  />
-                  <Text style={styles.paragraph}>Prostate</Text>
-                </View>
-
-              </View>
-            }
-
-            <View style={styles.switchbox}>
-              
-              <View style={styles.checkboxview}>
-                <Switch
-                  trackColor={{ false: "#767577", true: "cyan" }}
-                  thumbColor={isEnabled_sightpb? "#024e4e" : "#024e4e"}
-                  ios_backgroundColor="#3e3e3e"
-                  onValueChange={toggleSwitch_sightpb}
-                  value={isEnabled_sightpb}
-                />
-                <Text style={styles.label}> Sight problems </Text>
-                <Text>
-                {isEnabled_sightpb ? 'Yes' : 'No'}
-                </Text>
-              </View>
-            </View>
-
-            <View style={styles.switchbox}>
-              
-              <View style={styles.checkboxview}>
-                <Switch
-                  trackColor={{ false: "#767577", true: "cyan" }}
-                  thumbColor={isEnabled_sleepingpb? "#024e4e" : "#024e4e"}
-                  ios_backgroundColor="#3e3e3e"
-                  onValueChange={toggleSwitch_sleepingpb}
-                  value={isEnabled_sleepingpb}
-                />
-                <Text style={styles.label}> Sleeping disorders </Text>
-                <Text>
-                {isEnabled_sleepingpb ? 'Yes' : 'No'}
-                </Text>
-              </View>
-            </View>
-            {isEnabled_sleepingpb &&
-              <View style={styles.checkboxContainer}>
-                
-                <Text style={styles.label}>How many hours do you sleep ?</Text>
-                <Picker
-                  selectedValue={selectedsleep}
-                  onValueChange={(itemValue, itemIndex) =>
-                    setSelectedsleep(itemValue)
-                  }
-                  mode='dropdown'>
-                  <Picker.Item label="sleep <4h" value="less_4" />
-                  <Picker.Item label="4-6h" value="4_6" />
-                  <Picker.Item label=">6h" value="more_6" />
-  
-                </Picker>
-                <Text style={styles.label}> Sleep discontinuously ? </Text>
-                <View style={styles.checkboxview}>
-                  <View style={styles.containerbutton}>
-                    <Text style={styles.paragraph}>Yes</Text>
-                    <RadioButton
-                      value="yes"
-                      status={ checked_dis_sleep === 'yes' ? 'checked' : 'unchecked' }
-                      onPress={() => setChecked_dis_sleep('yes')}
-                    />
-                  </View>
-                  <View style={styles.containerbutton}>
-                    <Text style={styles.paragraph}>No</Text>
-                    <RadioButton
-                      value="no"
-                      status={ checked_dis_sleep === 'no' ? 'checked' : 'unchecked' }
-                      onPress={() => setChecked_dis_sleep('no')}
-                    />
-                  </View>
-                </View>
-                <Text style={styles.label}> Do you have a sleeping treatment ? </Text>
-                <View style={styles.checkboxview}>
-                  <View style={styles.containerbutton}>
-                    <Text style={styles.paragraph}>Yes</Text>
-                    <RadioButton
-                      value="yes"
-                      status={ checked_treat_sleep === 'yes' ? 'checked' : 'unchecked' }
-                      onPress={() => setChecked_treat_sleep('yes')}
-                    />
-                  </View>
-                  <View style={styles.containerbutton}>
-                    <Text style={styles.paragraph}>No</Text>
-                    <RadioButton
-                      value="no"
-                      status={ checked_treat_sleep === 'no' ? 'checked' : 'unchecked' }
-                      onPress={() => setChecked_treat_sleep('no')}
-                    />
-                  </View>
-                </View>
-
-              </View>
-            }
-            
-
-
+            </TouchableOpacity>  
           </View>
 
         }
@@ -2261,6 +3463,7 @@ const Chapter2 = function() {
               value="yes"
               status={ checked_conflict === 'yes' ? 'checked' : 'unchecked' }
               onPress={() => setChecked_conflict('yes')}
+              color='cyan'
             />
           </View>
           <View style={styles.containerbutton}>
@@ -2269,6 +3472,7 @@ const Chapter2 = function() {
               value="no"
               status={ checked_conflict === 'no' ? 'checked' : 'unchecked' }
               onPress={() => setChecked_conflict('no')}
+              color='cyan'
             />
           </View>
         </View>
@@ -2281,6 +3485,7 @@ const Chapter2 = function() {
               value="yes"
               status={ checked_surgery === 'yes' ? 'checked' : 'unchecked' }
               onPress={() => setChecked_surgery('yes')}
+              color='cyan'
             />
           </View>
           <View style={styles.containerbutton}>
@@ -2289,63 +3494,26 @@ const Chapter2 = function() {
               value="no"
               status={ checked_surgery === 'no' ? 'checked' : 'unchecked' }
               onPress={() => setChecked_surgery('no')}
+              color='cyan'
             />
           </View>
         </View>
         {checked_surgery=="yes" &&
-          <View style={styles.subcontainer}>
-              <View style={styles.checkboxContainer}>
-                <View style={styles.section_checkbox}>
-                    <Checkbox
-                      style={styles.checkbox}
-                      value={isChecked_appendic}
-                      onValueChange={setChecked_appendic}
-                      color={isChecked_appendic ? 'cyan' : undefined}
-                    />
-                    <Text style={styles.paragraph}>Appendic surgery</Text>
-                </View>
-                <View style={styles.section_checkbox}>
-                  <Checkbox
-                    style={styles.checkbox}
-                    value={isChecked_tonsilssurgery}
-                    onValueChange={setChecked_tonsilssurgery}
-                    color={isChecked_tonsilssurgery ? 'cyan' : undefined}
-                  />
-                  <Text style={styles.paragraph}> Tonsils surgery </Text>
-                </View>
-
-                <View style={styles.section_checkbox}>
-                  <Checkbox
-                    style={styles.checkbox}
-                    value={isChecked_gallbladdersurgery}
-                    onValueChange={setChecked_gallbladdersurgery}
-                    color={isChecked_gallbladdersurgery ? 'cyan' : undefined}
-                  />
-                  <Text style={styles.paragraph}> Gallbladder surgery </Text>
-                </View>
-
-                <View style={styles.section_checkbox}>
-                  <Checkbox
-                    style={styles.checkbox}
-                    value={isChecked_innguinal}
-                    onValueChange={setChecked_innguinal}
-                    color={isChecked_innguinal ? 'cyan' : undefined}
-                  />
-                  <Text style={styles.paragraph}>Innguinal hernia</Text>
-                </View>
-
-                <View style={styles.section_checkbox}>
-                  <Checkbox
-                    style={styles.checkbox}
-                    value={isChecked_umbilical}
-                    onValueChange={setChecked_umbilical}
-                    color={isChecked_umbilical ? 'cyan' : undefined}
-                  />
-                  <Text style={styles.paragraph}>Umbilical hernia</Text>
-                </View>
-
+          <View style={styles.container}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={toggleDropdown7}
+            >
+              <View style={styles.drop}>
+                <Text style={styles.titledrop}>Fill in your info about your surgeries.</Text>
+                <Icon style={styles.symboldrop} type='font-awesome' name='chevron-down'/>
               </View>
+
+              {renderDropdown_surgery()}
+            
+            </TouchableOpacity>  
           </View>
+          
         }
 
         <Text style={styles.label}> Did you had any injuries ? </Text>
@@ -2356,6 +3524,7 @@ const Chapter2 = function() {
               value="yes"
               status={ checked_injuries === 'yes' ? 'checked' : 'unchecked' }
               onPress={() => setChecked_injuries('yes')}
+              color='cyan'
             />
           </View>
           <View style={styles.containerbutton}>
@@ -2364,69 +3533,26 @@ const Chapter2 = function() {
               value="no"
               status={ checked_injuries === 'no' ? 'checked' : 'unchecked' }
               onPress={() => setChecked_injuries('no')}
+              color='cyan'
             />
           </View>
         </View>
         {checked_injuries=="yes" &&
-          <View style={styles.subcontainer}>
-            <Text style={styles.label}> Did you had any accidents (car/sport) ? </Text>
-            <View style={styles.checkboxview}>
-              <View style={styles.containerbutton}>
-                <Text style={styles.paragraph}>Yes</Text>
-                <RadioButton
-                  value="yes"
-                  status={ checked_accident === 'yes' ? 'checked' : 'unchecked' }
-                  onPress={() => setChecked_accident('yes')}
-                />
+            <View style={styles.container}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={toggleDropdown8}
+            >
+              <View style={styles.drop}>
+                <Text style={styles.titledrop}>Fill in your info about your injuries.</Text>
+                <Icon style={styles.symboldrop} type='font-awesome' name='chevron-down'/>
               </View>
-              <View style={styles.containerbutton}>
-                <Text style={styles.paragraph}>No</Text>
-                <RadioButton
-                  value="no"
-                  status={ checked_accident === 'no' ? 'checked' : 'unchecked' }
-                  onPress={() => setChecked_accident('no')}
-                />
-              </View>
-            </View>
-            <Text style={styles.label}> Did you had any sprains ? </Text>
-            <View style={styles.checkboxview}>
-              <View style={styles.containerbutton}>
-                <Text style={styles.paragraph}>Yes</Text>
-                <RadioButton
-                  value="yes"
-                  status={ checked_sprains === 'yes' ? 'checked' : 'unchecked' }
-                  onPress={() => setChecked_sprains('yes')}
-                />
-              </View>
-              <View style={styles.containerbutton}>
-                <Text style={styles.paragraph}>No</Text>
-                <RadioButton
-                  value="no"
-                  status={ checked_sprains === 'no' ? 'checked' : 'unchecked' }
-                  onPress={() => setChecked_sprains('no')}
-                />
-              </View>
-            </View>
-            <Text style={styles.label}> Did you had any Luxuries or fractures ? </Text>
-            <View style={styles.checkboxview}>
-              <View style={styles.containerbutton}>
-                <Text style={styles.paragraph}>Yes</Text>
-                <RadioButton
-                  value="yes"
-                  status={ checked_luxuries_fractures === 'yes' ? 'checked' : 'unchecked' }
-                  onPress={() => setChecked_luxuries_fractures('yes')}
-                />
-              </View>
-              <View style={styles.containerbutton}>
-                <Text style={styles.paragraph}>No</Text>
-                <RadioButton
-                  value="no"
-                  status={ checked_luxuries_fractures === 'no' ? 'checked' : 'unchecked' }
-                  onPress={() => setChecked_luxuries_fractures('no')}
-                />
-              </View>
-            </View>
+
+              {renderDropdown_injuries()}
+            
+            </TouchableOpacity>  
           </View>
+          
         }
         <Text style={styles.label}>Sex</Text>
         <View style={styles.checkboxview}>
@@ -2436,6 +3562,7 @@ const Chapter2 = function() {
               value="male"
               status={ checked === 'male' ? 'checked' : 'unchecked' }
               onPress={() => setChecked('male')}
+              color='cyan'
             />
           </View>
           <View style={styles.containerbutton}>
@@ -2444,6 +3571,7 @@ const Chapter2 = function() {
               value="female"
               status={ checked === 'female' ? 'checked' : 'unchecked' }
               onPress={() => setChecked('female')}
+              color='cyan'
             />
           </View>
           <View style={styles.containerbutton}>
@@ -2452,794 +3580,44 @@ const Chapter2 = function() {
               value="neutral"
               status={ checked === 'neutral' ? 'checked' : 'unchecked' }
               onPress={() => setChecked('neutral')}
+              color='cyan'
             /> 
           </View>
         </View>  
 
         {checked=='female' &&
-          <View>
-            <Text style={styles.label}>Date of first menstruation (Menarha) </Text>
-            <View style={styles.chooseDate}>
-              <Button color="black" onPress={showDatepicker_firstmenst} title="Choose" />
-            </View>
-            {show_firstmenst && (<DateTimePicker
-              testID="dateTimePicker"
-              value={date_firstmenst}
-              mode={mode_firstmenst}
-              is24Hour={true}
-              display="default"
-              onChange={onChange_firstmenst}
-            />)}
-            <Text style={styles.label}>Date of last menstruation </Text>
-            <View style={styles.chooseDate}>
-              <Button color="black" onPress={showDatepicker_lastmenst} title="Choose" />
-            </View>
-            {show_lastmenst && (<DateTimePicker
-              testID="dateTimePicker"
-              value={date_lastmenst}
-              mode={mode_lastmenst}
-              is24Hour={true}
-              display="default"
-              onChange={onChange_lastmenst}
-            />)}
+          <View style={styles.container}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={toggleDropdown6}
+            >
+              <View style={styles.drop}>
+                <Text style={styles.titledrop}>Fill in your info.</Text>
+                <Icon style={styles.symboldrop} type='font-awesome' name='chevron-down'/>
+              </View>
 
-            <Text style={styles.label}>Are you menopaused ? </Text>
-            <View style={styles.checkboxview}>
-              <View style={styles.containerbutton}>
-                <Text style={styles.paragraph}>Yes</Text>
-                <RadioButton
-                  value="yes"
-                  status={ checked_menopause === 'yes' ? 'checked' : 'unchecked' }
-                  onPress={() => setChecked_menopause('yes')}
-                />
-              </View>
-              <View style={styles.containerbutton}>
-                <Text style={styles.paragraph}>No</Text>
-                <RadioButton
-                  value="no"
-                  status={ checked_menopause === 'no' ? 'checked' : 'unchecked' }
-                  onPress={() => setChecked_menopause('no')}
-                />
-              </View>
-            </View>
-            {checked_menopause=='yes' &&
-              <View style={styles.subcontainer}>
-                <Text style={styles.label}>Since When ?</Text>
-                <TextInput
-                  style={{...styles.input,borderColor:borderColorInput}}
-                  onFocus={() => {
-                    setBorderColorInput("cyan");
-                  }}
-                  onBlur={() => {
-                    setBorderColorInput("black");
-                  }}
-                  onChangeText={onChangeText_menopausedate}
-                  value={menopause_date}
-                  placeholder="Year"
-                  keyboardType="default"
-                />
-                <Text style={styles.label}>Are you on Hormonal substitutions? </Text>
-                <View style={styles.checkboxview}>
-                  <View style={styles.containerbutton}>
-                    <Text style={styles.paragraph}>Yes</Text>
-                    <RadioButton
-                      value="yes"
-                      status={ checked_hormone === 'yes' ? 'checked' : 'unchecked' }
-                      onPress={() => setChecked_hormone('yes')}
-                    />
-                  </View>
-                  <View style={styles.containerbutton}>
-                    <Text style={styles.paragraph}>No</Text>
-                    <RadioButton
-                      value="no"
-                      status={ checked_hormone === 'no' ? 'checked' : 'unchecked' }
-                      onPress={() => setChecked_hormone('no')}
-                    />
-                  </View>
-                </View>
-                {checked_hormone=='yes' &&
-                  <View>
-                    <Text style={styles.label}> What substance ? </Text>
-                    <TextInput
-                      style={{...styles.input,borderColor:borderColorInput}}
-                      onFocus={() => {
-                        setBorderColorInput("cyan");
-                      }}
-                        onBlur={() => {
-                          setBorderColorInput("black");
-                        }}
-                          onChangeText={onChangeText_medications_hormone}
-                          value={medications_hormone}
-                          placeholder="Your medications"
-                          keyboardType="default"
-                    />
-
-                    <Text style={styles.label}> For how long ? </Text>
-                    <TextInput
-                      style={{...styles.input,borderColor:borderColorInput}}
-                      onFocus={() => {
-                        setBorderColorInput("cyan");
-                      }}
-                      onBlur={() => {
-                        setBorderColorInput("black");
-                      }}
-                      onChangeText={onChangeText_medications_hormonedate}
-                      value={hormonedate}
-                      placeholder="Year"
-                      keyboardType="default"
-                    />
-                  </View>
-                }
-              </View>
-            }
-
-            <Text style={styles.label}>Are you on a contraceptive treatment? </Text>
-            <View style={styles.checkboxview}>
-              <View style={styles.containerbutton}>
-                <Text style={styles.paragraph}>Yes</Text>
-                <RadioButton
-                  value="yes"
-                  status={ checked_contra === 'yes' ? 'checked' : 'unchecked' }
-                  onPress={() => setChecked_contra('yes')}
-                />
-              </View>
-              <View style={styles.containerbutton}>
-                <Text style={styles.paragraph}>No</Text>
-                <RadioButton
-                  value="no"
-                  status={ checked_contra === 'no' ? 'checked' : 'unchecked' }
-                  onPress={() => setChecked_contra('no')}
-                />
-              </View>
-            </View>
-            {checked_contra=='yes' &&
-              <View>
-                <Text style={styles.label}> What substance ? </Text>
-                <TextInput
-                  style={{...styles.input,borderColor:borderColorInput}}
-                  onFocus={() => {
-                    setBorderColorInput("cyan");
-                  }}
-                  onBlur={() => {
-                    setBorderColorInput("black");
-                  }}
-                  onChangeText={onChangeText_medications_contra}
-                  value={medications_contra}
-                  placeholder="Your medications"
-                  keyboardType="default"
-                />
-
-                <Text style={styles.label}> For how long ? </Text>
-                <TextInput
-                  style={{...styles.input,borderColor:borderColorInput}}
-                  onFocus={() => {
-                    setBorderColorInput("cyan");
-                  }}
-                  onBlur={() => {
-                    setBorderColorInput("black");
-                  }}
-                  onChangeText={onChangeText_medications_contradate}
-                  value={contradate}
-                  placeholder="Year"
-                  keyboardType="default"
-                />
-              </View>
-            }
-
-
-            <Text style={styles.label}>Did you gave Birth ? </Text>
-            <View style={styles.checkboxview}>
-              <View style={styles.containerbutton}>
-                <Text style={styles.paragraph}>Yes</Text>
-                <RadioButton
-                  value="yes"
-                  status={ checked_birth === 'yes' ? 'checked' : 'unchecked' }
-                  onPress={() => setChecked_birth('yes')}
-                />
-              </View>
-              <View style={styles.containerbutton}>
-                <Text style={styles.paragraph}>No</Text>
-                <RadioButton
-                  value="no"
-                  status={ checked_birth === 'no' ? 'checked' : 'unchecked' }
-                  onPress={() => setChecked_birth('no')}
-                />
-              </View>
-            </View>
-            {checked_birth=='yes' &&
-              <View>
-                <Text style={styles.label}>Did you breastfeed ? </Text>
-                <View style={styles.checkboxview}>
-                  <View style={styles.containerbutton}>
-                    <Text style={styles.paragraph}>Yes</Text>
-                    <RadioButton
-                      value="yes"
-                      status={ checked_breastfeed === 'yes' ? 'checked' : 'unchecked' }
-                      onPress={() => setChecked_breastfeed('yes')}
-                    />
-                  </View>
-                  <View style={styles.containerbutton}>
-                    <Text style={styles.paragraph}>No</Text>
-                    <RadioButton
-                      value="no"
-                      status={ checked_breastfeed === 'no' ? 'checked' : 'unchecked' }
-                      onPress={() => setChecked_breastfeed('no')}
-                    />
-                  </View>
-                </View>
-                <Text style={styles.label}>Did you got a Caesarean ? </Text>
-                <View style={styles.checkboxview}>
-                  <View style={styles.containerbutton}>
-                    <Text style={styles.paragraph}>Yes</Text>
-                    <RadioButton
-                      value="yes"
-                      status={ checked_caesarean === 'yes' ? 'checked' : 'unchecked' }
-                      onPress={() => setChecked_caesarean('yes')}
-                    />
-                  </View>
-                  <View style={styles.containerbutton}>
-                    <Text style={styles.paragraph}>No</Text>
-                    <RadioButton
-                      value="no"
-                      status={ checked_caesarean === 'no' ? 'checked' : 'unchecked' }
-                      onPress={() => setChecked_caesarean('no')}
-                    />
-                  </View>
-                </View>
-                {checked_caesarean=='yes' &&
-                  <View>
-                    <Text style={styles.label}> When ? </Text>
-                    <TextInput
-                      style={{...styles.input,borderColor:borderColorInput}}
-                      onFocus={() => {
-                        setBorderColorInput("cyan");
-                      }}
-                      onBlur={() => {
-                        setBorderColorInput("black");
-                      }}
-                      onChangeText={onChangeText_caesarean}
-                      value={caesareandate}
-                      placeholder="Year"
-                      keyboardType="default"
-                    />
-                    <Text style={styles.label}> How many ? </Text>
-                    <TextInput
-                      style={{...styles.input,borderColor:borderColorInput}}
-                      onFocus={() => {
-                        setBorderColorInput("cyan");
-                      }}
-                      onBlur={() => {
-                        setBorderColorInput("black");
-                      }}
-                      onChangeText={onChangeText_nbcaesarean}
-                      value={nbcaesarean}
-                      placeholder=""
-                      keyboardType="default"
-                    />
-                  </View>
-                }
-              </View>
-            }    
-
-            <Text style={styles.label}>Did you got an abortion ? </Text>
-            <View style={styles.checkboxview}>
-              <View style={styles.containerbutton}>
-                <Text style={styles.paragraph}>Yes</Text>
-                <RadioButton
-                  value="yes"
-                  status={ checked_abort === 'yes' ? 'checked' : 'unchecked' }
-                  onPress={() => setChecked_abort('yes')}
-                />
-              </View>
-              <View style={styles.containerbutton}>
-                <Text style={styles.paragraph}>No</Text>
-                <RadioButton
-                  value="no"
-                  status={ checked_abort === 'no' ? 'checked' : 'unchecked' }
-                  onPress={() => setChecked_abort('no')}
-                />
-              </View>
-            </View>
-            {checked_abort=='yes' &&
-              <View>
-                <Text style={styles.label}> When ? </Text>
-                <TextInput
-                  style={{...styles.input,borderColor:borderColorInput}}
-                  onFocus={() => {
-                    setBorderColorInput("cyan");
-                  }}
-                  onBlur={() => {
-                    setBorderColorInput("black");
-                  }}
-                  onChangeText={onChangeText_abortionwhen}
-                  value={abortionwhen}
-                  placeholder="Year"
-                  keyboardType="default"
-                />
-                <Text style={styles.label}> How ? </Text>
-                <TextInput
-                  style={{...styles.input,borderColor:borderColorInput}}
-                  onFocus={() => {
-                    setBorderColorInput("cyan");
-                  }}
-                  onBlur={() => {
-                    setBorderColorInput("black");
-                  }}
-                  onChangeText={onChangeText_abortionhow}
-                  value={abortionhow}
-                  placeholder=""
-                  keyboardType="default"
-                />
-                <Text style={styles.label}> How many ? </Text>
-                <TextInput
-                  style={{...styles.input,borderColor:borderColorInput}}
-                  onFocus={() => {
-                    setBorderColorInput("cyan");
-                  }}
-                  onBlur={() => {
-                    setBorderColorInput("black");
-                  }}
-                  onChangeText={onChangeText_abortionmany}
-                  value={abortionmany}
-                  placeholder=""
-                  keyboardType="default"
-                />
-              </View>
-            }
-
-            <Text style={styles.label}>Did you had lost in pregnancies ? </Text>
-            <View style={styles.checkboxview}>
-              <View style={styles.containerbutton}>
-                <Text style={styles.paragraph}>Yes</Text>
-                <RadioButton
-                  value="yes"
-                  status={ checked_lostpreg === 'yes' ? 'checked' : 'unchecked' }
-                  onPress={() => setChecked_lostpreg('yes')}
-                />
-              </View>
-              <View style={styles.containerbutton}>
-                <Text style={styles.paragraph}>No</Text>
-                <RadioButton
-                  value="no"
-                  status={ checked_lostpreg === 'no' ? 'checked' : 'unchecked' }
-                  onPress={() => setChecked_lostpreg('no')}
-                />
-              </View>
-            </View>
-            {checked_lostpreg=='yes' &&
-              <View>
-                <Text style={styles.label}> When ? </Text>
-                <TextInput
-                  style={{...styles.input,borderColor:borderColorInput}}
-                  onFocus={() => {
-                    setBorderColorInput("cyan");
-                  }}
-                  onBlur={() => {
-                    setBorderColorInput("black");
-                  }}
-                  onChangeText={onChangeText_lostpregwhen}
-                  value={lostpregwhen}
-                  placeholder="Year"
-                  keyboardType="default"
-                />
-                <Text style={styles.label}> How ? </Text>
-                <TextInput
-                  style={{...styles.input,borderColor:borderColorInput}}
-                  onFocus={() => {
-                    setBorderColorInput("cyan");
-                  }}
-                  onBlur={() => {
-                    setBorderColorInput("black");
-                  }}
-                  onChangeText={onChangeText_lostpreghow}
-                  value={lostpreghow}
-                  placeholder=""
-                  keyboardType="default"
-                />
-                <Text style={styles.label}> How many ? </Text>
-                <TextInput
-                  style={{...styles.input,borderColor:borderColorInput}}
-                  onFocus={() => {
-                    setBorderColorInput("cyan");
-                  }}
-                  onBlur={() => {
-                    setBorderColorInput("black");
-                  }}
-                  onChangeText={onChangeText_lostpregmany}
-                  value={lostpregmany}
-                  placeholder=""
-                  keyboardType="default"
-                />
-              </View>
-            }
-
-            <Text style={styles.label}>Any Pathological tasks ? </Text>
-            <View style={styles.checkboxview}>
-              <View style={styles.containerbutton}>
-                <Text style={styles.paragraph}>Yes</Text>
-                <RadioButton
-                  value="yes"
-                  status={ checked_path === 'yes' ? 'checked' : 'unchecked' }
-                  onPress={() => setChecked_path('yes')}
-                />
-              </View>
-              <View style={styles.containerbutton}>
-                <Text style={styles.paragraph}>No</Text>
-                <RadioButton
-                  value="no"
-                  status={ checked_path === 'no' ? 'checked' : 'unchecked' }
-                  onPress={() => setChecked_path('no')}
-                />
-              </View>
-            </View>
-            {checked_path=='yes' &&
-              <View>
-                <Text style={styles.label}> When ? </Text>
-                <TextInput
-                  style={{...styles.input,borderColor:borderColorInput}}
-                  onFocus={() => {
-                    setBorderColorInput("cyan");
-                  }}
-                  onBlur={() => {
-                    setBorderColorInput("black");
-                  }}
-                  onChangeText={onChangeText_pathodate}
-                  value={pathodate}
-                  placeholder="Your medications"
-                  keyboardType="default"
-                />
-                <Text style={styles.label}> How ? </Text>
-                <TextInput
-                  style={{...styles.input,borderColor:borderColorInput}}
-                  onFocus={() => {
-                    setBorderColorInput("cyan");
-                  }}
-                  onBlur={() => {
-                    setBorderColorInput("black");
-                  }}
-                  onChangeText={onChangeText_pathohow}
-                  value={pathohow}
-                  placeholder=""
-                  keyboardType="default"
-                />
-                <Text style={styles.label}> How many ? </Text>
-                <TextInput
-                  style={{...styles.input,borderColor:borderColorInput}}
-                  onFocus={() => {
-                    setBorderColorInput("cyan");
-                  }}
-                  onBlur={() => {
-                    setBorderColorInput("black");
-                  }}
-                  onChangeText={onChangeText_pathomany}
-                  value={pathomany}
-                  placeholder=""
-                  keyboardType="default"
-                />
-              </View>
-            }
-
-            <Text style={styles.label}>Any breast problems ? </Text>
-            <View style={styles.checkboxview}>
-              <View style={styles.containerbutton}>
-                <Text style={styles.paragraph}>Yes</Text>
-                <RadioButton
-                  value="yes"
-                  status={ checked_breastpb === 'yes' ? 'checked' : 'unchecked' }
-                  onPress={() => setChecked_breastpb('yes')}
-                />
-              </View>
-              <View style={styles.containerbutton}>
-                <Text style={styles.paragraph}>No</Text>
-                <RadioButton
-                  value="no"
-                  status={ checked_breastpb === 'no' ? 'checked' : 'unchecked' }
-                  onPress={() => setChecked_breastpb('no')}
-                />
-              </View>
-            </View>
-            {checked_breastpb=='yes' &&
-              <View>
-                <Text style={styles.label}> Do you get periodic inspection ? </Text>   
-                <View style={styles.checkboxview}>
-                  <View style={styles.containerbutton}>
-                    <Text style={styles.paragraph}>Yes</Text>
-                    <RadioButton
-                      value="yes"
-                      status={ checked_inspect === 'yes' ? 'checked' : 'unchecked' }
-                      onPress={() => setChecked_inspect('yes')}
-                    />
-                  </View>
-                  <View style={styles.containerbutton}>
-                    <Text style={styles.paragraph}>No</Text>
-                    <RadioButton
-                      value="no"
-                      status={ checked_inspect === 'no' ? 'checked' : 'unchecked' }
-                      onPress={() => setChecked_inspect('no')}
-                    />
-                  </View>
-                </View>
-                {checked_inspect =='yes' &&
-                  <View style={styles.container}>
-                    <Text style={styles.label}> When ? </Text>
-                    <TextInput
-                      style={{...styles.input,borderColor:borderColorInput}}
-                      onFocus={() => {
-                        setBorderColorInput("cyan");
-                      }}
-                      onBlur={() => {
-                        setBorderColorInput("black");
-                      }}
-                      onChangeText={onChangeText_inspect}
-                      value={inspect}
-                      placeholder="Year"
-                      keyboardType="default"
-                    />
-                  </View>
-                }
-              </View>
-            }
-
-            <Text style={styles.label}>Did you got pregnancies issues? </Text>
-            <View style={styles.checkboxview}>
-              <View style={styles.containerbutton}>
-                <Text style={styles.paragraph}>Yes</Text>
-                <RadioButton
-                  value="yes"
-                  status={ checked_pregpb === 'yes' ? 'checked' : 'unchecked' }
-                  onPress={() => setChecked_pregpb('yes')}
-                />
-              </View>
-              <View style={styles.containerbutton}>
-                <Text style={styles.paragraph}>No</Text>
-                <RadioButton
-                  value="no"
-                  status={ checked_pregpb === 'no' ? 'checked' : 'unchecked' }
-                  onPress={() => setChecked_pregpb('no')}
-                />
-              </View>
-            </View>
-            {checked_pregpb =='yes' &&
-              <View style={styles.subcontainer}>
-                <View style={styles.switchbox}>
-                  <Text style={styles.label}> Gestational diabetes </Text>
-                  <View style={styles.checkboxview}>
-                    <Switch
-                      trackColor={{ false: "#767577", true: "cyan" }}
-                      thumbColor={isEnabled_gestdiab ? "#024e4e" : "#024e4e"}
-                      ios_backgroundColor="#3e3e3e"
-                      onValueChange={toggleSwitch_gestdiab}
-                      value={isEnabled_gestdiab}
-                    />
-                    
-                  </View>
-                </View>
-
-                <View style={styles.switchbox}>
-                  <Text style={styles.label}> Others problems ? </Text>
-                  <View style={styles.checkboxview}>
-                    <Switch
-                      trackColor={{ false: "#767577", true: "cyan" }}
-                      thumbColor={isEnabled_othergestpb ? "#024e4e" : "#024e4e"}
-                      ios_backgroundColor="#3e3e3e"
-                      onValueChange={toggleSwitch_othergestpb}
-                      value={isEnabled_othergestpb}
-                    />
-                    
-                  </View>
-                </View>
-                {isEnabled_othergestpb &&
-                  <View style={styles.subcontainer}>
-                    <Text style={styles.sublabel}> What type ? </Text>
-                    <TextInput
-                      style={{...styles.input,borderColor:borderColorInput}}
-                      onFocus={() => {
-                        setBorderColorInput("cyan");
-                      }}
-                      onBlur={() => {
-                        setBorderColorInput("black");
-                      }}
-                      onChangeText={onChangeText_othersgynpb}
-                      value={gynpb_others}
-                      placeholder="Describe"
-                      keyboardType="default"
-                    />
-                  </View>
-                }
-              </View>       
-            }
-
-            <Text style={styles.label}> Do you get periodic gynecological consult ? </Text>   
-            <View style={styles.checkboxview}>
-              <View style={styles.containerbutton}>
-                <Text style={styles.paragraph}>Yes</Text>
-                <RadioButton
-                  value="yes"
-                  status={ checked_consultgyn === 'yes' ? 'checked' : 'unchecked' }
-                  onPress={() => setChecked_consultgyn('yes')}
-                />
-              </View>
-              <View style={styles.containerbutton}>
-                <Text style={styles.paragraph}>No</Text>
-                <RadioButton
-                  value="no"
-                  status={ checked_consultgyn === 'no' ? 'checked' : 'unchecked' }
-                  onPress={() => setChecked_consultgyn('no')}
-                />
-              </View>
-            </View>
-            {checked_consultgyn =='yes' &&
-              <View style={styles.subcontainer}>
-                <Text style={styles.sublabel}> When was the last one ? </Text>
-                <TextInput
-                  style={{...styles.input,borderColor:borderColorInput}}
-                  onFocus={() => {
-                    setBorderColorInput("cyan");
-                  }}
-                  onBlur={() => {
-                    setBorderColorInput("black");
-                  }}
-                  onChangeText={onChangeText_gyneco}
-                  value={medications_gyneco}
-                  placeholder="Year"
-                  keyboardType="default"
-                />
-              </View>
-            }
-
-            <Text style={styles.label}> Did you got Papanicolau test ? </Text>   
-            <View style={styles.checkboxview}>
-              <View style={styles.containerbutton}>
-                <Text style={styles.paragraph}>Yes</Text>
-                <RadioButton
-                  value="yes"
-                  status={ checked_papanicolau === 'yes' ? 'checked' : 'unchecked' }
-                  onPress={() => setChecked_papanicolau('yes')}
-                />
-              </View>
-              <View style={styles.containerbutton}>
-                <Text style={styles.paragraph}>No</Text>
-                <RadioButton
-                  value="no"
-                  status={ checked_papanicolau === 'no' ? 'checked' : 'unchecked' }
-                  onPress={() => setChecked_papanicolau('no')}
-                />
-              </View>
-            </View>
-            {checked_papanicolau =='yes' &&
-              <View style={styles.subcontainer}>
-                <Text style={styles.sublabel}> When was the last one ? </Text>
-                <TextInput
-                  style={{...styles.input,borderColor:borderColorInput}}
-                  onFocus={() => {
-                    setBorderColorInput("cyan");
-                  }}
-                  onBlur={() => {
-                    setBorderColorInput("black");
-                  }}
-                  onChangeText={onChangeText_papanicolau}
-                  value={papanicolau}
-                  placeholder="Year"
-                  keyboardType="default"
-                />
-              </View>
-            }
+              {renderDropdown_female()}
+            
+            </TouchableOpacity>  
           </View>
+          
         }
         {checked=='male' &&
-          <View>
-            <Text style={styles.label}> Your age range </Text>
-            <Picker
-              selectedValue={selectedage}
-              onValueChange={(itemValue, itemIndex) =>
-                setSelectedage(itemValue)
-              }
-              mode='dropdown'>
-              <Picker.Item label="Age <4O" value="less_40" />
-              <Picker.Item label="Age 40-65" value="40_65" />
-              <Picker.Item label="Age >65" value="more_65" />
-
-            </Picker>
-
-            {selectedage =='less_40' &&
-              <View style={styles.subcontainer}>
-                <Text style={styles.label}> Are you in a toxic environnement ? </Text>
-                <View style={styles.checkboxview}>
-                  <View style={styles.containerbutton}>
-                    <Text style={styles.paragraph}>Yes</Text>
-                    <RadioButton
-                      value="yes"
-                      status={ checked_toxic === 'yes' ? 'checked' : 'unchecked' }
-                      onPress={() => setChecked_toxic('yes')}
-                    />
-                  </View>
-                  <View style={styles.containerbutton}>
-                    <Text style={styles.paragraph}>No</Text>
-                    <RadioButton
-                      value="no"
-                      status={ checked_toxic === 'no' ? 'checked' : 'unchecked' }
-                      onPress={() => setChecked_toxic('no')}
-                    />
-                  </View>
-                </View>
-                <Text style={styles.label}> Do you practice extreme sport ? </Text>
-                <View style={styles.checkboxview}>
-                  <View style={styles.containerbutton}>
-                    <Text style={styles.paragraph}>Yes</Text>
-                    <RadioButton
-                      value="yes"
-                      status={ checked_sport === 'yes' ? 'checked' : 'unchecked' }
-                      onPress={() => setChecked_sport('yes')}
-                    />
-                  </View>
-                  <View style={styles.containerbutton}>
-                    <Text style={styles.paragraph}>No</Text>
-                    <RadioButton
-                      value="no"
-                      status={ checked_sport === 'no' ? 'checked' : 'unchecked' }
-                      onPress={() => setChecked_sport('no')}
-                    />
-                  </View>
-                </View>
+          <View style={styles.container}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={toggleDropdown5}
+            >
+              <View style={styles.drop}>
+                <Text style={styles.titledrop}>Fill in your info.</Text>
+                <Icon style={styles.symboldrop} type='font-awesome' name='chevron-down'/>
               </View>
 
-            }
-            {selectedage=='40_65' &&
-              <View>
-                <Text style={styles.label}>Level of stress</Text>
-                <View style={[styles.contentView]}>
-                  <Slider
-                    value={value}
-                    onValueChange={setValue}
-                    maximumValue={10}
-                    minimumValue={0}
-                    step={1}
-                    allowTouchTrack
-                    trackStyle={{ height: 5, backgroundColor: 'transparent' }}
-                    thumbStyle={{ height: 20, width: 20, backgroundColor: 'transparent' }}
-                    thumbProps={{
-                      children: (
-                        <Icon
-                        name="heartbeat"
-                        type="font-awesome"
-                        size={20}
-                        reverse
-                        containerStyle={{ bottom: 20, right: 20 }}
-                        color={'#fbe31c'}
-                      />
-                      ),
-                    }}
-                  />
-                  <Text style={{ paddingTop: 10 }}>Value: {value}</Text>
-                </View>
-
-              </View>
-            }
-            {selectedage=='more_65' &&
-              <View>
-                <Text style={styles.label}> Wake up at night to urinate more than once ? </Text>
-                <View style={styles.checkboxview}>
-                  <View style={styles.containerbutton}>
-                    <Text style={styles.paragraph}>Yes</Text>
-                    <RadioButton
-                      value="yes"
-                      status={ checked_urinate === 'yes' ? 'checked' : 'unchecked' }
-                      onPress={() => setChecked_urinate('yes')}
-                    />
-                  </View>
-                  <View style={styles.containerbutton}>
-                    <Text style={styles.paragraph}>No</Text>
-                    <RadioButton
-                      value="no"
-                      status={ checked_urinate === 'no' ? 'checked' : 'unchecked' }
-                      onPress={() => setChecked_urinate('no')}
-                    />
-                  </View>
-                </View>
-              </View>
-
-            }
+              {renderDropdown_male()}
+            
+            </TouchableOpacity>  
           </View>
+          
         }
         <Text style={styles.label}>Are you under any other treatments than the ones cited before? </Text>
         <View style={styles.checkboxview}>
@@ -3249,6 +3627,7 @@ const Chapter2 = function() {
               value="yes"
               status={ checked_treatment === 'yes' ? 'checked' : 'unchecked' }
               onPress={() => setChecked_treatment('yes')}
+              color='cyan'
             />
           </View>
           <View style={styles.containerbutton}>
@@ -3257,142 +3636,26 @@ const Chapter2 = function() {
               value="no"
               status={ checked_treatment === 'no' ? 'checked' : 'unchecked' }
               onPress={() => setChecked_treatment('no')}
+              color='cyan'
             />
           </View>
         </View>
         {checked_treatment=='yes' &&
-          <View>
-            <View style={styles.switchbox}>
-              <View style={styles.checkboxview}>
-                <Switch
-                  trackColor={{ false: "#767577", true: "cyan" }}
-                  thumbColor={isEnabled_treatmentpressure? "#024e4e" : "#024e4e"}
-                  ios_backgroundColor="#3e3e3e"
-                  onValueChange={toggleSwitch_treatmentpressure}
-                  value={isEnabled_treatmentpressure}
-                />
-                <Text style={styles.label}> Pressure </Text>
-                <Text>
-                {isEnabled_treatmentpressure ? 'Yes' : 'No'}
-                </Text>
-              </View>
-            </View>
-            <View style={styles.switchbox}>
-              <View style={styles.checkboxview}>
-                <Switch
-                  trackColor={{ false: "#767577", true: "cyan" }}
-                  thumbColor={isEnabled_treatmentinfection? "#024e4e" : "#024e4e"}
-                  ios_backgroundColor="#3e3e3e"
-                  onValueChange={toggleSwitch_treatmentinfection}
-                  value={isEnabled_treatmentinfection}
-                />
-                <Text style={styles.label}> Infection </Text>
-                <Text>
-                {isEnabled_treatmentinfection ? 'Yes' : 'No'}
-                </Text>
-              </View>
-            </View>
-            <View style={styles.switchbox}>
-              <View style={styles.checkboxview}>
-                <Switch
-                  trackColor={{ false: "#767577", true: "cyan" }}
-                  thumbColor={isEnabled_treatmentother? "#024e4e" : "#024e4e"}
-                  ios_backgroundColor="#3e3e3e"
-                  onValueChange={toggleSwitch_treatmentother}
-                  value={isEnabled_treatmentother}
-                />
-                <Text style={styles.label}> Other </Text>
-                <Text>
-                {isEnabled_treatmentother ? 'Yes' : 'No'}
-                </Text>
+          <View style={styles.container}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={toggleDropdown9}
+            >
+              <View style={styles.drop}>
+                <Text style={styles.titledrop}>Fill in your info about your treatments.</Text>
+                <Icon style={styles.symboldrop} type='font-awesome' name='chevron-down'/>
               </View>
 
-            </View>
-            {isEnabled_treatmentother &&
-                  <View>
-                    <Text style={styles.label}>Which one ?</Text>
-                    <TextInput
-                      style={{...styles.input,borderColor:borderColorInput}}
-                      onFocus={() => {
-                        setBorderColorInput("cyan");
-                      }}
-                      onBlur={() => {
-                        setBorderColorInput("black");
-                      }}
-                      onChangeText={onChangeText_treatother}
-                      value={treatother}
-                      placeholder="Treatment "
-                      keyboardType="default"
-                    />
-                  </View>
-                }
-            <View style={styles.switchbox}>
-              <View style={styles.checkboxview}>
-                <Switch
-                  trackColor={{ false: "#767577", true: "cyan" }}
-                  thumbColor={isEnabled_treatmentnaturist? "#024e4e" : "#024e4e"}
-                  ios_backgroundColor="#3e3e3e"
-                  onValueChange={toggleSwitch_treatmentnaturist}
-                  value={isEnabled_treatmentnaturist}
-                />
-                <Text style={styles.label}> Naturist treatment </Text>
-                <Text>
-                {isEnabled_treatmentnaturist ? 'Yes' : 'No'}
-                </Text>
-              </View>
-            </View>
-            {isEnabled_treatmentnaturist &&
-              <View>
-                <View style={styles.section_checkbox}>
-                  <Checkbox
-                    style={styles.checkbox}
-                    value={isChecked_plants}
-                    onValueChange={setChecked_plants}
-                    color={isChecked_plants ? 'cyan' : undefined}
-                  />
-                  <Text style={styles.paragraph}> Plants </Text>
-                </View>
-
-                <View style={styles.section_checkbox}>
-                  <Checkbox
-                    style={styles.checkbox}
-                    value={isChecked_ayur}
-                    onValueChange={setChecked_ayur}
-                    color={isChecked_ayur ? 'cyan' : undefined}
-                  />
-                  <Text style={styles.paragraph}> Ayurveda </Text>
-                </View>
-
-                <View style={styles.section_checkbox}>
-                  <Checkbox
-                    style={styles.checkbox}
-                    value={isChecked_natother}
-                    onValueChange={setChecked_natother}
-                    color={isChecked_natother ? 'cyan' : undefined}
-                  />
-                  <Text style={styles.paragraph}>Other</Text>
-                </View>
-                {isChecked_natother &&
-                  <View>
-                    <Text style={styles.label}>Which one ?</Text>
-                    <TextInput
-                      style={{...styles.input,borderColor:borderColorInput}}
-                      onFocus={() => {
-                        setBorderColorInput("cyan");
-                      }}
-                      onBlur={() => {
-                        setBorderColorInput("black");
-                      }}
-                      onChangeText={onChangeText_treatnatureother}
-                      value={treatnatureother}
-                      placeholder="Treatment "
-                      keyboardType="default"
-                    />
-                  </View>
-                }
-              </View>
-            }
+              {renderDropdown_treatment()}
+            
+            </TouchableOpacity>  
           </View>
+          
         }
 
         <View style={styles.container}>
@@ -3418,11 +3681,19 @@ const Chapter2 = function() {
 export {Chapter2};
 
 const styles = StyleSheet.create({
-  subcontainer2:{
-    backgroundColor: 'white',
+  containerDropdown:{
+    backgroundColor: "#4bcbd6",
+    borderWidth: 1,
+    padding:5,
+    
   },
   subcontainer:{
     backgroundColor: '#4bcbd6',
+  },
+  subcontainer2:{
+    backgroundColor: '#79d1d9',
+    paddingLeft:5,
+    paddingRight:5,
   },
   sublabel: {
     fontSize: 16,
