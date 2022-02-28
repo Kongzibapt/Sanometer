@@ -6,6 +6,7 @@ import { Slider, Icon } from 'react-native-elements';
 import { RadioButton } from 'react-native-paper';
 import {Picker} from '@react-native-picker/picker';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 const Chapter1 = function() {
@@ -34,6 +35,15 @@ const Chapter1 = function() {
   const [date, setDate] = react.useState(new Date());
   const [mode, setMode] = react.useState('date');
   const [show, setShow] = react.useState(false);
+
+  const submitChapter1 = () => {
+    try {     
+      await AsyncStorage.setItem('lastname',lastname);
+  }
+  catch (error) {
+      console.log(error)
+  }
+  }
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -273,7 +283,7 @@ const Chapter1 = function() {
           <Picker.Item label="Bachelor" value="bachelor" />
           <Picker.Item label="Master Phd" value="master_phd" />
         </Picker>
-
+        <Button title="Je valide ces données" onPress={submitChapter1}/>
       </ScrollView>
     </SafeAreaView>
 

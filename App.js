@@ -9,9 +9,6 @@ import { Chapter6 } from './screens/Chapter6.js';
 import { Chapter7 } from './screens/Chapter7.js';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import store from './redux/store';
-import { Provider as StoreProvider } from 'react-redux';
-import { useSelector, useDispatch } from 'react-redux';
 import { setFirstname, setLastname } from './redux/chapter1App'
 import react from 'react';
 // import { AppLoading } from "expo-app-loading";
@@ -37,32 +34,27 @@ import {
   Montserrat_900Black_Italic
 } from '@expo-google-fonts/montserrat'
 import { TextInput } from 'react-native-paper';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Stack = createNativeStackNavigator();
 
 function HomeScreen({ navigation }) {
-  const [firstname, onChangeFirstName] = react.useState(null);
-  const params = useSelector(state => state);
-  const dispatch = useDispatch()
-  const setfirstname = firstname => dispatch(setFirstname(firstname));
-  console.log(params);
+
+  const [lastname,setLastname] = React.useState("");
+
+  const getInfos = () => {
+    try {     
+      const value = await AsyncStorage.getItem('lastname');
+      setLastname(value);
+    }
+    catch (error) {
+        console.log(error)
+    }
+  }
 
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>{params[0].value}</Text>
-      <TextInput
-      style={styles.input}
-      onChangeText={onChangeFirstName}
-      value={firstname}
-      placeholder="Your firstname"
-      keyboardType="default">
-
-      </TextInput>
-      <Button
-      title="Set"
-      style={styles.button}
-      onPress={() => setfirstname(firstname)}
-      />
+      <Text>{lastname}</Text>
       <View style={styles.button}>
         <Button
           title="Chapter 1"
