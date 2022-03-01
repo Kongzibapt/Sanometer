@@ -57,8 +57,12 @@ function HomeScreen({ navigation }) {
   return (
     <View style={styles.homepage}>
       
-      <View style={{ flex: 1,justifyContent: 'center',alignItems:'center', backgroundColor:'#18acb9', height:"120%", flexGrow:2}}>
-        <Image source={require('./logo.png')} style={{ width: 100, height: 80 }}/>
+      <View style={{ flex: 1,justifyContent: 'center',alignItems:'center', backgroundColor:'#18acb9', height:"130%", flexGrow:2}}>
+        <Image source={require('./logo.png')} style={{ width: 100, height: 80, position:'absolute', top:200, left:20 }}/>
+        <Text style={styles.labelname}>Hi {lastname} !</Text>
+        <Image source={require('./photo.jpg')} style={{ width: 100, height: 100,position:'absolute', top:10, left:20 }}/>
+        
+        <View style={styles.containerbutton}>
         <View style={styles.button}>
           <Button
             title="Personal data"
@@ -114,11 +118,10 @@ function HomeScreen({ navigation }) {
             color="#18acb9"
           />
         </View>
+        </View>
       </View>
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', overflow: "scroll", flexGrow:3}}>
-        <Image source={require('./photo.jpg')} style={{ width: 100, height: 100, }}/>
-        <Text style={styles.label}>Hi {lastname} !</Text>
-        <Text style={styles.label}>Please fill in your info</Text>
+        <Text style={styles.label}>Find here your advices !</Text>
       </View>
     </View>
   );
@@ -189,7 +192,13 @@ const styles = StyleSheet.create({
     fontFamily:"Montserrat_400Regular",
     width:"100%",
     justifyContent: 'center',
+    position:'relative',
     
+  },
+  containerbutton : {
+    position:'relative',
+    width:"100%",
+    height:"20%"
   },
   input: {
     flex:0.2,
@@ -203,10 +212,19 @@ const styles = StyleSheet.create({
     borderWidth:2,
     borderRadius:5
   },
+  labelname: {
+    fontSize: 16,
+    color: 'white',
+    fontFamily:"Montserrat_400Regular",
+    position:'absolute', 
+    top:120, 
+    left:17,
+
+  },
   label: {
     fontSize: 16,
     color: 'black',
     fontFamily:"Montserrat_400Regular",
-    margin: 12,
+    margin:12,
   },
 });
