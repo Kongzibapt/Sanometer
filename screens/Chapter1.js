@@ -36,7 +36,7 @@ const Chapter1 = function() {
   const [mode, setMode] = react.useState('date');
   const [show, setShow] = react.useState(false);
 
-  const submitChapter1 = () => {
+  const submitChapter1 = async () => {
     try {     
       await AsyncStorage.setItem('lastname',lastname);
   }
@@ -283,7 +283,9 @@ const Chapter1 = function() {
           <Picker.Item label="Bachelor" value="bachelor" />
           <Picker.Item label="Master Phd" value="master_phd" />
         </Picker>
-        <Button title="Je valide ces données" onPress={submitChapter1}/>
+        <View style={{margin:5}}>
+          <Button title="Submit" onPress={submitChapter1} color="#4bcbd6"/>
+        </View>
       </ScrollView>
     </SafeAreaView>
 

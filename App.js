@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, Image } from 'react-native';
 import { Chapter1 } from './screens/Chapter1.js';
 import { Chapter2 } from './screens/Chapter2.js';
 import { Chapter3 } from './screens/Chapter3.js';
@@ -9,7 +9,6 @@ import { Chapter6 } from './screens/Chapter6.js';
 import { Chapter7 } from './screens/Chapter7.js';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { setFirstname, setLastname } from './redux/chapter1App'
 import react from 'react';
 // import { AppLoading } from "expo-app-loading";
 import {
@@ -35,6 +34,7 @@ import {
 } from '@expo-google-fonts/montserrat'
 import { TextInput } from 'react-native-paper';
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import React from 'react';
 
 const Stack = createNativeStackNavigator();
 
@@ -42,7 +42,7 @@ function HomeScreen({ navigation }) {
 
   const [lastname,setLastname] = React.useState("");
 
-  const getInfos = () => {
+  const getInfos = async () => {
     try {     
       const value = await AsyncStorage.getItem('lastname');
       setLastname(value);
@@ -52,55 +52,73 @@ function HomeScreen({ navigation }) {
     }
   }
 
+  getInfos();
+
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>{lastname}</Text>
-      <View style={styles.button}>
-        <Button
-          title="Chapter 1"
-          onPress={() => navigation.navigate('Chapter 1')}
-        />
+    <View style={styles.homepage}>
+      
+      <View style={{ flex: 1,justifyContent: 'center',alignItems:'center', backgroundColor:'#18acb9', height:"120%", flexGrow:2}}>
+        <Image source={require('./logo.png')} style={{ width: 100, height: 80 }}/>
+        <View style={styles.button}>
+          <Button
+            title="Personal data"
+            onPress={() => navigation.navigate('Chapter 1')}
+            color="#18acb9"
+            border="none"
+          />
+        </View>
+        <View style={styles.button}>
+          <Button
+            title="Medical data"
+            onPress={() => navigation.navigate('Chapter 2')}
+            color="#18acb9"
+          />
+        </View>
+        <View style={styles.button}>
+          <Button
+            title="Psychological data"
+            style={styles.button}
+            onPress={() => navigation.navigate('Chapter 3')}
+            color="#18acb9"
+          />
+        </View>
+        <View style={styles.button}>
+          <Button
+            title="Chapter 4"
+            style={styles.button}
+            onPress={() => navigation.navigate('Chapter 4')}
+            color="#18acb9"
+          />
+        </View>
+        <View style={styles.button}>
+          <Button
+            title="Physical data"
+            style={styles.button}
+            onPress={() => navigation.navigate('Chapter 5')}
+            color="#18acb9"
+          />
+        </View>
+        <View style={styles.button}>
+          <Button
+            title="Tolerance to effort"
+            style={styles.button}
+            onPress={() => navigation.navigate('Chapter 6')}
+            color="#18acb9"
+          />
+        </View>
+        <View style={styles.button}>
+          <Button
+            title="Paraclinical data"
+            style={styles.button}
+            onPress={() => navigation.navigate('Chapter 7')}
+            color="#18acb9"
+          />
+        </View>
       </View>
-      <View style={styles.button}>
-        <Button
-          title="Chapter 2"
-          onPress={() => navigation.navigate('Chapter 2')}
-        />
-      </View>
-      <View style={styles.button}>
-        <Button
-          title="Chapter 3"
-          style={styles.button}
-          onPress={() => navigation.navigate('Chapter 3')}
-        />
-      </View>
-      <View style={styles.button}>
-        <Button
-          title="Chapter 4"
-          style={styles.button}
-          onPress={() => navigation.navigate('Chapter 4')}
-        />
-      </View>
-      <View style={styles.button}>
-        <Button
-          title="Chapter 5"
-          style={styles.button}
-          onPress={() => navigation.navigate('Chapter 5')}
-        />
-      </View>
-      <View style={styles.button}>
-        <Button
-          title="Chapter 6"
-          style={styles.button}
-          onPress={() => navigation.navigate('Chapter 6')}
-        />
-      </View>
-      <View style={styles.button}>
-        <Button
-          title="Chapter 7"
-          style={styles.button}
-          onPress={() => navigation.navigate('Chapter 7')}
-        />
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', overflow: "scroll", flexGrow:3}}>
+        <Image source={require('./photo.jpg')} style={{ width: 100, height: 100, }}/>
+        <Text style={styles.label}>Hi {lastname} !</Text>
+        <Text style={styles.label}>Please fill in your info</Text>
       </View>
     </View>
   );
@@ -139,7 +157,6 @@ export default function App() {
   //   );
   // } else {
   return (
-    <StoreProvider store={store}>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Home">
           <Stack.Screen name="Home" component={HomeScreen} />
@@ -152,12 +169,15 @@ export default function App() {
           <Stack.Screen name="Chapter 7" component={Chapter7} />
         </Stack.Navigator>
       </NavigationContainer>
-    </StoreProvider>
   );
   // }
 }
 
 const styles = StyleSheet.create({
+  homepage:{
+    display:'flex',
+    flexDirection:'row'
+  },
   container: {
     flex: 1,
     backgroundColor: '#fff',
@@ -165,7 +185,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   button: {
-    marginBottom: 5
+    fontSize: 14,
+    fontFamily:"Montserrat_400Regular",
+    width:"100%",
+    justifyContent: 'center',
+    
   },
   input: {
     flex:0.2,
@@ -178,5 +202,11 @@ const styles = StyleSheet.create({
     fontFamily:"Montserrat_400Regular",
     borderWidth:2,
     borderRadius:5
+  },
+  label: {
+    fontSize: 16,
+    color: 'black',
+    fontFamily:"Montserrat_400Regular",
+    margin: 12,
   },
 });
