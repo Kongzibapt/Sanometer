@@ -104,7 +104,7 @@ function HomeScreen({ navigation }) {
         </View>
         <View style={styles.button}>
           <Button
-            title="Tolerance to effort"
+            title="Life style"
             style={styles.button}
             onPress={() => navigation.navigate('Chapter 6')}
             color="#18acb9"
