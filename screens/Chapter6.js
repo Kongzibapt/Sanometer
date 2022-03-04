@@ -12,7 +12,8 @@ const Chapter6 = function() {
   const [selectedslope, setSelectedslope] = react.useState();
   const [selectedfreq, setSelectedfreq] = react.useState();
   const [selectedfreq2, setSelectedfreq2] = react.useState();
-  const [caloric, onChangeText1] = react.useState(null);
+  const [selectedcaloric, setSelectedcaloric] = react.useState();
+  const [selectedsport, setSelectedsport] = react.useState();
   const [energy, onChangeText2] = react.useState(null);
   const [checked, setChecked] = react.useState('');
   const [checked2, setChecked2] = react.useState('');
@@ -265,13 +266,16 @@ const Chapter6 = function() {
           <Picker.Item label="Normal" value="normal" />
         </Picker>
         <Text style={styles.label}>Caloric intake</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={onChangeText1}
-          value={caloric}
-          placeholder="Your caloric intake"
-          keyboardType="default"
-        />
+        <Picker
+          selectedValue={selectedcaloric}
+          onValueChange={(itemValue, itemIndex) =>
+            setSelectedcaloric(itemValue)
+          }
+          mode='dropdown'>
+          <Picker.Item label="< 2000 calories" value="<2000cal" />
+          <Picker.Item label="Between 2000 and 3000 calories" value="2000-3000cal" />
+          <Picker.Item label="> 3000 calories" value=">3000cal" />
+        </Picker>
         <Text style={styles.label}>The quality of the food:</Text>
         <Picker
           selectedValue={selectedslope}
@@ -514,6 +518,17 @@ const Chapter6 = function() {
             </TouchableOpacity>  
           </View>
         }
+        <Text style={styles.label}>Sports:</Text>
+        <Picker
+          selectedValue={selectedsport}
+          onValueChange={(itemValue, itemIndex) =>
+            setSelectedsport(itemValue)
+          }
+          mode='dropdown'>
+          <Picker.Item label="Football" value="football" />
+          <Picker.Item label="Basketball" value="basketball" />
+          <Picker.Item label="Running" value="running" />
+        </Picker>
       </ScrollView>
     </SafeAreaView>
   );

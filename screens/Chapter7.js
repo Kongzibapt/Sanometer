@@ -18,12 +18,27 @@ const Chapter7 = function({navigation}) {
   const [where2, onChangeText_where2] = react.useState(null);
   const [where3, onChangeText_where3] = react.useState(null);
   const [borderColorInput,setBorderColorInput] = react.useState("black");
-  const [selectedanalysis, setSelectedanalysis] = react.useState();
+  const [start, onChangeText_start] = react.useState(null);
+  const [start2, onChangeText_start2] = react.useState(null);
+  const [start3, onChangeText_start3] = react.useState(null);
+
+  const [selectedhemo, setSelectedhemo] = react.useState();
+  const [selectedcrp, setSelectedcrp] = react.useState();
+  const [selectedglucose, setSelectedglucose] = react.useState();
+  const [selectedurea, setSelectedurea] = react.useState();
+  const [selectedcrea, setSelectedcrea] = react.useState();
+  const [selectedlipi, setSelectedlipi] = react.useState();
+  const [selectedgot, setSelectedgot] = react.useState();
+  const [selectedgpt, setSelectedgpt] = react.useState();
+  const [selectedggt, setSelectedggt] = react.useState();
+  const [selectedvit, setSelectedvit] = react.useState();
+  const [selectedtsh, setSelectedtsh] = react.useState();
+  const [selectedpsa, setSelectedpsa] = react.useState();
+
   const [checked, setChecked] = react.useState('');
   const [checked2, setChecked2] = react.useState('');
   const [checked3, setChecked3] = react.useState('');
   const [checked4, setChecked4] = react.useState('');
-  const [checkedPSA, setCheckedPSA] = react.useState('');
   const [visible, setVisible] = react.useState(false);
   const [visible2, setVisible2] = react.useState(false);
   const [visible3, setVisible3] = react.useState(false);
@@ -162,18 +177,20 @@ const Chapter7 = function({navigation}) {
     if (visible2) {
     return (
       <View>
-          <Text style={styles.label}>When?</Text>
-          <View style={styles.chooseDate}>
-            <Button color="black" onPress={showDatepicker2} title="Choose" />
-          </View>
-          {show2 && (<DateTimePicker
-            testID="dateTimePicker"
-            value={date_result2}
-            mode={mode2}
-            is24Hour={true}
-            display="default"
-            onChange={onChange2}
-          />)}
+          <Text style={styles.label}>Start of pain?</Text>
+          <TextInput
+            style={{...styles.input,borderColor:borderColorInput}}
+            onFocus={() => {
+              setBorderColorInput("cyan");
+            }}
+            onBlur={() => {
+              setBorderColorInput("black");
+            }}
+            onChangeText={onChangeText_start}
+            value={start}
+            placeholder="Start of pain"
+            keyboardType="default"
+          />
           <Text style={styles.label}>Where?</Text>
           <TextInput
             style={{...styles.input,borderColor:borderColorInput}}
@@ -185,7 +202,7 @@ const Chapter7 = function({navigation}) {
             }}
             onChangeText={onChangeText_where}
             value={where}
-            placeholder="Location"
+            placeholder="Anatomical localization"
             keyboardType="default"
           />
       </View>
@@ -196,19 +213,21 @@ const Chapter7 = function({navigation}) {
     if (visible3) {
     return (
       <View>
-          <Text style={styles.label}>When?</Text>
-          <View style={styles.chooseDate}>
-            <Button color="black" onPress={showDatepicker3} title="Choose" />
-          </View>
-          {show3 && (<DateTimePicker
-            testID="dateTimePicker"
-            value={date_result3}
-            mode={mode3}
-            is24Hour={true}
-            display="default"
-            onChange={onChange3}
-          />)}
-          <Text style={styles.label}>Where:</Text>
+          <Text style={styles.label}>Start of pain?</Text>
+          <TextInput
+            style={{...styles.input,borderColor:borderColorInput}}
+            onFocus={() => {
+              setBorderColorInput("cyan");
+            }}
+            onBlur={() => {
+              setBorderColorInput("black");
+            }}
+            onChangeText={onChangeText_start2}
+            value={start2}
+            placeholder="Start of pain"
+            keyboardType="default"
+          />
+          <Text style={styles.label}>Where?</Text>
           <TextInput
             style={{...styles.input,borderColor:borderColorInput}}
             onFocus={() => {
@@ -219,7 +238,7 @@ const Chapter7 = function({navigation}) {
             }}
             onChangeText={onChangeText_where2}
             value={where2}
-            placeholder="Location"
+            placeholder="Anatomical localization"
             keyboardType="default"
           />
       </View>
@@ -231,18 +250,20 @@ const Chapter7 = function({navigation}) {
     return (
       <View>
           <Text style={styles.label}>When?</Text>
-          <View style={styles.chooseDate}>
-            <Button color="black" onPress={showDatepicker4} title="Choose" />
-          </View>
-          {show4 && (<DateTimePicker
-            testID="dateTimePicker"
-            value={date_result4}
-            mode={mode4}
-            is24Hour={true}
-            display="default"
-            onChange={onChange4}
-          />)}
-          <Text style={styles.label}>Where:</Text>
+          <TextInput
+            style={{...styles.input,borderColor:borderColorInput}}
+            onFocus={() => {
+              setBorderColorInput("cyan");
+            }}
+            onBlur={() => {
+              setBorderColorInput("black");
+            }}
+            onChangeText={onChangeText_start3}
+            value={start3}
+            placeholder="Start of pain"
+            keyboardType="default"
+          />
+          <Text style={styles.label}>Where?</Text>
           <TextInput
             style={{...styles.input,borderColor:borderColorInput}}
             onFocus={() => {
@@ -253,7 +274,7 @@ const Chapter7 = function({navigation}) {
             }}
             onChangeText={onChangeText_where3}
             value={where3}
-            placeholder="Location"
+            placeholder="Anatomical localization"
             keyboardType="default"
           />
       </View>
@@ -264,25 +285,17 @@ const Chapter7 = function({navigation}) {
     if (visiblePSA) {
     return (
       <View>
-          <Text style={styles.label}>Did you do PSA ?</Text>
-          <View style={styles.checkboxview}>
-            <View style={styles.containerbutton}>
-              <Text style={styles.paragraph}>Yes</Text>
-              <RadioButton
-                value="yes"
-                status={ checkedPSA === 'yes' ? 'checked' : 'unchecked' }
-                onPress={() => setCheckedPSA('yes')}
-              />
-            </View>
-            <View style={styles.containerbutton}>
-              <Text style={styles.paragraph}>No</Text>
-              <RadioButton
-                value="no"
-                status={ checkedPSA === 'no' ? 'checked' : 'unchecked' }
-                onPress={() => setCheckedPSA('no')}
-              />
-            </View>
-          </View>
+          <Text style={styles.label}>PSA test</Text>
+          <Picker
+            selectedValue={selectedpsa}
+            onValueChange={(itemValue, itemIndex) =>
+              setSelectedpsa(itemValue)
+            }
+            mode='dropdown'>
+            <Picker.Item label="In the standard" value="standard" />
+            <Picker.Item label="Higher than the standard" value=">standard" />
+            <Picker.Item label="Lower than the standard" value="<standard" />
+          </Picker>
       </View>
     );
   }
@@ -294,23 +307,126 @@ return (
        <Text  style = {styles.headerText}>Your paraclinical data : inferior to 3 months : </Text>
           <Text style={styles.label}>List analysis</Text>
           <Text style={styles.label}>{birthdate}</Text>
+          <Text style={styles.label}>Complete hemoleucogram</Text>
           <Picker
-            selectedValue={selectedanalysis}
+            selectedValue={selectedhemo}
             onValueChange={(itemValue, itemIndex) =>
-              setSelectedanalysis(itemValue)
+              setSelectedhemo(itemValue)
             }
             mode='dropdown'>
-            <Picker.Item label="Complete hemoleucogram" value="complete_hemoleucogram" />
-            <Picker.Item label="CRP" value="CRP" />
-            <Picker.Item label="Blood glucose" value="blood_glucose" />
-            <Picker.Item label="Urea" value="urea" />
-            <Picker.Item label="Creatinine" value="creatinine" />
-            <Picker.Item label="Full lipidogram" value="full_lipidogram" />
-            <Picker.Item label="GOT" value="GOT" />
-            <Picker.Item label="GPT" value="GPT" />
-            <Picker.Item label="GGT" value="GGT" />
-            <Picker.Item label="VIT D3" value="VIT_D3" />
-            <Picker.Item label="TSH" value="TSH" />
+            <Picker.Item label="In the standard" value="standard" />
+            <Picker.Item label="Higher than the standard" value=">standard" />
+            <Picker.Item label="Lower than the standard" value="<standard" />
+          </Picker>
+          <Text style={styles.label}>CRP</Text>
+          <Picker
+            selectedValue={selectedcrp}
+            onValueChange={(itemValue, itemIndex) =>
+              setSelectedcrp(itemValue)
+            }
+            mode='dropdown'>
+            <Picker.Item label="In the standard" value="standard" />
+            <Picker.Item label="Higher than the standard" value=">standard" />
+            <Picker.Item label="Lower than the standard" value="<standard" />
+          </Picker>
+          <Text style={styles.label}>Blood glucose</Text>
+          <Picker
+            selectedValue={selectedglucose}
+            onValueChange={(itemValue, itemIndex) =>
+              setSelectedglucose(itemValue)
+            }
+            mode='dropdown'>
+            <Picker.Item label="In the standard" value="standard" />
+            <Picker.Item label="Higher than the standard" value=">standard" />
+            <Picker.Item label="Lower than the standard" value="<standard" />
+          </Picker>
+          <Text style={styles.label}>Urea</Text>
+          <Picker
+            selectedValue={selectedurea}
+            onValueChange={(itemValue, itemIndex) =>
+              setSelectedurea(itemValue)
+            }
+            mode='dropdown'>
+            <Picker.Item label="In the standard" value="standard" />
+            <Picker.Item label="Higher than the standard" value=">standard" />
+            <Picker.Item label="Lower than the standard" value="<standard" />
+          </Picker>
+          <Text style={styles.label}>Creatinine</Text>
+          <Picker
+            selectedValue={selectedcrea}
+            onValueChange={(itemValue, itemIndex) =>
+              setSelectedcrea(itemValue)
+            }
+            mode='dropdown'>
+            <Picker.Item label="In the standard" value="standard" />
+            <Picker.Item label="Higher than the standard" value=">standard" />
+            <Picker.Item label="Lower than the standard" value="<standard" />
+          </Picker>
+          <Text style={styles.label}>Full lipidogram</Text>
+          <Picker
+            selectedValue={selectedlipi}
+            onValueChange={(itemValue, itemIndex) =>
+              setSelectedlipi(itemValue)
+            }
+            mode='dropdown'>
+            <Picker.Item label="In the standard" value="standard" />
+            <Picker.Item label="Higher than the standard" value=">standard" />
+            <Picker.Item label="Lower than the standard" value="<standard" />
+          </Picker>
+          <Text style={styles.label}>GOT</Text>
+          <Picker
+            selectedValue={selectedgot}
+            onValueChange={(itemValue, itemIndex) =>
+              setSelectedgot(itemValue)
+            }
+            mode='dropdown'>
+            <Picker.Item label="In the standard" value="standard" />
+            <Picker.Item label="Higher than the standard" value=">standard" />
+            <Picker.Item label="Lower than the standard" value="<standard" />
+          </Picker>
+          <Text style={styles.label}>GPT</Text>
+          <Picker
+            selectedValue={selectedgpt}
+            onValueChange={(itemValue, itemIndex) =>
+              setSelectedgpt(itemValue)
+            }
+            mode='dropdown'>
+            <Picker.Item label="In the standard" value="standard" />
+            <Picker.Item label="Higher than the standard" value=">standard" />
+            <Picker.Item label="Lower than the standard" value="<standard" />
+          </Picker>
+          <Text style={styles.label}>GGT</Text>
+          <Picker
+            selectedValue={selectedggt}
+            onValueChange={(itemValue, itemIndex) =>
+              setSelectedggt(itemValue)
+            }
+            mode='dropdown'>
+            <Picker.Item label="In the standard" value="standard" />
+            <Picker.Item label="Higher than the standard" value=">standard" />
+            <Picker.Item label="Lower than the standard" value="<standard" />
+          </Picker>
+          <Text style={styles.label}>VIT D3</Text>
+          <Picker
+            selectedValue={selectedvit}
+            onValueChange={(itemValue, itemIndex) =>
+              setSelectedvit(itemValue)
+            }
+            mode='dropdown'>
+            <Picker.Item label="In the standard" value="standard" />
+            <Picker.Item label="Higher than the standard" value=">standard" />
+            <Picker.Item label="Lower than the standard" value="<standard" />
+          </Picker>
+          <Text style={styles.label}>TSH</Text>
+          <Picker
+            selectedValue={selectedtsh}
+            onValueChange={(itemValue, itemIndex) =>
+              setSelectedtsh(itemValue)
+            }
+            mode='dropdown'>
+            <Picker.Item label="In the standard" value="standard" />
+            <Picker.Item label="Higher than the standard" value=">standard" />
+            <Picker.Item label="Lower than the standard" value="<standard" />
           </Picker>
 
           {/*if it is a men > 65 years old, ask for the PSA : &&(Chapter1.checked === 'male')*/}
