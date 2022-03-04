@@ -9,7 +9,7 @@ import { Chapter6 } from './screens/Chapter6.js';
 import { Chapter7 } from './screens/Chapter7.js';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import react from 'react';
+import react, { useEffect } from 'react';
 // import { AppLoading } from "expo-app-loading";
 import {
   useFonts,
@@ -35,6 +35,7 @@ import {
 import { TextInput } from 'react-native-paper';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React from 'react';
+import { AppLoading } from './screens/AppLoading.js';
 
 const Stack = createNativeStackNavigator();
 
@@ -52,7 +53,10 @@ function HomeScreen({ navigation }) {
     }
   }
 
-  getInfos();
+  useEffect(()=>{
+    getInfos();
+  },[])
+ 
 
   return (
     <View style={styles.homepage}>
@@ -150,15 +154,15 @@ export default function App() {
     Montserrat_900Black_Italic
   });
 
-  // if (!fontsLoaded) {
-  //   return (
-  //     <NavigationContainer>
-  //       <Stack.Navigator initialRouteName="AppLoading">
-  //         <Stack.Screen name="AppLoading" component={AppLoading} />
-  //       </Stack.Navigator>
-  //     </NavigationContainer>  
-  //   );
-  // } else {
+  if (!fontsLoaded) {
+    return (
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="AppLoading">
+          <Stack.Screen name="AppLoading" component={AppLoading} />
+        </Stack.Navigator>
+      </NavigationContainer>  
+    );
+  } else {
   return (
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Home">
@@ -173,7 +177,7 @@ export default function App() {
         </Stack.Navigator>
       </NavigationContainer>
   );
-  // }
+  }
 }
 
 const styles = StyleSheet.create({
