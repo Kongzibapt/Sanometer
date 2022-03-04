@@ -13,31 +13,45 @@ const Chapter1 = function({navigation}) {
   
   const [lastname, setLastname] = react.useState("");
   const [firstname, setFirstname] = react.useState("");
-  const [birthdate, onChangeText3] = react.useState(null);
-  const [country, onChangeText4] = react.useState(null);
-  const [birthcountry, onChangeText5] = react.useState(null);
-  const [birthtown, onChangeText6] = react.useState(null);
-  const [value, setValue] = react.useState(0);
-  const [checked, setChecked] = react.useState('');
-  const [checked2, setChecked2] = react.useState('');
-  const [checked3, setChecked3] = react.useState('');
-  const [checked4, setChecked4] = react.useState('');
+  const [birthdate, setBirthdate] = react.useState(new Date());
+  const [birthcountry, setBirthcountry] = react.useState("");
+  const [birthtown, setBirthtown] = react.useState("");
+  const [country, setCountry] = react.useState("");
+  const [sex, setSex] = react.useState("");
   const [selectedgeo, setSelectedgeo] = react.useState();
-  const [selectededuc, setSelectededuc] = react.useState();
-  const [selectederace, setSelectederace] = react.useState();
+  const [selectedrace, setSelectedrace] = react.useState();
   const [selectedarea, setSelectedarea] = react.useState();
+  const [physicalEffort, setPhysicalEffort] = react.useState(0);
+  const [professionalChange, setProfessionalChange] = react.useState("");
+  const [selectededuc, setSelectededuc] = react.useState("");
+
+  // Style
   const [borderColorInputLastName,setBorderColorInputLastName] = react.useState("black");
   const [borderColorInputFirstName,setBorderColorInputFirstName] = react.useState("black");
   const [borderColorInputBirthDate,setBorderColorInputBirthDate] = react.useState("black");
   const [borderColorInputBirthPlace,setBorderColorInputBirthPlace] = react.useState("black");
   const [borderColorInputBirthTown,setBorderColorInputBirthTown] = react.useState("black");
   const [borderColorInputCountry,setBorderColorInputCountry] = react.useState("black");
-  const [date, setDate] = react.useState(new Date());
   const [mode, setMode] = react.useState('date');
   const [show, setShow] = react.useState(false);
 
   const submitChapter1 = async () => {
     try {     
+<<<<<<< HEAD
+      lastname && await AsyncStorage.setItem('lastname',lastname);
+      firstname && await AsyncStorage.setItem('firstname',firstname);
+      birthdate && await AsyncStorage.setItem('birthdate',birthdate.toString());
+      birthcountry && await AsyncStorage.setItem('birthcountry',birthcountry);
+      birthtown && await AsyncStorage.setItem('birthtown',birthtown);
+      sex && await AsyncStorage.setItem('sex',sex);
+      country && await AsyncStorage.setItem('country',country);
+      selectedrace && await AsyncStorage.setItem('selectedrace',selectedrace);
+      selectedgeo && await AsyncStorage.setItem('selectedgeo',selectedgeo);
+      selectedarea && await AsyncStorage.setItem('selectedarea',selectedarea);
+      physicalEffort && await AsyncStorage.setItem('physicalEffort',physicalEffort.toString());
+      professionalChange && await AsyncStorage.setItem('professionalChange',professionalChange);
+      selectededuc && await AsyncStorage.setItem('selectededuc',selectededuc);
+=======
       await AsyncStorage.setItem('lastname',lastname);
       await AsyncStorage.setItem('firstname',firstname);
       await AsyncStorage.setItem('birthdate',date);
@@ -53,6 +67,7 @@ const Chapter1 = function({navigation}) {
       // await AsyncStorage.setItem('lastname',lastname);
       // await AsyncStorage.setItem('lastname',lastname);
       // await AsyncStorage.setItem('lastname',lastname);
+>>>>>>> f4b4af45317e70555156c84a69a7c4bc56dcb69f
       navigation.navigate("Home");
   }
   catch (error) {
@@ -64,6 +79,17 @@ const Chapter1 = function({navigation}) {
     try {     
         setLastname(await AsyncStorage.getItem('lastname'));
         setFirstname(await AsyncStorage.getItem('firstname'));
+        setBirthdate(new Date(await AsyncStorage.getItem('birthdate')));
+        setBirthcountry(await AsyncStorage.getItem('birthcountry'));
+        setBirthtown(await AsyncStorage.getItem('birthtown'));
+        setSex(await AsyncStorage.getItem('sex'));
+        setCountry(await AsyncStorage.getItem('country'));
+        setSelectedrace(await AsyncStorage.getItem('selectedrace'));
+        setSelectedgeo(await AsyncStorage.getItem('selectgeo'));
+        setSelectedarea(await AsyncStorage.getItem('selectedarea'));
+        setPhysicalEffort(parseInt(await AsyncStorage.getItem('physicalEffort')));
+        setProfessionalChange(await AsyncStorage.getItem('professionalChange'));
+        setSelectededuc(await AsyncStorage.getItem('selectededuc'));
     }
     catch (error) {
         console.log(error)
@@ -77,7 +103,7 @@ const Chapter1 = function({navigation}) {
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShow(Platform.OS === 'ios');
-    setDate(currentDate);
+    setBirthdate(currentDate);
   };
 
   const showMode = (currentMode) => {
@@ -130,11 +156,11 @@ const Chapter1 = function({navigation}) {
         </View>
         <Text style={styles.label}>Birth Date</Text>
         <View style={styles.chooseDate}>
-          <Button color="black" onPress={showDatepicker} title="Choose" />
+          {birthdate !== null ? <Button color="black" onPress={showDatepicker} title={birthdate.toLocaleDateString()} /> : <Button color="black" onPress={showDatepicker} title={"Choisir"} />}
         </View>
         {show && (<DateTimePicker
           testID="dateTimePicker"
-          value={date}
+          value={birthdate}
           mode={mode}
           is24Hour={true}
           display="default"
@@ -149,7 +175,7 @@ const Chapter1 = function({navigation}) {
          onBlur={() => {
            setBorderColorInputBirthPlace("black");
          }}
-          onChangeText={onChangeText5}
+          onChangeText={setBirthcountry}
           value={birthcountry}
           placeholder="Country"
           keyboardType="default"
@@ -162,7 +188,7 @@ const Chapter1 = function({navigation}) {
         onBlur={() => {
           setBorderColorInputBirthTown("black");
         }}
-          onChangeText={onChangeText6}
+          onChangeText={setBirthtown}
           value={birthtown}
           placeholder="Town"
           keyboardType="default"
@@ -174,24 +200,24 @@ const Chapter1 = function({navigation}) {
             <Text style={styles.paragraph}>Male</Text>
             <RadioButton
               value="male"
-              status={ checked === 'male' ? 'checked' : 'unchecked' }
-              onPress={() => setChecked('male')}
+              status={ sex === 'male' ? 'checked' : 'unchecked' }
+              onPress={() => setSex('male')}
             />
           </View>
           <View style={styles.containerbutton}>
             <Text style={styles.paragraph}>Female</Text>
             <RadioButton
               value="female"
-              status={ checked === 'female' ? 'checked' : 'unchecked' }
-              onPress={() => setChecked('female')}
+              status={ sex === 'female' ? 'checked' : 'unchecked' }
+              onPress={() => setSex('female')}
             />
           </View>
           <View style={styles.containerbutton}>
             <Text style={styles.paragraph}>Neutral</Text>
             <RadioButton
               value="neutral"
-              status={ checked === 'neutral' ? 'checked' : 'unchecked' }
-              onPress={() => setChecked('neutral')}
+              status={ sex === 'neutral' ? 'checked' : 'unchecked' }
+              onPress={() => setSex('neutral')}
             /> 
           </View>
 
@@ -206,7 +232,7 @@ const Chapter1 = function({navigation}) {
           onBlur={() => {
             setBorderColorInputCountry("black");
           }}
-          onChangeText={onChangeText4}
+          onChangeText={setCountry}
           value={country}
           placeholder="Your country of residence"
           keyboardType="default"
@@ -215,9 +241,9 @@ const Chapter1 = function({navigation}) {
 
         <Text style={styles.label}>Race</Text>
         <Picker
-          selectedValue={selectederace}
+          selectedValue={selectedrace}
           onValueChange={(itemValue, itemIndex) =>
-            setSelectederace(itemValue)
+            setSelectedrace(itemValue)
           }
           mode='dropdown'>
           <Picker.Item label="White" value="white" />
@@ -256,8 +282,8 @@ const Chapter1 = function({navigation}) {
         <Text style={styles.label}>Physical effort related to your job</Text>
         <View style={[styles.contentView]}>
           <Slider
-            value={value}
-            onValueChange={setValue}
+            value={physicalEffort}
+            onValueChange={setPhysicalEffort}
             maximumValue={10}
             minimumValue={0}
             step={1}
@@ -277,7 +303,7 @@ const Chapter1 = function({navigation}) {
               ),
             }}
           />
-          <Text style={{ paddingTop: 10 }}>Value: {value}</Text>
+          <Text style={{ paddingTop: 10 }}>Value: {physicalEffort}</Text>
         </View>
 
         <Text style={styles.label}>Major Professional change during the last 5 years</Text>
@@ -286,16 +312,16 @@ const Chapter1 = function({navigation}) {
             <Text style={styles.paragraph}>Yes</Text>
             <RadioButton
               value="yes"
-              status={ checked4 === 'yes' ? 'checked' : 'unchecked' }
-              onPress={() => setChecked4('yes')}
+              status={ professionalChange === 'yes' ? 'checked' : 'unchecked' }
+              onPress={() => setProfessionalChange('yes')}
             />
           </View>
           <View style={styles.containerbutton}>
             <Text style={styles.paragraph}>No</Text>
             <RadioButton
               value="no"
-              status={ checked4 === 'no' ? 'checked' : 'unchecked' }
-              onPress={() => setChecked4('no')}
+              status={ professionalChange === 'no' ? 'checked' : 'unchecked' }
+              onPress={() => setProfessionalChange('no')}
             />
           </View>
         </View>
