@@ -43,7 +43,8 @@ const Chapter3 = function() {
       setvisible2(await AsyncStorage.getItem('visible2'));
       setborderColorInput(await AsyncStorage.getItem('borderColorInput'));
     }
-    catch 
+    catch (error) {
+      console.log(error)
   }
 
   const onChange = (event, selectedDate) => {
