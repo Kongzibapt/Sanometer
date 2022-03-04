@@ -47,7 +47,7 @@ const Chapter3 = function() {
       console.log(error)
     }
   }
-}
+
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
