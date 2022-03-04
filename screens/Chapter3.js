@@ -11,7 +11,7 @@ const Chapter3 = function() {
 
   const [StandardProgressiveMatrices, onChangeText1] = react.useState(null);
   const [BeckDepressionInventory, onChangeText2] = react.useState(null);
-  const [SPM, setSpm] = react.useState('');
+  const [SPM, setSPM] = react.useState('');
   const [BDI, setBDI] = react.useState('');
   const [visible1, setVisible1] = react.useState(false);
   const [visible2, setVisible2] = react.useState(false);
@@ -39,12 +39,13 @@ const Chapter3 = function() {
       setSPM(await AsyncStorage.getItem('SPM'));
       setBDI(await AsyncStorage.getItem('BDI'));
       setBeckDepressionInventoryt(await AsyncStorage.getItem('BeckDepressionInventory'));
-      setvisible1(await AsyncStorage.getItem('visible1'));
-      setvisible2(await AsyncStorage.getItem('visible2'));
-      setborderColorInput(await AsyncStorage.getItem('borderColorInput'));
+      setVisible1(await AsyncStorage.getItem('visible1'));
+      setVisible2(await AsyncStorage.getItem('visible2'));
+      setBorderColorInput(await AsyncStorage.getItem('borderColorInput'));
     }
     catch (error) {
       console.log(error)
+    }
   }
 
   const onChange = (event, selectedDate) => {
@@ -130,7 +131,7 @@ const Chapter3 = function() {
               <RadioButton
                 value="yes"
                 status={ SPM === 'yes' ? 'checked' : 'unchecked' }
-                onPress={() => setSpm('yes')}
+                onPress={() => setSPM('yes')}
               />
             </View>
           <View style={styles.containerbutton}>
@@ -138,7 +139,7 @@ const Chapter3 = function() {
             <RadioButton
               value="no"
               status={ SPM === 'no' ? 'checked' : 'unchecked' }
-              onPress={() => setSpm('no')}
+              onPress={() => setSPM('no')}
             />
           </View>
         </View>
