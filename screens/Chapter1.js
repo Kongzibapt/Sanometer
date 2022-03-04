@@ -40,6 +40,7 @@ const Chapter1 = function({navigation}) {
     try {     
       await AsyncStorage.setItem('lastname',lastname);
       await AsyncStorage.setItem('firstname',firstname);
+      await AsyncStorage.setItem('birthdate',date);
       // await AsyncStorage.setItem('lastname',lastname);
       // await AsyncStorage.setItem('lastname',lastname);
       // await AsyncStorage.setItem('lastname',lastname);
