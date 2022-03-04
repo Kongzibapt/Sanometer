@@ -27,8 +27,8 @@ const Chapter2 = function() {
   const [isChecked_ayur, setChecked_ayur] = react.useState(false);
   const [isChecked_natother, setChecked_natother] = react.useState(false);
   const [treatnatureother,onChangeText_treatnatureother]=react.useState('');
-
   const [checked_treatment, setChecked_treatment] = react.useState('');
+  
   const [checked_allergiesante, setChecked_allergiesante] = react.useState('');
   const [checked_treatmentallergiesante, setChecked_treatmentallergiesante] = react.useState('');
   const [checked_pressureante, setChecked_pressureante] = react.useState('');
@@ -67,6 +67,7 @@ const Chapter2 = function() {
   const [checked_path, setChecked_path] = react.useState('');
   const [checked_breastpb, setChecked_breastpb] = react.useState('');
   const [checked_inspect, setChecked_inspect] = react.useState('');
+
   const [isEnabled_gestdiab, setIsEnabled_gestdiab] = react.useState(false);
   const [checked_pregpb, setChecked_pregpb] = react.useState('');
   const toggleSwitch_gestdiab = () => setIsEnabled_gestdiab(previousState => !previousState);
@@ -366,17 +367,55 @@ const Chapter2 = function() {
 
   const submitChapter2 = async () => {
     try {     
-      await AsyncStorage.setItem('treatmentinfection',isEnabled_treatmentinfection.toString());
-      await AsyncStorage.setItem('treatmentnaturist',isEnabled_treatmentnaturist.toString());
-      await AsyncStorage.setItem('treatmentother',isEnabled_treatmentother.toString());
-      await AsyncStorage.setItem('treatmentpressure',isEnabled_treatmentpressure.toString());
-      await AsyncStorage.setItem('treatother',treatother.toString());
-      await AsyncStorage.setItem('plants',isChecked_plants.toString());
-      await AsyncStorage.setItem('ayur',isChecked_ayur.toString());
-      await AsyncStorage.setItem('natother',isChecked_natother.toString());
-      await AsyncStorage.setItem('treatnatureother',treatnatureother.toString());
-      await AsyncStorage.setItem('treatment',checked_treatment.toString());
-  }
+      isEnabled_treatmentinfection && await AsyncStorage.setItem('treatmentinfection',isEnabled_treatmentinfection.toString());
+      isEnabled_treatmentnaturist && await AsyncStorage.setItem('treatmentnaturist',isEnabled_treatmentnaturist.toString());
+      isEnabled_treatmentother && await AsyncStorage.setItem('treatmentother',isEnabled_treatmentother.toString());
+      isEnabled_treatmentpressure && await AsyncStorage.setItem('treatmentpressure',isEnabled_treatmentpressure.toString());
+      treatother && await AsyncStorage.setItem('treatother',treatother.toString());
+      isChecked_plants && await AsyncStorage.setItem('plants',isChecked_plants.toString());
+      isChecked_ayur && await AsyncStorage.setItem('ayur',isChecked_ayur.toString());
+      isChecked_natother && await AsyncStorage.setItem('natother',isChecked_natother.toString());
+      treatnatureother && await AsyncStorage.setItem('treatnatureother',treatnatureother.toString());
+      checked_treatment && await AsyncStorage.setItem('treatment',checked_treatment.toString());
+      
+      checked_allergiesante && await AsyncStorage.setItem('checked_allergiesante',checked_allergiesante);
+      checked_treatmentallergiesante && await AsyncStorage.setItem('checked_treatmentallergiesante',checked_treatmentallergiesante);
+      checked_pressureante && await AsyncStorage.setItem('checked_pressureante',checked_pressureante);
+      checked_treatmentpressureante && await AsyncStorage.setItem('checked_treatmentpressureante',checked_treatmentpressureante);
+      checked_heartante && await AsyncStorage.setItem('checked_heartante',checked_heartante);
+      checked_treatmentheartante && await AsyncStorage.setItem('checked_treatmentheartante',checked_treatmentheartante);
+      checked_renalante && await AsyncStorage.setItem('checked_renalante',checked_renalante);
+      checked_treatmentrenalante && await AsyncStorage.setItem('checked_treatmentrenalante',checked_treatmentrenalante);
+      checked_otherante && await AsyncStorage.setItem('checked_otherante',checked_otherante);
+      checked_treatmentotherante && await AsyncStorage.setItem('checked_treatmentotherante',checked_treatmentotherante);
+      checked_vascularante && await AsyncStorage.setItem('checked_vascularante',checked_vascularante);
+      checked_treatmentvascularante && await AsyncStorage.setItem('checked_treatmentvascularante',checked_treatmentvascularante);
+      checked_digestiveante && await AsyncStorage.setItem('checked_digestiveante',checked_digestiveante);
+      checked_treatmentdigestiveante && await AsyncStorage.setItem('checked_treatmentdigestiveante',checked_treatmentdigestiveante);
+      checked_infectionante && await AsyncStorage.setItem('checked_infectionante',checked_infectionante);
+      checked_treatmentinfectionante && await AsyncStorage.setItem('checked_treatmentinfectionante',checked_treatmentinfectionante);
+  
+      checked_toxic && await AsyncStorage.setItem('checked_toxic',checked_toxic);
+      checked_sport && await AsyncStorage.setItem('checked_sport',checked_sport);
+      selectedage && await AsyncStorage.setItem('selectedage',selectedage);
+      value && await AsyncStorage.setItem('value',value);
+      checked_urinate && await AsyncStorage.setItem('checked_urinate',checked_urinate);
+
+      checked && await AsyncStorage.setItem('checked',checked);
+      checked_menopause && await AsyncStorage.setItem('checked_menopause',checked_menopause);
+      checked_hormone && await AsyncStorage.setItem('checked_hormone',checked_hormone);
+      checked_contra && await AsyncStorage.setItem('checked_contra',checked_contra);
+      checked_birth && await AsyncStorage.setItem('checked_birth',checked_birth);
+      checked_breastfeed && await AsyncStorage.setItem('checked_breastfeed',checked_breastfeed);
+      checked_caesarean && await AsyncStorage.setItem('checked_caesarean',checked_caesarean);
+      checked_abort && await AsyncStorage.setItem('checked_abort',checked_abort);
+      checked_lostpreg && await AsyncStorage.setItem('checked_lostpreg',checked_lostpreg);
+      checked_path && await AsyncStorage.setItem('checked_path',checked_path);
+      checked_breastpb && await AsyncStorage.setItem('checked_breastpb',checked_breastpb);
+      checked_inspect && await AsyncStorage.setItem('checked_inspect',checked_inspect);
+  
+  
+    }
   catch (error) {
       console.log(error)
   }
@@ -386,7 +425,49 @@ const Chapter2 = function() {
     try {
       setChecked_treatment(await AsyncStorage.getItem('treatment'));
       setIsEnabled_treatmentinfection(await AsyncStorage.getItem('treatmentinfection')=='true');
-      console.log(isEnabled_treatmentinfection)
+      setIsEnabled_treatmentnaturist(await AsyncStorage.getItem('treatmentnaturist')=='true');
+      setIsEnabled_treatmentother(await AsyncStorage.getItem('treatmentother')=='true');
+      setIsEnabled_treatmentpressure(await AsyncStorage.getItem('treatmentpressure')=='true');
+      onChangeText_treatother(await AsyncStorage.getItem('treatother'));
+      setChecked_plants(await AsyncStorage.getItem('plants')=='true');
+      setChecked_ayur(await AsyncStorage.getItem('ayur')=='true');
+      setChecked_natother(await AsyncStorage.getItem('natother')=='true');
+      onChangeText_treatnatureother(await AsyncStorage.getItem('treatnatureother'));
+      
+      setChecked_allergiesante(await AsyncStorage.getItem('checked_allergiesante'));
+      setChecked_treatmentallergiesante(await AsyncStorage.getItem('checked_treatmentallergiesante'));
+      setChecked_pressureante(await AsyncStorage.getItem('checked_pressureante'));
+      setChecked_treatmentpressureante(await AsyncStorage.getItem('checked_treatmentpressureante'));
+      setChecked_heartante(await AsyncStorage.getItem('checked_heartante'));
+      setChecked_treatmentheartante(await AsyncStorage.getItem('checked_treatmentheartante'));
+      setChecked_renalante(await AsyncStorage.getItem('checked_renalante'));
+      setChecked_treatmentrenalante(await AsyncStorage.getItem('checked_treatmentrenalante'));
+      setChecked_otherante(await AsyncStorage.getItem('checked_otherante'));
+      setChecked_treatmentotherante(await AsyncStorage.getItem('checked_treatmentotherante'));
+      setChecked_vascularante(await AsyncStorage.getItem('checked_vascularante'));
+      setChecked_treatmentvascularante(await AsyncStorage.getItem('checked_treatmentvascularante'));
+      setChecked_digestiveante(await AsyncStorage.getItem('checked_digestiveante'));
+      setChecked_treatmentdigestiveante(await AsyncStorage.getItem('checked_treatmentdigestiveante'));
+      setChecked_infectionante(await AsyncStorage.getItem('checked_infectionante'));
+      setChecked_treatmentinfectionante(await AsyncStorage.getItem('checked_treatmentinfectionante'));
+
+      setChecked_toxic(await AsyncStorage.getItem('checked_toxic'));
+      setChecked_sport(await AsyncStorage.getItem('checked_sport'));
+      setSelectedage(await AsyncStorage.getItem('selectedage'));
+      setValue(await AsyncStorage.getItem('value'));
+
+      setChecked(await AsyncStorage.getItem('checked'));
+      setChecked_menopause(await AsyncStorage.getItem('checked_menopause'));
+      setChecked_hormone(await AsyncStorage.getItem('checked_hormone'));
+      setChecked_contra(await AsyncStorage.getItem('checked_contra'));
+      setChecked_birth(await AsyncStorage.getItem('checked_birth'));
+      setChecked_breastfeed(await AsyncStorage.getItem('checked_breastfeed'));
+      setChecked_caesarean(await AsyncStorage.getItem('checked_caesarean'));
+      setChecked_abort(await AsyncStorage.getItem('checked_abort'));
+      setChecked_lostpreg(await AsyncStorage.getItem('checked_lostpreg'));
+      setChecked_path(await AsyncStorage.getItem('checked_path'));
+      setChecked_breastpb(await AsyncStorage.getItem('checked_breastpb'));
+      setChecked_inspect(await AsyncStorage.getItem('checked_inspect'));
     }
     catch(error){
       console.log(error)
