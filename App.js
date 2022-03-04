@@ -69,7 +69,7 @@ function HomeScreen({ navigation }) {
       
       <View style={{ flex: 1,justifyContent: 'center',alignItems:'center', backgroundColor:'#18acb9', height:"130%", flexGrow:2}}>
         <Image source={require('./logo.png')} style={{ width: 100, height: 80, position:'absolute', top:200, left:20 }}/>
-        <Text style={styles.labelname}>Hi {firstname} {lastname} !</Text>
+        <Text style={styles.labelname}>Hi {firstname} !</Text>
         <Image source={require('./photo.jpg')} style={{ width: 100, height: 100,position:'absolute', top:10, left:20 }}/>
         
         <View style={styles.containerbutton}>
