@@ -5,6 +5,7 @@ import { SafeAreaView, TextInput, ScrollView, TouchableOpacity} from "react-nati
 import { Slider, Icon } from 'react-native-elements';
 import { RadioButton } from 'react-native-paper';
 import {Picker} from '@react-native-picker/picker';
+import { AsyncStorage } from 'react-native';
 
 const Chapter3 = function() {
 
@@ -16,6 +17,34 @@ const Chapter3 = function() {
   const [visible2, setVisible2] = react.useState(false);
   const [borderColorInput,setBorderColorInput] = react.useState("black");
 
+  const submitChapter3 = async () => {
+    try {     
+      await AsyncStorage.setItem('StandardProgressiveMatrices',StandardProgressiveMatrices);
+      await AsyncStorage.setItem('BeckDepressionInventory',BeckDepressionInventory);
+      await AsyncStorage.setItem('SPM',SPM);
+      await AsyncStorage.setItem('BDI',BDI);
+      await AsyncStorage.setItem('visible1',visible1);
+      await AsyncStorage.setItem('visible2',visible2);
+      await AsyncStorage.setItem('borderColorInput',borderColorInput);
+    }
+    catch (error) {
+      console.log(error)
+    }
+  }
+
+  const getChapterInfos = async() => {
+    try {
+      setStandardProgressiveMatrices(await AsyncStorage.getItem('StandardProgressiveMatrices'));
+      setBeckDepressionInventory(await AsyncStorage.getItem('BeckDepressionInventory'));
+      setSPM(await AsyncStorage.getItem('SPM'));
+      setBDI(await AsyncStorage.getItem('BDI'));
+      setBeckDepressionInventoryt(await AsyncStorage.getItem('BeckDepressionInventory'));
+      setvisible1(await AsyncStorage.getItem('visible1'));
+      setvisible2(await AsyncStorage.getItem('visible2'));
+      setborderColorInput(await AsyncStorage.getItem('borderColorInput'));
+    }
+    catch 
+  }
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -163,7 +192,9 @@ const Chapter3 = function() {
             </TouchableOpacity>  
           </View>
         }
-        
+        <View style={{margin:5}}>
+          <Button title="Submit" onPress={submitChapter1} color="#4bcbd6"/>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
