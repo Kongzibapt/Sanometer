@@ -46,8 +46,8 @@ const Chapter7 = function({navigation}) {
   const [birthdate,setbirthdate] = React.useState("");
   const getInfos = async () => {
     try {     
-      const value = await AsyncStorage.getItem('birthdate');
-      setbirthdate(value);
+      const birthdate = await AsyncStorage.getItem('birthdate');
+      setbirthdate(birthdate);
     }
     catch (error) {
         console.log(error)
@@ -55,12 +55,12 @@ const Chapter7 = function({navigation}) {
   }
 
   useEffect(()=>{
-    const unsubscribe = navigation.addListener('focus',()=>{
+    const unsubscribe = navigation.addListener('focus',() =>{
       getInfos();
-    })
-  })
+    });
+    getInfos();
+  },[])
   
-
   const toggleDropdown = () => {
     setVisible(!visible);
   };
