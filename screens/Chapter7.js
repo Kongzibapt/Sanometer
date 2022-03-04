@@ -1,14 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
-import react from 'react';
+import react, { useEffect } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { SafeAreaView, TextInput, ScrollView, TouchableOpacity} from "react-native";
 import { Slider, Icon } from 'react-native-elements';
 import { RadioButton } from 'react-native-paper';
 import {Picker} from '@react-native-picker/picker';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { Chapter1 } from './Chapter1.js';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import React from 'react';
 
-const Chapter7 = function() {
+const Chapter7 = function({navigation}) {
 
   const currentDate = new Date().getDate();
   const [date, onChangeText_date] = react.useState(null);
@@ -40,6 +41,25 @@ const Chapter7 = function() {
   const [show3, setShow3] = react.useState(false);
   const [mode4, setMode4] = react.useState('date');
   const [show4, setShow4] = react.useState(false);
+
+  //pour récupérer la date de naissance
+  const [birthdate,setbirthdate] = React.useState("");
+  const getInfos = async () => {
+    try {     
+      const value = await AsyncStorage.getItem('birthdate');
+      setbirthdate(value);
+    }
+    catch (error) {
+        console.log(error)
+    }
+  }
+
+  useEffect(()=>{
+    const unsubscribe = navigation.addListener('focus',()=>{
+      getInfos();
+    })
+  })
+  
 
   const toggleDropdown = () => {
     setVisible(!visible);
@@ -273,6 +293,7 @@ return (
 
        <Text  style = {styles.headerText}>Your paraclinical data : inferior to 3 months : </Text>
           <Text style={styles.label}>List analysis</Text>
+          <Text style={styles.label}>{birthdate}</Text>
           <Picker
             selectedValue={selectedanalysis}
             onValueChange={(itemValue, itemIndex) =>
@@ -292,8 +313,8 @@ return (
             <Picker.Item label="TSH" value="TSH" />
           </Picker>
 
-          {/*if it is a men > 65 years old, ask for the PSA*/}
-          {(((Chapter1.date-currentDate)>65)&&(Chapter1.checked === 'male')) && 
+          {/*if it is a men > 65 years old, ask for the PSA : &&(Chapter1.checked === 'male')*/}
+          {((birthdate-currentDate)>65) && 
           <View style={styles.container}>
             <TouchableOpacity
               style={styles.button}

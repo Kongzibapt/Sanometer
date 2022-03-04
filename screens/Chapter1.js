@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import react from 'react';
+import react, { useEffect } from 'react';
 import { StyleSheet, Text, View, Button} from 'react-native';
 import { SafeAreaView, TextInput, ScrollView} from "react-native";
 import { Slider, Icon } from 'react-native-elements';
@@ -9,10 +9,10 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
-const Chapter1 = function() {
+const Chapter1 = function({navigation}) {
   
-  const [lastname, onChangeText1] = react.useState(null);
-  const [firstname, onChangeText2] = react.useState(null);
+  const [lastname, setLastname] = react.useState("");
+  const [firstname, setFirstname] = react.useState("");
   const [birthdate, onChangeText3] = react.useState(null);
   const [country, onChangeText4] = react.useState(null);
   const [birthcountry, onChangeText5] = react.useState(null);
@@ -39,11 +39,39 @@ const Chapter1 = function() {
   const submitChapter1 = async () => {
     try {     
       await AsyncStorage.setItem('lastname',lastname);
+      await AsyncStorage.setItem('firstname',firstname);
+      // await AsyncStorage.setItem('lastname',lastname);
+      // await AsyncStorage.setItem('lastname',lastname);
+      // await AsyncStorage.setItem('lastname',lastname);
+      // await AsyncStorage.setItem('lastname',lastname);
+      // await AsyncStorage.setItem('lastname',lastname);
+      // await AsyncStorage.setItem('lastname',lastname);
+      // await AsyncStorage.setItem('lastname',lastname);
+      // await AsyncStorage.setItem('lastname',lastname);
+      // await AsyncStorage.setItem('lastname',lastname);
+      // await AsyncStorage.setItem('lastname',lastname);
+      // await AsyncStorage.setItem('lastname',lastname);
+      // await AsyncStorage.setItem('lastname',lastname);
+      navigation.navigate("Home");
   }
   catch (error) {
       console.log(error)
   }
   }
+
+  const getChapterInfos = async () => {
+    try {     
+        setLastname(await AsyncStorage.getItem('lastname'));
+        setFirstname(await AsyncStorage.getItem('firstname'));
+    }
+    catch (error) {
+        console.log(error)
+    }
+  }
+
+  useEffect(()=>{
+    getChapterInfos();
+  },[])
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -75,7 +103,7 @@ const Chapter1 = function() {
               onBlur={() => {
                 setBorderColorInputFirstName("black");
               }}
-              onChangeText={onChangeText2}
+              onChangeText={setFirstname}
               value={firstname}
               placeholder="Your firstname"
               keyboardType="default"
@@ -91,7 +119,7 @@ const Chapter1 = function() {
             onBlur={() => {
               setBorderColorInputLastName("black");
             }}
-            onChangeText={onChangeText1}
+            onChangeText={setLastname}
             value={lastname}
             placeholder="Your lastname"
             keyboardType="default"

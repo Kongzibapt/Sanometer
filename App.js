@@ -41,12 +41,15 @@ const Stack = createNativeStackNavigator();
 
 function HomeScreen({ navigation }) {
 
+  const [firstname,setFirstname] = React.useState("");
   const [lastname,setLastname] = React.useState("");
 
   const getInfos = async () => {
     try {     
-      const value = await AsyncStorage.getItem('lastname');
-      setLastname(value);
+      const lastname = await AsyncStorage.getItem('lastname');
+      setLastname(lastname);
+      const firstname = await AsyncStorage.getItem('firstname');
+      setFirstname(firstname);
     }
     catch (error) {
         console.log(error)
@@ -54,6 +57,9 @@ function HomeScreen({ navigation }) {
   }
 
   useEffect(()=>{
+    const unsubscribe = navigation.addListener('focus',() =>{
+      getInfos();
+    });
     getInfos();
   },[])
  
@@ -63,7 +69,7 @@ function HomeScreen({ navigation }) {
       
       <View style={{ flex: 1,justifyContent: 'center',alignItems:'center', backgroundColor:'#18acb9', height:"130%", flexGrow:2}}>
         <Image source={require('./logo.png')} style={{ width: 100, height: 80, position:'absolute', top:200, left:20 }}/>
-        <Text style={styles.labelname}>Hi {lastname} !</Text>
+        <Text style={styles.labelname}>Hi {firstname} {lastname} !</Text>
         <Image source={require('./photo.jpg')} style={{ width: 100, height: 100,position:'absolute', top:10, left:20 }}/>
         
         <View style={styles.containerbutton}>
