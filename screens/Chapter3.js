@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import react from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View,Button } from 'react-native';
 import { SafeAreaView, TextInput, ScrollView, TouchableOpacity} from "react-native";
 import { Slider, Icon } from 'react-native-elements';
 import { RadioButton } from 'react-native-paper';
@@ -21,8 +21,8 @@ const Chapter3 = function() {
     try {     
       await AsyncStorage.setItem('StandardProgressiveMatrices',StandardProgressiveMatrices);
       await AsyncStorage.setItem('BeckDepressionInventory',BeckDepressionInventory);
-      await AsyncStorage.setItem('SPM',SPM);
-      await AsyncStorage.setItem('BDI',BDI);
+      await AsyncStorage.setItem('SPM',SPM.toString());
+      await AsyncStorage.setItem('BDI',BDI.toString());
       await AsyncStorage.setItem('visible1',visible1);
       await AsyncStorage.setItem('visible2',visible2);
       await AsyncStorage.setItem('borderColorInput',borderColorInput);
@@ -46,6 +46,7 @@ const Chapter3 = function() {
     catch (error) {
       console.log(error)
   }
+}
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -194,7 +195,7 @@ const Chapter3 = function() {
           </View>
         }
         <View style={{margin:5}}>
-          <Button title="Submit" onPress={submitChapter1} color="#4bcbd6"/>
+          <Button title="Submit" onPress={submitChapter3} color="#4bcbd6"/>
         </View>
       </ScrollView>
     </SafeAreaView>
