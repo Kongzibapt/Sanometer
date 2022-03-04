@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import react from 'react';
+import react, { useEffect } from 'react';
 import { StyleSheet, Text, View, Switch, Button} from 'react-native';
 import { SafeAreaView, TextInput, ScrollView, TouchableOpacity} from "react-native";
 import { Slider, Icon } from 'react-native-elements';
@@ -10,6 +10,7 @@ import { VirtualizedList } from 'react-native-web';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import DatePicker from 'react-native-date-picker';
 import Checkbox from 'expo-checkbox';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const Chapter2 = function() {
@@ -362,6 +363,39 @@ const Chapter2 = function() {
   const showDatepicker_lastmenst = () => {
     showMode_lastmenst('date');
   }; 
+
+  const submitChapter2 = async () => {
+    try {     
+      await AsyncStorage.setItem('treatmentinfection',isEnabled_treatmentinfection.toString());
+      await AsyncStorage.setItem('treatmentnaturist',isEnabled_treatmentnaturist.toString());
+      await AsyncStorage.setItem('treatmentother',isEnabled_treatmentother.toString());
+      await AsyncStorage.setItem('treatmentpressure',isEnabled_treatmentpressure.toString());
+      await AsyncStorage.setItem('treatother',treatother.toString());
+      await AsyncStorage.setItem('plants',isChecked_plants.toString());
+      await AsyncStorage.setItem('ayur',isChecked_ayur.toString());
+      await AsyncStorage.setItem('natother',isChecked_natother.toString());
+      await AsyncStorage.setItem('treatnatureother',treatnatureother.toString());
+      await AsyncStorage.setItem('treatment',checked_treatment.toString());
+  }
+  catch (error) {
+      console.log(error)
+  }
+  }
+
+  const getChapterInfos = async () => {
+    try {
+      setChecked_treatment(await AsyncStorage.getItem('treatment'));
+      setIsEnabled_treatmentinfection(await AsyncStorage.getItem('treatmentinfection')=='true');
+      console.log(isEnabled_treatmentinfection)
+    }
+    catch(error){
+      console.log(error)
+    }
+  }
+
+  useEffect(()=>{
+    getChapterInfos();
+  },[])
 
   const renderDropdown_female = () => {
     if (visible_female){
@@ -3672,7 +3706,9 @@ const Chapter2 = function() {
             
             </TouchableOpacity>  
           </View>
-
+          <View style={{margin:5}}>
+            <Button title="Submit" onPress={submitChapter2} color="#4bcbd6"/>
+          </View>
       </ScrollView>
     </SafeAreaView>
   );

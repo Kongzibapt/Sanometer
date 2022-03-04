@@ -1,20 +1,55 @@
 import { StatusBar } from 'expo-status-bar';
-import react from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import react, { useEffect } from 'react';
+import { StyleSheet, Text, View,Button } from 'react-native';
 import { SafeAreaView, TextInput, ScrollView, TouchableOpacity} from "react-native";
 import { Slider, Icon } from 'react-native-elements';
 import { RadioButton } from 'react-native-paper';
 import {Picker} from '@react-native-picker/picker';
+import { AsyncStorage } from '@react-native-async-storage/async-storage';
 
 const Chapter3 = function() {
 
   const [StandardProgressiveMatrices, onChangeText1] = react.useState(null);
   const [BeckDepressionInventory, onChangeText2] = react.useState(null);
-  const [SPM, setSpm] = react.useState('');
+  const [SPM, setSPM] = react.useState('');
   const [BDI, setBDI] = react.useState('');
   const [visible1, setVisible1] = react.useState(false);
   const [visible2, setVisible2] = react.useState(false);
   const [borderColorInput,setBorderColorInput] = react.useState("black");
+
+  const submitChapter3 = async () => {
+    try {     
+      await AsyncStorage.setItem('StandardProgressiveMatrices',StandardProgressiveMatrices);
+      await AsyncStorage.setItem('BeckDepressionInventory',BeckDepressionInventory);
+      await AsyncStorage.setItem('SPM',SPM);
+      await AsyncStorage.setItem('BDI',BDI);
+      await AsyncStorage.setItem('visible1',visible1.toString());
+      await AsyncStorage.setItem('visible2',visible2.toString());
+      await AsyncStorage.setItem('borderColorInput',borderColorInput);
+    }
+    catch (error) {
+      console.log(error)
+    }
+  }
+
+  const getChapterInfos = async() => {
+    try {
+      onChangeText1(await AsyncStorage.getItem('StandardProgressiveMatrices'));
+      onChangeText2(await AsyncStorage.getItem('BeckDepressionInventory'));
+      setSPM(await AsyncStorage.getItem('SPM'));
+      setBDI(await AsyncStorage.getItem('BDI'));
+      setVisible1(await AsyncStorage.getItem('visible1')=='true');
+      setVisible2(await AsyncStorage.getItem('visible2')=='true');
+      setBorderColorInput(await AsyncStorage.getItem('borderColorInput'));
+    }
+    catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(()=>{
+    getChapterInfos();
+  },[])
 
 
   const onChange = (event, selectedDate) => {
@@ -100,7 +135,7 @@ const Chapter3 = function() {
               <RadioButton
                 value="yes"
                 status={ SPM === 'yes' ? 'checked' : 'unchecked' }
-                onPress={() => setSpm('yes')}
+                onPress={() => setSPM('yes')}
               />
             </View>
           <View style={styles.containerbutton}>
@@ -108,7 +143,7 @@ const Chapter3 = function() {
             <RadioButton
               value="no"
               status={ SPM === 'no' ? 'checked' : 'unchecked' }
-              onPress={() => setSpm('no')}
+              onPress={() => setSPM('no')}
             />
           </View>
         </View>
@@ -163,7 +198,9 @@ const Chapter3 = function() {
             </TouchableOpacity>  
           </View>
         }
-        
+        <View style={{margin:5}}>
+          <Button title="Submit" onPress={submitChapter3} color="#4bcbd6"/>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
