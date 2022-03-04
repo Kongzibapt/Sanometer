@@ -385,7 +385,7 @@ const Chapter2 = function() {
   const getChapterInfos = async () => {
     try {
       setChecked_treatment(await AsyncStorage.getItem('treatment'));
-      setIsEnabled_treatmentinfection(await AsyncStorage.getItem('treatmentinfection'));
+      setIsEnabled_treatmentinfection(await AsyncStorage.getItem('treatmentinfection')=='true');
       console.log(isEnabled_treatmentinfection)
     }
     catch(error){

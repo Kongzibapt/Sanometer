@@ -1,11 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
-import react from 'react';
+import react, { useEffect } from 'react';
 import { StyleSheet, Text, View,Button } from 'react-native';
 import { SafeAreaView, TextInput, ScrollView, TouchableOpacity} from "react-native";
 import { Slider, Icon } from 'react-native-elements';
 import { RadioButton } from 'react-native-paper';
 import {Picker} from '@react-native-picker/picker';
-import { AsyncStorage } from 'react-native';
+import { AsyncStorage } from '@react-native-async-storage/async-storage';
 
 const Chapter3 = function() {
 
@@ -21,10 +21,10 @@ const Chapter3 = function() {
     try {     
       await AsyncStorage.setItem('StandardProgressiveMatrices',StandardProgressiveMatrices);
       await AsyncStorage.setItem('BeckDepressionInventory',BeckDepressionInventory);
-      await AsyncStorage.setItem('SPM',SPM.toString());
-      await AsyncStorage.setItem('BDI',BDI.toString());
-      await AsyncStorage.setItem('visible1',visible1);
-      await AsyncStorage.setItem('visible2',visible2);
+      await AsyncStorage.setItem('SPM',SPM);
+      await AsyncStorage.setItem('BDI',BDI);
+      await AsyncStorage.setItem('visible1',visible1.toString());
+      await AsyncStorage.setItem('visible2',visible2.toString());
       await AsyncStorage.setItem('borderColorInput',borderColorInput);
     }
     catch (error) {
@@ -34,19 +34,22 @@ const Chapter3 = function() {
 
   const getChapterInfos = async() => {
     try {
-      setStandardProgressiveMatrices(await AsyncStorage.getItem('StandardProgressiveMatrices'));
-      setBeckDepressionInventory(await AsyncStorage.getItem('BeckDepressionInventory'));
+      onChangeText1(await AsyncStorage.getItem('StandardProgressiveMatrices'));
+      onChangeText2(await AsyncStorage.getItem('BeckDepressionInventory'));
       setSPM(await AsyncStorage.getItem('SPM'));
       setBDI(await AsyncStorage.getItem('BDI'));
-      setBeckDepressionInventoryt(await AsyncStorage.getItem('BeckDepressionInventory'));
-      setVisible1(await AsyncStorage.getItem('visible1'));
-      setVisible2(await AsyncStorage.getItem('visible2'));
+      setVisible1(await AsyncStorage.getItem('visible1')=='true');
+      setVisible2(await AsyncStorage.getItem('visible2')=='true');
       setBorderColorInput(await AsyncStorage.getItem('borderColorInput'));
     }
     catch (error) {
       console.log(error)
     }
   }
+
+  useEffect(()=>{
+    getChapterInfos();
+  },[])
 
 
   const onChange = (event, selectedDate) => {
