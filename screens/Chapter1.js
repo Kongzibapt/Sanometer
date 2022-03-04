@@ -37,7 +37,6 @@ const Chapter1 = function({navigation}) {
 
   const submitChapter1 = async () => {
     try {     
-<<<<<<< HEAD
       lastname && await AsyncStorage.setItem('lastname',lastname);
       firstname && await AsyncStorage.setItem('firstname',firstname);
       birthdate && await AsyncStorage.setItem('birthdate',birthdate.toString());
@@ -51,23 +50,6 @@ const Chapter1 = function({navigation}) {
       physicalEffort && await AsyncStorage.setItem('physicalEffort',physicalEffort.toString());
       professionalChange && await AsyncStorage.setItem('professionalChange',professionalChange);
       selectededuc && await AsyncStorage.setItem('selectededuc',selectededuc);
-=======
-      await AsyncStorage.setItem('lastname',lastname);
-      await AsyncStorage.setItem('firstname',firstname);
-      await AsyncStorage.setItem('birthdate',date);
-      // await AsyncStorage.setItem('lastname',lastname);
-      // await AsyncStorage.setItem('lastname',lastname);
-      // await AsyncStorage.setItem('lastname',lastname);
-      // await AsyncStorage.setItem('lastname',lastname);
-      // await AsyncStorage.setItem('lastname',lastname);
-      // await AsyncStorage.setItem('lastname',lastname);
-      // await AsyncStorage.setItem('lastname',lastname);
-      // await AsyncStorage.setItem('lastname',lastname);
-      // await AsyncStorage.setItem('lastname',lastname);
-      // await AsyncStorage.setItem('lastname',lastname);
-      // await AsyncStorage.setItem('lastname',lastname);
-      // await AsyncStorage.setItem('lastname',lastname);
->>>>>>> f4b4af45317e70555156c84a69a7c4bc56dcb69f
       navigation.navigate("Home");
   }
   catch (error) {
