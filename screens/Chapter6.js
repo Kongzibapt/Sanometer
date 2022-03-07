@@ -287,14 +287,6 @@ const Chapter6 = function() {
           <Picker.Item label="Cooked at home" value="Cooked_at_home" />
           <Picker.Item label="Fastfood" value="Fastfood" />
         </Picker>
-        <Text style={styles.label}>Energy consumption</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={onChangeText2}
-          value={energy}
-          placeholder="Your energy consumption"
-          keyboardType="default"
-        />
         <Text style={styles.label}>Risk factors:</Text>
         <Text style={styles.label}>Do you smoke ?</Text>
           <View style={styles.checkboxview}>
