@@ -77,11 +77,13 @@ const Chapter2 = function() {
   const [checked_papanicolau, setChecked_papanicolau] = react.useState('');
   const [menopause_date, onChangeText_menopausedate] = react.useState(null);
   const [abortionhow, onChangeText_abortionhow] = react.useState(null);
+  
   const [abortionmany, onChangeText_abortionmany] = react.useState(null);
   const [abortionwhen, onChangeText_abortionwhen] = react.useState(null);
   const [caesareandate, onChangeText_caesarean] = react.useState(null);
   const [medications_hormone, onChangeText_medications_hormone] = react.useState(null);
   const [hormonedate, onChangeText_medications_hormonedate] = react.useState(null);
+  
   const [medications_contra, onChangeText_medications_contra] = react.useState(null);
   const [contradate, onChangeText_medications_contradate] = react.useState(null);
   const [nbcaesarean, onChangeText_nbcaesarean] = react.useState(null);
@@ -91,6 +93,8 @@ const Chapter2 = function() {
   const [pathohow, onChangeText_pathohow] = react.useState(null);
   const [pathodate, onChangeText_pathodate] = react.useState(null);
   const [pathomany, onChangeText_pathomany] = react.useState(null);
+  
+  
   const [inspect, onChangeText_inspect] = react.useState(null);
   const [gynpb_others, onChangeText_othersgynpb] = react.useState(null);
   const [medications_gyneco, onChangeText_gyneco] = react.useState(null);
@@ -102,10 +106,11 @@ const Chapter2 = function() {
   const [mode_lastmenst, setMode_lastmenst] = react.useState('date');
   const [show_lastmenst, setShow_lastmenst] = react.useState(false);
 
+  
+  
   const [isChecked_venous, setChecked_venous] = react.useState(false);
   const [isChecked_arterita, setChecked_arterita] = react.useState(false);
   const [isChecked_aneurysm, setChecked_aneurysm] = react.useState(false);
-
   const [isChecked_angina, setChecked_angina] = react.useState(false);
   const [isChecked_arrhythmia, setChecked_arrhythmia] = react.useState(false);
   const [isChecked_stents, setChecked_stents] = react.useState(false);
@@ -115,6 +120,7 @@ const Chapter2 = function() {
 
 
   //allergies
+  const [checked_allergies, setChecked_allergies] = react.useState('');
   const [isEnabled_food, setIsEnabled_food] = react.useState(false);
   const toggleSwitch_food = () => setIsEnabled_food(previousState => !previousState);
   const [checked_severefood, setChecked_severefood] = react.useState('');
@@ -127,88 +133,44 @@ const Chapter2 = function() {
   const [isEnabled_others, setIsEnabled_others] = react.useState(false);
   const toggleSwitch_others = () => setIsEnabled_others(previousState => !previousState);
   const [checked_severeothers, setChecked_severeothers] = react.useState('');
-  
-  const [checked_severeother, setChecked_severother] = react.useState('');
   const [trigger, onChangeText_trigger] = react.useState(null);
   const [checked_hospit, setChecked_hospit] = react.useState('');
-
   //type of allergies
   const [allergies_food, onChangeText_allergies_food] = react.useState(null);
   const [allergies_drugs, onChangeText_allergies_drugs] = react.useState(null);
   const [allergies_seasonal, onChangeText_allergies_seasonal] = react.useState(null);
   const [allergies_others, onChangeText_allergies_others] = react.useState(null);
-
   //allergies medications
   const [medications_food, onChangeText_medications_food] = react.useState(null);
   const [medications_drugs, onChangeText_medications_drugs] = react.useState(null);
   const [medications_seasonal, onChangeText_medications_seasonal] = react.useState(null);
   const [medications_others, onChangeText_medications_others] = react.useState(null);
+  
+  
+  
 
-
-  const [borderColorInput,setBorderColorInput] = react.useState("black");
-  const [checked_allergies, setChecked_allergies] = react.useState('');
-  const [visible_allergies, setVisible1] = react.useState(false);
-  const [visible_family, setVisible2] = react.useState(false);
-  const [visible_vaccine, setVisible3] = react.useState(false);
-  const [visible_chro, setVisible4] = react.useState(false);
-  const [visible_male, setVisible5] = react.useState(false);
-  const [visible_female, setVisible6] = react.useState(false);
-  const [visible_surgery, setVisible7] = react.useState(false);
-  const [visible_injuries, setVisible8] = react.useState(false);
-  const [visible_treatment, setVisible9] = react.useState(false);
-
-  const [checked_chro, setChecked_chro] = react.useState('');
-
-  const [checked_conflict, setChecked_conflict] = react.useState('');
-
-  const toggleDropdown1 = () => {
-    setVisible1(!visible_allergies);
-  };
-  const toggleDropdown2 = () => {
-    setVisible2(!visible_family);
-  };
-  const toggleDropdown3 = () => {
-    setVisible3(!visible_vaccine);
-  };
-  const toggleDropdown4 = () => {
-    setVisible4(!visible_chro);
-  };
-  const toggleDropdown5 = () => {
-    setVisible5(!visible_male);
-  };
-  const toggleDropdown6 = () => {
-    setVisible6(!visible_female);
-  };
-  const toggleDropdown7 = () => {
-    setVisible7(!visible_surgery);
-  };
-  const toggleDropdown8 = () => {
-    setVisible8(!visible_injuries);
-  };
-  const toggleDropdown9 = () => {
-    setVisible9(!visible_treatment);
-  };
-
-
-
-
-
-
-  const [checked_pb, setChecked_pb] = react.useState('');
-
-  const [date, setDate] = react.useState(new Date());
-  const [mode, setMode] = react.useState('date');
-  const [show, setShow] = react.useState(false);
+  //vaccines
+  const [booster1, onChangeText_booster1] = react.useState(null);
+  const [booster2, onChangeText_booster2] = react.useState(null);
+  const [booster3, onChangeText_booster3] = react.useState(null);
+  const [booster4, onChangeText_booster4] = react.useState(null);
+  const [booster5, onChangeText_booster5] = react.useState(null);
+  const [booster6, onChangeText_booster6] = react.useState(null);
+  const [booster7, onChangeText_booster7] = react.useState(null);
+  const [booster8, onChangeText_booster8] = react.useState(null);
+  const [booster9, onChangeText_booster9] = react.useState(null);
+  const [booster10, onChangeText_booster10] = react.useState(null);
+  const [booster11, onChangeText_booster11] = react.useState(null);
 
   const [checked_events, setChecked_events] = react.useState('');
   const [vax_events, onChangeText_vax_events] = react.useState(null);
   const [checked_vax, setChecked_vax] = react.useState('');
+  const [checked_pb, setChecked_pb] = react.useState('');
+
   const [isEnabled_vax1, setIsEnabled_vax1] = react.useState(false);
   const toggleSwitch_vax1 = () => setIsEnabled_vax1(previousState => !previousState);
-
   const [isEnabled_vax2, setIsEnabled_vax2] = react.useState(false);
   const toggleSwitch_vax2 = () => setIsEnabled_vax2(previousState => !previousState);
-
   const [isEnabled_vax3, setIsEnabled_vax3] = react.useState(false);
   const toggleSwitch_vax3 = () => setIsEnabled_vax3(previousState => !previousState);
   const [isEnabled_vax4, setIsEnabled_vax4] = react.useState(false);
@@ -228,6 +190,8 @@ const Chapter2 = function() {
   const [isEnabled_vax11, setIsEnabled_vax11] = react.useState(false);
   const toggleSwitch_vax11 = () => setIsEnabled_vax11(previousState => !previousState);
 
+  //chronical disease
+  const [checked_chro, setChecked_chro] = react.useState('');
   const [isEnabled_cancer, setIsEnabled_cancer] = react.useState(false);
   const toggleSwitch_cancer = () => setIsEnabled_cancer(previousState => !previousState);
   const [loc_cancer, onChangeText_loc] = react.useState(null);
@@ -236,28 +200,26 @@ const Chapter2 = function() {
   const [begin_cancer, onChangeText_begin] = react.useState(null);
   const [end_cancer, onChangeText_end] = react.useState(null);
   const [checked_end, setChecked_end] = react.useState('');
-  const [diseasegenetic, onChangeText_diseasegenetic] = react.useState(null);
 
+  const [diseasegenetic, onChangeText_diseasegenetic] = react.useState(null);
   const [treatment_hyper, onChangeText_treatment_hyper] = react.useState(null);
   const [isEnabled_hypertension, setIsEnabled_hypertension] = react.useState(false);
   const toggleSwitch_hypertension = () => setIsEnabled_hypertension(previousState => !previousState);
-
+ 
   const [isEnabled_vascular, setIsEnabled_vascular] = react.useState(false);
   const toggleSwitch_vascular = () => setIsEnabled_vascular(previousState => !previousState);
-
   const [isEnabled_lungs, setIsEnabled_lungs] = react.useState(false);
   const toggleSwitch_lungs = () => setIsEnabled_lungs(previousState => !previousState);
   const [isChecked_bronchitis, setChecked_bronchitis] = react.useState(false);
   const [isChecked_asthma, setChecked_asthma] = react.useState(false);
   const [isChecked_repiratoryinsuf, setChecked_respiratoryinsuf] = react.useState(false);
-
-
+  
   const [isEnabled_digestive, setIsEnabled_digestive] = react.useState(false);
   const toggleSwitch_digestive = () => setIsEnabled_digestive(previousState => !previousState);
   const [isChecked_ulcer, setChecked_ulcer] = react.useState(false);
   const [isChecked_gastritis, setChecked_gastritis] = react.useState(false);
   const [isChecked_colonirrit, setChecked_colonirrit] = react.useState(false);
-
+  
   const [isEnabled_kidney, setIsEnabled_kidney] = react.useState(false);
   const toggleSwitch_kidney = () => setIsEnabled_kidney(previousState => !previousState);
   const [isChecked_stones, setChecked_stones] = react.useState(false);
@@ -269,14 +231,14 @@ const Chapter2 = function() {
   const toggleSwitch_diabetes = () => setIsEnabled_diabetes(previousState => !previousState);
   const [checked_treatmentdiabetes, setChecked_treatmentdiabetes] = react.useState('');
   const [checked_treatmentgenetic, setChecked_treatmentgenetic] = react.useState('');
-
+  
   const [isEnabled_infection, setIsEnabled_infection] = react.useState(false);
   const toggleSwitch_infection = () => setIsEnabled_infection(previousState => !previousState);
   const [isChecked_urinary, setChecked_urinary] = react.useState(false);
   const [isChecked_sinuses, setChecked_sinuses] = react.useState(false);
   const [isChecked_tonsils, setChecked_tonsils] = react.useState(false);
   const [isChecked_gallbladder, setChecked_gallbladder] = react.useState(false);
-
+  
   const [isEnabled_hormonalpb, setIsEnabled_homonalpb] = react.useState(false);
   const toggleSwitch_homonalpb = () => setIsEnabled_homonalpb(previousState => !previousState);
   const [isChecked_thyroid, setChecked_thyroid] = react.useState(false);
@@ -292,33 +254,51 @@ const Chapter2 = function() {
   const [isChecked_innguinal, setChecked_innguinal] = react.useState(false);
   const [isChecked_umbilical, setChecked_umbilical] = react.useState(false);
   
+  //injuries
   const [checked_injuries, setChecked_injuries] = react.useState('');
   const [checked_accident, setChecked_accident] = react.useState('');
   const [checked_sprains, setChecked_sprains] = react.useState('');
   const [checked_luxuries_fractures, setChecked_luxuries_fractures] = react.useState('');
 
+  //sleep issue
   const [isEnabled_sleepingpb, setIsEnabled_sleepingpb] = react.useState(false);
   const toggleSwitch_sleepingpb = () => setIsEnabled_sleepingpb(previousState => !previousState);
   const [selectedsleep, setSelectedsleep] = react.useState();
   const [checked_dis_sleep, setChecked_dis_sleep] = react.useState(null);
   const [checked_treat_sleep, setChecked_treat_sleep] = react.useState(null);
 
-  const [isEnabled_sightpb, setIsEnabled_sightpb] = react.useState(false);
-  const toggleSwitch_sightpb = () => setIsEnabled_sightpb(previousState => !previousState);
+  //senses disorders
+  const [isEnabled_senses, setIsEnabled_senses] = react.useState(false);
+  const toggleSwitch_senses = () => setIsEnabled_senses(previousState => !previousState);
+  const [isChecked_sight, setChecked_sight] = react.useState(false);
+  const [isChecked_hearing, setChecked_hearing] = react.useState(false);
+  const [isChecked_taste, setChecked_taste] = react.useState(false);
+  const [isChecked_smell, setChecked_smell] = react.useState(false);
+  const [isChecked_touch, setChecked_touch] = react.useState(false);
 
+  const [date, setDate] = react.useState(new Date());
+  const [mode, setMode] = react.useState('date');
+  const [show, setShow] = react.useState(false);
 
-  const [booster1, onChangeText_booster1] = react.useState(null);
-  const [booster2, onChangeText_booster2] = react.useState(null);
-  const [booster3, onChangeText_booster3] = react.useState(null);
-  const [booster4, onChangeText_booster4] = react.useState(null);
-  const [booster5, onChangeText_booster5] = react.useState(null);
-  const [booster6, onChangeText_booster6] = react.useState(null);
-  const [booster7, onChangeText_booster7] = react.useState(null);
-  const [booster8, onChangeText_booster8] = react.useState(null);
-  const [booster9, onChangeText_booster9] = react.useState(null);
-  const [booster10, onChangeText_booster10] = react.useState(null);
-  const [booster11, onChangeText_booster11] = react.useState(null);
+  const [checked_conflict, setChecked_conflict] = react.useState('');
+  
 
+  const [visible_allergies, setVisible1] = react.useState(false);
+  const [visible_family, setVisible2] = react.useState(false);
+  const [visible_vaccine, setVisible3] = react.useState(false);
+  const [visible_chro, setVisible4] = react.useState(false);
+  const [visible_male, setVisible5] = react.useState(false);
+  const [visible_female, setVisible6] = react.useState(false);
+  const [visible_surgery, setVisible7] = react.useState(false);
+  const [visible_injuries, setVisible8] = react.useState(false);
+  const [visible_treatment, setVisible9] = react.useState(false);
+
+  
+  
+  
+
+  const [borderColorInput,setBorderColorInput] = react.useState("black");
+  
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -364,6 +344,34 @@ const Chapter2 = function() {
   const showDatepicker_lastmenst = () => {
     showMode_lastmenst('date');
   }; 
+
+  const toggleDropdown1 = () => {
+    setVisible1(!visible_allergies);
+  };
+  const toggleDropdown2 = () => {
+    setVisible2(!visible_family);
+  };
+  const toggleDropdown3 = () => {
+    setVisible3(!visible_vaccine);
+  };
+  const toggleDropdown4 = () => {
+    setVisible4(!visible_chro);
+  };
+  const toggleDropdown5 = () => {
+    setVisible5(!visible_male);
+  };
+  const toggleDropdown6 = () => {
+    setVisible6(!visible_female);
+  };
+  const toggleDropdown7 = () => {
+    setVisible7(!visible_surgery);
+  };
+  const toggleDropdown8 = () => {
+    setVisible8(!visible_injuries);
+  };
+  const toggleDropdown9 = () => {
+    setVisible9(!visible_treatment);
+  };
 
   const submitChapter2 = async () => {
     try {     
@@ -414,6 +422,168 @@ const Chapter2 = function() {
       checked_breastpb && await AsyncStorage.setItem('checked_breastpb',checked_breastpb);
       checked_inspect && await AsyncStorage.setItem('checked_inspect',checked_inspect);
   
+      isEnabled_gestdiab && await AsyncStorage.setItem('gest_diab',isEnabled_gestdiab.toString());
+      checked_pregpb && await AsyncStorage.setItem('pregpb',checked_pregpb);
+      isEnabled_othergestpb && await AsyncStorage.setItem('othergestpb',isEnabled_othergestpb.toString());
+      checked_consultgyn && await AsyncStorage.setItem('consultgyn',checked_consultgyn);
+      checked_papanicolau && await AsyncStorage.setItem('papanicolau',checked_papanicolau);
+      menopause_date && await AsyncStorage.setItem('menopausedate',menopause_date);
+      abortionhow && await AsyncStorage.setItem('abortionhow',abortionhow);
+
+      abortionmany && await AsyncStorage.setItem('abortionmany',abortionmany);
+      abortionwhen && await AsyncStorage.setItem('abortionwhen',abortionwhen);
+      caesareandate && await AsyncStorage.setItem('caesareandate',caesareandate);
+      medications_hormone && await AsyncStorage.setItem('medications_hormone',medications_hormone);
+      hormonedate && await AsyncStorage.setItem('hormonedate',hormonedate);
+
+      medications_contra && await AsyncStorage.setItem('medications_contra',medications_contra);
+      contradate && await AsyncStorage.setItem('contradate',contradate);
+      nbcaesarean && await AsyncStorage.setItem('nbcaesarean', nbcaesarean);
+      lostpreghow && await AsyncStorage.setItem('lostpreghow', lostpreghow);
+      lostpregwhen && await AsyncStorage.setItem('lostpregwhen', lostpregwhen);
+      lostpregmany && await AsyncStorage.setItem('lostpregmany', lostpregmany);
+      pathodate && await AsyncStorage.setItem('pathodate',pathodate);
+      pathohow && await AsyncStorage.setItem('pathohow',pathohow);
+      pathomany && await AsyncStorage.setItem('pathomany',pathomany);
+
+      inspect && await AsyncStorage.setItem('inspect',inspect);
+      gynpb_others && await AsyncStorage.setItem('gynpb_others',gynpb_others);
+      medications_gyneco && await AsyncStorage.setItem('medications_gyneco',medications_gyneco);
+      papanicolau && await AsyncStorage.setItem('papanicolau',papanicolau);
+      date_firstmenst && await AsyncStorage.setItem('date_firstmenst',date_firstmenst.toString());
+      date_lastmenst && await AsyncStorage.setItem('date_lastmenst',date_lastmenst.toString());
+
+      isChecked_venous && await AsyncStorage.setItem('isChecked_venous',isChecked_venous.toString());
+      isChecked_arterita && await AsyncStorage.setItem('isChecked_arterita',isChecked_arterita.toString());
+      isChecked_aneurysm && await AsyncStorage.setItem('isChecked_aneurysm',isChecked_aneurysm.toString());
+      isChecked_angina && await AsyncStorage.setItem('isChecked_angina',isChecked_angina.toString());
+      isChecked_arrhythmia && await AsyncStorage.setItem('isChecked_arrhythmia',isChecked_arrhythmia.toString());
+      isChecked_stents && await AsyncStorage.setItem('isChecked_stents',isChecked_stents.toString());
+      isChecked_insuf && await AsyncStorage.setItem('isChecked_insuf',isChecked_insuf.toString());
+      isEnabled_heart && await AsyncStorage.setItem('isEnabled_heart',isEnabled_heart.toString());
+
+      checked_allergies && await AsyncStorage.setItem('checked_allergies',checked_allergies);
+      isEnabled_food && await AsyncStorage.setItem('isEnabled_food',isEnabled_food.toString());
+      checked_severefood && await AsyncStorage.setItem('checked_severefood', checked_severefood);
+      isEnabled_drugs && await AsyncStorage.setItem('isEnabled_drugs',isEnabled_drugs.toString());
+      checked_severedrugs && await AsyncStorage.setItem('checked_severedrugs',checked_severedrugs);
+      isEnabled_seasonal && await AsyncStorage.setItem('isEnabled_seasonal',isEnabled_seasonal.toString());
+      checked_severeseason && await AsyncStorage.setItem('checked_severeseason',checked_severeseason);
+      isEnabled_others && await AsyncStorage.setItem('isEnabled_others',isEnabled_others.toString());
+      checked_severeothers && await AsyncStorage.setItem('checked_severeothers',checked_severeothers);
+      trigger && await AsyncStorage.setItem('trigger',trigger);
+      checked_hospit && await AsyncStorage.setItem('checked_hospit',checked_hospit);
+
+      allergies_food && await AsyncStorage.setItem('allergies_food',allergies_food);
+      allergies_drugs && await AsyncStorage.setItem('allergies_drugs',allergies_drugs);
+      allergies_seasonal && await AsyncStorage.setItem('allergies_seasonal',allergies_seasonal);
+      allergies_others && await AsyncStorage.setItem('allergies_others',allergies_others);
+      medications_food && await AsyncStorage.setItem('medications_food',medications_food);
+      medications_drugs && await AsyncStorage.setItem('medications_drugs',medications_drugs);
+      medications_seasonal && await AsyncStorage.setItem('medications_seasonal',medications_seasonal);
+      medications_others && await AsyncStorage.setItem('medications_others',medications_others);
+      
+      booster1 && await AsyncStorage.setItem('booster1',booster1);
+      booster2 && await AsyncStorage.setItem('booster2',booster2);
+      booster3 && await AsyncStorage.setItem('booster3',booster3);
+      booster4 && await AsyncStorage.setItem('booster4',booster4);
+      booster5 && await AsyncStorage.setItem('booster5',booster5);
+      booster6 && await AsyncStorage.setItem('booster6',booster6);
+      booster7 && await AsyncStorage.setItem('booster7',booster7);
+      booster8 && await AsyncStorage.setItem('booster8',booster8);
+      booster9 && await AsyncStorage.setItem('booster9',booster9);
+      booster10 && await AsyncStorage.setItem('booster10',booster10);
+      booster11 && await AsyncStorage.setItem('booster11',booster11);
+
+      isEnabled_vax1 && await AsyncStorage.setItem('isEnabled_vax1',isEnabled_vax1.toString());
+      isEnabled_vax2 && await AsyncStorage.setItem('isEnabled_vax2',isEnabled_vax2.toString());
+      isEnabled_vax3 && await AsyncStorage.setItem('isEnabled_vax3',isEnabled_vax3.toString());
+      isEnabled_vax4 && await AsyncStorage.setItem('isEnabled_vax4',isEnabled_vax4.toString());
+      isEnabled_vax5 && await AsyncStorage.setItem('isEnabled_vax5',isEnabled_vax5.toString());
+      isEnabled_vax6 && await AsyncStorage.setItem('isEnabled_vax6',isEnabled_vax6.toString());
+      isEnabled_vax7 && await AsyncStorage.setItem('isEnabled_vax7',isEnabled_vax7.toString());
+      isEnabled_vax8 && await AsyncStorage.setItem('isEnabled_vax8',isEnabled_vax8.toString());
+      isEnabled_vax9 && await AsyncStorage.setItem('isEnabled_vax9',isEnabled_vax9.toString());
+      isEnabled_vax10 && await AsyncStorage.setItem('isEnabled_vax10',isEnabled_vax10.toString());
+      isEnabled_vax11 && await AsyncStorage.setItem('isEnabled_vax11',isEnabled_vax11.toString());
+
+      checked_events && await AsyncStorage.setItem('checked_events',checked_events);
+      vax_events && await AsyncStorage.setItem('vax_events',vax_events);
+      checked_vax && await AsyncStorage.setItem('checked_vax',checked_vax);
+      checked_pb && await AsyncStorage.setItem('checked_pb',checked_pb);
+
+      checked_surgery && await AsyncStorage.setItem('checked_surgery',checked_surgery);
+      isChecked_appendic && await AsyncStorage.setItem('isChecked_appendic',isChecked_appendic.toString());
+      isChecked_tonsilssurgery && await AsyncStorage.setItem('isChecked_tonsilssurgery',isChecked_tonsilssurgery.toString());
+      isChecked_gallbladdersurgery && await AsyncStorage.setItem('isChecked_gallbladdersurgery',isChecked_gallbladdersurgery.toString());
+      isChecked_innguinal && await AsyncStorage.setItem('isChecked_innguinal',isChecked_innguinal.toString());
+      isChecked_umbilical && await AsyncStorage.setItem('isChecked_umbilical',isChecked_umbilical.toString());
+
+      checked_injuries && await AsyncStorage.setItem('checked_injuries',checked_injuries);
+      checked_accident && await AsyncStorage.setItem('checked_accident',checked_accident);
+      checked_sprains && await AsyncStorage.setItem('checked_sprains',checked_sprains);
+      checked_luxuries_fractures && await AsyncStorage.setItem('checked_luxuries_fractures',checked_luxuries_fractures);
+      
+      isEnabled_sleepingpb && await AsyncStorage.setItem('isEnabled_sleepingpb',isEnabled_sleepingpb.toString());
+      selectedsleep && await AsyncStorage.setItem('selectedsleep',selectedsleep);
+      checked_dis_sleep && await AsyncStorage.setItem('checked_dis_sleep',checked_dis_sleep);
+      checked_treat_sleep && await AsyncStorage.setItem('checked_treat_sleep',checked_treat_sleep);
+
+      date && await AsyncStorage.setItem('date',date.toString());
+
+      checked_chro && await AsyncStorage.setItem('checked_chro',checked_chro.toString());
+      isEnabled_cancer && await AsyncStorage.setItem('isEnabled_cancer',isEnabled_cancer.toString());
+      loc_cancer && await AsyncStorage.setItem('loc_cancer',loc_cancer.toString());
+      phase_cancer &&await AsyncStorage.setItem('phase_cancer',phase_cancer.toString());
+      treatment_cancer &&await AsyncStorage.setItem('treatment_cancer',treatment_cancer.toString());
+      begin_cancer &&await AsyncStorage.setItem('begin_cancer',begin_cancer.toString());
+      end_cancer &&await AsyncStorage.setItem('end_cancer',end_cancer.toString());
+      checked_end &&await AsyncStorage.setItem('checked_end',checked_end.toString());
+
+      diseasegenetic &&await AsyncStorage.setItem('diseasegenetic',diseasegenetic.toString());
+      treatment_hyper &&await AsyncStorage.setItem('treatment_hyper',treatment_hyper.toString());
+      isEnabled_hypertension &&await AsyncStorage.setItem('isEnabled_hypertension',isEnabled_hypertension.toString());
+
+      isEnabled_vascular &&await AsyncStorage.setItem('isEnabled_vascular',isEnabled_vascular.toString());
+      isEnabled_lungs &&await AsyncStorage.setItem('isEnabled_lungs',isEnabled_lungs.toString());
+      isChecked_bronchitis &&await AsyncStorage.setItem('isChecked_bronchitis',isChecked_bronchitis.toString());
+      isChecked_asthma &&await AsyncStorage.setItem('isChecked_asthma',isChecked_asthma.toString());
+      isChecked_repiratoryinsuf &&await AsyncStorage.setItem('isChecked_repiratoryinsuf',isChecked_repiratoryinsuf.toString());
+
+      isEnabled_digestive &&await AsyncStorage.setItem('isEnabled_digestive',isEnabled_digestive.toString());
+      isChecked_ulcer &&await AsyncStorage.setItem('isChecked_ulcer',isChecked_ulcer.toString());
+      isChecked_gastritis &&await AsyncStorage.setItem('isChecked_gastritis',isChecked_gastritis.toString());
+      isChecked_colonirrit &&await AsyncStorage.setItem('isChecked_colonirrit',isChecked_colonirrit.toString());
+
+      isEnabled_kidney &&await AsyncStorage.setItem('isEnabled_kidney',isEnabled_kidney.toString());
+      isChecked_stones &&await AsyncStorage.setItem('isChecked_stones',isChecked_stones.toString());
+      isChecked_renalinsuf &&await AsyncStorage.setItem('isChecked_renalinsuf',isChecked_renalinsuf.toString());
+
+      isEnabled_genetic &&await AsyncStorage.setItem('isEnabled_genetic',isEnabled_genetic.toString());
+      isEnabled_diabetes &&await AsyncStorage.setItem('isEnabled_diabetes',isEnabled_diabetes.toString());
+      checked_treatmentdiabetes &&await AsyncStorage.setItem('checked_treatmentdiabetes',checked_treatmentdiabetes.toString());
+      checked_treatmentgenetic &&await AsyncStorage.setItem('checked_treatmentgenetic',checked_treatmentgenetic.toString());
+
+      isEnabled_infection &&await AsyncStorage.setItem('isEnabled_infection',isEnabled_infection.toString());
+      isChecked_urinary &&await AsyncStorage.setItem('isChecked_urinary',isChecked_urinary.toString());
+      isChecked_sinuses &&await AsyncStorage.setItem('isChecked_sinuses',isChecked_sinuses.toString());
+      isChecked_tonsils &&await AsyncStorage.setItem('isChecked_tonsils',isChecked_tonsils.toString());
+      isChecked_gallbladder &&await AsyncStorage.setItem('isChecked_gallbladder',isChecked_gallbladder.toString());
+
+      isEnabled_hormonalpb &&await AsyncStorage.setItem('isEnabled_hormonalpb',isEnabled_hormonalpb.toString());
+      isChecked_thyroid &&await AsyncStorage.setItem('isChecked_thyroid',isChecked_thyroid.toString());
+      isChecked_pituitary &&await AsyncStorage.setItem('isChecked_pituitary',isChecked_pituitary.toString());
+      isChecked_polycystics &&await AsyncStorage.setItem('isChecked_polycystics',isChecked_polycystics.toString());
+      isChecked_prostate &&await AsyncStorage.setItem('isChecked_prostate',isChecked_prostate.toString());
+
+      isEnabled_senses &&await AsyncStorage.setItem('isEnabled_senses',isEnabled_senses.toString());
+      isChecked_sight &&await AsyncStorage.setItem('isChecked_sight',isChecked_sight.toString());
+      isChecked_smell &&await AsyncStorage.setItem('isChecked_smell',isChecked_smell.toString());
+      isChecked_touch &&await AsyncStorage.setItem('isChecked_touch',isChecked_touch.toString());
+      isChecked_taste &&await AsyncStorage.setItem('isChecked_taste',isChecked_taste.toString());
+      isChecked_hearing &&await AsyncStorage.setItem('isChecked_hearing',isChecked_hearing.toString());
+
+      
   
     }
   catch (error) {
@@ -455,6 +625,7 @@ const Chapter2 = function() {
       setChecked_sport(await AsyncStorage.getItem('checked_sport'));
       setSelectedage(await AsyncStorage.getItem('selectedage'));
       setValue(await AsyncStorage.getItem('value'));
+      setChecked_urinate(await AsyncStorage.getItem('checked_urinate'));
 
       setChecked(await AsyncStorage.getItem('checked'));
       setChecked_menopause(await AsyncStorage.getItem('checked_menopause'));
@@ -468,6 +639,166 @@ const Chapter2 = function() {
       setChecked_path(await AsyncStorage.getItem('checked_path'));
       setChecked_breastpb(await AsyncStorage.getItem('checked_breastpb'));
       setChecked_inspect(await AsyncStorage.getItem('checked_inspect'));
+    
+      setIsEnabled_gestdiab(await AsyncStorage.getItem('gestidan')=='true');
+      setChecked_pregpb(await AsyncStorage.getItem('pregpb'));
+      setIsEnabled_othergestpb(await AsyncStorage.getItem('othergestpb')=='true');
+      setChecked_consultgyn(await AsyncStorage.getItem('consultgyn'));
+      setChecked_papanicolau(await AsyncStorage.getItem('papanicolau'));
+      onChangeText_menopausedate(await AsyncStorage.getItem('menopause_date'));
+      onChangeText_abortionhow(await AsyncStorage.getItem('abortionhow'));
+
+      onChangeText_abortionmany(await AsyncStorage.getItem('abortionmany'));
+      onChangeText_abortionwhen(await AsyncStorage.getItem('abortionwhen'));
+      onChangeText_caesarean(await AsyncStorage.getItem('caesareandate'));
+      onChangeText_medications_hormone(await AsyncStorage.getItem('medications_hormone'));
+      onChangeText_medications_hormonedate(await AsyncStorage.getItem('hormonedate'));
+
+      onChangeText_medications_contra(await AsyncStorage.getItem('medications_contra'));
+      onChangeText_medications_contradate(await AsyncStorage.getItem('medications_contradate'));
+      onChangeText_nbcaesarean(await AsyncStorage.getItem('nbcaesarean'));
+      onChangeText_lostpreghow(await AsyncStorage.getItem('lostpreghow'));
+      onChangeText_lostpregmany(await AsyncStorage.getItem('lostpregmany'));
+      onChangeText_lostpregwhen(await AsyncStorage.getItem('lostpregwhen'));
+      onChangeText_pathodate(await AsyncStorage.getItem('pathodate'));
+      onChangeText_pathohow(await AsyncStorage.getItem('pathohow'));
+      onChangeText_pathomany(await AsyncStorage.getItem('pathomany'));
+
+      onChangeText_inspect(await AsyncStorage.getItem('inspect'));
+      onChangeText_othersgynpb(await AsyncStorage.getItem('othersgynpb'));
+      onChangeText_papanicolau(await AsyncStorage.getItem('papanicolau'));
+      setDate_firstmenst(new Date(await AsyncStorage.getItem('date_firstmenst')));
+      setDate_lastmenst(new Date(await AsyncStorage.getItem('date_lastmenst')));
+
+      setChecked_venous(await AsyncStorage.getItem('isChecked_venous')=='true');
+      setChecked_arterita(await AsyncStorage.getItem('isChecked_arterita')=='true');
+      setChecked_aneurysm(await AsyncStorage.getItem('isChecked_aneurysm')=='true');
+      setChecked_angina(await AsyncStorage.getItem('isChecked_angina')=='true');
+      setChecked_arrhythmia(await AsyncStorage.getItem('isChecked_arrhythmia')=='true');
+      setChecked_stents(await AsyncStorage.getItem('isChecked_stents')=='true');
+      setChecked_insuf(await AsyncStorage.getItem('isChecked_insuf')=='true');
+      setIsEnabled_heart(await AsyncStorage.getItem('isEnabled_heart')=='true');
+
+      setIsEnabled_food(await AsyncStorage.getItem('isEnabled_food')=='true');
+      setChecked_severefood(await AsyncStorage.getItem('checked_severefood'));
+      setIsEnabled_drugs(await AsyncStorage.getItem('isEnabled_drugs')=='true');
+      setChecked_severedrugs(await AsyncStorage.getItem('checked_severedrugs'));
+      setIsEnabled_seasonal(await AsyncStorage.getItem('isEnabled_seasonal')=='true');
+      setChecked_severeseason(await AsyncStorage.getItem('checked_severeseason'));
+      setIsEnabled_others(await AsyncStorage.getItem('isEnabled_others')=='true');
+      setChecked_severeothers(await AsyncStorage.getItem('checked_severeothers'));
+      onChangeText_trigger(await AsyncStorage.getItem('trigger'));
+      setChecked_hospit(await AsyncStorage.getItem('checked_hospit'));
+      setChecked_allergies(await AsyncStorage.getItem('checked_allergies'));
+
+      onChangeText_allergies_food(await AsyncStorage.getItem('allergies_food'));
+      onChangeText_allergies_drugs(await AsyncStorage.getItem('allergies_drugs'));
+      onChangeText_allergies_seasonal(await AsyncStorage.getItem('allergies_seasonal'));
+      onChangeText_allergies_others(await AsyncStorage.getItem('allergies_others'));
+      onChangeText_medications_food(await AsyncStorage.getItem('medications_food'));
+      onChangeText_medications_drugs(await AsyncStorage.getItem('medications_drugs'));
+      onChangeText_medications_seasonal(await AsyncStorage.getItem('medications_seasonal'));
+      onChangeText_medications_others(await AsyncStorage.getItem('medications_others'));
+
+      onChangeText_booster1(await AsyncStorage.getItem('booster1'));
+      onChangeText_booster2(await AsyncStorage.getItem('booster2'));
+      onChangeText_booster3(await AsyncStorage.getItem('booster3'));
+      onChangeText_booster4(await AsyncStorage.getItem('booster4'));
+      onChangeText_booster5(await AsyncStorage.getItem('booster5'));
+      onChangeText_booster6(await AsyncStorage.getItem('booster6'));
+      onChangeText_booster7(await AsyncStorage.getItem('booster7'));
+      onChangeText_booster8(await AsyncStorage.getItem('booster8'));
+      onChangeText_booster9(await AsyncStorage.getItem('booster9'));
+      onChangeText_booster10(await AsyncStorage.getItem('booster10'));
+      onChangeText_booster11(await AsyncStorage.getItem('booster11'));
+
+      setChecked_events(await AsyncStorage.getItem('checked_events'));
+      onChangeText_vax_events(await AsyncStorage.getItem('vax_events'));
+      setChecked_vax(await AsyncStorage.getItem('checked_vax'));
+      setChecked_pb(await AsyncStorage.getItem('checked_pb'));
+      setIsEnabled_vax1(await AsyncStorage.getItem('isEnabled_vax1')=='true');
+      setIsEnabled_vax2(await AsyncStorage.getItem('isEnabled_vax2')=='true');
+      setIsEnabled_vax3(await AsyncStorage.getItem('isEnabled_vax3')=='true');
+      setIsEnabled_vax4(await AsyncStorage.getItem('isEnabled_vax4')=='true');
+      setIsEnabled_vax5(await AsyncStorage.getItem('isEnabled_vax5')=='true');
+      setIsEnabled_vax6(await AsyncStorage.getItem('isEnabled_vax6')=='true');
+      setIsEnabled_vax7(await AsyncStorage.getItem('isEnabled_vax7')=='true');
+      setIsEnabled_vax8(await AsyncStorage.getItem('isEnabled_vax8')=='true');
+      setIsEnabled_vax9(await AsyncStorage.getItem('isEnabled_vax9')=='true');
+      setIsEnabled_vax10(await AsyncStorage.getItem('isEnabled_vax10')=='true');
+      setIsEnabled_vax11(await AsyncStorage.getItem('isEnabled_vax11')=='true');
+
+      setChecked_surgery(await AsyncStorage.getItem('checked_surgery'));
+      setChecked_appendic(await AsyncStorage.getItem('isChecked_appendic')=='true');
+      setChecked_tonsilssurgery(await AsyncStorage.getItem('isChecked_tonsilssurgery')=='true');
+      setChecked_gallbladdersurgery(await AsyncStorage.getItem('isChecked_gallbladdersurgery')=='true');
+      setChecked_innguinal(await AsyncStorage.getItem('isChecked_innguinal')=='true');
+      setChecked_umbilical(await AsyncStorage.getItem('isChecked_umbilical')=='true');
+
+      setChecked_injuries(await AsyncStorage.getItem('checked_injuries'));
+      setChecked_accident(await AsyncStorage.getItem('checked_accident'));
+      setChecked_sprains(await AsyncStorage.getItem('checked_sprains'));
+      setChecked_luxuries_fractures(await AsyncStorage.getItem('checked_luxuries_fractures'));
+
+      setIsEnabled_sleepingpb(await AsyncStorage.getItem('isEnabled_sleepingpb')=='true');
+      setSelectedsleep(await AsyncStorage.getItem('selectedsleep'));
+      setChecked_dis_sleep(await AsyncStorage.getItem('checked_dis_sleep'));
+      setChecked_treat_sleep(await AsyncStorage.getItem('checked_treat_sleep'));
+      
+      setDate(new Date(await AsyncStorage.getItem('date')));
+      
+      setChecked_chro(await AsyncStorage.getItem('checked_chro'));
+      setIsEnabled_cancer(await AsyncStorage.getItem('isEnabled_cancer')=='true');
+      onChangeText_loc(await AsyncStorage.getItem('loc_cancer'));
+      onChangeText_phase(await AsyncStorage.getItem('phase_cancer'));
+      onChangeText_treatment(await AsyncStorage.getItem('treatment_cancer'));
+      onChangeText_begin(await AsyncStorage.getItem('begin_cancer'));
+      onChangeText_end(await AsyncStorage.getItem('end_cancer'));
+      setChecked_end(await AsyncStorage.getItem('checked_end'));
+
+      onChangeText_diseasegenetic(await AsyncStorage.getItem('diseasegenetic'));
+      onChangeText_treatment_hyper(await AsyncStorage.getItem('treatment_hyper'));
+      setIsEnabled_hypertension(await AsyncStorage.getItem('isEnabled_hypertension')=='true');
+
+      setIsEnabled_vascular(await AsyncStorage.getItem('isEnabled_vascular')=='true');
+      setIsEnabled_lungs(await AsyncStorage.getItem('isEnabled_lungs')=='true');
+      setChecked_bronchitis(await AsyncStorage.getItem('isChecked_bronchitis')=='true');
+      setChecked_asthma(await AsyncStorage.getItem('isChecked_asthma')=='true');
+      setChecked_respiratoryinsuf(await AsyncStorage.getItem('isChecked_repiratoryinsuf')=='true');
+
+      setIsEnabled_digestive(await AsyncStorage.getItem('isEnabled_digestive')=='true');
+      setChecked_ulcer(await AsyncStorage.getItem('isChecked_ulcer')=='true');
+      setChecked_gastritis(await AsyncStorage.getItem('isChecked_gastritis')=='true');
+      setChecked_colonirrit(await AsyncStorage.getItem('isChecked_colonirrit')=='true');
+
+      setIsEnabled_kidney(await AsyncStorage.getItem('isEnabled_kidney')=='true');
+      setChecked_stones(await AsyncStorage.getItem('isChecked_stones')=='true');
+      setChecked_renalinsuf(await AsyncStorage.getItem('isChecked_renalinsuf')=='true');
+
+      setIsEnabled_genetic(await AsyncStorage.getItem('isEnabled_genetic')=='true');
+      setIsEnabled_diabetes(await AsyncStorage.getItem('isEnabled_diabetes')=='true');
+      setChecked_treatmentdiabetes(await AsyncStorage.getItem('checked_treatmentdiabetes'));
+      setChecked_treatmentgenetic(await AsyncStorage.getItem('checked_treatmentgenetic'));
+
+      setIsEnabled_infection(await AsyncStorage.getItem('isEnabled_infection')=='true');
+      setChecked_urinary(await AsyncStorage.getItem('isChecked_urinary')=='true');
+      setChecked_sinuses(await AsyncStorage.getItem('isChecked_sinuses')=='true');
+      setChecked_tonsils(await AsyncStorage.getItem('isChecked_tonsils')=='true');
+      setChecked_gallbladder(await AsyncStorage.getItem('isChecked_gallbladder')=='true');
+
+      setIsEnabled_homonalpb(await AsyncStorage.getItem('isEnabled_hormonalpb')=='true');
+      setChecked_thyroid(await AsyncStorage.getItem('isChecked_thyroid')=='true');
+      setChecked_pituitary(await AsyncStorage.getItem('isChecked_pituitary')=='true');
+      setChecked_polycystics(await AsyncStorage.getItem('isChecked_polycystics')=='true');
+      setChecked_prostate(await AsyncStorage.getItem('isChecked_prostate')=='true');
+
+      setIsEnabled_senses(await AsyncStorage.getItem('isEnabled_senses')=='true');
+      setChecked_sight(await AsyncStorage.getItem('isChecked_sight')=='true');
+      setChecked_touch(await AsyncStorage.getItem('isChecked_touch')=='true');
+      setChecked_taste(await AsyncStorage.getItem('isChecked_taste')=='true');
+      setChecked_smell(await AsyncStorage.getItem('isChecked_smell')=='true');
+      setChecked_hearing(await AsyncStorage.getItem('isChecked_hearing')=='true');
+
     }
     catch(error){
       console.log(error)
@@ -2229,17 +2560,73 @@ const Chapter2 = function() {
               <View style={styles.checkboxview}>
                 <Switch
                   trackColor={{ false: "#767577", true: "cyan" }}
-                  thumbColor={isEnabled_sightpb? "#024e4e" : "#024e4e"}
+                  thumbColor={isEnabled_senses? "#024e4e" : "#024e4e"}
                   ios_backgroundColor="#3e3e3e"
-                  onValueChange={toggleSwitch_sightpb}
-                  value={isEnabled_sightpb}
+                  onValueChange={toggleSwitch_senses}
+                  value={isEnabled_senses}
                 />
-                <Text style={styles.label}> Sight problems </Text>
+                <Text style={styles.label}> Senses disorders </Text>
                 <Text>
                 
                 </Text>
               </View>
             </View>
+            { isEnabled_senses &&
+              <View style={styles.subcontainer2}>
+                <View style={styles.checkboxContainer}>
+                <View style={styles.section_checkbox}>
+                    <Checkbox
+                      style={styles.checkbox}
+                      value={isChecked_sight}
+                      onValueChange={setChecked_sight}
+                      color={isChecked_sight ? 'cyan' : undefined}
+                    />
+                    <Text style={styles.paragraph}>Sight</Text>
+                </View>
+                <View style={styles.section_checkbox}>
+                  <Checkbox
+                    style={styles.checkbox}
+                    value={isChecked_hearing}
+                    onValueChange={setChecked_hearing}
+                    color={isChecked_hearing ? 'cyan' : undefined}
+                  />
+                  <Text style={styles.paragraph}>Hearing</Text>
+                </View>
+
+                <View style={styles.section_checkbox}>
+                  <Checkbox
+                    style={styles.checkbox}
+                    value={isChecked_taste}
+                    onValueChange={setChecked_taste}
+                    color={isChecked_taste ? 'cyan' : undefined}
+                  />
+                  <Text style={styles.paragraph}>Taste</Text>
+                </View>
+
+                <View style={styles.section_checkbox}>
+                  <Checkbox
+                    style={styles.checkbox}
+                    value={isChecked_smell}
+                    onValueChange={setChecked_smell}
+                    color={isChecked_smell ? 'cyan' : undefined}
+                  />
+                  <Text style={styles.paragraph}>Smell</Text>
+                </View>
+
+                <View style={styles.section_checkbox}>
+                  <Checkbox
+                    style={styles.checkbox}
+                    value={isChecked_touch}
+                    onValueChange={setChecked_touch}
+                    color={isChecked_touch ? 'cyan' : undefined}
+                  />
+                  <Text style={styles.paragraph}>Touch</Text>
+                </View>
+
+              </View>
+              
+              </View>
+            }
 
             <View style={styles.switchbox}>
               
@@ -3462,6 +3849,7 @@ const Chapter2 = function() {
             <Text style={styles.paragraph}>Yes</Text>
             <RadioButton
               value="yes"
+              color='cyan'
               status={ checked_allergies === 'yes' ? 'checked' : 'unchecked' }
               onPress={() => setChecked_allergies('yes')}
             />
@@ -3470,6 +3858,7 @@ const Chapter2 = function() {
             <Text style={styles.paragraph}>No</Text>
             <RadioButton
               value="no"
+              color='cyan'
               status={ checked_allergies === 'no' ? 'checked' : 'unchecked' }
               onPress={() => setChecked_allergies('no')}
             />
@@ -3499,6 +3888,7 @@ const Chapter2 = function() {
             <Text style={styles.paragraph}>Yes</Text>
             <RadioButton
               value="yes"
+              color='cyan'
               status={ checked_vax === 'yes' ? 'checked' : 'unchecked' }
               onPress={() => setChecked_vax('yes')}
             />
@@ -3507,6 +3897,7 @@ const Chapter2 = function() {
             <Text style={styles.paragraph}>No</Text>
             <RadioButton
               value="no"
+              color='cyan'
               status={ checked_vax === 'no' ? 'checked' : 'unchecked' }
               onPress={() => setChecked_vax('no')}
             />
@@ -3541,6 +3932,8 @@ const Chapter2 = function() {
               value="yes"
               status={ checked_chro === 'yes' ? 'checked' : 'unchecked' }
               onPress={() => setChecked_chro('yes')}
+              color='cyan'
+
             />
           </View>
           <View style={styles.containerbutton}>
@@ -3549,6 +3942,8 @@ const Chapter2 = function() {
               value="no"
               status={ checked_chro === 'no' ? 'checked' : 'unchecked' }
               onPress={() => setChecked_chro('no')}
+              color='cyan'
+
             />
           </View>
         </View>
@@ -3570,7 +3965,8 @@ const Chapter2 = function() {
 
         }
 
-        <Text style={styles.label}> Any conflict situations at present ? </Text>
+        
+        {/* <Text style={styles.label}> Any conflict situations at present ? </Text>
         <View style={styles.checkboxview}>
           <View style={styles.containerbutton}>
             <Text style={styles.paragraph}>Yes</Text>
@@ -3590,7 +3986,7 @@ const Chapter2 = function() {
               color='cyan'
             />
           </View>
-        </View>
+        </View> */}
 
         <Text style={styles.label}> Did you had any Surgery </Text>
         <View style={styles.checkboxview}>
