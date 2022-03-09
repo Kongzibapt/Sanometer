@@ -325,16 +325,16 @@ return (
             <Picker.Item label="Higher than the standard" value=">standard" />
             <Picker.Item label="Lower than the standard" value="<standard" />
           </Picker>
-          <Text style={styles.label}>Blood glucose</Text>
+          <Text style={styles.label}>Fasting blood sugar test</Text>
           <Picker
             selectedValue={selectedglucose}
             onValueChange={(itemValue, itemIndex) =>
               setSelectedglucose(itemValue)
             }
             mode='dropdown'>
-            <Picker.Item label="In the standard" value="standard" />
-            <Picker.Item label="Higher than the standard" value=">standard" />
-            <Picker.Item label="Lower than the standard" value="<standard" />
+            <Picker.Item label="99mg/dL or lower" value="normal" />
+            <Picker.Item label="100 to 125mg/dL" value="prediabetes" />
+            <Picker.Item label="126mg/dL or higher" value="diabetes" />
           </Picker>
           <Text style={styles.label}>Urea</Text>
           <Picker
