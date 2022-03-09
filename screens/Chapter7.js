@@ -33,7 +33,7 @@ const Chapter7 = function({navigation}) {
   const [selectedggt, setSelectedggt] = react.useState();
   const [selectedvit, setSelectedvit] = react.useState();
   const [selectedtsh, setSelectedtsh] = react.useState();
-  const [selectedpsa, setSelectedpsa] = react.useState();
+  // const [selectedpsa, setSelectedpsa] = react.useState();
 
   const [checked, setChecked] = react.useState('');
   const [checked2, setChecked2] = react.useState('');
@@ -43,7 +43,7 @@ const Chapter7 = function({navigation}) {
   const [visible2, setVisible2] = react.useState(false);
   const [visible3, setVisible3] = react.useState(false);
   const [visible4, setVisible4] = react.useState(false);
-  const [visiblePSA, setVisiblePSA] = react.useState(false);
+  // const [visiblePSA, setVisiblePSA] = react.useState(false);
   const [date_result, setDate] = react.useState(new Date());
   const [date_result2, setDate2] = react.useState(new Date());
   const [date_result3, setDate3] = react.useState(new Date());
@@ -88,9 +88,9 @@ const Chapter7 = function({navigation}) {
   const toggleDropdown4 = () => {
     setVisible4(!visible4);
   };
-  const toggleDropdownPSA = () => {
-    setVisiblePSA(!visiblePSA);
-  };
+  // const toggleDropdownPSA = () => {
+  //   setVisiblePSA(!visiblePSA);
+  // };
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShow(Platform.OS === 'ios');
@@ -156,19 +156,16 @@ const Chapter7 = function({navigation}) {
             onChange={onChange}
           />)}
           <Text style={styles.label}>Result:</Text>
-          <TextInput
-            style={{...styles.input,borderColor:borderColorInput}}
-            onFocus={() => {
-              setBorderColorInput("cyan");
-            }}
-            onBlur={() => {
-              setBorderColorInput("black");
-            }}
-            onChangeText={onChangeText_result}
-            value={result}
-            placeholder="Your result"
-            keyboardType="default"
-          />
+          <Picker
+            selectedValue={selectedhemo}
+            onValueChange={(itemValue, itemIndex) =>
+              setSelectedhemo(itemValue)
+            }
+            mode='dropdown'>
+            <Picker.Item label="< 5,7%" value="normal" />
+            <Picker.Item label="5,7 - 6,4%" value="prediabetes" />
+            <Picker.Item label="> 6,4%" value="diabetes" />
+          </Picker>
       </View>
     );
   }
@@ -281,32 +278,31 @@ const Chapter7 = function({navigation}) {
     );
   }
   };
-  const renderDropdownPSA = () => {
-    if (visiblePSA) {
-    return (
-      <View>
-          <Text style={styles.label}>PSA test</Text>
-          <Picker
-            selectedValue={selectedpsa}
-            onValueChange={(itemValue, itemIndex) =>
-              setSelectedpsa(itemValue)
-            }
-            mode='dropdown'>
-            <Picker.Item label="In the standard" value="standard" />
-            <Picker.Item label="Higher than the standard" value=">standard" />
-            <Picker.Item label="Lower than the standard" value="<standard" />
-          </Picker>
-      </View>
-    );
-  }
-  };
+  // const renderDropdownPSA = () => {
+  //   if (visiblePSA) {
+  //   return (
+  //     <View>
+  //         <Text style={styles.label}>PSA test</Text>
+  //         <Picker
+  //           selectedValue={selectedpsa}
+  //           onValueChange={(itemValue, itemIndex) =>
+  //             setSelectedpsa(itemValue)
+  //           }
+  //           mode='dropdown'>
+  //           <Picker.Item label="In the standard" value="standard" />
+  //           <Picker.Item label="Higher than the standard" value=">standard" />
+  //           <Picker.Item label="Lower than the standard" value="<standard" />
+  //         </Picker>
+  //     </View>
+  //   );
+  // }
+  // };
 return (
   <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
 
        <Text  style = {styles.headerText}>Your paraclinical data : inferior to 3 months : </Text>
           <Text style={styles.label}>List analysis</Text>
-          <Text style={styles.label}>{birthdate}</Text>
           <Text style={styles.label}>Complete hemoleucogram</Text>
           <Picker
             selectedValue={selectedhemo}
@@ -329,16 +325,16 @@ return (
             <Picker.Item label="Higher than the standard" value=">standard" />
             <Picker.Item label="Lower than the standard" value="<standard" />
           </Picker>
-          <Text style={styles.label}>Blood glucose</Text>
+          <Text style={styles.label}>Fasting blood sugar test</Text>
           <Picker
             selectedValue={selectedglucose}
             onValueChange={(itemValue, itemIndex) =>
               setSelectedglucose(itemValue)
             }
             mode='dropdown'>
-            <Picker.Item label="In the standard" value="standard" />
-            <Picker.Item label="Higher than the standard" value=">standard" />
-            <Picker.Item label="Lower than the standard" value="<standard" />
+            <Picker.Item label="99mg/dL or lower" value="normal" />
+            <Picker.Item label="100 to 125mg/dL" value="prediabetes" />
+            <Picker.Item label="126mg/dL or higher" value="diabetes" />
           </Picker>
           <Text style={styles.label}>Urea</Text>
           <Picker
@@ -430,7 +426,7 @@ return (
           </Picker>
 
           {/*if it is a men > 65 years old, ask for the PSA : &&(Chapter1.checked === 'male')*/}
-          {((birthdate-currentDate)>65) && 
+          {/* {((birthdate-currentDate)>65) && 
           <View style={styles.container}>
             <TouchableOpacity
               style={styles.button}
@@ -445,7 +441,7 @@ return (
             
             </TouchableOpacity>  
           </View>
-        }  
+        }   */}
           
           {/*???? PT diabetics and blood glucose> 1g */}
 
