@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import react from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, Linking } from 'react-native';
 import { SafeAreaView, TextInput, ScrollView, TouchableOpacity} from "react-native";
 import { Slider, Icon } from 'react-native-elements';
 import { RadioButton } from 'react-native-paper';
@@ -266,6 +266,10 @@ const Chapter6 = function() {
           <Picker.Item label="Normal" value="normal" />
         </Picker>
         <Text style={styles.label}>Caloric intake</Text>
+        <Text style={styles.link}
+          onPress={() => Linking.openURL('https://www.freedieting.com/')}>
+          Tool to calculate your caloric intake
+        </Text>
         <Picker
           selectedValue={selectedcaloric}
           onValueChange={(itemValue, itemIndex) =>
@@ -545,6 +549,12 @@ const styles = StyleSheet.create({
     color: 'black',
     fontFamily:"Montserrat_700Bold",
     margin: 12,
+  },
+  link:{
+    fontSize: 16,
+    color: 'blue',
+    fontFamily:"Montserrat_400Regular",
+    margin: 10,
   },
   symboldrop:{
     flex:1,
