@@ -11,9 +11,13 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import DatePicker from 'react-native-date-picker';
 import Checkbox from 'expo-checkbox';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { ActivityIndicator } from 'react-native';
 
 
-const Chapter2 = function() {
+const Chapter2 = function({navigation}) {
+
+  const [dataIsReady,setDataIsReady] = react.useState(false);
+
   const [isEnabled_treatmentinfection, setIsEnabled_treatmentinfection] = react.useState(false);
   const toggleSwitch_treatmentinfection = () => setIsEnabled_treatmentinfection(previousState => !previousState);
   const [isEnabled_treatmentnaturist, setIsEnabled_treatmentnaturist] = react.useState(false);
@@ -406,7 +410,7 @@ const Chapter2 = function() {
       checked_toxic && await AsyncStorage.setItem('checked_toxic',checked_toxic);
       checked_sport && await AsyncStorage.setItem('checked_sport',checked_sport);
       selectedage && await AsyncStorage.setItem('selectedage',selectedage);
-      value && await AsyncStorage.setItem('value',value);
+      value && await AsyncStorage.setItem('value',value.toString());
       checked_urinate && await AsyncStorage.setItem('checked_urinate',checked_urinate);
 
       checked && await AsyncStorage.setItem('checked',checked);
@@ -582,7 +586,7 @@ const Chapter2 = function() {
       isChecked_touch &&await AsyncStorage.setItem('isChecked_touch',isChecked_touch.toString());
       isChecked_taste &&await AsyncStorage.setItem('isChecked_taste',isChecked_taste.toString());
       isChecked_hearing &&await AsyncStorage.setItem('isChecked_hearing',isChecked_hearing.toString());
-
+      navigation.navigate("Chapter 3");
       
   
     }
@@ -624,7 +628,8 @@ const Chapter2 = function() {
       setChecked_toxic(await AsyncStorage.getItem('checked_toxic'));
       setChecked_sport(await AsyncStorage.getItem('checked_sport'));
       setSelectedage(await AsyncStorage.getItem('selectedage'));
-      setValue(await AsyncStorage.getItem('value'));
+      const pEff = await AsyncStorage.getItem('value');
+        {pEff !== null ? setValue(parseInt(pEff)) : null};
       setChecked_urinate(await AsyncStorage.getItem('checked_urinate'));
 
       setChecked(await AsyncStorage.getItem('checked'));
@@ -806,7 +811,9 @@ const Chapter2 = function() {
   }
 
   useEffect(()=>{
-    getChapterInfos();
+    getChapterInfos().then(()=>{
+      setDataIsReady(true);
+    });
   },[])
 
   const renderDropdown_female = () => {
@@ -3839,6 +3846,9 @@ const Chapter2 = function() {
 
   return (
     <SafeAreaView style={styles.container}>
+      {!dataIsReady ?
+      <ActivityIndicator size='large' color='black'/>
+      :
       <ScrollView style={styles.scrollView}>
 
         <Text  style = {styles.headerText}>Medical Data : </Text>
@@ -4186,7 +4196,7 @@ const Chapter2 = function() {
           <View style={{margin:5}}>
             <Button title="Submit" onPress={submitChapter2} color="#4bcbd6"/>
           </View>
-      </ScrollView>
+      </ScrollView>}
     </SafeAreaView>
   );
 }
@@ -4198,7 +4208,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#4bcbd6",
     borderWidth: 1,
     padding:5,
-    
+    display:'flex',
+    justifyContent:'center'
   },
   subcontainer:{
     backgroundColor: '#4bcbd6',
