@@ -1,13 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
-import react from 'react';
-import { StyleSheet, Text, View, Button, Linking } from 'react-native';
+import react , { useEffect } from 'react';
+import { StyleSheet, Text, View, Button, Linking,ActivityIndicator } from 'react-native';
 import { SafeAreaView, TextInput, ScrollView, TouchableOpacity} from "react-native";
 import { Slider, Icon } from 'react-native-elements';
 import { RadioButton } from 'react-native-paper';
 import {Picker} from '@react-native-picker/picker';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const Chapter6 = function() {
+const Chapter6 = function({navigation}) {
   
+  const [selectedanalysis, setSelectedanalysis] = react.useState();
   const [selectedperim, setSelectedperim] = react.useState();
   const [selectedslope, setSelectedslope] = react.useState();
   const [selectedfreq, setSelectedfreq] = react.useState();
@@ -34,6 +36,76 @@ const Chapter6 = function() {
   const [frequency, onChangeText_frequency] = react.useState(null);
   const [method, onChangeText_method] = react.useState(null);
   const [age, onChangeText_age] = react.useState(null);
+
+  const [dataIsReady,setDataIsReady]=react.useState(false);
+
+  const submitChapter6 = async () => {
+    try {     
+      selectedperim && await AsyncStorage.setItem('selectedperim',selectedperim);
+      selectedslope && await AsyncStorage.setItem('selectedslope',selectedslope);
+      selectedfreq && await AsyncStorage.setItem('selectedfreq',selectedfreq);
+      selectedfreq2 && await AsyncStorage.setItem('selectedfreq2',selectedfreq2);
+      selectedcaloric && await AsyncStorage.setItem('selectedcaloric',selectedcaloric);
+      selectedsport && await AsyncStorage.setItem('selectedsport',selectedsport);
+      selectedanalysis && await AsyncStorage.setItem('selectedanalysis',selectedanalysis);
+
+      checked && await AsyncStorage.setItem('checked',checked);
+      checked2 && await AsyncStorage.setItem('checked2',checked2);
+      checked3&& await AsyncStorage.setItem('checked3',checked3);
+      checked4&& await AsyncStorage.setItem('checked4',checked4);
+      checked5&& await AsyncStorage.setItem('checked5',checked5);
+      checked6&& await AsyncStorage.setItem('checked6',checked6);
+      checked7&& await AsyncStorage.setItem('checked7',checked7);
+
+      period && await AsyncStorage.setItem('period',period);
+      amount && await AsyncStorage.setItem('amount',amount);
+      frequency && await AsyncStorage.setItem('frequency',frequency);
+      method && await AsyncStorage.setItem('method',method);
+      age && await AsyncStorage.setItem('age',age);
+
+
+      navigation.navigate("Chapter 7");
+      
+  }
+  catch (error) {
+      console.log(error)
+  }
+  }
+
+  const getChapterInfos = async () => {
+    try { 
+        setSelectedanalysis(await AsyncStorage.getItem('selectedanalysis'));    
+        setSelectedperim(await AsyncStorage.getItem('selectedperim'));
+        setSelectedslope(await AsyncStorage.getItem('selectedslope'));
+        setSelectedfreq(await AsyncStorage.getItem('selectedfreq'));
+        setSelectedfreq2(await AsyncStorage.getItem('selectedfreq2'));
+        setSelectedcaloric(await AsyncStorage.getItem('selectedcaloric'));
+        setSelectedsport(await AsyncStorage.getItem('selectedsport'));
+
+        setChecked(await AsyncStorage.getItem('checked'));
+        setChecked2(await AsyncStorage.getItem('checked2'));
+        setChecked3(await AsyncStorage.getItem('checked3'));
+        setChecked4(await AsyncStorage.getItem('checked4'));
+        setChecked5(await AsyncStorage.getItem('checked5'));
+        setChecked6(await AsyncStorage.getItem('checked6'));
+        setChecked7(await AsyncStorage.getItem('checked7'));
+
+        onChangeText_period(await AsyncStorage.getItem('period'));
+        onChangeText_amount(await AsyncStorage.getItem('amount'));
+        onChangeText_frequency(await AsyncStorage.getItem('frequency'));
+        onChangeText_method(await AsyncStorage.getItem('method'));
+        onChangeText_age(await AsyncStorage.getItem('age'));
+    }
+    catch (error) {
+        console.log(error)
+    }
+  }
+
+  useEffect(()=>{
+    getChapterInfos().then(()=>{
+      setDataIsReady(true);
+    });
+  },[])
 
   const toggleDropdown = () => {
     setVisible(!visible);
@@ -229,6 +301,9 @@ const Chapter6 = function() {
   };
   return (
     <SafeAreaView style={styles.container}>
+      {!dataIsReady ?
+      <ActivityIndicator size='large' color='black'/>
+      :
       <ScrollView style={styles.scrollView}>
       <Text  style = {styles.headerText}>Enter your data about your life style: </Text>
         <Text  style = {styles.label}>Tolerance to the effort: </Text>
@@ -256,7 +331,7 @@ const Chapter6 = function() {
         </Picker>
         <Text style={styles.label}>Diet:</Text>
         <Picker
-          selectedValue={selectedslope}
+          selectedValue={selectedanalysis}
           onValueChange={(itemValue, itemIndex) =>
             setSelectedanalysis(itemValue)
           }
@@ -525,7 +600,11 @@ const Chapter6 = function() {
           <Picker.Item label="Basketball" value="basketball" />
           <Picker.Item label="Running" value="running" />
         </Picker>
+        <View style={{margin:5}}>
+          <Button title="Submit" onPress={submitChapter6} color="#4bcbd6"/>
+        </View>
       </ScrollView>
+      }
     </SafeAreaView>
   );
 }
