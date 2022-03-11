@@ -1,13 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
 import react, { useEffect } from 'react';
-import { StyleSheet, Text, View,Button } from 'react-native';
+import { StyleSheet, Text, View,Button, ActivityIndicator } from 'react-native';
 import { SafeAreaView, TextInput, ScrollView, TouchableOpacity} from "react-native";
 import { Slider, Icon } from 'react-native-elements';
 import { RadioButton } from 'react-native-paper';
 import {Picker} from '@react-native-picker/picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const Chapter3 = function() {
+const Chapter3 = function({navigation}) {
+
+  const [dataIsReady,setDataIsReady] = react.useState(false);
 
   const [StandardProgressiveMatrices, onChangeText1] = react.useState(null);
   const [BeckDepressionInventory, onChangeText2] = react.useState(null);
@@ -23,9 +25,7 @@ const Chapter3 = function() {
       BeckDepressionInventory && await AsyncStorage.setItem('BeckDepressionInventory',BeckDepressionInventory);
       SPM && await AsyncStorage.setItem('SPM',SPM);
       BDI && await AsyncStorage.setItem('BDI',BDI);
-      visible1 && await AsyncStorage.setItem('visible1',visible1.toString());
-      visible2 && await AsyncStorage.setItem('visible2',visible2.toString());
-      borderColorInput && await AsyncStorage.setItem('borderColorInput',borderColorInput);
+      navigation.navigate("Chapter 4");
     }
     catch (error) {
       console.log(error)
@@ -38,9 +38,6 @@ const Chapter3 = function() {
       onChangeText2(await AsyncStorage.getItem('BeckDepressionInventory'));
       setSPM(await AsyncStorage.getItem('SPM'));
       setBDI(await AsyncStorage.getItem('BDI'));
-      setVisible1(await AsyncStorage.getItem('visible1')=='true');
-      setVisible2(await AsyncStorage.getItem('visible2')=='true');
-      setBorderColorInput(await AsyncStorage.getItem('borderColorInput'));
     }
     catch (error) {
       console.log(error)
@@ -48,7 +45,9 @@ const Chapter3 = function() {
   }
 
   useEffect(()=>{
-    getChapterInfos();
+    getChapterInfos().then(()=>{
+      setDataIsReady(true);
+    });
   },[])
 
 
@@ -126,6 +125,9 @@ const Chapter3 = function() {
   
   return (
     <SafeAreaView style={styles.container}>
+      {!dataIsReady ?
+      <ActivityIndicator size='large' color='black'/>
+      :
       <ScrollView style={styles.scrollView}>
         <Text style = {styles.headerText}>Psychological data : </Text>
         <Text style={styles.label}>Did you do the Standard Progressive Matrices Test ?</Text>
@@ -201,7 +203,11 @@ const Chapter3 = function() {
         <View style={{margin:5}}>
           <Button title="Submit" onPress={submitChapter3} color="#4bcbd6"/>
         </View>
+        <View style={{margin:5}}>
+          <Button title="Home" onPress={() => navigation.navigate("Home")} color="#4bcbd6"/>
+      </View>
       </ScrollView>
+    }
     </SafeAreaView>
   );
 }

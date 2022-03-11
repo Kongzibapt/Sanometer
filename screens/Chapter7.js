@@ -1,12 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import react, { useEffect } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, ActivityIndicator } from 'react-native';
 import { SafeAreaView, TextInput, ScrollView, TouchableOpacity} from "react-native";
 import { Slider, Icon } from 'react-native-elements';
 import { RadioButton } from 'react-native-paper';
 import {Picker} from '@react-native-picker/picker';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import React from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Chapter7 = function({navigation}) {
 
@@ -88,10 +89,10 @@ const Chapter7 = function({navigation}) {
       visible2 && await AsyncStorage.setItem('visible2',visible2);
       visible3 && await AsyncStorage.setItem('visible3',visible3);
       visible4 && await AsyncStorage.setItem('visible4',visible4);
-      date_result && await AsyncStorage.setItem('date_result',date_result);
-      date_result2 && await AsyncStorage.setItem('date_result2',date_result2);
-      date_result3 && await AsyncStorage.setItem('date_result3',date_result3);
-      date_result4 && await AsyncStorage.setItem('date_result4',date_result4);
+      date_result && await AsyncStorage.setItem('date_result',date_result.toString());
+      date_result2 && await AsyncStorage.setItem('date_result2',date_result2.toString());
+      date_result3 && await AsyncStorage.setItem('date_result3',date_result3.toString());
+      date_result4 && await AsyncStorage.setItem('date_result4',date_result4.toString());
       mode && await AsyncStorage.setItem('mode',mode);
       mode2 && await AsyncStorage.setItem('mode2',mode2);
       mode3 && await AsyncStorage.setItem('mode3',mode3);
@@ -748,6 +749,12 @@ return (
             </TouchableOpacity>  
           </View>
         }
+      <View style={{margin:5}}>
+        <Button title="Submit" onPress={submitChapter7} color="#4bcbd6"/>
+      </View>
+      <View style={{margin:5}}>
+          <Button title="Home" onPress={() => navigation.navigate("Home")} color="#4bcbd6"/>
+      </View>
       </ScrollView>
     }
     </SafeAreaView>

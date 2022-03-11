@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import react, { useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView, TextInput, ScrollView, Button, TouchableOpacity} from "react-native";
 import { Slider, Icon } from 'react-native-elements';
 import { RadioButton } from 'react-native-paper';
@@ -11,6 +11,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const Chapter4 = function({navigation}) {
+
+const [dataIsReady,setDataIsReady] = useState(false);
+
   const [isTestPerformed, setIsTestPerformed] = useState(false);
   const toggleSwitch = () => setIsTestPerformed(previousState => !previousState);
   const [MMSCEIT1, setMMSCEIT1] = useState(-1);
@@ -252,6 +255,9 @@ const renderDropdown2 = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+       {!dataIsReady ?
+      <ActivityIndicator size='large' color='black'/>
+      :
       <ScrollView style={styles.scrollView}>
       <Text  style = {styles.headerText}>Enter your data about your emotional profile: </Text>
       <Text style={styles.label}>Have you performed the MMSCEIT V 2.0 test ?</Text>
@@ -336,6 +342,7 @@ const renderDropdown2 = () => {
           <Button title="Home" onPress={() => navigation.navigate("Home")} color="#4bcbd6"/>
       </View>
       </ScrollView>
+    }
     </SafeAreaView>
   );
 }
