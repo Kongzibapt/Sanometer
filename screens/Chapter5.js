@@ -138,6 +138,9 @@ const Chapter5 = function({navigation}) {
         <View style={{margin:5}}>
           <Button title="Submit" onPress={submitChapter5} color="#4bcbd6"/>
         </View>
+        <View style={{margin:5}}>
+          <Button title="Home" onPress={() => navigation.navigate("Home")} color="#4bcbd6"/>
+        </View>
       </ScrollView>
     }
     </SafeAreaView>

@@ -4196,6 +4196,9 @@ const Chapter2 = function({navigation}) {
           <View style={{margin:5}}>
             <Button title="Submit" onPress={submitChapter2} color="#4bcbd6"/>
           </View>
+          <View style={{margin:5}}>
+            <Button title="Home" onPress={() => navigation.navigate("Home")} color="#4bcbd6"/>
+          </View>
       </ScrollView>}
     </SafeAreaView>
   );
