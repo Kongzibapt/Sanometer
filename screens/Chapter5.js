@@ -1,13 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
-import react from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import react , { useEffect }from 'react';
+import { StyleSheet, Text, View , ActivityIndicator, Button} from 'react-native';
 import { SafeAreaView, TextInput, ScrollView} from "react-native";
 import { Slider, Icon } from 'react-native-elements';
 import { RadioButton } from 'react-native-paper';
 import {Picker} from '@react-native-picker/picker';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const Chapter5 = function() {
+const Chapter5 = function({navigation}) {
 
   const [height, onChangeText1] = react.useState(null);
   const [weight, onChangeText2] = react.useState(null);
@@ -16,6 +17,45 @@ const Chapter5 = function() {
   const [ankle_perim, onChangeText5] = react.useState(null);
   const [pressure, onChangeText6] = react.useState(null);
   const [pulse, onChangeText7] = react.useState(null);
+  const [dataIsReady,setDataIsReady]=react.useState(false);
+
+  const submitChapter5 = async () => {
+    try {     
+      height && await AsyncStorage.setItem('height',height);
+      weight && await AsyncStorage.setItem('weight',weight);
+      abdominal_param && await AsyncStorage.setItem('abdominal_param',abdominal_param);
+      thigh_perim && await AsyncStorage.setItem('thigh_perim',thigh_perim);
+      ankle_perim && await AsyncStorage.setItem('ankle_perim',ankle_perim);
+      pressure && await AsyncStorage.setItem('pressure',pressure);
+      pulse && await AsyncStorage.setItem('pulse',pulse);
+      navigation.navigate("Chapter 6");
+      
+  }
+  catch (error) {
+      console.log(error)
+  }
+  }
+
+  const getChapterInfos = async () => {
+    try {     
+        onChangeText1(await AsyncStorage.getItem('height'));
+        onChangeText2(await AsyncStorage.getItem('weight'));
+        onChangeText3(await AsyncStorage.getItem('abdominal_param'));
+        onChangeText4(await AsyncStorage.getItem('thigh_perim'));
+        onChangeText5(await AsyncStorage.getItem('ankle_perim'));
+        onChangeText6(await AsyncStorage.getItem('pressure'));
+        onChangeText7(await AsyncStorage.getItem('pulse'));
+    }
+    catch (error) {
+        console.log(error)
+    }
+  }
+
+  useEffect(()=>{
+    getChapterInfos().then(()=>{
+      setDataIsReady(true);
+    });
+  },[])
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -34,6 +74,9 @@ const Chapter5 = function() {
 
   return (
     <SafeAreaView style={styles.container}>
+      {!dataIsReady ?
+      <ActivityIndicator size='large' color='black'/>
+      :
       <ScrollView style={styles.scrollView}>
         <Text  style = {styles.headerText}>Enter your physical parameters : </Text>
         <Text style={styles.label}>Height</Text>
@@ -92,7 +135,11 @@ const Chapter5 = function() {
           placeholder="Your pulse"
           keyboardType="default"
         />
+        <View style={{margin:5}}>
+          <Button title="Submit" onPress={submitChapter5} color="#4bcbd6"/>
+        </View>
       </ScrollView>
+    }
     </SafeAreaView>
   );
 }
