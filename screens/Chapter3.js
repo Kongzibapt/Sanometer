@@ -5,7 +5,7 @@ import { SafeAreaView, TextInput, ScrollView, TouchableOpacity} from "react-nati
 import { Slider, Icon } from 'react-native-elements';
 import { RadioButton } from 'react-native-paper';
 import {Picker} from '@react-native-picker/picker';
-import { AsyncStorage } from '@react-native-async-storage/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Chapter3 = function() {
 
@@ -19,13 +19,13 @@ const Chapter3 = function() {
 
   const submitChapter3 = async () => {
     try {     
-      await AsyncStorage.setItem('StandardProgressiveMatrices',StandardProgressiveMatrices);
-      await AsyncStorage.setItem('BeckDepressionInventory',BeckDepressionInventory);
-      await AsyncStorage.setItem('SPM',SPM);
-      await AsyncStorage.setItem('BDI',BDI);
-      await AsyncStorage.setItem('visible1',visible1.toString());
-      await AsyncStorage.setItem('visible2',visible2.toString());
-      await AsyncStorage.setItem('borderColorInput',borderColorInput);
+      StandardProgressiveMatrices && await AsyncStorage.setItem('StandardProgressiveMatrices',StandardProgressiveMatrices);
+      BeckDepressionInventory && await AsyncStorage.setItem('BeckDepressionInventory',BeckDepressionInventory);
+      SPM && await AsyncStorage.setItem('SPM',SPM);
+      BDI && await AsyncStorage.setItem('BDI',BDI);
+      visible1 && await AsyncStorage.setItem('visible1',visible1.toString());
+      visible2 && await AsyncStorage.setItem('visible2',visible2.toString());
+      borderColorInput && await AsyncStorage.setItem('borderColorInput',borderColorInput);
     }
     catch (error) {
       console.log(error)
