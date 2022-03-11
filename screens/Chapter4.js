@@ -1,15 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
-import react from 'react';
+import react, { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { SafeAreaView, TextInput, ScrollView, TouchableOpacity} from "react-native";
+import { SafeAreaView, TextInput, ScrollView, Button, TouchableOpacity} from "react-native";
 import { Slider, Icon } from 'react-native-elements';
 import { RadioButton } from 'react-native-paper';
 import {Picker} from '@react-native-picker/picker';
 import { Switch } from 'react-native-elements/dist/switch/switch';
 import { useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-const Chapter4 = function() {
+const Chapter4 = function({navigation}) {
   const [isTestPerformed, setIsTestPerformed] = useState(false);
   const toggleSwitch = () => setIsTestPerformed(previousState => !previousState);
   const [MMSCEIT1, setMMSCEIT1] = useState(-1);
@@ -26,6 +27,50 @@ const Chapter4 = function() {
   const [painDurationTime, setPainDurationTime] = react.useState();
   const [painDurationSituation, setPainDurationSituation] = react.useState();
   const [medicineTaken, setMedicineTaken] = react.useState();
+
+  const submitChapter4 = async () => {
+    try {
+      isTestPerformed && await AsyncStorage.setItem('isTestPerformed',isTestPerformed);
+      MMSCEIT1 && await AsyncStorage.setItem('MMSCEIT1',MMSCEIT1);
+      MMSCEIT2 && await AsyncStorage.setItem('MMSCEIT2',MMSCEIT2);
+      MMSCEIT3 && await AsyncStorage.setItem('MMSCEIT3',MMSCEIT3);
+      MMSCEIT4 && await AsyncStorage.setItem('MMSCEIT4',MMSCEIT4);
+      selectedPainLocation && await AsyncStorage.setItem('selectedPainLocation',selectedPainLocation);
+      painIntensity && await AsyncStorage.setItem('painIntensity',painIntensity);
+      painDurationTime && await AsyncStorage.setItem('painDurationTime',painDurationTime);
+      painDurationSituation && await AsyncStorage.setItem('painDurationSituation',painDurationSituation);
+      medicineTaken && await AsyncStorage.setItem('medicineTaken',medicineTaken);
+      navigation.navigate("Chapter 5");
+
+  }
+  catch (error) {
+      console.log(error)
+  }
+  }
+
+  const getChapterInfos = async () => {
+    try {
+        setIsTestPerformed(await AsyncStorage.getItem('isTestPerformed'));
+        setMMSCEIT1(await AsyncStorage.getItem('MMSCEIT1'));
+        setMMSCEIT2(await AsyncStorage.getItem('MMSCEIT2'));
+        setMMSCEIT3(await AsyncStorage.getItem('MMSCEIT3'));
+        setMMSCEIT4(await AsyncStorage.getItem('MMSCEIT4'));
+        setSelectedPainLocation(await AsyncStorage.getItem('setSelectedPainLocation'));
+        setPainIntensity(await AsyncStorage.getItem('painIntensity'));
+        setPainDurationTime(await AsyncStorage.getItem('painDurationTime'));
+        setPainDurationSituation(await AsyncStorage.getItem('painDurationSituation'));
+        setMedicineTaken(await AsyncStorage.getItem('medicineTaken'));
+    }
+    catch (error) {
+        console.log(error)
+    }
+  }
+
+  useEffect(()=>{
+    getChapterInfos().then(()=>{
+      setDataIsReady(true);
+    });
+  },[])
 
 
   const toggleDropdown = () => {
@@ -284,6 +329,9 @@ const renderDropdown2 = () => {
           </TouchableOpacity>
         </View>
       }
+      <View style={{margin:5}}>
+        <Button title="Submit" onPress={submitChapter4} color="#4bcbd6"/>
+      </View>
       </ScrollView>
     </SafeAreaView>
   );
