@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
-import react from 'react';
+import react, { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { SafeAreaView, TextInput, ScrollView, TouchableOpacity} from "react-native";
+import { SafeAreaView, TextInput, ScrollView, Button, TouchableOpacity} from "react-native";
 import { Slider, Icon } from 'react-native-elements';
 import { RadioButton } from 'react-native-paper';
 import {Picker} from '@react-native-picker/picker';
