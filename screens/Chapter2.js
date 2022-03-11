@@ -11,9 +11,13 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import DatePicker from 'react-native-date-picker';
 import Checkbox from 'expo-checkbox';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { ActivityIndicator } from 'react-native';
 
 
 const Chapter2 = function({navigation}) {
+
+  const [dataIsReady,setDataIsReady] = react.useState(false);
+
   const [isEnabled_treatmentinfection, setIsEnabled_treatmentinfection] = react.useState(false);
   const toggleSwitch_treatmentinfection = () => setIsEnabled_treatmentinfection(previousState => !previousState);
   const [isEnabled_treatmentnaturist, setIsEnabled_treatmentnaturist] = react.useState(false);
@@ -807,7 +811,9 @@ const Chapter2 = function({navigation}) {
   }
 
   useEffect(()=>{
-    getChapterInfos();
+    getChapterInfos().then(()=>{
+      setDataIsReady(true);
+    });
   },[])
 
   const renderDropdown_female = () => {
@@ -3840,6 +3846,9 @@ const Chapter2 = function({navigation}) {
 
   return (
     <SafeAreaView style={styles.container}>
+      {!dataIsReady ?
+      <ActivityIndicator size='large' color='black'/>
+      :
       <ScrollView style={styles.scrollView}>
 
         <Text  style = {styles.headerText}>Medical Data : </Text>
@@ -4187,7 +4196,7 @@ const Chapter2 = function({navigation}) {
           <View style={{margin:5}}>
             <Button title="Submit" onPress={submitChapter2} color="#4bcbd6"/>
           </View>
-      </ScrollView>
+      </ScrollView>}
     </SafeAreaView>
   );
 }
@@ -4199,7 +4208,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#4bcbd6",
     borderWidth: 1,
     padding:5,
-    
+    display:'flex',
+    justifyContent:'center'
   },
   subcontainer:{
     backgroundColor: '#4bcbd6',

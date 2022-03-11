@@ -45,7 +45,7 @@ function HomeScreen({ navigation }) {
   const [lastname,setLastname] = React.useState("");
 
   const getInfos = async () => {
-    try {     
+    try {
       const lastname = await AsyncStorage.getItem('lastname');
       setLastname(lastname);
       const firstname = await AsyncStorage.getItem('firstname');
@@ -62,16 +62,16 @@ function HomeScreen({ navigation }) {
     });
     getInfos();
   },[])
- 
+
 
   return (
     <View style={styles.homepage}>
-      
+
       <View style={{ flex: 1,justifyContent: 'center',alignItems:'center', backgroundColor:'#18acb9', height:"130%", flexGrow:2}}>
         <Image source={require('./logo.png')} style={{ width: 100, height: 80, position:'absolute', top:200, left:20 }}/>
         <Text style={styles.labelname}>Hi {firstname} !</Text>
         <Image source={require('./photo.jpg')} style={{ width: 100, height: 100,position:'absolute', top:10, left:20 }}/>
-        
+
         <View style={styles.containerbutton}>
         <View style={styles.button}>
           <Button
@@ -98,7 +98,7 @@ function HomeScreen({ navigation }) {
         </View>
         <View style={styles.button}>
           <Button
-            title="Chapter 4"
+            title="Emotional profile"
             style={styles.button}
             onPress={() => navigation.navigate('Chapter 4')}
             color="#18acb9"
@@ -166,7 +166,7 @@ export default function App() {
         <Stack.Navigator initialRouteName="AppLoading">
           <Stack.Screen name="AppLoading" component={AppLoading} />
         </Stack.Navigator>
-      </NavigationContainer>  
+      </NavigationContainer>
     );
   } else {
   return (
@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
     width:"100%",
     justifyContent: 'center',
     position:'relative',
-    
+
   },
   containerbutton : {
     position:'relative',
@@ -213,8 +213,8 @@ const styles = StyleSheet.create({
   input: {
     flex:0.2,
     height: 40,
-    // margin: 12, 
-    marginBottom:15,   
+    // margin: 12,
+    marginBottom:15,
     borderWidth: 1,
     padding: 10,
     backgroundColor:'white',
@@ -226,8 +226,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: 'white',
     fontFamily:"Montserrat_400Regular",
-    position:'absolute', 
-    top:120, 
+    position:'absolute',
+    top:120,
     left:17,
 
   },

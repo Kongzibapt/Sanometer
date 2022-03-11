@@ -6,7 +6,6 @@ import { Slider, Icon } from 'react-native-elements';
 import { RadioButton } from 'react-native-paper';
 import {Picker} from '@react-native-picker/picker';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import React from 'react';
 
 const Chapter7 = function({navigation}) {
@@ -17,10 +16,12 @@ const Chapter7 = function({navigation}) {
   const [where, onChangeText_where] = react.useState(null);
   const [where2, onChangeText_where2] = react.useState(null);
   const [where3, onChangeText_where3] = react.useState(null);
+  const [whereHb, onChangeText_whereHb] = react.useState(null);
   const [borderColorInput,setBorderColorInput] = react.useState("black");
   const [start, onChangeText_start] = react.useState(null);
   const [start2, onChangeText_start2] = react.useState(null);
   const [start3, onChangeText_start3] = react.useState(null);
+  const [startHb, onChangeText_startHb] = react.useState(null);
 
   const [selectedhemo, setSelectedhemo] = react.useState();
   const [selectedcrp, setSelectedcrp] = react.useState();
@@ -36,10 +37,12 @@ const Chapter7 = function({navigation}) {
   // const [selectedpsa, setSelectedpsa] = react.useState();
 
   const [checked, setChecked] = react.useState('');
+  const [checkedHb, setCheckedHb] = react.useState('');
   const [checked2, setChecked2] = react.useState('');
   const [checked3, setChecked3] = react.useState('');
   const [checked4, setChecked4] = react.useState('');
   const [visible, setVisible] = react.useState(false);
+  const [visibleHb, setVisibleHb] = react.useState(false);
   const [visible2, setVisible2] = react.useState(false);
   const [visible3, setVisible3] = react.useState(false);
   const [visible4, setVisible4] = react.useState(false);
@@ -59,23 +62,10 @@ const Chapter7 = function({navigation}) {
 
   //pour récupérer la date de naissance
   const [birthdate,setbirthdate] = React.useState("");
-  const getInfos = async () => {
-    try {     
-      const birthdate = await AsyncStorage.getItem('birthdate');
-      setbirthdate(birthdate);
-    }
-    catch (error) {
-        console.log(error)
-    }
-  }
-
-  useEffect(()=>{
-    const unsubscribe = navigation.addListener('focus',() =>{
-      getInfos();
-    });
-    getInfos();
-  },[])
   
+  const toggleDropdownHb = () => {
+    setVisibleHb(!visibleHb);
+  };
   const toggleDropdown = () => {
     setVisible(!visible);
   };
@@ -139,8 +129,8 @@ const Chapter7 = function({navigation}) {
   const showDatepicker4 = () => {
     showMode4('date');
   };
-  const renderDropdown = () => {
-    if (visible) {
+  const renderDropdownHb = () => {
+    if (visibleHb) {
     return (
       <View>
           <Text style={styles.label}>When?</Text>
@@ -165,6 +155,74 @@ const Chapter7 = function({navigation}) {
             <Picker.Item label="< 5,7%" value="normal" />
             <Picker.Item label="5,7 - 6,4%" value="prediabetes" />
             <Picker.Item label="> 6,4%" value="diabetes" />
+          </Picker>
+      </View>
+    );
+  }
+  };
+  const renderDropdown = () => {
+    if (visible) {
+    return (
+      <View>
+          <Text style={styles.label}>Have you done the HbA1C and glucose challenge test ?</Text>
+          <View style={styles.checkboxview}>
+            <View style={styles.containerbutton}>
+              <Text style={styles.paragraph}>Yes</Text>
+              <RadioButton
+                value="yes"
+                status={ checkedHb === 'yes' ? 'checked' : 'unchecked' }
+                onPress={() => setCheckedHb('yes')}
+              />
+            </View>
+            <View style={styles.containerbutton}>
+              <Text style={styles.paragraph}>No</Text>
+              <RadioButton
+                value="no"
+                status={ checkedHb === 'no' ? 'checked' : 'unchecked' }
+                onPress={() => setCheckedHb('no')}
+              />
+            </View>
+          </View>
+
+          {/*when ? result*/}
+           {(checkedHb==="yes") && 
+          <View style={styles.container}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={toggleDropdownHb}
+            >
+              <View style={styles.drop}>
+                <Text style={styles.titledrop}>Fill in your info about your HbA1C test.</Text>
+                <Icon style={styles.symboldrop} type='font-awesome' name='chevron-down'/>
+              </View>
+
+              {renderDropdownHb()}
+            
+            </TouchableOpacity>  
+          </View>
+        }  
+        {/*glycemie a jeun*/}
+        <Text style={styles.label}>What your fasting blood sugar test results are ?</Text>
+          <Picker
+            selectedValue={selectedglucose}
+            onValueChange={(itemValue, itemIndex) =>
+              setSelectedglucose(itemValue)
+            }
+            mode='dropdown'>
+            <Picker.Item label="99mg/dL or lower" value="normal" />
+            <Picker.Item label="100 to 125mg/dL" value="prediabetes" />
+            <Picker.Item label="126mg/dL or higher" value="diabetes" />
+          </Picker>
+          <Text style={styles.label}>What your glucose challenge test results are ?</Text>
+          <Picker
+            selectedValue={selectedcrp}
+            onValueChange={(itemValue, itemIndex) =>
+              setSelectedcrp(itemValue)
+            }
+            mode='dropdown'>
+            <Picker.Item label="In the standard" value="standard" />
+            <Picker.Item label="Higher than the standard" value=">standard" />
+            <Picker.Item label="Lower than the standard" value="<standard" />
           </Picker>
       </View>
     );
@@ -325,17 +383,6 @@ return (
             <Picker.Item label="Higher than the standard" value=">standard" />
             <Picker.Item label="Lower than the standard" value="<standard" />
           </Picker>
-          <Text style={styles.label}>Fasting blood sugar test</Text>
-          <Picker
-            selectedValue={selectedglucose}
-            onValueChange={(itemValue, itemIndex) =>
-              setSelectedglucose(itemValue)
-            }
-            mode='dropdown'>
-            <Picker.Item label="99mg/dL or lower" value="normal" />
-            <Picker.Item label="100 to 125mg/dL" value="prediabetes" />
-            <Picker.Item label="126mg/dL or higher" value="diabetes" />
-          </Picker>
           <Text style={styles.label}>Urea</Text>
           <Picker
             selectedValue={selectedurea}
@@ -443,9 +490,9 @@ return (
           </View>
         }   */}
           
-          {/*???? PT diabetics and blood glucose> 1g */}
+          {/*seulement pour les diabetiques*/}
 
-           <Text style={styles.label}>Is HbA1C and glucose challenge test ?</Text>
+           <Text style={styles.label}>Are you diabetics ?</Text>
           <View style={styles.checkboxview}>
             <View style={styles.containerbutton}>
               <Text style={styles.paragraph}>Yes</Text>
@@ -473,7 +520,7 @@ return (
               onPress={toggleDropdown}
             >
               <View style={styles.drop}>
-                <Text style={styles.titledrop}>Fill in your info about your HbA1C and glucose challenge test.</Text>
+                <Text style={styles.titledrop}>Fill in your info about your diabetic.</Text>
                 <Icon style={styles.symboldrop} type='font-awesome' name='chevron-down'/>
               </View>
 
@@ -482,7 +529,7 @@ return (
             </TouchableOpacity>  
           </View>
         }  
-
+          <Text style={styles.label}></Text>
           <Text style={styles.label}>For vertebral pain: you did MRI ?</Text>
           <View style={styles.checkboxview}>
             <View style={styles.containerbutton}>
