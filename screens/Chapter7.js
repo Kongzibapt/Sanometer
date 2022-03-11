@@ -10,18 +10,14 @@ import React from 'react';
 
 const Chapter7 = function({navigation}) {
 
-  const currentDate = new Date().getDate();
   const [date, onChangeText_date] = react.useState(null);
-  const [result, onChangeText_result] = react.useState(null);
   const [where, onChangeText_where] = react.useState(null);
   const [where2, onChangeText_where2] = react.useState(null);
   const [where3, onChangeText_where3] = react.useState(null);
-  const [whereHb, onChangeText_whereHb] = react.useState(null);
   const [borderColorInput,setBorderColorInput] = react.useState("black");
   const [start, onChangeText_start] = react.useState(null);
   const [start2, onChangeText_start2] = react.useState(null);
   const [start3, onChangeText_start3] = react.useState(null);
-  const [startHb, onChangeText_startHb] = react.useState(null);
 
   const [selectedhemo, setSelectedhemo] = react.useState();
   const [selectedcrp, setSelectedcrp] = react.useState();
@@ -60,9 +56,116 @@ const Chapter7 = function({navigation}) {
   const [mode4, setMode4] = react.useState('date');
   const [show4, setShow4] = react.useState(false);
 
-  //pour récupérer la date de naissance
-  const [birthdate,setbirthdate] = React.useState("");
+  const [dataIsReady,setDataIsReady]=react.useState(false);
   
+  const submitChapter7 = async () => {
+    try {     
+      date && await AsyncStorage.setItem('date',date);
+      where && await AsyncStorage.setItem('where',where);
+      where2 && await AsyncStorage.setItem('where2',where2);
+      where3 && await AsyncStorage.setItem('where3',where3);
+      start && await AsyncStorage.setItem('start',start);
+      start2 && await AsyncStorage.setItem('start2',start2);
+      start3 && await AsyncStorage.setItem('start3',start3);
+      selectedhemo && await AsyncStorage.setItem('selectedhemo',selectedhemo);
+      selectedcrp && await AsyncStorage.setItem('selectedcrp',selectedcrp);
+      selectedglucose && await AsyncStorage.setItem('selectedglucose',selectedglucose);
+      selectedurea && await AsyncStorage.setItem('selectedurea',selectedurea);
+      selectedcrea && await AsyncStorage.setItem('selectedcrea',selectedcrea);
+      selectedlipi && await AsyncStorage.setItem('selectedlipi',selectedlipi);
+      selectedgot && await AsyncStorage.setItem('selectedgot',selectedgot);
+      selectedgpt && await AsyncStorage.setItem('selectedgpt',selectedgpt);
+      selectedggt && await AsyncStorage.setItem('selectedggt',selectedggt);
+      selectedvit && await AsyncStorage.setItem('selectedvit',selectedvit);
+      selectedtsh && await AsyncStorage.setItem('selectedtsh',selectedtsh);
+      checked && await AsyncStorage.setItem('checked',checked);
+      checkedHb && await AsyncStorage.setItem('checkedHb',checkedHb);
+      checked2 && await AsyncStorage.setItem('checked2',checked2);
+      checked3 && await AsyncStorage.setItem('checked3',checked3);
+      checked4 && await AsyncStorage.setItem('checked4',checked4);
+      visible && await AsyncStorage.setItem('visible',visible);
+      visibleHb && await AsyncStorage.setItem('visibleHb',visibleHb);
+      visible2 && await AsyncStorage.setItem('visible2',visible2);
+      visible3 && await AsyncStorage.setItem('visible3',visible3);
+      visible4 && await AsyncStorage.setItem('visible4',visible4);
+      date_result && await AsyncStorage.setItem('date_result',date_result);
+      date_result2 && await AsyncStorage.setItem('date_result2',date_result2);
+      date_result3 && await AsyncStorage.setItem('date_result3',date_result3);
+      date_result4 && await AsyncStorage.setItem('date_result4',date_result4);
+      mode && await AsyncStorage.setItem('mode',mode);
+      mode2 && await AsyncStorage.setItem('mode2',mode2);
+      mode3 && await AsyncStorage.setItem('mode3',mode3);
+      mode4 && await AsyncStorage.setItem('mode4',mode4);
+      show && await AsyncStorage.setItem('show',show);
+      show2 && await AsyncStorage.setItem('show2',show2);
+      show3 && await AsyncStorage.setItem('show3',show3);
+      show4 && await AsyncStorage.setItem('show4',show4);
+
+      navigation.navigate("Home");
+      
+  }
+  catch (error) {
+      console.log(error)
+  }
+  }
+
+  const getChapterInfos = async () => {
+    try { 
+      setSelectedhemo(await AsyncStorage.getItem('setSelectedhemo'));   
+      setSelectedcrp(await AsyncStorage.getItem('setSelectedcrp'));   
+      setSelectedglucose(await AsyncStorage.getItem('setSelectedglucose'));    
+      setSelectedurea(await AsyncStorage.getItem('setSelectedurea'));   
+      setSelectedcrea(await AsyncStorage.getItem('setSelectedcrea'));   
+      setSelectedlipi(await AsyncStorage.getItem('setSelectedlipi'));   
+      setSelectedgot(await AsyncStorage.getItem('setSelectedgot'));   
+      setSelectedggt(await AsyncStorage.getItem('setSelectedggt'));   
+      setSelectedgpt(await AsyncStorage.getItem('setSelectedgpt'));   
+      setSelectedvit(await AsyncStorage.getItem('setSelectedvit'));   
+      setSelectedtsh(await AsyncStorage.getItem('setSelectedtsh'));   
+
+      setChecked(await AsyncStorage.getItem('setChecked'));   
+      setCheckedHb(await AsyncStorage.getItem('setCheckedHb'));   
+      setChecked2(await AsyncStorage.getItem('setChecked2'));   
+      setChecked3(await AsyncStorage.getItem('setChecked3'));   
+      setChecked4(await AsyncStorage.getItem('setChecked4'));   
+      setVisible(await AsyncStorage.getItem('setVisible'));   
+      setVisibleHb(await AsyncStorage.getItem('setVisibleHb'));   
+      setVisible2(await AsyncStorage.getItem('setVisible2'));    
+      setVisible3(await AsyncStorage.getItem('setVisible3'));   
+      setVisible4(await AsyncStorage.getItem('setVisible4'));   
+      setDate(await AsyncStorage.getItem('setDate'));   
+      setDate2(await AsyncStorage.getItem('setDate2'));   
+      setDate3(await AsyncStorage.getItem('setDate3'));   
+      setDate4(await AsyncStorage.getItem('setDate4'));   
+      setMode(await AsyncStorage.getItem('setMode'));   
+      setMode2(await AsyncStorage.getItem('setMode2'));    
+      setMode3(await AsyncStorage.getItem('setMode3'));   
+      setMode4(await AsyncStorage.getItem('setMode4'));   
+      setShow(await AsyncStorage.getItem('setShow'));   
+      setShow2(await AsyncStorage.getItem('setShow2'));   
+      setShow3(await AsyncStorage.getItem('setShow3')); 
+      setShow4(await AsyncStorage.getItem('setShow4'));  
+      
+      onChangeText_date(await AsyncStorage.getItem('date'));
+      onChangeText_where(await AsyncStorage.getItem('where'));
+      onChangeText_where2(await AsyncStorage.getItem('where2'));
+      onChangeText_where3(await AsyncStorage.getItem('where3'));
+      onChangeText_start(await AsyncStorage.getItem('start'));
+      onChangeText_start2(await AsyncStorage.getItem('start2'));
+      onChangeText_start3(await AsyncStorage.getItem('start3'));
+        
+    }
+    catch (error) {
+        console.log(error)
+    }
+  }
+
+  useEffect(()=>{
+    getChapterInfos().then(()=>{
+      setDataIsReady(true);
+    });
+  },[])
+
   const toggleDropdownHb = () => {
     setVisibleHb(!visibleHb);
   };
@@ -357,6 +460,9 @@ const Chapter7 = function({navigation}) {
   // };
 return (
   <SafeAreaView style={styles.container}>
+    {!dataIsReady ?
+      <ActivityIndicator size='large' color='black'/>
+      :
       <ScrollView style={styles.scrollView}>
 
        <Text  style = {styles.headerText}>Your paraclinical data : inferior to 3 months : </Text>
@@ -643,6 +749,7 @@ return (
           </View>
         }
       </ScrollView>
+    }
     </SafeAreaView>
   );
 }
