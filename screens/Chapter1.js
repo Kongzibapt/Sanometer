@@ -69,7 +69,8 @@ const Chapter1 = function({navigation}) {
         setSelectedrace(await AsyncStorage.getItem('selectedrace'));
         setSelectedgeo(await AsyncStorage.getItem('selectgeo'));
         setSelectedarea(await AsyncStorage.getItem('selectedarea'));
-        setPhysicalEffort(parseInt(await AsyncStorage.getItem('physicalEffort')));
+        const pEff = await AsyncStorage.getItem('physicalEffort');
+        {pEff !== null ? setPhysicalEffort(parseInt(pEff)) : null};
         setProfessionalChange(await AsyncStorage.getItem('professionalChange'));
         setSelectededuc(await AsyncStorage.getItem('selectededuc'));
     }
