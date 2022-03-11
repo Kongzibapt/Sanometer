@@ -7,9 +7,10 @@ import { RadioButton } from 'react-native-paper';
 import {Picker} from '@react-native-picker/picker';
 import { Switch } from 'react-native-elements/dist/switch/switch';
 import { useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-const Chapter4 = function() {
+const Chapter4 = function({navigation}) {
   const [isTestPerformed, setIsTestPerformed] = useState(false);
   const toggleSwitch = () => setIsTestPerformed(previousState => !previousState);
   const [MMSCEIT1, setMMSCEIT1] = useState(-1);
