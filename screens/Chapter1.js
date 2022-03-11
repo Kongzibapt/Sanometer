@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import react, { useEffect } from 'react';
-import { StyleSheet, Text, View, Button} from 'react-native';
+import { StyleSheet, Text, View, Button, ActivityIndicator} from 'react-native';
 import { SafeAreaView, TextInput, ScrollView} from "react-native";
 import { Slider, Icon } from 'react-native-elements';
 import { RadioButton } from 'react-native-paper';
@@ -10,6 +10,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 const Chapter1 = function({navigation}) {
+
+  const [dataIsReady,setDataIsReady] = react.useState(false);
   
   const [lastname, setLastname] = react.useState("");
   const [firstname, setFirstname] = react.useState("");
@@ -50,7 +52,7 @@ const Chapter1 = function({navigation}) {
       physicalEffort && await AsyncStorage.setItem('physicalEffort',physicalEffort.toString());
       professionalChange && await AsyncStorage.setItem('professionalChange',professionalChange);
       selectededuc && await AsyncStorage.setItem('selectededuc',selectededuc);
-      navigation.navigate("Home");
+      navigation.navigate("Chapter 2");
   }
   catch (error) {
       console.log(error)
@@ -80,7 +82,9 @@ const Chapter1 = function({navigation}) {
   }
 
   useEffect(()=>{
-    getChapterInfos();
+    getChapterInfos().then(()=>{
+      setDataIsReady(true);
+    });
   },[])
 
   const onChange = (event, selectedDate) => {
@@ -100,6 +104,9 @@ const Chapter1 = function({navigation}) {
 
   return (
     <SafeAreaView style={styles.container}>
+      {!dataIsReady ?
+      <ActivityIndicator size='large' color='black'/>
+      :
       <ScrollView style={styles.scrollView}>
         <Text  style = {styles.headerText}>Enter your personal data : </Text>
         <View style={styles.names}>
@@ -325,6 +332,7 @@ const Chapter1 = function({navigation}) {
           <Button title="Submit" onPress={submitChapter1} color="#4bcbd6"/>
         </View>
       </ScrollView>
+      }
     </SafeAreaView>
 
     
@@ -338,6 +346,8 @@ const styles = StyleSheet.create({
     backgroundColor:'#18acb9',
     paddingTop: StatusBar.currentHeight,
     flex :1,
+    display:'flex',
+    justifyContent:'center'
   },
   names:{
     display:'flex',
