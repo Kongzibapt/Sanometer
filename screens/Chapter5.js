@@ -12,6 +12,8 @@ const Chapter5 = function({navigation}) {
 
   const [height, onChangeText1] = react.useState(null);
   const [weight, onChangeText2] = react.useState(null);
+  const [sex, onChangeText9] = react.useState(null);
+  const [waist, onChangeText8] = react.useState(null);
   const [abdominal_param, onChangeText3] = react.useState(null);
   const [thigh_perim, onChangeText4] = react.useState(null);
   const [ankle_perim, onChangeText5] = react.useState(null);
@@ -28,6 +30,7 @@ const Chapter5 = function({navigation}) {
       ankle_perim && await AsyncStorage.setItem('ankle_perim',ankle_perim);
       pressure && await AsyncStorage.setItem('pressure',pressure);
       pulse && await AsyncStorage.setItem('pulse',pulse);
+      waist && await AsyncStorage.setItem('waist',waist);
       navigation.navigate("Chapter 6");
       
   }
@@ -45,6 +48,8 @@ const Chapter5 = function({navigation}) {
         onChangeText5(await AsyncStorage.getItem('ankle_perim'));
         onChangeText6(await AsyncStorage.getItem('pressure'));
         onChangeText7(await AsyncStorage.getItem('pulse'));
+        onChangeText8(await AsyncStorage.getItem('waist'));
+        onChangeText9(await AsyncStorage.getItem('sex'));
     }
     catch (error) {
         console.log(error)
@@ -95,6 +100,14 @@ const Chapter5 = function({navigation}) {
           placeholder="Your weight"
           keyboardType="default"
         />
+        <Text style={styles.label}>Waist circumference</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={onChangeText8}
+          value={waist}
+          placeholder="Your waist circumference"
+          keyboardType="default"
+        />
         <Text style={styles.label}>Abdominal parameter</Text>
         <TextInput
           style={styles.input}
@@ -135,6 +148,13 @@ const Chapter5 = function({navigation}) {
           placeholder="Your pulse"
           keyboardType="default"
         />
+        {(sex=="male") &&
+        <Text style={styles.label}>Your RFM is {64-(20*height/waist)}.</Text>
+        }
+        {(sex=="female") &&
+        <Text style={styles.label}>Your RFM is {76-(20*height/waist)}.</Text>
+        }
+        <Text style={styles.label}>Your Body Mass Index is {weight/(height*height)} kg/m².</Text>
         <View style={{margin:5}}>
           <Button title="Submit" onPress={submitChapter5} color="#4bcbd6"/>
         </View>
