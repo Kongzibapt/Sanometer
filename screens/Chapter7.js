@@ -306,7 +306,7 @@ const Chapter7 = function({navigation}) {
           </View>
         }  
         {/*glycemie a jeun*/}
-        <Text style={styles.label}>What your fasting blood sugar test results are ?</Text>
+        <Text style={styles.label}>What are your fasting blood sugar test results ?</Text>
           <Picker
             selectedValue={selectedglucose}
             onValueChange={(itemValue, itemIndex) =>
