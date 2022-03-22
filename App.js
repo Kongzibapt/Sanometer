@@ -46,7 +46,10 @@ function HomeScreen({ navigation }) {
   const [lastname,setLastname] = React.useState("");
   const [advice,setAdvice] = React.useState("");
 
-  sexAndAgeAdvices();
+
+  
+
+  // setAdvice();
 
   const getInfos = async () => {
     try {
@@ -65,6 +68,9 @@ function HomeScreen({ navigation }) {
       getInfos();
     });
     getInfos();
+    sexAndAgeAdvices ().then((response)=>{
+      setAdvice(response);
+    })
   },[])
 
 
