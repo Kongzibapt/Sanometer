@@ -36,6 +36,7 @@ import { TextInput } from 'react-native-paper';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React from 'react';
 import { AppLoading } from './screens/AppLoading.js';
+import { sexAndAgeAdvices } from './utils/functions_Bapt.js';
 
 const Stack = createNativeStackNavigator();
 
@@ -43,6 +44,9 @@ function HomeScreen({ navigation }) {
 
   const [firstname,setFirstname] = React.useState("");
   const [lastname,setLastname] = React.useState("");
+  const [advice,setAdvice] = React.useState("");
+
+  sexAndAgeAdvices();
 
   const getInfos = async () => {
     try {
