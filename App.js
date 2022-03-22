@@ -132,6 +132,7 @@ function HomeScreen({ navigation }) {
       </View>
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', overflow: "scroll", flexGrow:3}}>
         <Text style={styles.label}>Find here your advices !</Text>
+        <Text>{advice}</Text>
       </View>
     </View>
   );
