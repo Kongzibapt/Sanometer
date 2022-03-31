@@ -37,7 +37,7 @@ import { TextInput } from 'react-native-paper';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React from 'react';
 import { AppLoading } from './screens/AppLoading.js';
-import { sexAndAgeAdvices } from './utils/functions_Bapt.js';
+import { IMCAdvices, metabolicAdvice, sexAndAgeAdvices } from './utils/functions.js';
 
 const Stack = createNativeStackNavigator();
 
@@ -64,14 +64,24 @@ function HomeScreen({ navigation }) {
     }
   }
 
+  fillAdvice = () => {
+    sexAndAgeAdvices().then((response)=>{
+      setAdvice(oldAdvice => oldAdvice + response);
+    })
+    IMCAdvices().then((response)=>{
+      setAdvice(oldAdvice => oldAdvice + response);
+    })
+    metabolicAdvice().then((response)=>{
+      setAdvice(oldAdvice => oldAdvice + response);
+    })
+  }
+
   useEffect(()=>{
     const unsubscribe = navigation.addListener('focus',() =>{
       getInfos();
     });
     getInfos();
-    sexAndAgeAdvices ().then((response)=>{
-      setAdvice(response);
-    })
+    fillAdvice();
   },[])
 
 
