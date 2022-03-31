@@ -17,14 +17,14 @@ const ParametrePhysio = function({navigation}) {
   const [bloodsugar, setBloodSugar] = react.useState("");
   const [bloodsugar2, setBloodSugar2] = react.useState("");
   
-  const [thirsty, setthirst] = react.useState(0);
-  const [physiourinate, setphysiourinate] = react.useState(0);
-  const [weightloss, setweightloss] = react.useState(0);
-  const [tiredvision, settiredvision] = react.useState(0);
-  const [emptysto, setemptysto] = react.useState(0);
-  const [glysymp, setglysymp] = react.useState(0);
-  const [groinpain, setgroinpain] = react.useState(0);
-  const [groinpainsympt, setgroinpainsympt] = react.useState(0);
+  const [thirsty, setthirst] = react.useState("");
+  const [physiourinate, setphysiourinate] = react.useState("");
+  const [weightloss, setweightloss] = react.useState("");
+  const [tiredvision, settiredvision] = react.useState("");
+  const [emptysto, setemptysto] = react.useState("");
+  const [glysymp, setglysymp] = react.useState("");
+  const [groinpain, setgroinpain] = react.useState("");
+  const [groinpainsympt, setgroinpainsympt] = react.useState("");
 
   // Style
   const [borderColorInputBloodSugar,setBorderColorInputBloodSugar] = react.useState("black");
@@ -167,7 +167,7 @@ const ParametrePhysio = function({navigation}) {
         </View>
 
         
-        {(tiredvision && weightloss && physiourinate && thirsty) ?
+        {(tiredvision === "yes" && weightloss === "yes" && physiourinate === "yes"&& thirsty=== "yes") ?
           <View>
             <View>
               <Text style={styles.label}>Your Blood Sugar Levels</Text>
@@ -277,7 +277,7 @@ const ParametrePhysio = function({navigation}) {
           </View>
         </View> 
 
-        {groinpain ?
+        {groinpain === "yes" ?
           <View>
             <Text style={styles.label}>Are the symptoms disappearing when you lay down and coming back when you are standing, coughing and lifting weights  ?</Text>
             <View style={styles.checkboxview}>

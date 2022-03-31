@@ -38,6 +38,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import React from 'react';
 import { AppLoading } from './screens/AppLoading.js';
 import { IMCAdvices, metabolicAdvice, sexAndAgeAdvices, smokeAdvices, bloodSugarAdvices, bloodSugarLevelAdvices, groinAdvices } from './utils/functions.js';
+import { useIsFocused } from "@react-navigation/native";
 
 const Stack = createNativeStackNavigator();
 
@@ -60,7 +61,8 @@ function HomeScreen({ navigation }) {
   }
 
   fillAdvice = () => {
-    setAdvice([]);
+    console.log("fillAdvice");
+    
     sexAndAgeAdvices().then((response)=>{
       response && setAdvice(oldAdvice => [...oldAdvice,response]);
     })
@@ -82,15 +84,20 @@ function HomeScreen({ navigation }) {
     groinAdvices().then((response)=>{
       response && setAdvice(oldAdvice => [...oldAdvice,response]);
     })
+    console.log(advice.length);
   }
 
+  
+  const isFocused = useIsFocused();
+
   useEffect(()=>{
+    setAdvice([]);
     const unsubscribe = navigation.addListener('focus',() =>{
       getInfos();
     });
     getInfos();
     fillAdvice();
-  },[])
+  },[isFocused])
 
 
   return (
@@ -161,7 +168,6 @@ function HomeScreen({ navigation }) {
       </View>
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', overflow: "scroll", flexGrow:3}}>
         <Text style={styles.label}>Find here your advices !</Text>
-        <View>
           <FlatList 
           data={advice}
           renderItem={({item,index,separators}) =>(
@@ -172,7 +178,6 @@ function HomeScreen({ navigation }) {
             :
             null
         )} />
-        </View>
         <View style={styles.containerbutton}>
           <View style={styles.button}>
             <Button

@@ -142,7 +142,7 @@ export const bloodSugarLevelAdvices = async () => {
         result = "It is recommended that you check your blood sugar levels as a matter of urgency on an empty stomach (minimum 8 hours after your last meal)";
     }
 
-    if ((bloodsugarlevel>2 && glysymp==="yes")||(bloodsugarlevel>=1.26 && bloodsugarlevel2>=1.26 && glysymp==="no" && emptysto==="no")){
+    if ((bloodsugarlevel>2 && glysymp==="yes")||(bloodsugarlevel>=1.26 && bloodsugarlevel2>=1.26 && glysymp==="no" && emptysto==="yes")){
         result+="You should consult your doctor.";
     }
 
