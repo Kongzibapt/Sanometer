@@ -15,6 +15,7 @@ const ParametrePhysio = function({navigation}) {
   const [dataIsReady,setDataIsReady] = react.useState(false);
   
   const [bloodsugar, setBloodSugar] = react.useState("");
+  const [bloodsugar2, setBloodSugar2] = react.useState("");
   
   const [thirsty, setthirst] = react.useState(0);
   const [physiourinate, setphysiourinate] = react.useState(0);
@@ -32,7 +33,7 @@ const ParametrePhysio = function({navigation}) {
   const submitParametrePhysio = async () => {
     try {     
       bloodsugar && await AsyncStorage.setItem('bloodsugar',bloodsugar);
-      
+      bloodsugar2 && await AsyncStorage.setItem('bloodsugar2',bloodsugar2);
       thirsty && await AsyncStorage.setItem('thirsty',thirsty.toString());
       physiourinate && await AsyncStorage.setItem('physiourinate',physiourinate.toString());
       weightloss && await AsyncStorage.setItem('weightloss',weightloss.toString());
@@ -52,7 +53,7 @@ const ParametrePhysio = function({navigation}) {
   const getChapterInfos = async () => {
     try {     
       setBloodSugar(await AsyncStorage.getItem('bloodsugar'));
-        
+      setBloodSugar2(await AsyncStorage.getItem('bloodsugar2'));
       setthirst(await AsyncStorage.getItem('thirsty'));
       setphysiourinate(await AsyncStorage.getItem('physiourinate'));
       setweightloss(await AsyncStorage.getItem('weightloss'));
@@ -180,7 +181,7 @@ const ParametrePhysio = function({navigation}) {
                 }}
                 onChangeText={setBloodSugar}
                 value={bloodsugar}
-                placeholder="Level"
+                placeholder="Level in g/L, example : 1.2g/L"
                 keyboardType="default"
               />
               
@@ -225,6 +226,30 @@ const ParametrePhysio = function({navigation}) {
                 />
               </View>
             </View>
+
+            {(glysymp==="no" && emptysto==="yes")?
+              
+              <View>
+                <Text style={styles.label}>Your Second measure of your Blood Sugar Levels </Text>
+                <TextInput
+                  style={{...styles.input,borderColor:borderColorInputBloodSugar}}
+                  onFocus={() => {
+                    setBorderColorInputBloodSugar("cyan");
+                  }}
+                  onBlur={() => {
+                    setBorderColorInputBloodSugar("black");
+                  }}
+                  onChangeText={setBloodSugar2}
+                  value={bloodsugar2}
+                  placeholder="Level in g/L, example : 1.2g/L"
+                  keyboardType="default"
+                />
+                
+              </View>
+            
+              :
+              null
+            }
           </View>
           :
           null
