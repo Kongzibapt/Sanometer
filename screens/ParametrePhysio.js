@@ -132,7 +132,7 @@ const ParametrePhysio = function({navigation}) {
             <RadioButton
               value="yes"
               status={ weightloss === 'yes' ? 'checked' : 'unchecked' }
-              onPress={() => setweigthloss('yes')}
+              onPress={() => setweightloss('yes')}
             />
           </View>
           <View style={styles.containerbutton}>
@@ -166,7 +166,7 @@ const ParametrePhysio = function({navigation}) {
         </View>
 
         
-        {tiredvision && weightloss && physiourinate && thirsty &&
+        {(tiredvision && weightloss && physiourinate && thirsty) ?
           <View>
             <View>
               <Text style={styles.label}>Your Blood Sugar Levels</Text>
@@ -226,9 +226,11 @@ const ParametrePhysio = function({navigation}) {
               </View>
             </View>
           </View>
-        }
+          :
+          null
+         }
 
-
+        
 
         <Text style={styles.label}>Are you bothered in the groin with local swelling ?</Text>
         <View style={styles.checkboxview}>
@@ -248,9 +250,9 @@ const ParametrePhysio = function({navigation}) {
               onPress={() => setgroinpain('no')}
             />
           </View>
-        </View>
+        </View> 
 
-        {groinpain &&
+        {groinpain ?
           <View>
             <Text style={styles.label}>Are the symptoms disappearing when you lay down and coming back when you are standing, coughing and lifting weights  ?</Text>
             <View style={styles.checkboxview}>
@@ -272,6 +274,8 @@ const ParametrePhysio = function({navigation}) {
               </View>
             </View>
           </View>
+          :
+          null 
         }
         
         <View style={{margin:5}}>
