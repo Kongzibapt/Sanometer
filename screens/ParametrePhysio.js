@@ -53,22 +53,14 @@ const ParametrePhysio = function({navigation}) {
     try {     
       setBloodSugar(await AsyncStorage.getItem('bloodsugar'));
         
-      const pTh = await AsyncStorage.getItem('thirsty');
-      {pTh !== null ? setthirst(parseInt(pTh)) : null};
-      const pUr = await AsyncStorage.getItem('physiourinate');
-        {pUr !== null ? setphysiourinate(parseInt(pUr)) : null};
-      const pWL = await AsyncStorage.getItem('weightloss');
-        {pWL !== null ? setweightloss(parseInt(pWL)) : null};
-      const pTV = await AsyncStorage.getItem('tiredvision');
-        {pTV !== null ? settiredvision(parseInt(pTV)) : null};
-      const pES = await AsyncStorage.getItem('emptysto');
-        {pES !== null ? setemptysto(parseInt(pES)) : null};
-      const pGS = await AsyncStorage.getItem('glysymp');
-        {pGS !== null ? setglysymp(parseInt(pGS)) : null};
-      const pGP = await AsyncStorage.getItem('groinpain');
-        {pGP !== null ? setgroinpain(parseInt(pGP)) : null};
-      const pGPS = await AsyncStorage.getItem('groinpainsympt');
-        {pGPS !== null ? setgroinpainsympt(parseInt(pGPS)) : null};
+      setthirst(await AsyncStorage.getItem('thirsty'));
+      setphysiourinate(await AsyncStorage.getItem('physiourinate'));
+      setweightloss(await AsyncStorage.getItem('weightloss'));
+      settiredvision(await AsyncStorage.getItem('tiredvision'));
+      setemptysto(await AsyncStorage.getItem('emptysto'));
+      setglysymp(await AsyncStorage.getItem('glysymp'));
+      setgroinpain(await AsyncStorage.getItem('groinpain'));
+      setgroinpainsympt(await AsyncStorage.getItem('groinpainsympt'));
         
     }
     catch (error) {
