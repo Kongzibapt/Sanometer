@@ -84,21 +84,21 @@ const Chapter5 = function({navigation}) {
       :
       <ScrollView style={styles.scrollView}>
         <Text  style = {styles.headerText}>Enter your physical parameters : </Text>
-        <Text style={styles.label}>Height</Text>
+        <Text style={styles.label}>Height (cm)</Text>
         <TextInput
           style={styles.input}
           onChangeText={onChangeText1}
           value={height}
           placeholder="Your height"
-          keyboardType="default"
+          keyboardType="numeric"
         />
-        <Text style={styles.label}>Weight</Text>
+        <Text style={styles.label}>Weight (kg)</Text>
         <TextInput
           style={styles.input}
           onChangeText={onChangeText2}
           value={weight}
           placeholder="Your weight"
-          keyboardType="default"
+          keyboardType="numeric"
         />
         <Text style={styles.label}>Waist circumference</Text>
         <TextInput
@@ -154,7 +154,7 @@ const Chapter5 = function({navigation}) {
         {(sex=="female") &&
         <Text style={styles.label}>Your RFM is {76-(20*height/waist)}.</Text>
         }
-        <Text style={styles.label}>Your Body Mass Index is {weight/(height*height)} kg/m².</Text>
+        <Text style={styles.label}>Your Body Mass Index is {weight/((height/100)*(height/100))} kg/m².</Text>
         <View style={{margin:5}}>
           <Button title="Submit" onPress={submitChapter5} color="#4bcbd6"/>
         </View>

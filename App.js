@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button, Image } from 'react-native';
+import { StyleSheet, Text, View, Button, Image, FlatList } from 'react-native';
 import { Chapter1 } from './screens/Chapter1.js';
 import { Chapter2 } from './screens/Chapter2.js';
 import { Chapter3 } from './screens/Chapter3.js';
@@ -37,7 +37,7 @@ import { TextInput } from 'react-native-paper';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React from 'react';
 import { AppLoading } from './screens/AppLoading.js';
-import { IMCAdvices, metabolicAdvice, sexAndAgeAdvices } from './utils/functions.js';
+import { IMCAdvices, metabolicAdvice, sexAndAgeAdvices, smokeAdvices, bloodSugarAdvices } from './utils/functions.js';
 
 const Stack = createNativeStackNavigator();
 
@@ -45,7 +45,7 @@ function HomeScreen({ navigation }) {
 
   const [firstname,setFirstname] = React.useState("");
   const [lastname,setLastname] = React.useState("");
-  const [advice,setAdvice] = React.useState("");
+  const [advice,setAdvice] = React.useState([]);
 
 
   
@@ -65,15 +65,25 @@ function HomeScreen({ navigation }) {
   }
 
   fillAdvice = () => {
+    setAdvice([]);
+    console.log("fill advice")
     sexAndAgeAdvices().then((response)=>{
-      setAdvice(oldAdvice => oldAdvice + response);
+      // console.log("response : " + response);
+      setAdvice(oldAdvice => [...oldAdvice,response]);
     })
     IMCAdvices().then((response)=>{
-      setAdvice(oldAdvice => oldAdvice + response);
+      console.log("response : "+response);
+      setAdvice(oldAdvice => [...oldAdvice,response]);
     })
-    metabolicAdvice().then((response)=>{
-      setAdvice(oldAdvice => oldAdvice + response);
-    })
+    // metabolicAdvice().then((response)=>{
+    //   setAdvice(oldAdvice => oldAdvice + response);
+    // })
+    // smokeAdvices().then((response)=>{
+    //   setAdvice(oldAdvice => oldAdvice + response);
+    // })
+    // bloodSugarAdvices().then((response)=>{
+    //   setAdvice(oldAdvice => oldAdvice + response);
+    // })
   }
 
   useEffect(()=>{
@@ -153,7 +163,13 @@ function HomeScreen({ navigation }) {
       </View>
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', overflow: "scroll", flexGrow:3}}>
         <Text style={styles.label}>Find here your advices !</Text>
-        <Text>{advice}</Text>
+        <View>
+          <FlatList 
+          data={advice}
+          renderItem={({item,index,separators}) =>(
+            <Text key={index} style={styles.advice}>{item}</Text>
+        )} />
+        </View>
         <View style={styles.containerbutton}>
           <View style={styles.button}>
             <Button
@@ -268,7 +284,13 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 16,
     color: 'black',
-    fontFamily:"Montserrat_400Regular",
+    fontFamily:"Montserrat_700Bold",
     margin:12,
   },
+  advice:{
+    fontFamily:"Montserrat_400Regular",
+    padding:15,
+    fontSize:12,
+    textAlign:"center",
+  }
 });

@@ -1,4 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import React from 'react';
 
 
 
@@ -17,13 +18,15 @@ export const sexAndAgeAdvices = async () => {
     var age;
 
     const sex = await AsyncStorage.getItem('sex');
-    const birth_date = await AsyncStorage.getItem('age');
+    const birth_date = await AsyncStorage.getItem('birthdate');
 
     if (sex && birth_date){
 
         var bod = new Date(birth_date);
 
         age = calculateAge(bod);
+
+        
         
         if (sex == "female"){
             if (age >= 21 && age <= 29){
@@ -52,8 +55,10 @@ export const sexAndAgeAdvices = async () => {
 export const IMCAdvices = async () => {
     var result="";
 
-    const weight = await AsyncStorage.getItem('weight');
-    const height = await AsyncStorage.getItem('height');
+    var weight = await AsyncStorage.getItem('weight');
+    var height = await AsyncStorage.getItem('height');
+
+    height = height/100;
 
     if (weight && height){
 
@@ -69,18 +74,55 @@ export const IMCAdvices = async () => {
 
 export const metabolicAdvice = async () => {
     const diabetes = await AsyncStorage.getItem('isEnabled_diabetes');
-    const [res10, setRes10] = react.useState("");
+    var res10 = "";
     const bloodPressure = await AsyncStorage.getItem('pressure');
     const weight = await AsyncStorage.getItem('weight');
     const height = await AsyncStorage.getItem('height');
     var sbp = parseInt(bloodPressure.split('/')[0]);
     var dbp = parseInt(bloodPressure.split('/')[1]);
-    const hbp = sdp>90 || dbp>140 ;
+    const hbp = sbp>90 || dbp>140 ;
     var imc = weight / (height*height);
   
   
     const obesity = imc>30;//si l'IMC est supérieur à 30 le sujet est en obésité modérée
     if (diabetes && hbp && obesity){
-      setRes10("metabolic syndrome->make the SCORE test for CardioVascular risk factors");
+      res10 = "metabolic syndrome->make the SCORE test for CardioVascular risk factors";
     }
+
+    return res10;
   }
+
+  export const bloodSugarAdvices = async () => {
+    var result = "";
+    const glocoseLevel = await AsyncStorage.getItem('selectedglucose');
+    const checkedHb = await AsyncStorage.getItem('checkedHb');
+
+    if (glocoseLevel !== "normal" && checkedHb === 'no') {
+        result = "You are recommended to do the A1C test or the Glucose Tolerance Test";
+    }
+
+    return result;
+}
+
+export const smokeAdvices = async () => {
+    
+    var birth_date = await AsyncStorage.getItem('birth_date');
+    const amount = await AsyncStorage.getItem('amount');
+    const smoke = await AsyncStorage.getItem('smoke');
+
+    var bod = new Date(birth_date);
+
+    var age = calculateAge(bod);
+
+    var advice ;
+    if (age >= 50  && age <= 80 ) {
+        
+        if (smoke === 'yes') {
+            if (amount >= 1) {
+                advice = "The USPSTF recommends you an annual screening for lung cancer with LDCT (Low-dose computed tomography)"
+            }
+        }
+    }
+    
+    return advice;
+}
