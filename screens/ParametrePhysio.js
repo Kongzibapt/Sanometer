@@ -140,7 +140,7 @@ const ParametrePhysio = function({navigation}) {
             <RadioButton
               value="yes"
               status={ weightloss === 'yes' ? 'checked' : 'unchecked' }
-              onPress={() => setweigthloss('yes')}
+              onPress={() => setweightloss('yes')}
             />
           </View>
           <View style={styles.containerbutton}>
