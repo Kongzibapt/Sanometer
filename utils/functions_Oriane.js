@@ -17,7 +17,7 @@ export const sexAndAgeAdvices = () => {
     console.log(age);
 
     var advice ;
-    if (age > 50  && age < 80 ) {
+    if (age >= 50  && age <= 80 ) {
         
         if (smoke === 'yes') {
             if (amount >= 1) {
