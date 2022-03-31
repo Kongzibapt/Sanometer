@@ -7,6 +7,7 @@ import { Chapter4 } from './screens/Chapter4.js';
 import { Chapter5 } from './screens/Chapter5.js';
 import { Chapter6 } from './screens/Chapter6.js';
 import { Chapter7 } from './screens/Chapter7.js';
+import { ParametrePhysio } from './screens/ParametrePhysio.js';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import react, { useEffect } from 'react';
@@ -143,7 +144,18 @@ function HomeScreen({ navigation }) {
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', overflow: "scroll", flexGrow:3}}>
         <Text style={styles.label}>Find here your advices !</Text>
         <Text>{advice}</Text>
+        <View style={styles.containerbutton}>
+          <View style={styles.button}>
+            <Button
+              title="Physiological Parameters"
+              onPress={() => navigation.navigate('Parametre Physio')}
+              color="#18acb9"
+              border="none"
+            />
+          </View>
+        </View>
       </View>
+      
     </View>
   );
 
@@ -191,6 +203,7 @@ export default function App() {
           <Stack.Screen name="Chapter 5" component={Chapter5} />
           <Stack.Screen name="Chapter 6" component={Chapter6} />
           <Stack.Screen name="Chapter 7" component={Chapter7} />
+          <Stack.Screen name="Parametre Physio" component={ParametrePhysio} />
         </Stack.Navigator>
       </NavigationContainer>
   );
