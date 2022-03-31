@@ -15,6 +15,7 @@ const ParametrePhysio = function({navigation}) {
   const [dataIsReady,setDataIsReady] = react.useState(false);
   
   const [bloodsugar, setBloodSugar] = react.useState("");
+  const [bloodsugar2, setBloodSugar2] = react.useState("");
   
   const [thirsty, setthirst] = react.useState(0);
   const [physiourinate, setphysiourinate] = react.useState(0);
@@ -32,7 +33,7 @@ const ParametrePhysio = function({navigation}) {
   const submitParametrePhysio = async () => {
     try {     
       bloodsugar && await AsyncStorage.setItem('bloodsugar',bloodsugar);
-      
+      bloodsugar2 && await AsyncStorage.setItem('bloodsugar2',bloodsugar2);
       thirsty && await AsyncStorage.setItem('thirsty',thirsty.toString());
       physiourinate && await AsyncStorage.setItem('physiourinate',physiourinate.toString());
       weightloss && await AsyncStorage.setItem('weightloss',weightloss.toString());
@@ -52,23 +53,15 @@ const ParametrePhysio = function({navigation}) {
   const getChapterInfos = async () => {
     try {     
       setBloodSugar(await AsyncStorage.getItem('bloodsugar'));
-        
-      const pTh = await AsyncStorage.getItem('thirsty');
-      {pTh !== null ? setthirst(parseInt(pTh)) : null};
-      const pUr = await AsyncStorage.getItem('physiourinate');
-        {pUr !== null ? setphysiourinate(parseInt(pUr)) : null};
-      const pWL = await AsyncStorage.getItem('weightloss');
-        {pWL !== null ? setweightloss(parseInt(pWL)) : null};
-      const pTV = await AsyncStorage.getItem('tiredvision');
-        {pTV !== null ? settiredvision(parseInt(pTV)) : null};
-      const pES = await AsyncStorage.getItem('emptysto');
-        {pES !== null ? setemptysto(parseInt(pES)) : null};
-      const pGS = await AsyncStorage.getItem('glysymp');
-        {pGS !== null ? setglysymp(parseInt(pGS)) : null};
-      const pGP = await AsyncStorage.getItem('groinpain');
-        {pGP !== null ? setgroinpain(parseInt(pGP)) : null};
-      const pGPS = await AsyncStorage.getItem('groinpainsympt');
-        {pGPS !== null ? setgroinpainsympt(parseInt(pGPS)) : null};
+      setBloodSugar2(await AsyncStorage.getItem('bloodsugar2'));
+      setthirst(await AsyncStorage.getItem('thirsty'));
+      setphysiourinate(await AsyncStorage.getItem('physiourinate'));
+      setweightloss(await AsyncStorage.getItem('weightloss'));
+      settiredvision(await AsyncStorage.getItem('tiredvision'));
+      setemptysto(await AsyncStorage.getItem('emptysto'));
+      setglysymp(await AsyncStorage.getItem('glysymp'));
+      setgroinpain(await AsyncStorage.getItem('groinpain'));
+      setgroinpainsympt(await AsyncStorage.getItem('groinpainsympt'));
         
     }
     catch (error) {
@@ -188,7 +181,7 @@ const ParametrePhysio = function({navigation}) {
                 }}
                 onChangeText={setBloodSugar}
                 value={bloodsugar}
-                placeholder="Level"
+                placeholder="Level in g/L, example : 1.2g/L"
                 keyboardType="default"
               />
               
@@ -233,6 +226,30 @@ const ParametrePhysio = function({navigation}) {
                 />
               </View>
             </View>
+
+            {(glysymp==="no" && emptysto==="yes")?
+              
+              <View>
+                <Text style={styles.label}>Your Second measure of your Blood Sugar Levels </Text>
+                <TextInput
+                  style={{...styles.input,borderColor:borderColorInputBloodSugar}}
+                  onFocus={() => {
+                    setBorderColorInputBloodSugar("cyan");
+                  }}
+                  onBlur={() => {
+                    setBorderColorInputBloodSugar("black");
+                  }}
+                  onChangeText={setBloodSugar2}
+                  value={bloodsugar2}
+                  placeholder="Level in g/L, example : 1.2g/L"
+                  keyboardType="default"
+                />
+                
+              </View>
+            
+              :
+              null
+            }
           </View>
           :
           null
