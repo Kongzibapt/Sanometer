@@ -37,7 +37,7 @@ import { TextInput } from 'react-native-paper';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React from 'react';
 import { AppLoading } from './screens/AppLoading.js';
-import { IMCAdvices, metabolicAdvice, sexAndAgeAdvices, smokeAdvices, bloodSugarAdvices } from './utils/functions.js';
+import { IMCAdvices, metabolicAdvice, sexAndAgeAdvices, smokeAdvices, bloodSugarAdvices, bloodSugarLevelAdvices, groinAdvices } from './utils/functions.js';
 
 const Stack = createNativeStackNavigator();
 
@@ -46,11 +46,6 @@ function HomeScreen({ navigation }) {
   const [firstname,setFirstname] = React.useState("");
   const [lastname,setLastname] = React.useState("");
   const [advice,setAdvice] = React.useState([]);
-
-
-  
-
-  // setAdvice();
 
   const getInfos = async () => {
     try {
@@ -66,24 +61,27 @@ function HomeScreen({ navigation }) {
 
   fillAdvice = () => {
     setAdvice([]);
-    console.log("fill advice")
     sexAndAgeAdvices().then((response)=>{
-      // console.log("response : " + response);
-      setAdvice(oldAdvice => [...oldAdvice,response]);
+      response && setAdvice(oldAdvice => [...oldAdvice,response]);
     })
     IMCAdvices().then((response)=>{
-      console.log("response : "+response);
-      setAdvice(oldAdvice => [...oldAdvice,response]);
+      response && setAdvice(oldAdvice => [...oldAdvice,response]);
     })
-    // metabolicAdvice().then((response)=>{
-    //   setAdvice(oldAdvice => oldAdvice + response);
-    // })
-    // smokeAdvices().then((response)=>{
-    //   setAdvice(oldAdvice => oldAdvice + response);
-    // })
-    // bloodSugarAdvices().then((response)=>{
-    //   setAdvice(oldAdvice => oldAdvice + response);
-    // })
+    metabolicAdvice().then((response)=>{
+      response && setAdvice(oldAdvice => [...oldAdvice,response]);
+    })
+    smokeAdvices().then((response)=>{
+      response && setAdvice(oldAdvice => [...oldAdvice,response]);
+    })
+    bloodSugarAdvices().then((response)=>{
+      response && setAdvice(oldAdvice => [...oldAdvice,response]);
+    })
+    bloodSugarLevelAdvices().then((response)=>{
+      response && setAdvice(oldAdvice => [...oldAdvice,response]);
+    })
+    groinAdvices().then((response)=>{
+      response && setAdvice(oldAdvice => [...oldAdvice,response]);
+    })
   }
 
   useEffect(()=>{
@@ -167,7 +165,12 @@ function HomeScreen({ navigation }) {
           <FlatList 
           data={advice}
           renderItem={({item,index,separators}) =>(
-            <Text key={index} style={styles.advice}>{item}</Text>
+            item ? 
+            <View key={index}>
+              <Text  style={styles.advice}>{item}</Text>
+            </View>
+            :
+            null
         )} />
         </View>
         <View style={styles.containerbutton}>
