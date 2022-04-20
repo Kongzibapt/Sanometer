@@ -11,6 +11,7 @@ import { ParametrePhysio } from './screens/ParametrePhysio.js';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import react, { useEffect } from 'react';
+import { chapter1 } from './utils/modelIA.js';
 // import { AppLoading } from "expo-app-loading";
 import {
   useFonts,
@@ -97,6 +98,7 @@ function HomeScreen({ navigation }) {
     });
     getInfos();
     fillAdvice();
+    chapter1();
   },[isFocused])
 
 
