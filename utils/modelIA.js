@@ -1,9 +1,10 @@
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { calculateAge } from "./functions";
 
 export const chapter1 = async () => {
 
-    try {
+    
         const sex = await AsyncStorage.getItem('sex');
         const birth_date = await AsyncStorage.getItem('birthdate');
         const country = await AsyncStorage.getItem('country');
@@ -12,10 +13,7 @@ export const chapter1 = async () => {
         const geo = await AsyncStorage.getItem('selectedgeo');
         const educ = await AsyncStorage.getItem('selectededuc');
         const professionalChange = await AsyncStorage.getItem('professionalChange');
-    }
-    catch (error) {
-        console.log(error)
-    }
+    
     var tab = [];
 
     //Sex  : neutral ?
@@ -27,6 +25,7 @@ export const chapter1 = async () => {
 
     //Age
     var bod = new Date(birth_date);
+    var age;
     age = calculateAge(bod);
     tab[1]=age;
 
@@ -39,9 +38,9 @@ export const chapter1 = async () => {
     } 
     else if (country.substr(0,3) == "afr") {
         //African
-        if (country.charAt(3)="i") {
+        if (country.charAt(3)=="i") {
             tab[2]=1
-        } else if (country.charAt(3)="o") {
+        } else if (country.charAt(3)=="o") {
             //Afro-American
             tab[2]=2;
         }

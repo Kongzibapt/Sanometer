@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button, Image, FlatList } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View, Button, Image, FlatList } from 'react-native';
 import { Chapter1 } from './screens/Chapter1.js';
 import { Chapter2 } from './screens/Chapter2.js';
 import { Chapter3 } from './screens/Chapter3.js';
@@ -40,8 +40,13 @@ import React from 'react';
 import { AppLoading } from './screens/AppLoading.js';
 import { IMCAdvices, metabolicAdvice, sexAndAgeAdvices, smokeAdvices, bloodSugarAdvices, bloodSugarLevelAdvices, groinAdvices } from './utils/functions.js';
 import { useIsFocused } from "@react-navigation/native";
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Advice } from './screens/Advice.js';
+import { Form } from './screens/Form.js';
 
 const Stack = createNativeStackNavigator();
+
+const Tab = createBottomTabNavigator();
 
 function HomeScreen({ navigation }) {
 
@@ -98,14 +103,19 @@ function HomeScreen({ navigation }) {
     });
     getInfos();
     fillAdvice();
-    chapter1();
+    // chapter1();
   },[isFocused])
 
 
   return (
-    <View style={styles.homepage}>
-
-      <View style={{ flex: 1,justifyContent: 'center',alignItems:'center', backgroundColor:'#18acb9', height:"130%", flexGrow:2}}>
+    <SafeAreaView style={styles.homepage}>
+      <View style={styles.logoPart}>
+        <Image source={require('./assets/Logo.png')} style={styles.logo}/>
+      </View>
+      <View style={styles.heroPart}>
+        <Text style={styles.heroTxt}>Your health is important to us</Text>
+      </View>
+      {/* <View style={{ flex: 1,justifyContent: 'center',alignItems:'center', backgroundColor:'#18acb9', height:"130%", flexGrow:2}}>
         <Image source={require('./logo.png')} style={{ width: 100, height: 80, position:'absolute', top:200, left:20 }}/>
         <Text style={styles.labelname}>Hi {firstname} !</Text>
         <Image source={require('./photo.jpg')} style={{ width: 100, height: 100,position:'absolute', top:10, left:20 }}/>
@@ -190,9 +200,9 @@ function HomeScreen({ navigation }) {
             />
           </View>
         </View>
-      </View>
+      </View> */}
       
-    </View>
+    </SafeAreaView>
   );
 
 }
@@ -230,17 +240,45 @@ export default function App() {
   } else {
   return (
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen name="Home" component={HomeScreen} />
-          <Stack.Screen name="Chapter 1" component={Chapter1} />
+        <Tab.Navigator initialRouteName="Home"
+        screenOptions={{
+          headerShown: false,
+          tabBarLabelStyle:{fontFamily: "Montserrat_700Bold"},
+          tabBarStyle: { backgroundColor: "#17A8BC", height:65,paddingBottom:5},
+          tabBarActiveTintColor:"#FFE01B",
+          tabBarInactiveTintColor:"white",
+          tabBarHideOnKeyboard: true
+        }} >
+          <Tab.Screen name="Advice" component={Advice} options={{
+            headerShown:false,
+            tabBarLabel: "Advice",
+            tabBarIcon: (() => {
+              return <Image source={require("./assets/Advice.png")} style={{width: 30, height: 30}}/>
+            })
+          }} />
+          <Tab.Screen name="Home" component={HomeScreen} options={{
+            headerShown:false,
+            tabBarLabel: "Home",
+            tabBarIcon: (() => {
+              return <Image source={require("./assets/Home.png")} style={{width: 30, height: 30}}/>
+            })
+          }} />
+          <Tab.Screen name="Form" component={Form} options={{
+            headerShown:false,
+            tabBarLabel: "Form",
+            tabBarIcon: (() => {
+              return <Image source={require("./assets/Form.png")} style={{width: 30, height: 30}}/>
+            })
+          }} />
+          {/* <Stack.Screen name="Chapter 1" component={Chapter1} />
           <Stack.Screen name="Chapter 2" component={Chapter2} />
           <Stack.Screen name="Chapter 3" component={Chapter3} />
           <Stack.Screen name="Chapter 4" component={Chapter4} />
           <Stack.Screen name="Chapter 5" component={Chapter5} />
           <Stack.Screen name="Chapter 6" component={Chapter6} />
           <Stack.Screen name="Chapter 7" component={Chapter7} />
-          <Stack.Screen name="Parametre Physio" component={ParametrePhysio} />
-        </Stack.Navigator>
+          <Stack.Screen name="Parametre Physio" component={ParametrePhysio} /> */}
+        </Tab.Navigator>
       </NavigationContainer>
   );
   }
@@ -248,59 +286,61 @@ export default function App() {
 
 const styles = StyleSheet.create({
   homepage:{
-    display:'flex',
-    flexDirection:'row'
+    
   },
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  button: {
-    fontSize: 14,
-    fontFamily:"Montserrat_400Regular",
-    width:"100%",
-    justifyContent: 'center',
-    position:'relative',
-
-  },
-  containerbutton : {
-    position:'relative',
-    width:"100%",
-    height:"20%"
-  },
-  input: {
-    flex:0.2,
-    height: 40,
-    // margin: 12,
-    marginBottom:15,
-    borderWidth: 1,
-    padding: 10,
-    backgroundColor:'white',
-    fontFamily:"Montserrat_400Regular",
-    borderWidth:2,
-    borderRadius:5
-  },
-  labelname: {
-    fontSize: 16,
-    color: 'white',
-    fontFamily:"Montserrat_400Regular",
-    position:'absolute',
-    top:120,
-    left:17,
-
-  },
-  label: {
-    fontSize: 16,
-    color: 'black',
-    fontFamily:"Montserrat_700Bold",
-    margin:12,
-  },
-  advice:{
-    fontFamily:"Montserrat_400Regular",
-    padding:15,
-    fontSize:12,
-    textAlign:"center",
+  logoPart:{
+    padding:"8%"
   }
+  // container: {
+  //   flex: 1,
+  //   backgroundColor: '#fff',
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  // },
+  // button: {
+  //   fontSize: 14,
+  //   fontFamily:"Montserrat_400Regular",
+  //   width:"100%",
+  //   justifyContent: 'center',
+  //   position:'relative',
+
+  // },
+  // containerbutton : {
+  //   position:'relative',
+  //   width:"100%",
+  //   height:"20%"
+  // },
+  // input: {
+  //   flex:0.2,
+  //   height: 40,
+  //   // margin: 12,
+  //   marginBottom:15,
+  //   borderWidth: 1,
+  //   padding: 10,
+  //   backgroundColor:'white',
+  //   fontFamily:"Montserrat_400Regular",
+  //   borderWidth:2,
+  //   borderRadius:5
+  // },
+  // labelname: {
+  //   fontSize: 16,
+  //   color: 'white',
+  //   fontFamily:"Montserrat_400Regular",
+  //   position:'absolute',
+  //   top:120,
+  //   left:17,
+
+  // },
+  // label: {
+  //   fontSize: 16,
+  //   color: 'black',
+  //   fontFamily:"Montserrat_700Bold",
+  //   margin:12,
+  // },
+  // advice:{
+  //   fontFamily:"Montserrat_400Regular",
+  //   padding:15,
+  //   fontSize:12,
+  //   textAlign:"center",
+  // }
 });
