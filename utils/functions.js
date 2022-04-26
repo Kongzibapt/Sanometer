@@ -3,7 +3,7 @@ import React from 'react';
 
 
 
-const calculateAge = (birth_date) => {
+export const calculateAge = (birth_date) => {
     var month_diff = Date.now() - birth_date.getTime();
     var age_dt = new Date(month_diff); 
     var year = age_dt.getUTCFullYear();
