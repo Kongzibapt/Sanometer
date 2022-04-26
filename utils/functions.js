@@ -134,11 +134,12 @@ export const bloodSugarLevelAdvices = async () => {
     const thirsty = await AsyncStorage.getItem('thirsty');
     const physiourinate = await AsyncStorage.getItem('physiourinate');
     const weigthloss = await AsyncStorage.getItem('weightloss');
-    const tiredvision = await AsyncStorage.getItem('tiredvision');
+    const blurryvision = await AsyncStorage.getItem('blurryvision');
+    const tired = await AsyncStorage.getItem('tired');
     const emptysto = await AsyncStorage.getItem('emptysto');
     const glysymp = await AsyncStorage.getItem('glysymp');
 
-    if ( thirsty==="yes" && physiourinate==='yes' && weigthloss==="yes" && tiredvision==="yes") {
+    if ( thirsty==="yes" && physiourinate==='yes' && weigthloss==="yes" && blurryvision==="yes" & tired==='yes') {
         result = "It is recommended that you check your blood sugar levels as a matter of urgency on an empty stomach (minimum 8 hours after your last meal)";
     }
 

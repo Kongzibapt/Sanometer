@@ -20,7 +20,8 @@ const ParametrePhysio = function({navigation}) {
   const [thirsty, setthirst] = react.useState("");
   const [physiourinate, setphysiourinate] = react.useState("");
   const [weightloss, setweightloss] = react.useState("");
-  const [tiredvision, settiredvision] = react.useState("");
+  const [tired, settired] = react.useState("");
+  const [blurryvision, setblurryvision] = react.useState("");
   const [emptysto, setemptysto] = react.useState("");
   const [glysymp, setglysymp] = react.useState("");
   const [groinpain, setgroinpain] = react.useState("");
@@ -37,7 +38,8 @@ const ParametrePhysio = function({navigation}) {
       thirsty && await AsyncStorage.setItem('thirsty',thirsty.toString());
       physiourinate && await AsyncStorage.setItem('physiourinate',physiourinate.toString());
       weightloss && await AsyncStorage.setItem('weightloss',weightloss.toString());
-      tiredvision && await AsyncStorage.setItem('tiredvision',tiredvision.toString());
+      tired && await AsyncStorage.setItem('tired',tired.toString());
+      blurryvision && await AsyncStorage.setItem('blurryvision',blurryvision.toString());
       emptysto && await AsyncStorage.setItem('emptysto',emptysto.toString());
       glysymp && await AsyncStorage.setItem('glysymp',glysymp.toString());
       groinpain && await AsyncStorage.setItem('groinpain',groinpain.toString());
@@ -57,7 +59,9 @@ const ParametrePhysio = function({navigation}) {
       setthirst(await AsyncStorage.getItem('thirsty'));
       setphysiourinate(await AsyncStorage.getItem('physiourinate'));
       setweightloss(await AsyncStorage.getItem('weightloss'));
-      settiredvision(await AsyncStorage.getItem('tiredvision'));
+      settired(await AsyncStorage.getItem('tired'));
+      setblurryvision(await AsyncStorage.getItem('blurryvision'));
+      
       setemptysto(await AsyncStorage.getItem('emptysto'));
       setglysymp(await AsyncStorage.getItem('glysymp'));
       setgroinpain(await AsyncStorage.getItem('groinpain'));
@@ -146,13 +150,13 @@ const ParametrePhysio = function({navigation}) {
           </View>
         </View>
 
-        <Text style={styles.label}>Are you feeling really tired or having a blurry vision ?</Text>
+        <Text style={styles.label}>Are you feeling really tired ?</Text>
         <View style={styles.checkboxview}>
           <View style={styles.containerbutton}>
             <Text style={styles.paragraph}>Yes</Text>
             <RadioButton
               value="yes"
-              status={ tiredvision === 'yes' ? 'checked' : 'unchecked' }
+              status={ tired === 'yes' ? 'checked' : 'unchecked' }
               onPress={() => settiredvision('yes')}
             />
           </View>
@@ -160,14 +164,34 @@ const ParametrePhysio = function({navigation}) {
             <Text style={styles.paragraph}>No</Text>
             <RadioButton
               value="no"
-              status={ tiredvision === 'no' ? 'checked' : 'unchecked' }
-              onPress={() => settiredvision('no')}
+              status={ tired === 'no' ? 'checked' : 'unchecked' }
+              onPress={() => settired('no')}
+            />
+          </View>
+        </View>
+
+        <Text style={styles.label}>Do you have a blurred vision ?</Text>
+        <View style={styles.checkboxview}>
+          <View style={styles.containerbutton}>
+            <Text style={styles.paragraph}>Yes</Text>
+            <RadioButton
+              value="yes"
+              status={ blurryvision === 'yes' ? 'checked' : 'unchecked' }
+              onPress={() => setblurryvision('yes')}
+            />
+          </View>
+          <View style={styles.containerbutton}>
+            <Text style={styles.paragraph}>No</Text>
+            <RadioButton
+              value="no"
+              status={ blurryvision === 'no' ? 'checked' : 'unchecked' }
+              onPress={() => setblurryvision('no')}
             />
           </View>
         </View>
 
         
-        {(tiredvision === "yes" && weightloss === "yes" && physiourinate === "yes"&& thirsty=== "yes") ?
+        {(blurryvision === "yes" && tired === "yes" && weightloss === "yes" && physiourinate === "yes"&& thirsty=== "yes") ?
           <View>
             <View>
               <Text style={styles.label}>Your Blood Sugar Levels</Text>
