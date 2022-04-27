@@ -161,3 +161,29 @@ export const groinAdvices = async () => {
 
     return result;
 }
+
+
+export const contraceptionAdvices = async () => {
+    var result = "";
+    const contraception = await AsyncStorage.getItem('checked_contra');
+    const smoke = await AsyncStorage.getItem('smoke');
+
+    if ( contraception==="yes" && smoke==="yes") {
+        result = "Please fill in the form \"Emotional profile\" for your pain symptoms.";
+    }
+
+    return result;
+}
+
+export const BMIAdvices = async () => {
+    var result = "";
+    const weight = await AsyncStorage.getItem('weight');
+    const height = await AsyncStorage.getItem('height');
+    var bmi = weight/((height/100)*(height/100));
+
+    if (bmi<19) {
+        result = "urgent medical advice needed (risk of malnutrition) ";
+    }
+
+    return result;
+}
