@@ -108,12 +108,12 @@ const Chapter5 = function({navigation}) {
           placeholder="Your waist circumference"
           keyboardType="default"
         />
-        <Text style={styles.label}>Abdominal parameter</Text>
+        <Text style={styles.label}>Abdominal perimeter</Text>
         <TextInput
           style={styles.input}
           onChangeText={onChangeText3}
           value={abdominal_param}
-          placeholder="Your abdominal parameter"
+          placeholder="Your abdominal perimeter"
           keyboardType="default"
         />
         <Text style={styles.label}>Thigh perimeter</Text>

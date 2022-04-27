@@ -180,9 +180,23 @@ export const BMIAdvices = async () => {
     const weight = await AsyncStorage.getItem('weight');
     const height = await AsyncStorage.getItem('height');
     var bmi = weight/((height/100)*(height/100));
+    const bloodsugarlevel = parseFloat(await AsyncStorage.getItem('bloodsugar'));
+    const abdominal_perim = await AsyncStorage.getItem('abdominal_param');
 
     if (bmi<19) {
-        result = "urgent medical advice needed (risk of malnutrition) ";
+        result = "Urgent medical advice needed (risk of malnutrition). ";
+    } else if (bmi>30 && bloodsugarlevel>2) {
+        result = "Metabolic syndrome suspected, you need a screening for high blood pressure You will be able to calculate your risk for cardiovascular disease. ";
+    } else if (bmi>30 && bmi<34.9) {
+        result = "You have a moderate obésity, you will receive the individualise illness risk factors. ";
+    } else if (bmi<39.9 && bmi>35) {
+        result = "You have a mild obésity, you will receive the individualise illness risk factors. ";
+    } else if (bmi>40){
+        result = "You have a severe obésity, you will receive the individualise illness risk factors and you have a formal indication for bariatric surgery. ";
+    }
+    
+    if (abdominal_perim>88){
+        result += "You have a higher risk for cardiovascular disease.  ";
     }
 
     return result;

@@ -38,7 +38,7 @@ import { TextInput } from 'react-native-paper';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React from 'react';
 import { AppLoading } from './screens/AppLoading.js';
-import { IMCAdvices, metabolicAdvice, sexAndAgeAdvices, smokeAdvices, bloodSugarAdvices, bloodSugarLevelAdvices, groinAdvices, contraceptionAdvices } from './utils/functions.js';
+import { IMCAdvices, metabolicAdvice, sexAndAgeAdvices, smokeAdvices, bloodSugarAdvices, bloodSugarLevelAdvices, groinAdvices, contraceptionAdvices, BMIAdvices } from './utils/functions.js';
 import { useIsFocused } from "@react-navigation/native";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Advice } from './screens/Advice.js';
@@ -91,6 +91,9 @@ function HomeScreen({ navigation }) {
       response && setAdvice(oldAdvice => [...oldAdvice,response]);
     })
     contraceptionAdvices().then((response)=>{
+      response && setAdvice(oldAdvice => [...oldAdvice,response]);
+    })
+    BMIAdvices().then((response)=>{
       response && setAdvice(oldAdvice => [...oldAdvice,response]);
     })
     console.log(advice.length);
