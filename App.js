@@ -43,6 +43,7 @@ import { useIsFocused } from "@react-navigation/native";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Advice } from './screens/Advice.js';
 import { Form } from './screens/Form.js';
+// import { black } from 'react-native-paper/lib/typescript/styles/colors';
 
 const Stack = createNativeStackNavigator();
 
@@ -98,7 +99,6 @@ function HomeScreen({ navigation }) {
     })
     console.log(advice.length);
   }
-
   
   const isFocused = useIsFocused();
 
@@ -119,8 +119,33 @@ function HomeScreen({ navigation }) {
         <Image source={require('./assets/Logo.png')} style={styles.logo}/>
       </View>
       <View style={styles.heroPart}>
-        <Text style={styles.heroTxt}>Your health is important to us</Text>
+        <Text style={styles.heroTxt}>Your health is</Text>
       </View>
+      <View style={styles.heroPart}>
+        <Text style={styles.heroTxt}>important to us</Text>
+      </View>
+      <Image source={require('./assets/Image1.png')} style={{ width: 55, height: 46, top:10, left:159 }}/>
+      <Text></Text>
+      <View style={styles.heroPart}>
+        <Text></Text>
+        <Text style={styles.hero2Txt}>How it works</Text>
+      </View>
+      <Text></Text>
+      <Image source={require('./assets/Image2.png')} style={{ width: 240, height: 60, left:60 }}/>
+      <Text></Text>
+      <Text></Text>
+      <Text></Text>
+      <Text></Text>
+      <View style={styles.containerbutton}>
+        <View style={{margin:10}}>
+          <Button
+            title="Get started"
+            onPress={() => navigation.navigate('Chapter 1')}
+            color="#18acb9"
+          />
+        </View>
+      </View>
+      <Image source={require('./assets/Image3.png')} style={{ width: 56.41, height: 72, bottom:60, left:159 }}/>
       {/* <View style={{ flex: 1,justifyContent: 'center',alignItems:'center', backgroundColor:'#18acb9', height:"130%", flexGrow:2}}>
         <Image source={require('./logo.png')} style={{ width: 100, height: 80, position:'absolute', top:200, left:20 }}/>
         <Text style={styles.labelname}>Hi {firstname} !</Text>
@@ -276,6 +301,7 @@ export default function App() {
               return <Image source={require("./assets/Form.png")} style={{width: 30, height: 30}}/>
             })
           }} />
+          <Stack.Screen name="Chapter 1" component={Chapter1} />
           {/* <Stack.Screen name="Chapter 1" component={Chapter1} />
           <Stack.Screen name="Chapter 2" component={Chapter2} />
           <Stack.Screen name="Chapter 3" component={Chapter3} />
@@ -296,6 +322,32 @@ const styles = StyleSheet.create({
   },
   logoPart:{
     padding:"8%"
+  },
+  heroTxt:{
+    fontSize: 21,
+    fontFamily: "Montserrat_600SemiBold",
+    textAlign:"center",
+    color: '#17A8BC',
+    fontWeight: "600"
+  },
+  hero2Txt:{
+    fontSize: 21,
+    fontFamily: "Montserrat_600SemiBold",
+    textAlign:"center",
+    color: '#18191F',
+    fontWeight: "600"
+  },
+  containerbutton : {
+    position:'relative',
+    width:"100%",
+    height:"20%"
+  },
+  button:{
+    fontSize: 17.2,
+    fontFamily: "Montserrat_600SemiBold",
+    width:"100%",
+    justifyContent: 'center',
+    position:'relative'
   }
   // container: {
   //   flex: 1,

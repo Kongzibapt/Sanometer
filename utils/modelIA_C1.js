@@ -1,6 +1,5 @@
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { calculateAge } from "./functions";
 
 const calculateAge = (birth_date) => {
     var month_diff = Date.now() - birth_date.getTime();

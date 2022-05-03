@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import react , { useEffect }from 'react';
 import { StyleSheet, Text, View , ActivityIndicator, Button} from 'react-native';
 import { SafeAreaView, TextInput, ScrollView} from "react-native";
+import { Chapter1 } from './Chapter1.js';
 
 const Form = function({navigation}) {
 
@@ -25,7 +26,13 @@ const Form = function({navigation}) {
       : */}
       <ScrollView style={styles.scrollView}>
         <Text  style = {styles.headerText}>Choose a chapter : </Text>
-        
+        <View style={styles.button}>
+          <Button
+            title="Get started"
+            onPress={() => navigation.navigate(Chapter1)}
+            color="#18acb9"
+          />
+        </View>
       </ScrollView>
     {/* } */}
     </SafeAreaView>

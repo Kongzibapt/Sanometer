@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import react, { useEffect } from 'react';
-import { StyleSheet, Text, View, Button, ActivityIndicator} from 'react-native';
+import { StyleSheet, Text, View, Button, ActivityIndicator, Image} from 'react-native';
 import { SafeAreaView, TextInput, ScrollView} from "react-native";
 import { Slider, Icon } from 'react-native-elements';
 import { RadioButton } from 'react-native-paper';
@@ -104,11 +104,15 @@ const Chapter1 = function({navigation}) {
 
   return (
     <SafeAreaView style={styles.container}>
+      <View style={styles.logoPart}>
+        <Image source={require('../assets/Logo.png')} style={styles.logo}/>
+      </View>
       {!dataIsReady ?
       <ActivityIndicator size='large' color='black'/>
       :
       <ScrollView style={styles.scrollView}>
-        <Text  style = {styles.headerText}>Enter your personal data : </Text>
+        <Text  style = {styles.headerText}>Personal data</Text>
+        <Text style = {styles.barre}>__________________________________________________</Text>
         <View style={styles.names}>
           <View style={styles.firstname}>
             <Text style={styles.label}>First Name</Text>
@@ -118,7 +122,7 @@ const Chapter1 = function({navigation}) {
                 setBorderColorInputFirstName("cyan");
               }}
               onBlur={() => {
-                setBorderColorInputFirstName("black");
+                setBorderColorInputFirstName('#BBBBBB');
               }}
               onChangeText={setFirstname}
               value={firstname}
@@ -134,7 +138,7 @@ const Chapter1 = function({navigation}) {
               setBorderColorInputLastName("cyan");
             }}
             onBlur={() => {
-              setBorderColorInputLastName("black");
+              setBorderColorInputLastName('#BBBBBB');
             }}
             onChangeText={setLastname}
             value={lastname}
@@ -146,7 +150,7 @@ const Chapter1 = function({navigation}) {
         </View>
         <Text style={styles.label}>Birth Date</Text>
         <View style={styles.chooseDate}>
-          {birthdate !== null ? <Button color="black" onPress={showDatepicker} title={birthdate.toLocaleDateString()} /> : <Button color="black" onPress={showDatepicker} title={"Choisir"} />}
+          {birthdate !== null ? <Button color='#BBBBBB' onPress={showDatepicker} title={birthdate.toLocaleDateString()} /> : <Button color="black" onPress={showDatepicker} title={"Choisir"} />}
         </View>
         {show && (<DateTimePicker
           testID="dateTimePicker"
@@ -163,7 +167,7 @@ const Chapter1 = function({navigation}) {
            setBorderColorInputBirthPlace("cyan");
          }}
          onBlur={() => {
-           setBorderColorInputBirthPlace("black");
+           setBorderColorInputBirthPlace('#BBBBBB');
          }}
           onChangeText={setBirthcountry}
           value={birthcountry}
@@ -176,7 +180,7 @@ const Chapter1 = function({navigation}) {
           setBorderColorInputBirthTown("cyan");
         }}
         onBlur={() => {
-          setBorderColorInputBirthTown("black");
+          setBorderColorInputBirthTown('#BBBBBB');
         }}
           onChangeText={setBirthtown}
           value={birthtown}
@@ -220,7 +224,7 @@ const Chapter1 = function({navigation}) {
             setBorderColorInputCountry("cyan");
           }}
           onBlur={() => {
-            setBorderColorInputCountry("black");
+            setBorderColorInputCountry('#BBBBBB');
           }}
           onChangeText={setCountry}
           value={country}
@@ -346,11 +350,14 @@ export {Chapter1};
 
 const styles = StyleSheet.create({
   container:{
-    backgroundColor:'#18acb9',
+    backgroundColor:'white',
     paddingTop: StatusBar.currentHeight,
     flex :1,
     display:'flex',
     justifyContent:'center'
+  },
+  logoPart:{
+    padding:"8%"
   },
   names:{
     display:'flex',
@@ -383,17 +390,21 @@ const styles = StyleSheet.create({
     backgroundColor:'white',
     fontFamily:"Montserrat_400Regular",
     borderWidth:2,
-    borderRadius:5
+    borderRadius:5,
+    color: 'black'
   },
   chooseDate: {
     width:"50%"
   },
   headerText: {
-    fontSize: 20,
-    color: 'white',
+    fontSize: 18,
+    color: '#18acb9',
     marginTop : 50,
     margin: 12,
-    fontFamily:"Montserrat_400Regular"
+    fontFamily:"Montserrat_700Bold"
+  },
+  barre:{
+    color: '#BBBBBB'
   },
   headerText2: {
     fontSize: 16,
@@ -403,7 +414,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 16,
-    color: 'black',
+    color: '#18acb9',
     fontFamily:"Montserrat_700Bold",
     margin: 12,
   },
@@ -424,7 +435,7 @@ const styles = StyleSheet.create({
     fontFamily:"Montserrat_400Regular"
   },
   scrollView: {
-    backgroundColor: '#18acb9',
+    backgroundColor: 'white',
     marginHorizontal: 20,
   },
 });
