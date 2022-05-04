@@ -39,6 +39,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import React from 'react';
 import { AppLoading } from './screens/AppLoading.js';
 import { IMCAdvices, metabolicAdvice, sexAndAgeAdvices, smokeAdvices, bloodSugarAdvices, bloodSugarLevelAdvices, groinAdvices, contraceptionAdvices, BMIAdvices } from './utils/functions.js';
+import {score_q1, score_q2, score_q3} from "./utils/modelIA_ParaPhysio.js";
+import {scoreC1_q1, scoreC1_q2, scoreC1_q3, scoreC1_q4, scoreC1_q5} from "./utils/modelIA_C1.js";
 import { useIsFocused } from "@react-navigation/native";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Advice } from './screens/Advice.js';
@@ -97,6 +99,31 @@ function HomeScreen({ navigation }) {
     BMIAdvices().then((response)=>{
       response && setAdvice(oldAdvice => [...oldAdvice,response]);
     })
+    scoreC1_q1().then((response)=>{
+      response && setAdvice(oldAdvice => [...oldAdvice,response]);
+    })
+    scoreC1_q2().then((response)=>{
+      response && setAdvice(oldAdvice => [...oldAdvice,response]);
+    })
+    scoreC1_q3().then((response)=>{
+      response && setAdvice(oldAdvice => [...oldAdvice,response]);
+    })
+    scoreC1_q4().then((response)=>{
+      response && setAdvice(oldAdvice => [...oldAdvice,response]);
+    })
+    scoreC1_q5().then((response)=>{
+      response && setAdvice(oldAdvice => [...oldAdvice,response]);
+    })
+    score_q1().then((response)=>{
+      response && setAdvice(oldAdvice => [...oldAdvice,response]);
+    })
+    score_q2().then((response)=>{
+      response && setAdvice(oldAdvice => [...oldAdvice,response]);
+    })
+    score_q3().then((response)=>{
+      response && setAdvice(oldAdvice => [...oldAdvice,response]);
+    })
+    
     console.log(advice.length);
   }
   
