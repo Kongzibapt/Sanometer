@@ -69,75 +69,75 @@ function HomeScreen({ navigation }) {
     }
   }
 
-  fillAdvice = () => {
-    console.log("fillAdvice");
+  // fillAdvice = () => {
+  //   console.log("fillAdvice");
     
-    sexAndAgeAdvices().then((response)=>{
-      response && setAdvice(oldAdvice => [...oldAdvice,response]);
-    })
-    IMCAdvices().then((response)=>{
-      response && setAdvice(oldAdvice => [...oldAdvice,response]);
-    })
-    metabolicAdvice().then((response)=>{
-      response && setAdvice(oldAdvice => [...oldAdvice,response]);
-    })
-    smokeAdvices().then((response)=>{
-      response && setAdvice(oldAdvice => [...oldAdvice,response]);
-    })
-    bloodSugarAdvices().then((response)=>{
-      response && setAdvice(oldAdvice => [...oldAdvice,response]);
-    })
-    bloodSugarLevelAdvices().then((response)=>{
-      response && setAdvice(oldAdvice => [...oldAdvice,response]);
-    })
-    groinAdvices().then((response)=>{
-      response && setAdvice(oldAdvice => [...oldAdvice,response]);
-    })
-    contraceptionAdvices().then((response)=>{
-      response && setAdvice(oldAdvice => [...oldAdvice,response]);
-    })
-    BMIAdvices().then((response)=>{
-      response && setAdvice(oldAdvice => [...oldAdvice,response]);
-    })
-    scoreC1_q1().then((response)=>{
-      response && setAdvice(oldAdvice => [...oldAdvice,response]);
-    })
-    scoreC1_q2().then((response)=>{
-      response && setAdvice(oldAdvice => [...oldAdvice,response]);
-    })
-    scoreC1_q3().then((response)=>{
-      response && setAdvice(oldAdvice => [...oldAdvice,response]);
-    })
-    scoreC1_q4().then((response)=>{
-      response && setAdvice(oldAdvice => [...oldAdvice,response]);
-    })
-    scoreC1_q5().then((response)=>{
-      response && setAdvice(oldAdvice => [...oldAdvice,response]);
-    })
-    score_q1().then((response)=>{
-      response && setAdvice(oldAdvice => [...oldAdvice,response]);
-    })
-    score_q2().then((response)=>{
-      response && setAdvice(oldAdvice => [...oldAdvice,response]);
-    })
-    score_q3().then((response)=>{
-      response && setAdvice(oldAdvice => [...oldAdvice,response]);
-    })
+  //   sexAndAgeAdvices().then((response)=>{
+  //     response && setAdvice(oldAdvice => [...oldAdvice,response]);
+  //   })
+  //   IMCAdvices().then((response)=>{
+  //     response && setAdvice(oldAdvice => [...oldAdvice,response]);
+  //   })
+  //   metabolicAdvice().then((response)=>{
+  //     response && setAdvice(oldAdvice => [...oldAdvice,response]);
+  //   })
+  //   smokeAdvices().then((response)=>{
+  //     response && setAdvice(oldAdvice => [...oldAdvice,response]);
+  //   })
+  //   bloodSugarAdvices().then((response)=>{
+  //     response && setAdvice(oldAdvice => [...oldAdvice,response]);
+  //   })
+  //   bloodSugarLevelAdvices().then((response)=>{
+  //     response && setAdvice(oldAdvice => [...oldAdvice,response]);
+  //   })
+  //   groinAdvices().then((response)=>{
+  //     response && setAdvice(oldAdvice => [...oldAdvice,response]);
+  //   })
+  //   contraceptionAdvices().then((response)=>{
+  //     response && setAdvice(oldAdvice => [...oldAdvice,response]);
+  //   })
+  //   BMIAdvices().then((response)=>{
+  //     response && setAdvice(oldAdvice => [...oldAdvice,response]);
+  //   })
+  //   scoreC1_q1().then((response)=>{
+  //     response && setAdvice(oldAdvice => [...oldAdvice,response]);
+  //   })
+  //   scoreC1_q2().then((response)=>{
+  //     response && setAdvice(oldAdvice => [...oldAdvice,response]);
+  //   })
+  //   scoreC1_q3().then((response)=>{
+  //     response && setAdvice(oldAdvice => [...oldAdvice,response]);
+  //   })
+  //   scoreC1_q4().then((response)=>{
+  //     response && setAdvice(oldAdvice => [...oldAdvice,response]);
+  //   })
+  //   scoreC1_q5().then((response)=>{
+  //     response && setAdvice(oldAdvice => [...oldAdvice,response]);
+  //   })
+  //   score_q1().then((response)=>{
+  //     response && setAdvice(oldAdvice => [...oldAdvice,response]);
+  //   })
+  //   score_q2().then((response)=>{
+  //     response && setAdvice(oldAdvice => [...oldAdvice,response]);
+  //   })
+  //   score_q3().then((response)=>{
+  //     response && setAdvice(oldAdvice => [...oldAdvice,response]);
+  //   })
     
-    console.log(advice.length);
-  }
+  //   console.log(advice.length);
+  // }
   
-  const isFocused = useIsFocused();
+  // const isFocused = useIsFocused();
 
-  useEffect(()=>{
-    setAdvice([]);
-    const unsubscribe = navigation.addListener('focus',() =>{
-      getInfos();
-    });
-    getInfos();
-    fillAdvice();
-    // chapter1();
-  },[isFocused])
+  // useEffect(()=>{
+  //   setAdvice([]);
+  //   const unsubscribe = navigation.addListener('focus',() =>{
+  //     getInfos();
+  //   });
+  //   getInfos();
+  //   fillAdvice();
+  //   // chapter1();
+  // },[isFocused])
 
 
   return (
@@ -167,7 +167,7 @@ function HomeScreen({ navigation }) {
         <View style={{margin:10}}>
           <Button
             title="Get started"
-            onPress={() => navigation.navigate('Chapter 2')}
+            onPress={() => navigation.navigate('Chapter 1')}
             color="#18acb9"
           />
         </View>
@@ -328,7 +328,7 @@ export default function App() {
               return <Image source={require("./assets/Form.png")} style={{width: 30, height: 30}}/>
             })
           }} />
-          <Stack.Screen name="Chapter 2" component={Chapter2} />
+          
           {/* <Stack.Screen name="Chapter 1" component={Chapter1} />
           <Stack.Screen name="Chapter 2" component={Chapter2} />
           <Stack.Screen name="Chapter 3" component={Chapter3} />
@@ -338,6 +338,7 @@ export default function App() {
           <Stack.Screen name="Chapter 7" component={Chapter7} />
           <Stack.Screen name="Parametre Physio" component={ParametrePhysio} /> */}
         </Tab.Navigator>
+        <Stack.Screen name="Chapter 1" component={Chapter1} />
       </NavigationContainer>
   );
   }

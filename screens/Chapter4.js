@@ -24,7 +24,10 @@ const [dataIsReady,setDataIsReady] = useState(false);
   const [checked2, setChecked2] = react.useState('');
   const [visible, setVisible] = react.useState(false);
   const [visible2, setVisible2] = react.useState(false);
-  const [borderColorInput,setBorderColorInput] = react.useState("black");
+  const [borderColorInputMM,setBorderColorInputMM] = react.useState("#BBBBBB");
+  const [borderColorInputMM2,setBorderColorInputMM2] = react.useState("#BBBBBB");
+  const [borderColorInputMM3,setBorderColorInputMM3] = react.useState("#BBBBBB");
+  const [borderColorInputMM4,setBorderColorInputMM4] = react.useState("#BBBBBB");
   const [selectedPainLocation, setSelectedPainLocation] = react.useState();
   const [painIntensity, setPainIntensity] = react.useState(-1);
   const [painDurationTime, setPainDurationTime] = react.useState();
@@ -90,12 +93,12 @@ const [dataIsReady,setDataIsReady] = useState(false);
       <View>
           <Text style={styles.label}>MMSCEIT perceiving emotions score :</Text>
           <TextInput
-            style={{...styles.input,borderColor:borderColorInput}}
+            style={{...styles.input,borderColor:borderColorInputMM}}
             onFocus={() => {
-              setBorderColorInput("cyan");
+              setBorderColorInputMM("cyan");
             }}
             onBlur={() => {
-              setBorderColorInput("#BBBBBB");
+              setBorderColorInputMM("#BBBBBB");
             }}
             onChangeText={setMMSCEIT1}
             value={MMSCEIT1}
@@ -105,12 +108,12 @@ const [dataIsReady,setDataIsReady] = useState(false);
 
           <Text style={styles.label}>MMSCEIT using emotions score :</Text>
           <TextInput
-            style={{...styles.input,borderColor:borderColorInput}}
+            style={{...styles.input,borderColor:borderColorInputMM2}}
             onFocus={() => {
-              setBorderColorInput("cyan");
+              setBorderColorInputMM2("cyan");
             }}
             onBlur={() => {
-              setBorderColorInput("#BBBBBB");
+              setBorderColorInputMM2("#BBBBBB");
             }}
             onChangeText={setMMSCEIT2}
             value={MMSCEIT2}
@@ -120,12 +123,12 @@ const [dataIsReady,setDataIsReady] = useState(false);
 
           <Text style={styles.label}>MMSCEIT understanding emotions score :</Text>
           <TextInput
-            style={{...styles.input,borderColor:borderColorInput}}
+            style={{...styles.input,borderColor:borderColorInputMM3}}
             onFocus={() => {
-              setBorderColorInput("cyan");
+              setBorderColorInputMM3("cyan");
             }}
             onBlur={() => {
-              setBorderColorInput("#BBBBBB");
+              setBorderColorInputMM3("#BBBBBB");
             }}
             onChangeText={setMMSCEIT3}
             value={MMSCEIT3}
@@ -135,12 +138,12 @@ const [dataIsReady,setDataIsReady] = useState(false);
 
           <Text style={styles.label}>MMSCEIT managing emotions score :</Text>
           <TextInput
-            style={{...styles.input,borderColor:borderColorInput}}
+            style={{...styles.input,borderColor:borderColorInputMM4}}
             onFocus={() => {
-              setBorderColorInput("cyan");
+              setBorderColorInputMM4("cyan");
             }}
             onBlur={() => {
-              setBorderColorInput("#BBBBBB");
+              setBorderColorInputMM4("#BBBBBB");
             }}
             onChangeText={setMMSCEIT4}
             value={MMSCEIT4}
@@ -196,7 +199,7 @@ const renderDropdown2 = () => {
               size={20}
               reverse
               containerStyle={{ bottom: 20, right: 20 }}
-              color={'#fbe31c'}
+              color={'#18acb9'}
             />
             ),
           }}

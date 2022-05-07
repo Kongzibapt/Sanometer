@@ -1,20 +1,100 @@
 import { StatusBar } from 'expo-status-bar';
 import react , { useEffect }from 'react';
-import { StyleSheet, Text, View , ActivityIndicator, Button} from 'react-native';
+import { StyleSheet, Text, View , ActivityIndicator, Button, Image, FlatList} from 'react-native';
 import { SafeAreaView, TextInput, ScrollView} from "react-native";
+import { IMCAdvices, metabolicAdvice, sexAndAgeAdvices, smokeAdvices, bloodSugarAdvices, bloodSugarLevelAdvices, groinAdvices, contraceptionAdvices, BMIAdvices } from '../utils/functions.js';
+import {score_q1, score_q2, score_q3} from "../utils/modelIA_ParaPhysio.js";
+import {scoreC1_q1, scoreC1_q2, scoreC1_q3, scoreC1_q4, scoreC1_q5} from "../utils/modelIA_C1.js";
+import { useIsFocused } from "@react-navigation/native";
+import React from 'react';
 
 const Advice = function({navigation}) {
 
+  const [advice,setAdvice] = React.useState([]);
   
-  
+  const getInfos = async () => {
+    try {
+      const lastname = await AsyncStorage.getItem('lastname');
+      setLastname(lastname);
+      const firstname = await AsyncStorage.getItem('firstname');
+      setFirstname(firstname);
+    }
+    catch (error) {
+        console.log(error)
+    }
+  }
 
-  
+  fillAdvice = () => {
+    console.log("fillAdvice");
+    
+    sexAndAgeAdvices().then((response)=>{
+      response && setAdvice(oldAdvice => [...oldAdvice,response]);
+    })
+    IMCAdvices().then((response)=>{
+      response && setAdvice(oldAdvice => [...oldAdvice,response]);
+    })
+    metabolicAdvice().then((response)=>{
+      response && setAdvice(oldAdvice => [...oldAdvice,response]);
+    })
+    smokeAdvices().then((response)=>{
+      response && setAdvice(oldAdvice => [...oldAdvice,response]);
+    })
+    bloodSugarAdvices().then((response)=>{
+      response && setAdvice(oldAdvice => [...oldAdvice,response]);
+    })
+    bloodSugarLevelAdvices().then((response)=>{
+      response && setAdvice(oldAdvice => [...oldAdvice,response]);
+    })
+    groinAdvices().then((response)=>{
+      response && setAdvice(oldAdvice => [...oldAdvice,response]);
+    })
+    contraceptionAdvices().then((response)=>{
+      response && setAdvice(oldAdvice => [...oldAdvice,response]);
+    })
+    BMIAdvices().then((response)=>{
+      response && setAdvice(oldAdvice => [...oldAdvice,response]);
+    })
+    scoreC1_q1().then((response)=>{
+      response && setAdvice(oldAdvice => [...oldAdvice,response]);
+    })
+    scoreC1_q2().then((response)=>{
+      response && setAdvice(oldAdvice => [...oldAdvice,response]);
+    })
+    scoreC1_q3().then((response)=>{
+      response && setAdvice(oldAdvice => [...oldAdvice,response]);
+    })
+    scoreC1_q4().then((response)=>{
+      response && setAdvice(oldAdvice => [...oldAdvice,response]);
+    })
+    scoreC1_q5().then((response)=>{
+      response && setAdvice(oldAdvice => [...oldAdvice,response]);
+    })
+    score_q1().then((response)=>{
+      response && setAdvice(oldAdvice => [...oldAdvice,response]);
+    })
+    score_q2().then((response)=>{
+      response && setAdvice(oldAdvice => [...oldAdvice,response]);
+    })
+    score_q3().then((response)=>{
+      response && setAdvice(oldAdvice => [...oldAdvice,response]);
+    })
+    
+    console.log(advice.length);
+  }
+
+  const isFocused = useIsFocused();
 
   useEffect(()=>{
     // getChapterInfos().then(()=>{
     //   setDataIsReady(true);
     // });
-  },[])
+    setAdvice([]);
+    const unsubscribe = navigation.addListener('focus',() =>{
+      getInfos();
+    });
+    getInfos();
+    fillAdvice();
+  },[isFocused])
 
   
 
@@ -23,9 +103,23 @@ const Advice = function({navigation}) {
       {/* {!dataIsReady ?
       <ActivityIndicator size='large' color='black'/>
       : */}
+      <View style={styles.logoPart}>
+        <Image source={require('../assets/Logo.png')} style={styles.logo}/>
+      </View>
       <ScrollView style={styles.scrollView}>
         <Text  style = {styles.headerText}>Advice</Text>
-        
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', overflow: "scroll", flexGrow:3}}>
+          <FlatList 
+          data={advice}
+          renderItem={({item,index,separators}) =>(
+            item ? 
+            <View key={index}>
+              <Text  style={styles.advice}>{item}</Text>
+            </View>
+            :
+            null
+        )} />
+        </View>
       </ScrollView>
     {/* } */}
     </SafeAreaView>
@@ -77,12 +171,15 @@ const styles = StyleSheet.create({
   chooseDate: {
     width:"50%"
   },
+  logoPart:{
+    padding:"8%"
+  },
   headerText: {
-    fontSize: 20,
-    color: 'black',
+    fontSize: 18,
+    color: '#18acb9',
     marginTop : 50,
     margin: 12,
-    fontFamily:"Montserrat_400Regular"
+    fontFamily:"Montserrat_700Bold"
   },
   headerText2: {
     fontSize: 16,

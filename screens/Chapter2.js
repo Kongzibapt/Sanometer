@@ -350,9 +350,7 @@ const Chapter2 = function({navigation}) {
   const [borderColorInputTo5,setBorderColorInputTo5] = react.useState("#BBBBBB");
   const [borderColorInputMed4,setBorderColorInputMed4] = react.useState("#BBBBBB");
   const [borderColorInputTrig,setBorderColorInputTrig] = react.useState("#BBBBBB");
-  const [borderColorInputMed,setBorderColorInputMed] = react.useState("#BBBBBB");
-  const [borderColorInputMed,setBorderColorInputMed] = react.useState("#BBBBBB");
-  const [borderColorInputMed,setBorderColorInputMed] = react.useState("#BBBBBB");
+  const [borderColorInputDiph,setBorderColorInputDiph] = react.useState("#BBBBBB");
 
   
 
@@ -3242,12 +3240,12 @@ const Chapter2 = function({navigation}) {
           <View style={styles.subcontainer2}>
             <Text style={styles.label}>Date of your last booster</Text>
             <TextInput
-              style={{...styles.input,borderColor:borderColorInput}}
+              style={{...styles.input,borderColor:borderColorInputDiph}}
               onFocus={() => {
-                setBorderColorInput("cyan");
+                setBorderColorInputDiph("cyan");
               }}
               onBlur={() => {
-                setBorderColorInput("#BBBBBB");
+                setBorderColorInputDiph("#BBBBBB");
               }}
               onChangeText={onChangeText_booster2}
               value={booster2}

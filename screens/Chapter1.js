@@ -30,7 +30,6 @@ const Chapter1 = function({navigation}) {
   // Style
   const [borderColorInputLastName,setBorderColorInputLastName] = react.useState("#BBBBBB");
   const [borderColorInputFirstName,setBorderColorInputFirstName] = react.useState("#BBBBBB");
-  const [borderColorInputBirthDate,setBorderColorInputBirthDate] = react.useState("#BBBBBB");
   const [borderColorInputBirthPlace,setBorderColorInputBirthPlace] = react.useState("#BBBBBB");
   const [borderColorInputBirthTown,setBorderColorInputBirthTown] = react.useState("#BBBBBB");
   const [borderColorInputCountry,setBorderColorInputCountry] = react.useState("#BBBBBB");

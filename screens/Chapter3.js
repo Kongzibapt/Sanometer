@@ -2,9 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import react, { useEffect } from 'react';
 import { StyleSheet, Text, View,Button, ActivityIndicator, Image } from 'react-native';
 import { SafeAreaView, TextInput, ScrollView, TouchableOpacity} from "react-native";
-import { Slider, Icon } from 'react-native-elements';
+import { Icon } from 'react-native-elements';
 import { RadioButton } from 'react-native-paper';
-import {Picker} from '@react-native-picker/picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Chapter3 = function({navigation}) {
@@ -17,7 +16,8 @@ const Chapter3 = function({navigation}) {
   const [BDI, setBDI] = react.useState('');
   const [visible1, setVisible1] = react.useState(false);
   const [visible2, setVisible2] = react.useState(false);
-  const [borderColorInput,setBorderColorInput] = react.useState("black");
+  const [borderColorInput,setBorderColorInput] = react.useState("#BBBBBB");
+  const [borderColorInput2,setBorderColorInput2] = react.useState("#BBBBBB");
 
   const submitChapter3 = async () => {
     try {     
@@ -50,22 +50,6 @@ const Chapter3 = function({navigation}) {
     });
   },[])
 
-
-  const onChange = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
-    setShow(Platform.OS === 'ios');
-    setDate(currentDate);
-  };
-
-  const showMode = (currentMode) => {
-    setShow(true);
-    setMode(currentMode);
-  };
-
-  const showDatepicker = () => {
-    showMode('date');
-  };  
-
   const toggleDropdown1 = () => {
     setVisible1(!visible1);
   };
@@ -85,9 +69,8 @@ const Chapter3 = function({navigation}) {
               setBorderColorInput("cyan");
             }}
             onBlur={() => {
-              setBorderColorInput("#BBBBBB");
+              setBorderColorInput('#BBBBBB');
             }}
-            style={styles.input}
             onChangeText={onChangeText1}
             value={StandardProgressiveMatrices}
             placeholder="Your result"
@@ -104,14 +87,13 @@ const Chapter3 = function({navigation}) {
         <View>
           <Text style={styles.label}>What was your result ? (number between 0 and 63) </Text>
           <TextInput
-            style={{...styles.input,borderColor:borderColorInput}}
+            style={{...styles.input,borderColor:borderColorInput2}}
             onFocus={() => {
-              setBorderColorInput("cyan");
+              setBorderColorInput2("cyan");
             }}
             onBlur={() => {
-              setBorderColorInput("#BBBBBB");
+              setBorderColorInput2('#BBBBBB');
             }}
-            style={styles.input}
             onChangeText={onChangeText2}
             value={BeckDepressionInventory}
             placeholder="Your result"
@@ -132,7 +114,7 @@ const Chapter3 = function({navigation}) {
       <ActivityIndicator size='large' color='black'/>
       :
       <ScrollView style={styles.scrollView}>
-        <Text style = {styles.headerText}>Psychological data : </Text>
+        <Text style = {styles.headerText}>Psychological data</Text>
         <Text style={styles.label}>Did you do the Standard Progressive Matrices Test ?</Text>
         <View style={styles.checkboxview}>
           <View style={styles.containerbutton}>
@@ -235,7 +217,7 @@ const styles = StyleSheet.create({
   },
   headerText2: {
     fontSize: 16,
-    color: 'white',
+    color: '#18acb9',
     margin: 12,
     fontFamily:"Montserrat_400Regular"
   },

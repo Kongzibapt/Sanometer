@@ -1,13 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
 import react , { useEffect }from 'react';
-import { StyleSheet, Text, View , ActivityIndicator, Button} from 'react-native';
+import { StyleSheet, Text, View , ActivityIndicator, Button, Image} from 'react-native';
 import { SafeAreaView, TextInput, ScrollView} from "react-native";
 import { Chapter1 } from './Chapter1.js';
+import { Chapter2 } from './Chapter2.js';
+import { Chapter3 } from './Chapter3.js';
+import { Chapter4 } from './Chapter4.js';
+import { Chapter5 } from './Chapter5.js';
+import { Chapter6 } from './Chapter6.js';
+import { Chapter7 } from './Chapter7.js';
+import { ParametrePhysio } from './ParametrePhysio.js';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Form = function({navigation}) {
-
-  
-  
 
   
 
@@ -24,20 +29,96 @@ const Form = function({navigation}) {
       {/* {!dataIsReady ?
       <ActivityIndicator size='large' color='black'/>
       : */}
+      <View style={styles.logoPart}>
+        <Image source={require('../assets/Logo.png')} style={styles.logo}/>
+      </View>
       <ScrollView style={styles.scrollView}>
         <Text  style = {styles.headerText}>Choose a chapter : </Text>
-        <View style={styles.button}>
+        {/* <View style={styles.button}>
           <Button
             title="Get started"
             onPress={() => navigation.navigate(Chapter1)}
             color="#18acb9"
           />
+        </View> */}
+        <View style={styles.containerbutton}>
+        <View style={styles.button}>
+          <Button
+            title="Personal data"
+            onPress={() => navigation.navigate('Chapter 1')}
+            color="#18acb9"
+            border="none"
+          />
         </View>
+        <Text></Text>
+        <View style={styles.button}>
+          <Button
+            title="Medical data"
+            onPress={() => navigation.navigate('Chapter 2')}
+            color="#18acb9"
+          />
+        </View>
+        <Text></Text>
+        <View style={styles.button}>
+          <Button
+            title="Psychological data"
+            style={styles.button}
+            onPress={() => navigation.navigate('Chapter 3')}
+            color="#18acb9"
+          />
+        </View>
+        <Text></Text>
+        <View style={styles.button}>
+          <Button
+            title="Emotional profile"
+            style={styles.button}
+            onPress={() => navigation.navigate('Chapter 4')}
+            color="#18acb9"
+          />
+        </View>
+        <Text></Text>
+        <View style={styles.button}>
+          <Button
+            title="Physical data"
+            style={styles.button}
+            onPress={() => navigation.navigate('Chapter 5')}
+            color="#18acb9"
+          />
+        </View>
+        <Text></Text>
+        <View style={styles.button}>
+          <Button
+            title="Life style"
+            style={styles.button}
+            onPress={() => navigation.navigate('Chapter 6')}
+            color="#18acb9"
+          />
+        </View>
+        <Text></Text>
+        <View style={styles.button}>
+          <Button
+            title="Paraclinical data"
+            style={styles.button}
+            onPress={() => navigation.navigate('Chapter 7')}
+            color="#18acb9"
+          />
+        </View>
+        <Text></Text>
+        <View style={styles.button}>
+          <Button
+            title="Physiogical parameters"
+            style={styles.button}
+            onPress={() => navigation.navigate('Parametre Physio')}
+            color="#18acb9"
+          />
+        </View>
+      </View>
       </ScrollView>
     {/* } */}
     </SafeAreaView>
   );
 }
+
 
 export {Form};
 
@@ -60,7 +141,17 @@ const styles = StyleSheet.create({
   },
   containerbutton:{
     flex:1,
-    paddingRight:10
+    paddingRight:10,
+    position:'relative',
+    width:"100%",
+    height:"20%"
+  },
+  button:{
+    fontSize: 17.2,
+    fontFamily: "Montserrat_600SemiBold",
+    width:"100%",
+    justifyContent: 'center',
+    position:'relative'
   },
   firstname:{
     flex:1,
@@ -69,6 +160,9 @@ const styles = StyleSheet.create({
   lastname:{
     flex:1,
     paddingRight:10
+  },
+  logoPart:{
+    padding:"8%"
   },
   input: {
     height: 40,
@@ -85,11 +179,11 @@ const styles = StyleSheet.create({
     width:"50%"
   },
   headerText: {
-    fontSize: 20,
-    color: 'black',
+    fontSize: 18,
+    color: '#18acb9',
     marginTop : 50,
     margin: 12,
-    fontFamily:"Montserrat_400Regular"
+    fontFamily:"Montserrat_700Bold"
   },
   headerText2: {
     fontSize: 16,
