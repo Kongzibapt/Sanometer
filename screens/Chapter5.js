@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import react , { useEffect }from 'react';
-import { StyleSheet, Text, View , ActivityIndicator, Button} from 'react-native';
+import { StyleSheet, Text, View , ActivityIndicator, Button, Image} from 'react-native';
 import { SafeAreaView, TextInput, ScrollView} from "react-native";
 import { Slider, Icon } from 'react-native-elements';
 import { RadioButton } from 'react-native-paper';
@@ -20,6 +20,14 @@ const Chapter5 = function({navigation}) {
   const [pressure, onChangeText6] = react.useState(null);
   const [pulse, onChangeText7] = react.useState(null);
   const [dataIsReady,setDataIsReady]=react.useState(false);
+  const [borderColorInputHeight,setBorderColorInputHeight] = react.useState("#BBBBBB");
+  const [borderColorInputWeight,setBorderColorInputWeight] = react.useState("#BBBBBB");
+  const [borderColorInputWaist,setBorderColorInputWaist] = react.useState("#BBBBBB");
+  const [borderColorInputAbdo,setBorderColorInputAbdo] = react.useState("#BBBBBB");
+  const [borderColorInputThigh,setBorderColorInputThigh] = react.useState("#BBBBBB");
+  const [borderColorInputAnkle,setBorderColorInputAnkle] = react.useState("#BBBBBB");
+  const [borderColorInputPressure,setBorderColorInputPressure] = react.useState("#BBBBBB");
+  const [borderColorInputPulse,setBorderColorInputPulse] = react.useState("#BBBBBB");
 
   const submitChapter5 = async () => {
     try {     
@@ -79,14 +87,23 @@ const Chapter5 = function({navigation}) {
 
   return (
     <SafeAreaView style={styles.container}>
+      <View style={styles.logoPart}>
+        <Image source={require('../assets/Logo.png')} style={styles.logo}/>
+      </View>
       {!dataIsReady ?
       <ActivityIndicator size='large' color='black'/>
       :
       <ScrollView style={styles.scrollView}>
-        <Text  style = {styles.headerText}>Enter your physical parameters : </Text>
+        <Text  style = {styles.headerText}>Physical parameters</Text>
         <Text style={styles.label}>Height (cm)</Text>
         <TextInput
-          style={styles.input}
+          style={{...styles.input,borderColor:borderColorInputHeight}}
+          onFocus={() => {
+            setBorderColorInputHeight("cyan");
+          }}
+          onBlur={() => {
+            setBorderColorInputHeight('#BBBBBB');
+          }}
           onChangeText={onChangeText1}
           value={height}
           placeholder="Your height"
@@ -94,7 +111,13 @@ const Chapter5 = function({navigation}) {
         />
         <Text style={styles.label}>Weight (kg)</Text>
         <TextInput
-          style={styles.input}
+          style={{...styles.input,borderColor:borderColorInputWeight}}
+          onFocus={() => {
+            setBorderColorInputWeight("cyan");
+          }}
+          onBlur={() => {
+            setBorderColorInputWeight('#BBBBBB');
+          }}
           onChangeText={onChangeText2}
           value={weight}
           placeholder="Your weight"
@@ -102,7 +125,13 @@ const Chapter5 = function({navigation}) {
         />
         <Text style={styles.label}>Waist circumference</Text>
         <TextInput
-          style={styles.input}
+          style={{...styles.input,borderColor:borderColorInputWaist}}
+          onFocus={() => {
+            setBorderColorInputWaist("cyan");
+          }}
+          onBlur={() => {
+            setBorderColorInputWaist('#BBBBBB');
+          }}
           onChangeText={onChangeText8}
           value={waist}
           placeholder="Your waist circumference"
@@ -110,7 +139,13 @@ const Chapter5 = function({navigation}) {
         />
         <Text style={styles.label}>Abdominal perimeter</Text>
         <TextInput
-          style={styles.input}
+          style={{...styles.input,borderColor:borderColorInputAbdo}}
+          onFocus={() => {
+            setBorderColorInputAbdo("cyan");
+          }}
+          onBlur={() => {
+            setBorderColorInputAbdo('#BBBBBB');
+          }}
           onChangeText={onChangeText3}
           value={abdominal_param}
           placeholder="Your abdominal perimeter"
@@ -118,7 +153,13 @@ const Chapter5 = function({navigation}) {
         />
         <Text style={styles.label}>Thigh perimeter</Text>
         <TextInput
-          style={styles.input}
+          style={{...styles.input,borderColor:borderColorInputThigh}}
+          onFocus={() => {
+            setBorderColorInputThigh("cyan");
+          }}
+          onBlur={() => {
+            setBorderColorInputThigh('#BBBBBB');
+          }}
           onChangeText={onChangeText4}
           value={thigh_perim}
           placeholder="Your thigh perimeter"
@@ -126,7 +167,13 @@ const Chapter5 = function({navigation}) {
         />
         <Text style={styles.label}>Ankle perimeter</Text>
         <TextInput
-          style={styles.input}
+          style={{...styles.input,borderColor:borderColorInputAnkle}}
+          onFocus={() => {
+            setBorderColorInputAnkle("cyan");
+          }}
+          onBlur={() => {
+            setBorderColorInputAnkle('#BBBBBB');
+          }}
           onChangeText={onChangeText5}
           value={ankle_perim}
           placeholder="Your ankle perimeter"
@@ -134,7 +181,13 @@ const Chapter5 = function({navigation}) {
         />
         <Text style={styles.label}>Pressure</Text>
         <TextInput
-          style={styles.input}
+          style={{...styles.input,borderColor:borderColorInputPressure}}
+          onFocus={() => {
+            setBorderColorInputPressure("cyan");
+          }}
+          onBlur={() => {
+            setBorderColorInputPressure('#BBBBBB');
+          }}
           onChangeText={onChangeText6}
           value={pressure}
           placeholder="Your pressure"
@@ -142,7 +195,13 @@ const Chapter5 = function({navigation}) {
         />
         <Text style={styles.label}>Pulse</Text>
         <TextInput
-          style={styles.input}
+          style={{...styles.input,borderColor:borderColorInputPulse}}
+          onFocus={() => {
+            setBorderColorInputPulse("cyan");
+          }}
+          onBlur={() => {
+            setBorderColorInputPulse('#BBBBBB');
+          }}
           onChangeText={onChangeText7}
           value={pulse}
           placeholder="Your pulse"
@@ -171,9 +230,12 @@ export {Chapter5};
 
 const styles = StyleSheet.create({
   container:{
-    backgroundColor:'#18acb9',
+    backgroundColor:'white',
     paddingTop: StatusBar.currentHeight,
     flex :1,
+  },
+  logoPart:{
+    padding:"8%"
   },
   names:{
     display:'flex',
@@ -213,11 +275,11 @@ const styles = StyleSheet.create({
     width:"50%"
   },
   headerText: {
-    fontSize: 20,
-    color: 'white',
+    fontSize: 18,
+    color: '#18acb9',
     marginTop : 50,
     margin: 12,
-    fontFamily:"Montserrat_400Regular"
+    fontFamily:"Montserrat_700Bold"
   },
   headerText2: {
     fontSize: 16,
@@ -227,7 +289,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 16,
-    color: 'black',
+    color: '#18acb9',
     fontFamily:"Montserrat_700Bold",
     margin: 12,
   },
@@ -248,7 +310,7 @@ const styles = StyleSheet.create({
     fontFamily:"Montserrat_400Regular"
   },
   scrollView: {
-    backgroundColor: '#18acb9',
+    backgroundColor: 'white',
     marginHorizontal: 20,
   },
 });
