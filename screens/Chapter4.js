@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import react, { useEffect } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
-import { SafeAreaView, TextInput, ScrollView, Button, TouchableOpacity} from "react-native";
+import { SafeAreaView, TextInput, ScrollView, Button, TouchableOpacity, Image} from "react-native";
 import { Slider, Icon } from 'react-native-elements';
 import { RadioButton } from 'react-native-paper';
 import {Picker} from '@react-native-picker/picker';
@@ -95,7 +95,7 @@ const [dataIsReady,setDataIsReady] = useState(false);
               setBorderColorInput("cyan");
             }}
             onBlur={() => {
-              setBorderColorInput("black");
+              setBorderColorInput("#BBBBBB");
             }}
             onChangeText={setMMSCEIT1}
             value={MMSCEIT1}
@@ -110,7 +110,7 @@ const [dataIsReady,setDataIsReady] = useState(false);
               setBorderColorInput("cyan");
             }}
             onBlur={() => {
-              setBorderColorInput("black");
+              setBorderColorInput("#BBBBBB");
             }}
             onChangeText={setMMSCEIT2}
             value={MMSCEIT2}
@@ -125,7 +125,7 @@ const [dataIsReady,setDataIsReady] = useState(false);
               setBorderColorInput("cyan");
             }}
             onBlur={() => {
-              setBorderColorInput("black");
+              setBorderColorInput("#BBBBBB");
             }}
             onChangeText={setMMSCEIT3}
             value={MMSCEIT3}
@@ -140,7 +140,7 @@ const [dataIsReady,setDataIsReady] = useState(false);
               setBorderColorInput("cyan");
             }}
             onBlur={() => {
-              setBorderColorInput("black");
+              setBorderColorInput("#BBBBBB");
             }}
             onChangeText={setMMSCEIT4}
             value={MMSCEIT4}
@@ -255,11 +255,14 @@ const renderDropdown2 = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <View style={styles.logoPart}>
+        <Image source={require('../assets/Logo.png')} style={styles.logo}/>
+      </View>
        {!dataIsReady ?
       <ActivityIndicator size='large' color='black'/>
       :
       <ScrollView style={styles.scrollView}>
-      <Text  style = {styles.headerText}>Enter your data about your emotional profile: </Text>
+      <Text  style = {styles.headerText}>Emotional profile</Text>
       <Text style={styles.label}>Have you performed the MMSCEIT V 2.0 test ?</Text>
         <View style={styles.checkboxview}>
           <View style={styles.containerbutton}>
@@ -351,9 +354,12 @@ export {Chapter4};
 
 const styles = StyleSheet.create({
   container:{
-    backgroundColor:'#18acb9',
+    backgroundColor:'white',
     paddingTop: StatusBar.currentHeight,
     flex :1,
+  },
+  logoPart:{
+    padding:"8%"
   },
   drop:{
     display:'flex',
@@ -363,7 +369,7 @@ const styles = StyleSheet.create({
     flex:1,
     paddingRight:10,
     fontSize: 16,
-    color: 'black',
+    color: '#18acb9',
     fontFamily:"Montserrat_700Bold",
     margin: 12,
   },
@@ -397,11 +403,11 @@ const styles = StyleSheet.create({
     width:"50%"
   },
   headerText: {
-    fontSize: 20,
-    color: 'white',
+    fontSize: 18,
+    color: '#18acb9',
     marginTop : 50,
     margin: 12,
-    fontFamily:"Montserrat_400Regular"
+    fontFamily:"Montserrat_700Bold"
   },
   headerText2: {
     fontSize: 16,
@@ -411,7 +417,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 16,
-    color: 'black',
+    color: '#18acb9',
     fontFamily:"Montserrat_700Bold",
     margin: 12,
   },
@@ -432,7 +438,7 @@ const styles = StyleSheet.create({
     fontFamily:"Montserrat_400Regular"
   },
   scrollView: {
-    backgroundColor: '#18acb9',
+    backgroundColor: 'white',
     marginHorizontal: 20,
   },
   dropdown: {

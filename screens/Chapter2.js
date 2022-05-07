@@ -301,7 +301,59 @@ const Chapter2 = function({navigation}) {
   
   
 
-  const [borderColorInput,setBorderColorInput] = react.useState("black");
+  const [borderColorInputSince,setBorderColorInputSince] = react.useState("#BBBBBB");
+  const [borderColorInputWhat,setBorderColorInputWhat] = react.useState("#BBBBBB");
+  const [borderColorInputFor,setBorderColorInputFor] = react.useState("#BBBBBB");
+  const [borderColorInputWhat2,setBorderColorInputWhat2] = react.useState("#BBBBBB");
+  const [borderColorInputFor2,setBorderColorInputFor2] = react.useState("#BBBBBB");
+  const [borderColorInputWhen,setBorderColorInputWhen] = react.useState("#BBBBBB");
+  const [borderColorInputHow,setBorderColorInputHow] = react.useState("#BBBBBB");
+  const [borderColorInputWhen2,setBorderColorInputWhen2] = react.useState("#BBBBBB");
+  const [borderColorInputHow2,setBorderColorInputHow2] = react.useState("#BBBBBB");
+  const [borderColorInputHow3,setBorderColorInputHow3] = react.useState("#BBBBBB");
+  const [borderColorInputWhen3,setBorderColorInputWhen3] = react.useState("#BBBBBB");
+  const [borderColorInputHow4,setBorderColorInputHow4] = react.useState("#BBBBBB");
+  const [borderColorInputHow5,setBorderColorInputHow5] = react.useState("#BBBBBB");
+  const [borderColorInputWhen4,setBorderColorInputWhen4] = react.useState("#BBBBBB");
+  const [borderColorInputHow6,setBorderColorInputHow6] = react.useState("#BBBBBB");
+  const [borderColorInputHow7,setBorderColorInputHow7] = react.useState("#BBBBBB");
+  const [borderColorInputYes,setBorderColorInputYes] = react.useState("#BBBBBB");
+  const [borderColorInputWhat3,setBorderColorInputWhat3] = react.useState("#BBBBBB");
+  const [borderColorInputYes2,setBorderColorInputYes2] = react.useState("#BBBBBB");
+  const [borderColorInputYes3,setBorderColorInputYes3] = react.useState("#BBBBBB");
+  const [borderColorInputWhich,setBorderColorInputWhich] = react.useState("#BBBBBB");
+  const [borderColorInputWhich2,setBorderColorInputWhich2] = react.useState("#BBBBBB");
+  const [borderColorInputLoc,setBorderColorInputLoc] = react.useState("#BBBBBB");
+  const [borderColorInputFrom,setBorderColorInputFrom] = react.useState("#BBBBBB");
+  const [borderColorInputTo,setBorderColorInputTo] = react.useState("#BBBBBB");
+  const [borderColorInputTreat,setBorderColorInputTreat] = react.useState("#BBBBBB");
+  const [borderColorInputCur,setBorderColorInputCur] = react.useState("#BBBBBB");
+  const [borderColorInputHow8,setBorderColorInputHow8] = react.useState("#BBBBBB");
+  const [borderColorInputWhich3,setBorderColorInputWhich3] = react.useState("#BBBBBB");
+  const [borderColorInputYes4,setBorderColorInputYes4] = react.useState("#BBBBBB");
+  const [borderColorInputDate,setBorderColorInputDate] = react.useState("#BBBBBB");
+  const [borderColorInputDate2,setBorderColorInputDate2] = react.useState("#BBBBBB");
+  const [borderColorInputDate3,setBorderColorInputDate3] = react.useState("#BBBBBB");
+  const [borderColorInputDate4,setBorderColorInputDate4] = react.useState("#BBBBBB");
+  const [borderColorInputDate5,setBorderColorInputDate5] = react.useState("#BBBBBB");
+  const [borderColorInputDate6,setBorderColorInputDate6] = react.useState("#BBBBBB");
+  const [borderColorInputDate7,setBorderColorInputDate7] = react.useState("#BBBBBB");
+  const [borderColorInputDate8,setBorderColorInputDate8] = react.useState("#BBBBBB");
+  const [borderColorInputDate9,setBorderColorInputDate9] = react.useState("#BBBBBB");
+  const [borderColorInputDate10,setBorderColorInputDate10] = react.useState("#BBBBBB");
+  const [borderColorInputTo2,setBorderColorInputTo2] = react.useState("#BBBBBB");
+  const [borderColorInputMed,setBorderColorInputMed] = react.useState("#BBBBBB");
+  const [borderColorInputTo3,setBorderColorInputTo3] = react.useState("#BBBBBB");
+  const [borderColorInputMed2,setBorderColorInputMed2] = react.useState("#BBBBBB");
+  const [borderColorInputTo4,setBorderColorInputTo4] = react.useState("#BBBBBB");
+  const [borderColorInputMed3,setBorderColorInputMed3] = react.useState("#BBBBBB");
+  const [borderColorInputTo5,setBorderColorInputTo5] = react.useState("#BBBBBB");
+  const [borderColorInputMed4,setBorderColorInputMed4] = react.useState("#BBBBBB");
+  const [borderColorInputTrig,setBorderColorInputTrig] = react.useState("#BBBBBB");
+  const [borderColorInputMed,setBorderColorInputMed] = react.useState("#BBBBBB");
+  const [borderColorInputMed,setBorderColorInputMed] = react.useState("#BBBBBB");
+  const [borderColorInputMed,setBorderColorInputMed] = react.useState("#BBBBBB");
+
   
 
   const onChange = (event, selectedDate) => {
@@ -873,12 +925,12 @@ const Chapter2 = function({navigation}) {
               <View style={styles.subcontainer2}>
                 <Text style={styles.label}>Since When ?</Text>
                 <TextInput
-                  style={{...styles.input,borderColor:borderColorInput}}
+                  style={{...styles.input,borderColor:borderColorInputSince}}
                   onFocus={() => {
-                    setBorderColorInput("cyan");
+                    setBorderColorInputSince("cyan");
                   }}
                   onBlur={() => {
-                    setBorderColorInput("#BBBBBB");
+                    setBorderColorInputSince("#BBBBBB");
                   }}
                   onChangeText={onChangeText_menopausedate}
                   value={menopause_date}
@@ -910,12 +962,12 @@ const Chapter2 = function({navigation}) {
                   <View>
                     <Text style={styles.label}> What substance ? </Text>
                     <TextInput
-                      style={{...styles.input,borderColor:borderColorInput}}
+                      style={{...styles.input,borderColor:borderColorInputWhat}}
                       onFocus={() => {
-                        setBorderColorInput("cyan");
+                        setBorderColorInputWhat("cyan");
                       }}
                         onBlur={() => {
-                          setBorderColorInput("#BBBBBB");
+                          setBorderColorInputWhat("#BBBBBB");
                         }}
                           onChangeText={onChangeText_medications_hormone}
                           value={medications_hormone}
@@ -925,12 +977,12 @@ const Chapter2 = function({navigation}) {
 
                     <Text style={styles.label}> For how long ? </Text>
                     <TextInput
-                      style={{...styles.input,borderColor:borderColorInput}}
+                      style={{...styles.input,borderColor:borderColorInputFor}}
                       onFocus={() => {
-                        setBorderColorInput("cyan");
+                        setBorderColorInputFor("cyan");
                       }}
                       onBlur={() => {
-                        setBorderColorInput("#BBBBBB");
+                        setBorderColorInputFor("#BBBBBB");
                       }}
                       onChangeText={onChangeText_medications_hormonedate}
                       value={hormonedate}
@@ -967,12 +1019,12 @@ const Chapter2 = function({navigation}) {
               <View style={styles.subcontainer2}>
                 <Text style={styles.label}> What substance ? </Text>
                 <TextInput
-                  style={{...styles.input,borderColor:borderColorInput}}
+                  style={{...styles.input,borderColor:borderColorInputWhat2}}
                   onFocus={() => {
-                    setBorderColorInput("cyan");
+                    setBorderColorInputWhat2("cyan");
                   }}
                   onBlur={() => {
-                    setBorderColorInput("#BBBBBB");
+                    setBorderColorInputWhat2("#BBBBBB");
                   }}
                   onChangeText={onChangeText_medications_contra}
                   value={medications_contra}
@@ -982,12 +1034,12 @@ const Chapter2 = function({navigation}) {
 
                 <Text style={styles.label}> For how long ? </Text>
                 <TextInput
-                  style={{...styles.input,borderColor:borderColorInput}}
+                  style={{...styles.input,borderColor:borderColorInputFor2}}
                   onFocus={() => {
-                    setBorderColorInput("cyan");
+                    setBorderColorInputFor2("cyan");
                   }}
                   onBlur={() => {
-                    setBorderColorInput("#BBBBBB");
+                    setBorderColorInputFor2("#BBBBBB");
                   }}
                   onChangeText={onChangeText_medications_contradate}
                   value={contradate}
@@ -1067,12 +1119,12 @@ const Chapter2 = function({navigation}) {
                   <View>
                     <Text style={styles.label}> When ? </Text>
                     <TextInput
-                      style={{...styles.input,borderColor:borderColorInput}}
+                      style={{...styles.input,borderColor:borderColorInputWhen}}
                       onFocus={() => {
-                        setBorderColorInput("cyan");
+                        setBorderColorInputWhen("cyan");
                       }}
                       onBlur={() => {
-                        setBorderColorInput("#BBBBBB");
+                        setBorderColorInputWhen("#BBBBBB");
                       }}
                       onChangeText={onChangeText_caesarean}
                       value={caesareandate}
@@ -1081,12 +1133,12 @@ const Chapter2 = function({navigation}) {
                     />
                     <Text style={styles.label}> How many ? </Text>
                     <TextInput
-                      style={{...styles.input,borderColor:borderColorInput}}
+                      style={{...styles.input,borderColor:borderColorInputHow}}
                       onFocus={() => {
-                        setBorderColorInput("cyan");
+                        setBorderColorInputHow("cyan");
                       }}
                       onBlur={() => {
-                        setBorderColorInput("#BBBBBB");
+                        setBorderColorInputHow("#BBBBBB");
                       }}
                       onChangeText={onChangeText_nbcaesarean}
                       value={nbcaesarean}
@@ -1123,12 +1175,12 @@ const Chapter2 = function({navigation}) {
               <View style={styles.subcontainer2}>
                 <Text style={styles.label}> When ? </Text>
                 <TextInput
-                  style={{...styles.input,borderColor:borderColorInput}}
+                  style={{...styles.input,borderColor:borderColorInputWhen2}}
                   onFocus={() => {
-                    setBorderColorInput("cyan");
+                    setBorderColorInputWhen2("cyan");
                   }}
                   onBlur={() => {
-                    setBorderColorInput("#BBBBBB");
+                    setBorderColorInputWhen2("#BBBBBB");
                   }}
                   onChangeText={onChangeText_abortionwhen}
                   value={abortionwhen}
@@ -1137,12 +1189,12 @@ const Chapter2 = function({navigation}) {
                 />
                 <Text style={styles.label}> How ? </Text>
                 <TextInput
-                  style={{...styles.input,borderColor:borderColorInput}}
+                  style={{...styles.input,borderColor:borderColorInputHow2}}
                   onFocus={() => {
-                    setBorderColorInput("cyan");
+                    setBorderColorInputHow2("cyan");
                   }}
                   onBlur={() => {
-                    setBorderColorInput("#BBBBBB");
+                    setBorderColorInputHow2("#BBBBBB");
                   }}
                   onChangeText={onChangeText_abortionhow}
                   value={abortionhow}
@@ -1151,12 +1203,12 @@ const Chapter2 = function({navigation}) {
                 />
                 <Text style={styles.label}> How many ? </Text>
                 <TextInput
-                  style={{...styles.input,borderColor:borderColorInput}}
+                  style={{...styles.input,borderColor:borderColorInputHow3}}
                   onFocus={() => {
-                    setBorderColorInput("cyan");
+                    setBorderColorInputHow3("cyan");
                   }}
                   onBlur={() => {
-                    setBorderColorInput("#BBBBBB");
+                    setBorderColorInputHow3("#BBBBBB");
                   }}
                   onChangeText={onChangeText_abortionmany}
                   value={abortionmany}
@@ -1191,12 +1243,12 @@ const Chapter2 = function({navigation}) {
               <View style={styles.subcontainer2}>
                 <Text style={styles.label}> When ? </Text>
                 <TextInput
-                  style={{...styles.input,borderColor:borderColorInput}}
+                  style={{...styles.input,borderColor:borderColorInputWhen3}}
                   onFocus={() => {
-                    setBorderColorInput("cyan");
+                    setBorderColorInputWhen3("cyan");
                   }}
                   onBlur={() => {
-                    setBorderColorInput("#BBBBBB");
+                    setBorderColorInputWhen3("#BBBBBB");
                   }}
                   onChangeText={onChangeText_lostpregwhen}
                   value={lostpregwhen}
@@ -1205,12 +1257,12 @@ const Chapter2 = function({navigation}) {
                 />
                 <Text style={styles.label}> How ? </Text>
                 <TextInput
-                  style={{...styles.input,borderColor:borderColorInput}}
+                  style={{...styles.input,borderColor:borderColorInputHow4}}
                   onFocus={() => {
-                    setBorderColorInput("cyan");
+                    setBorderColorInputHow4("cyan");
                   }}
                   onBlur={() => {
-                    setBorderColorInput("#BBBBBB");
+                    setBorderColorInputHow4("#BBBBBB");
                   }}
                   onChangeText={onChangeText_lostpreghow}
                   value={lostpreghow}
@@ -1219,12 +1271,12 @@ const Chapter2 = function({navigation}) {
                 />
                 <Text style={styles.label}> How many ? </Text>
                 <TextInput
-                  style={{...styles.input,borderColor:borderColorInput}}
+                  style={{...styles.input,borderColor:borderColorInputHow5}}
                   onFocus={() => {
-                    setBorderColorInput("cyan");
+                    setBorderColorInputHow5("cyan");
                   }}
                   onBlur={() => {
-                    setBorderColorInput("#BBBBBB");
+                    setBorderColorInputHow5("#BBBBBB");
                   }}
                   onChangeText={onChangeText_lostpregmany}
                   value={lostpregmany}
@@ -1259,12 +1311,12 @@ const Chapter2 = function({navigation}) {
               <View style={styles.subcontainer2}>
                 <Text style={styles.label}> When ? </Text>
                 <TextInput
-                  style={{...styles.input,borderColor:borderColorInput}}
+                  style={{...styles.input,borderColor:borderColorInputWhen4}}
                   onFocus={() => {
-                    setBorderColorInput("cyan");
+                    setBorderColorInputWhen4("cyan");
                   }}
                   onBlur={() => {
-                    setBorderColorInput("#BBBBBB");
+                    setBorderColorInputWhen4("#BBBBBB");
                   }}
                   onChangeText={onChangeText_pathodate}
                   value={pathodate}
@@ -1273,12 +1325,12 @@ const Chapter2 = function({navigation}) {
                 />
                 <Text style={styles.label}> How ? </Text>
                 <TextInput
-                  style={{...styles.input,borderColor:borderColorInput}}
+                  style={{...styles.input,borderColor:borderColorInputHow6}}
                   onFocus={() => {
-                    setBorderColorInput("cyan");
+                    setBorderColorInputHow6("cyan");
                   }}
                   onBlur={() => {
-                    setBorderColorInput("#BBBBBB");
+                    setBorderColorInputHow6("#BBBBBB");
                   }}
                   onChangeText={onChangeText_pathohow}
                   value={pathohow}
@@ -1287,12 +1339,12 @@ const Chapter2 = function({navigation}) {
                 />
                 <Text style={styles.label}> How many ? </Text>
                 <TextInput
-                  style={{...styles.input,borderColor:borderColorInput}}
+                  style={{...styles.input,borderColor:borderColorInputHow7}}
                   onFocus={() => {
-                    setBorderColorInput("cyan");
+                    setBorderColorInputHow7("cyan");
                   }}
                   onBlur={() => {
-                    setBorderColorInput("#BBBBBB");
+                    setBorderColorInputHow7("#BBBBBB");
                   }}
                   onChangeText={onChangeText_pathomany}
                   value={pathomany}
@@ -1350,12 +1402,12 @@ const Chapter2 = function({navigation}) {
                   <View style={styles.container}>
                     <Text style={styles.label}> When ? </Text>
                     <TextInput
-                      style={{...styles.input,borderColor:borderColorInput}}
+                      style={{...styles.input,borderColor:borderColorInputYes}}
                       onFocus={() => {
-                        setBorderColorInput("cyan");
+                        setBorderColorInputYes("cyan");
                       }}
                       onBlur={() => {
-                        setBorderColorInput("#BBBBBB");
+                        setBorderColorInputYes("#BBBBBB");
                       }}
                       onChangeText={onChangeText_inspect}
                       value={inspect}
@@ -1421,12 +1473,12 @@ const Chapter2 = function({navigation}) {
                   <View style={styles.subcontainer}>
                     <Text style={styles.sublabel}> What type ? </Text>
                     <TextInput
-                      style={{...styles.input,borderColor:borderColorInput}}
+                      style={{...styles.input,borderColor:borderColorInputWhat3}}
                       onFocus={() => {
-                        setBorderColorInput("cyan");
+                        setBorderColorInputWhat3("cyan");
                       }}
                       onBlur={() => {
-                        setBorderColorInput("#BBBBBB");
+                        setBorderColorInputWhat3("#BBBBBB");
                       }}
                       onChangeText={onChangeText_othersgynpb}
                       value={gynpb_others}
@@ -1463,12 +1515,12 @@ const Chapter2 = function({navigation}) {
               <View style={styles.subcontainer2}>
                 <Text style={styles.sublabel}> When was the last one ? </Text>
                 <TextInput
-                  style={{...styles.input,borderColor:borderColorInput}}
+                  style={{...styles.input,borderColor:borderColorInputYes2}}
                   onFocus={() => {
-                    setBorderColorInput("cyan");
+                    setBorderColorInputYes2("cyan");
                   }}
                   onBlur={() => {
-                    setBorderColorInput("#BBBBBB");
+                    setBorderColorInputYes2("#BBBBBB");
                   }}
                   onChangeText={onChangeText_gyneco}
                   value={medications_gyneco}
@@ -1503,12 +1555,12 @@ const Chapter2 = function({navigation}) {
               <View style={styles.subcontainer2}>
                 <Text style={styles.sublabel}> When was the last one ? </Text>
                 <TextInput
-                  style={{...styles.input,borderColor:borderColorInput}}
+                  style={{...styles.input,borderColor:borderColorInputYes3}}
                   onFocus={() => {
-                    setBorderColorInput("cyan");
+                    setBorderColorInputYes3("cyan");
                   }}
                   onBlur={() => {
-                    setBorderColorInput("#BBBBBB");
+                    setBorderColorInputYes3("#BBBBBB");
                   }}
                   onChangeText={onChangeText_papanicolau}
                   value={papanicolau}
@@ -1742,7 +1794,7 @@ const Chapter2 = function({navigation}) {
                         size={20}
                         reverse
                         containerStyle={{ bottom: 20, right: 20 }}
-                        color={'#fbe31c'}
+                        color={'#18acb9'}
                       />
                       ),
                     }}
@@ -1838,12 +1890,12 @@ const Chapter2 = function({navigation}) {
                   <View style={styles.subcontainer2}>
                     <Text style={styles.label}>Which one ?</Text>
                     <TextInput
-                      style={{...styles.input,borderColor:borderColorInput}}
+                      style={{...styles.input,borderColor:borderColorInputWhich}}
                       onFocus={() => {
-                        setBorderColorInput("cyan");
+                        setBorderColorInputWhich("cyan");
                       }}
                       onBlur={() => {
-                        setBorderColorInput("#BBBBBB");
+                        setBorderColorInputWhich("#BBBBBB");
                       }}
                       onChangeText={onChangeText_treatother}
                       value={treatother}
@@ -1902,12 +1954,12 @@ const Chapter2 = function({navigation}) {
                   <View>
                     <Text style={styles.label}>Which one ?</Text>
                     <TextInput
-                      style={{...styles.input,borderColor:borderColorInput}}
+                      style={{...styles.input,borderColor:borderColorInputWhich2}}
                       onFocus={() => {
-                        setBorderColorInput("cyan");
+                        setBorderColorInputWhich2("cyan");
                       }}
                       onBlur={() => {
-                        setBorderColorInput("#BBBBBB");
+                        setBorderColorInputWhich2("#BBBBBB");
                       }}
                       onChangeText={onChangeText_treatnatureother}
                       value={treatnatureother}
@@ -1950,12 +2002,12 @@ const Chapter2 = function({navigation}) {
 
                 <Text style={styles.label}>Location</Text>
                 <TextInput
-                  style={{...styles.input,borderColor:borderColorInput}}
+                  style={{...styles.input,borderColor:borderColorInputLoc}}
                   onFocus={() => {
-                    setBorderColorInput("cyan");
+                    setBorderColorInputLoc("cyan");
                   }}
                   onBlur={() => {
-                    setBorderColorInput("#BBBBBB");
+                    setBorderColorInputLoc("#BBBBBB");
                   }}
                   onChangeText={onChangeText_loc}
                   value={loc_cancer}
@@ -1987,12 +2039,12 @@ const Chapter2 = function({navigation}) {
                   <View style={styles.firstname}>
                     <Text style={styles.label}>From</Text>
                     <TextInput
-                      style={{...styles.input,borderColor:borderColorInput}}
+                      style={{...styles.input,borderColor:borderColorInputFrom}}
                       onFocus={() => {
-                        setBorderColorInput("cyan");
+                        setBorderColorInputFrom("cyan");
                       }}
                       onBlur={() => {
-                        setBorderColorInput("#BBBBBB");
+                        setBorderColorInputFrom("#BBBBBB");
                       }}
                       onChangeText={onChangeText_begin}
                       value={begin_cancer}
@@ -2004,12 +2056,12 @@ const Chapter2 = function({navigation}) {
                     <View style={styles.lastname}>
                       <Text style={styles.label}>To</Text>
                       <TextInput
-                        style={{...styles.input,borderColor:borderColorInput}}
+                        style={{...styles.input,borderColor:borderColorInputTo}}
                         onFocus={() => {
-                          setBorderColorInput("cyan");
+                          setBorderColorInputTo("cyan");
                         }}
                         onBlur={() => {
-                          setBorderColorInput("#BBBBBB");
+                          setBorderColorInputTo("#BBBBBB");
                         }}
                         onChangeText={onChangeText_end}
                         value={end_cancer}
@@ -2022,12 +2074,12 @@ const Chapter2 = function({navigation}) {
 
                 <Text style={styles.label}>Treatment</Text>
                 <TextInput
-                  style={{...styles.input,borderColor:borderColorInput}}
+                  style={{...styles.input,borderColor:borderColorInputTreat}}
                   onFocus={() => {
-                    setBorderColorInput("cyan");
+                    setBorderColorInputTreat("cyan");
                   }}
                   onBlur={() => {
-                    setBorderColorInput("#BBBBBB");
+                    setBorderColorInputTreat("#BBBBBB");
                   }}
                   onChangeText={onChangeText_treatment}
                   value={treatment_cancer}
@@ -2036,12 +2088,12 @@ const Chapter2 = function({navigation}) {
                 />
                 <Text style={styles.label}>Current Phase</Text>
                 <TextInput
-                  style={{...styles.input,borderColor:borderColorInput}}
+                  style={{...styles.input,borderColor:borderColorInputCur}}
                   onFocus={() => {
-                    setBorderColorInput("cyan");
+                    setBorderColorInputCur("cyan");
                   }}
                   onBlur={() => {
-                    setBorderColorInput("#BBBBBB");
+                    setBorderColorInputCur("#BBBBBB");
                   }}
                   onChangeText={onChangeText_phase}
                   value={phase_cancer}
@@ -2071,12 +2123,12 @@ const Chapter2 = function({navigation}) {
               <View style={styles.subcontainer2}>
                 <Text style={styles.label}>How long have you been under Treatment ?</Text>
                 <TextInput
-                  style={{...styles.input,borderColor:borderColorInput}}
+                  style={{...styles.input,borderColor:borderColorInputHow8}}
                   onFocus={() => {
-                    setBorderColorInput("cyan");
+                    setBorderColorInputHow8("cyan");
                   }}
                   onBlur={() => {
-                    setBorderColorInput("#BBBBBB");
+                    setBorderColorInputHow8("#BBBBBB");
                   }}
                   onChangeText={onChangeText_treatment_hyper}
                   value={treatment_hyper}
@@ -2320,12 +2372,12 @@ const Chapter2 = function({navigation}) {
               <View style={styles.subcontainer2}>
                 <Text style={styles.label}>Which one ?</Text>
                 <TextInput
-                  style={{...styles.input,borderColor:borderColorInput}}
+                  style={{...styles.input,borderColor:borderColorInputWhich3}}
                   onFocus={() => {
-                    setBorderColorInput("cyan");
+                    setBorderColorInputWhich3("cyan");
                   }}
                   onBlur={() => {
-                    setBorderColorInput("#BBBBBB");
+                    setBorderColorInputWhich3("#BBBBBB");
                   }}
                   onChangeText={onChangeText_diseasegenetic}
                   value={diseasegenetic}
@@ -3126,12 +3178,12 @@ const Chapter2 = function({navigation}) {
         {checked_events=='yes' &&
           <View >
             <TextInput
-              style={{...styles.input,borderColor:borderColorInput}}
+              style={{...styles.input,borderColor:borderColorInputYes4}}
               onFocus={() => {
-                setBorderColorInput("cyan");
+                setBorderColorInputYes4("cyan");
               }}
               onBlur={() => {
-                setBorderColorInput("#BBBBBB");
+                setBorderColorInputYes4("#BBBBBB");
               }}
               onChangeText={onChangeText_vax_events}
               value={vax_events}
@@ -3159,12 +3211,12 @@ const Chapter2 = function({navigation}) {
           <View style={styles.subcontainer2}>
             <Text style={styles.label}>Date of your last booster</Text>
             <TextInput
-              style={{...styles.input,borderColor:borderColorInput}}
+              style={{...styles.input,borderColor:borderColorInputDate}}
               onFocus={() => {
-                setBorderColorInput("cyan");
+                setBorderColorInputDate("cyan");
               }}
               onBlur={() => {
-                setBorderColorInput("#BBBBBB");
+                setBorderColorInputDate("#BBBBBB");
               }}
               onChangeText={onChangeText_booster1}
               value={booster1}
@@ -3221,12 +3273,12 @@ const Chapter2 = function({navigation}) {
           <View style={styles.subcontainer2}>
             <Text style={styles.label}>Date of your last booster</Text>
             <TextInput
-              style={{...styles.input,borderColor:borderColorInput}}
+              style={{...styles.input,borderColor:borderColorInputDate2}}
               onFocus={() => {
-                setBorderColorInput("cyan");
+                setBorderColorInputDate2("cyan");
               }}
               onBlur={() => {
-                setBorderColorInput("#BBBBBB");
+                setBorderColorInputDate2("#BBBBBB");
               }}
               onChangeText={onChangeText_booster3}
               value={booster3}
@@ -3252,12 +3304,12 @@ const Chapter2 = function({navigation}) {
           <View style={styles.subcontainer2}>
             <Text style={styles.label}>Date of your last booster</Text>
             <TextInput
-              style={{...styles.input,borderColor:borderColorInput}}
+              style={{...styles.input,borderColor:borderColorInputDate3}}
               onFocus={() => {
-                setBorderColorInput("cyan");
+                setBorderColorInputDate3("cyan");
               }}
               onBlur={() => {
-                setBorderColorInput("#BBBBBB");
+                setBorderColorInputDate3("#BBBBBB");
               }}
               onChangeText={onChangeText_booster4}
               value={booster4}
@@ -3283,12 +3335,12 @@ const Chapter2 = function({navigation}) {
           <View style={styles.subcontainer2}>
             <Text style={styles.label}>Date of your last booster</Text>
             <TextInput
-              style={{...styles.input,borderColor:borderColorInput}}
+              style={{...styles.input,borderColor:borderColorInputDate4}}
               onFocus={() => {
-                setBorderColorInput("cyan");
+                setBorderColorInputDate4("cyan");
               }}
               onBlur={() => {
-                setBorderColorInput("#BBBBBB");
+                setBorderColorInputDate4("#BBBBBB");
               }}
               onChangeText={onChangeText_booster5}
               value={booster5}
@@ -3314,12 +3366,12 @@ const Chapter2 = function({navigation}) {
           <View style={styles.subcontainer2}>
             <Text style={styles.label}>Date of your last booster</Text>
             <TextInput
-              style={{...styles.input,borderColor:borderColorInput}}
+              style={{...styles.input,borderColor:borderColorInputDate5}}
               onFocus={() => {
-                setBorderColorInput("cyan");
+                setBorderColorInputDate5("cyan");
               }}
               onBlur={() => {
-                setBorderColorInput("#BBBBBB");
+                setBorderColorInputDate5("#BBBBBB");
               }}
               onChangeText={onChangeText_booster6}
               value={booster6}
@@ -3345,12 +3397,12 @@ const Chapter2 = function({navigation}) {
           <View style={styles.subcontainer2}>
             <Text style={styles.label}>Date of your last booster</Text>
             <TextInput
-              style={{...styles.input,borderColor:borderColorInput}}
+              style={{...styles.input,borderColor:borderColorInputDate6}}
               onFocus={() => {
-                setBorderColorInput("cyan");
+                setBorderColorInputDate6("cyan");
               }}
               onBlur={() => {
-                setBorderColorInput("#BBBBBB");
+                setBorderColorInputDate6("#BBBBBB");
               }}
               onChangeText={onChangeText_booster7}
               value={booster7}
@@ -3376,12 +3428,12 @@ const Chapter2 = function({navigation}) {
           <View style={styles.subcontainer2}>
             <Text style={styles.label}>Date of your last booster</Text>
             <TextInput
-              style={{...styles.input,borderColor:borderColorInput}}
+              style={{...styles.input,borderColor:borderColorInputDate7}}
               onFocus={() => {
-                setBorderColorInput("cyan");
+                setBorderColorInputDate7("cyan");
               }}
               onBlur={() => {
-                setBorderColorInput("#BBBBBB");
+                setBorderColorInputDate7("#BBBBBB");
               }}
               onChangeText={onChangeText_booster8}
               value={booster8}
@@ -3407,12 +3459,12 @@ const Chapter2 = function({navigation}) {
           <View>
             <Text style={styles.label}>Date of your last booster</Text>
             <TextInput
-              style={{...styles.input,borderColor:borderColorInput}}
+              style={{...styles.input,borderColor:borderColorInputDate8}}
               onFocus={() => {
-                setBorderColorInput("cyan");
+                setBorderColorInputDate8("cyan");
               }}
               onBlur={() => {
-                setBorderColorInput("#BBBBBB");
+                setBorderColorInputDate8("#BBBBBB");
               }}
               onChangeText={onChangeText_booster9}
               value={booster9}
@@ -3438,12 +3490,12 @@ const Chapter2 = function({navigation}) {
           <View style={styles.subcontainer2}>
             <Text style={styles.label}>Date of your last booster</Text>
             <TextInput
-              style={{...styles.input,borderColor:borderColorInput}}
+              style={{...styles.input,borderColor:borderColorInputDate9}}
               onFocus={() => {
-                setBorderColorInput("cyan");
+                setBorderColorInputDate9("cyan");
               }}
               onBlur={() => {
-                setBorderColorInput("#BBBBBB");
+                setBorderColorInputDate9("#BBBBBB");
               }}
               onChangeText={onChangeText_booster10}
               value={booster10}
@@ -3469,12 +3521,12 @@ const Chapter2 = function({navigation}) {
           <View style={styles.subcontainer2}>
             <Text style={styles.label}>Date of your last booster</Text>
             <TextInput
-              style={{...styles.input,borderColor:borderColorInput}}
+              style={{...styles.input,borderColor:borderColorInputDate10}}
               onFocus={() => {
-                setBorderColorInput("cyan");
+                setBorderColorInputDate10("cyan");
               }}
               onBlur={() => {
-                setBorderColorInput("#BBBBBB");
+                setBorderColorInputDate10("#BBBBBB");
               }}
               onChangeText={onChangeText_booster11}
               value={booster11}
@@ -3529,12 +3581,12 @@ const Chapter2 = function({navigation}) {
               </View>
               <Text style={styles.label}>To what</Text>
               <TextInput
-                style={{...styles.input,borderColor:borderColorInput}}
+                style={{...styles.input,borderColor:borderColorInputTo2}}
                 onFocus={() => {
-                  setBorderColorInput("cyan");
+                  setBorderColorInputTo2("cyan");
                 }}
                 onBlur={() => {
-                  setBorderColorInput("#BBBBBB");
+                  setBorderColorInputTo2("#BBBBBB");
                 }}
                 onChangeText={onChangeText_allergies_food}
                 value={allergies_food}
@@ -3543,12 +3595,12 @@ const Chapter2 = function({navigation}) {
               />
               <Text style={styles.label}>Medications</Text>
               <TextInput
-                style={{...styles.input,borderColor:borderColorInput}}
+                style={{...styles.input,borderColor:borderColorInputMed}}
                 onFocus={() => {
-                  setBorderColorInput("cyan");
+                  setBorderColorInputMed("cyan");
                 }}
                 onBlur={() => {
-                  setBorderColorInput("#BBBBBB");
+                  setBorderColorInputMed("#BBBBBB");
                 }}
                 onChangeText={onChangeText_medications_food}
                 value={medications_food}
@@ -3597,12 +3649,12 @@ const Chapter2 = function({navigation}) {
               </View>
               <Text style={styles.label}>To what</Text>
               <TextInput
-                style={{...styles.input,borderColor:borderColorInput}}
+                style={{...styles.input,borderColor:borderColorInputTo3}}
                 onFocus={() => {
-                  setBorderColorInput("cyan");
+                  setBorderColorInputTo3("cyan");
                 }}
                 onBlur={() => {
-                  setBorderColorInput("#BBBBBB");
+                  setBorderColorInputTo3("#BBBBBB");
                 }}
                 onChangeText={onChangeText_allergies_drugs}
                 value={allergies_drugs}
@@ -3611,12 +3663,12 @@ const Chapter2 = function({navigation}) {
               />
               <Text style={styles.label}>Medications</Text>
               <TextInput
-                style={{...styles.input,borderColor:borderColorInput}}
+                style={{...styles.input,borderColor:borderColorInputMed2}}
                 onFocus={() => {
-                  setBorderColorInput("cyan");
+                  setBorderColorInputMed2("cyan");
                 }}
                 onBlur={() => {
-                  setBorderColorInput("#BBBBBB");
+                  setBorderColorInputMed2("#BBBBBB");
                 }}
                 onChangeText={onChangeText_medications_drugs}
                 value={medications_drugs}
@@ -3664,12 +3716,12 @@ const Chapter2 = function({navigation}) {
               </View>
               <Text style={styles.label}>To what</Text>
               <TextInput
-                style={{...styles.input,borderColor:borderColorInput}}
+                style={{...styles.input,borderColor:borderColorInputTo4}}
                 onFocus={() => {
-                  setBorderColorInput("cyan");
+                  setBorderColorInputTo4("cyan");
                 }}
                 onBlur={() => {
-                  setBorderColorInput("#BBBBBB");
+                  setBorderColorInputTo4("#BBBBBB");
                 }}
                 onChangeText={onChangeText_allergies_seasonal}
                 value={allergies_seasonal}
@@ -3678,12 +3730,12 @@ const Chapter2 = function({navigation}) {
               />
               <Text style={styles.label}>Medications</Text>
               <TextInput
-                style={{...styles.input,borderColor:borderColorInput}}
+                style={{...styles.input,borderColor:borderColorInputMed3}}
                 onFocus={() => {
-                  setBorderColorInput("cyan");
+                  setBorderColorInputMed3("cyan");
                 }}
                 onBlur={() => {
-                  setBorderColorInput("#BBBBBB");
+                  setBorderColorInputMed3("#BBBBBB");
                 }}
                 onChangeText={onChangeText_medications_seasonal}
                 value={medications_seasonal}
@@ -3732,12 +3784,12 @@ const Chapter2 = function({navigation}) {
               </View>
               <Text style={styles.label}>To what</Text>
               <TextInput
-                style={{...styles.input,borderColor:borderColorInput}}
+                style={{...styles.input,borderColor:borderColorInputTo5}}
                 onFocus={() => {
-                  setBorderColorInput("cyan");
+                  setBorderColorInputTo5("cyan");
                 }}
                 onBlur={() => {
-                  setBorderColorInput("#BBBBBB");
+                  setBorderColorInputTo5("#BBBBBB");
                 }}
                 onChangeText={onChangeText_allergies_others}
                 value={allergies_others}
@@ -3746,12 +3798,12 @@ const Chapter2 = function({navigation}) {
               />
               <Text style={styles.label}>Medications</Text>
               <TextInput
-                style={{...styles.input,borderColor:borderColorInput}}
+                style={{...styles.input,borderColor:borderColorInputMed4}}
                 onFocus={() => {
-                  setBorderColorInput("cyan");
+                  setBorderColorInputMed4("cyan");
                 }}
                 onBlur={() => {
-                  setBorderColorInput("#BBBBBB");
+                  setBorderColorInputMed4("#BBBBBB");
                 }}
                 onChangeText={onChangeText_medications_others}
                 value={medications_others}
@@ -3804,12 +3856,12 @@ const Chapter2 = function({navigation}) {
               />)}
               <Text style={styles.label}>Trigger</Text>
               <TextInput
-                style={{...styles.input,borderColor:borderColorInput}}
+                style={{...styles.input,borderColor:borderColorInputTrig}}
                 onFocus={() => {
-                  setBorderColorInput("cyan");
+                  setBorderColorInputTrig("cyan");
                 }}
                 onBlur={() => {
-                  setBorderColorInput("#BBBBBB");
+                  setBorderColorInputTrig("#BBBBBB");
                 }}
                 onChangeText={onChangeText_trigger}
                 value={trigger}
@@ -3857,7 +3909,7 @@ const Chapter2 = function({navigation}) {
       :
       <ScrollView style={styles.scrollView}>
 
-        <Text  style = {styles.headerText}>Medical Data : </Text>
+        <Text  style = {styles.headerText}>Medical Data</Text>
  
         <Text style={styles.label}>Do you have allergies ? </Text>
         <View style={styles.checkboxview}>
@@ -4259,7 +4311,7 @@ const styles = StyleSheet.create({
     flex:1,
     paddingRight:10,
     fontSize: 16,
-    color: '#024e4e',
+    color: '#18acb9',
     fontFamily:"Montserrat_700Bold",
     margin: 12,
   },

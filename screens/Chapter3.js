@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import react, { useEffect } from 'react';
-import { StyleSheet, Text, View,Button, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View,Button, ActivityIndicator, Image } from 'react-native';
 import { SafeAreaView, TextInput, ScrollView, TouchableOpacity} from "react-native";
 import { Slider, Icon } from 'react-native-elements';
 import { RadioButton } from 'react-native-paper';
@@ -85,7 +85,7 @@ const Chapter3 = function({navigation}) {
               setBorderColorInput("cyan");
             }}
             onBlur={() => {
-              setBorderColorInput("black");
+              setBorderColorInput("#BBBBBB");
             }}
             style={styles.input}
             onChangeText={onChangeText1}
@@ -109,7 +109,7 @@ const Chapter3 = function({navigation}) {
               setBorderColorInput("cyan");
             }}
             onBlur={() => {
-              setBorderColorInput("black");
+              setBorderColorInput("#BBBBBB");
             }}
             style={styles.input}
             onChangeText={onChangeText2}
@@ -125,6 +125,9 @@ const Chapter3 = function({navigation}) {
   
   return (
     <SafeAreaView style={styles.container}>
+      <View style={styles.logoPart}>
+        <Image source={require('../assets/Logo.png')} style={styles.logo}/>
+      </View>
       {!dataIsReady ?
       <ActivityIndicator size='large' color='black'/>
       :
@@ -216,15 +219,19 @@ export {Chapter3};
 
 const styles = StyleSheet.create({
   container:{
-    backgroundColor:'#18acb9',
+    backgroundColor:'white',
     paddingTop: StatusBar.currentHeight,
     flex :1,
   },
+  logoPart:{
+    padding:"8%"
+  },
   headerText: {
-    fontSize: 20,
-    color: 'white',
+    fontSize: 18,
+    color: '#18acb9',
     marginTop : 50,
     margin: 12,
+    fontFamily:"Montserrat_700Bold"
   },
   headerText2: {
     fontSize: 16,
@@ -264,7 +271,7 @@ const styles = StyleSheet.create({
     flex:1,
     paddingRight:10,
     fontSize: 16,
-    color: 'black',
+    color: '#18acb9',
     fontFamily:"Montserrat_700Bold",
     margin: 12,
   },
@@ -274,12 +281,12 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 16,
-    color: 'black',
+    color: '#18acb9',
     fontFamily:"Montserrat_700Bold",
     margin: 12,
   },
   scrollView: {
-    backgroundColor: '#18acb9',
+    backgroundColor: 'white',
     marginHorizontal: 20,
   },
   dropdown: {

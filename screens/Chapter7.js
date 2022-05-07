@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import react, { useEffect } from 'react';
-import { StyleSheet, Text, View, Button, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, Button, ActivityIndicator, Image } from 'react-native';
 import { SafeAreaView, TextInput, ScrollView, TouchableOpacity} from "react-native";
 import { Slider, Icon } from 'react-native-elements';
 import { RadioButton } from 'react-native-paper';
@@ -15,7 +15,12 @@ const Chapter7 = function({navigation}) {
   const [where, onChangeText_where] = react.useState(null);
   const [where2, onChangeText_where2] = react.useState(null);
   const [where3, onChangeText_where3] = react.useState(null);
-  const [borderColorInput,setBorderColorInput] = react.useState("black");
+  const [borderColorInputStart,setBorderColorInputStart] = react.useState("#BBBBBB");
+  const [borderColorInputWhere,setBorderColorInputWhere] = react.useState("#BBBBBB");
+  const [borderColorInputStart2,setBorderColorInputStart2] = react.useState("#BBBBBB");
+  const [borderColorInputWhere2,setBorderColorInputWhere2] = react.useState("#BBBBBB");
+  const [borderColorInputWhen,setBorderColorInputWhen] = react.useState("#BBBBBB");
+  const [borderColorInputWhere3,setBorderColorInputWhere3] = react.useState("#BBBBBB");
   const [start, onChangeText_start] = react.useState(null);
   const [start2, onChangeText_start2] = react.useState(null);
   const [start3, onChangeText_start3] = react.useState(null);
@@ -239,7 +244,7 @@ const Chapter7 = function({navigation}) {
       <View>
           <Text style={styles.label}>When?</Text>
           <View style={styles.chooseDate}>
-            <Button color="black" onPress={showDatepicker} title="Choose" />
+            <Button color="#BBBBBB" onPress={showDatepicker} title="Choose" />
           </View>
           {show && (<DateTimePicker
             testID="dateTimePicker"
@@ -338,12 +343,12 @@ const Chapter7 = function({navigation}) {
       <View>
           <Text style={styles.label}>Start of pain?</Text>
           <TextInput
-            style={{...styles.input,borderColor:borderColorInput}}
+            style={{...styles.input,borderColor:borderColorInputStart}}
             onFocus={() => {
-              setBorderColorInput("cyan");
+              setBorderColorInputStart("cyan");
             }}
             onBlur={() => {
-              setBorderColorInput("black");
+              setBorderColorInputStart("#BBBBBB");
             }}
             onChangeText={onChangeText_start}
             value={start}
@@ -352,12 +357,12 @@ const Chapter7 = function({navigation}) {
           />
           <Text style={styles.label}>Where?</Text>
           <TextInput
-            style={{...styles.input,borderColor:borderColorInput}}
+            style={{...styles.input,borderColor:borderColorInputWhere}}
             onFocus={() => {
-              setBorderColorInput("cyan");
+              setBorderColorInputWhere("cyan");
             }}
             onBlur={() => {
-              setBorderColorInput("black");
+              setBorderColorInputWhere("#BBBBBB");
             }}
             onChangeText={onChangeText_where}
             value={where}
@@ -374,12 +379,12 @@ const Chapter7 = function({navigation}) {
       <View>
           <Text style={styles.label}>Start of pain?</Text>
           <TextInput
-            style={{...styles.input,borderColor:borderColorInput}}
+            style={{...styles.input,borderColor:borderColorInputStart2}}
             onFocus={() => {
-              setBorderColorInput("cyan");
+              setBorderColorInputStart2("cyan");
             }}
             onBlur={() => {
-              setBorderColorInput("black");
+              setBorderColorInputStart2("#BBBBBB");
             }}
             onChangeText={onChangeText_start2}
             value={start2}
@@ -388,12 +393,12 @@ const Chapter7 = function({navigation}) {
           />
           <Text style={styles.label}>Where?</Text>
           <TextInput
-            style={{...styles.input,borderColor:borderColorInput}}
+            style={{...styles.input,borderColor:borderColorInputWhere2}}
             onFocus={() => {
-              setBorderColorInput("cyan");
+              setBorderColorInputWhere2("cyan");
             }}
             onBlur={() => {
-              setBorderColorInput("black");
+              setBorderColorInputWhere2("#BBBBBB");
             }}
             onChangeText={onChangeText_where2}
             value={where2}
@@ -410,12 +415,12 @@ const Chapter7 = function({navigation}) {
       <View>
           <Text style={styles.label}>When?</Text>
           <TextInput
-            style={{...styles.input,borderColor:borderColorInput}}
+            style={{...styles.input,borderColor:borderColorInputWhen}}
             onFocus={() => {
-              setBorderColorInput("cyan");
+              setBorderColorInputWhen("cyan");
             }}
             onBlur={() => {
-              setBorderColorInput("black");
+              setBorderColorInputWhen("#BBBBBB");
             }}
             onChangeText={onChangeText_start3}
             value={start3}
@@ -424,12 +429,12 @@ const Chapter7 = function({navigation}) {
           />
           <Text style={styles.label}>Where?</Text>
           <TextInput
-            style={{...styles.input,borderColor:borderColorInput}}
+            style={{...styles.input,borderColor:borderColorInputWhere3}}
             onFocus={() => {
-              setBorderColorInput("cyan");
+              setBorderColorInputWhere3("cyan");
             }}
             onBlur={() => {
-              setBorderColorInput("black");
+              setBorderColorInputWhere3("#BBBBBB");
             }}
             onChangeText={onChangeText_where3}
             value={where3}
@@ -461,12 +466,15 @@ const Chapter7 = function({navigation}) {
   // };
 return (
   <SafeAreaView style={styles.container}>
+    <View style={styles.logoPart}>
+        <Image source={require('../assets/Logo.png')} style={styles.logo}/>
+      </View>
     {!dataIsReady ?
       <ActivityIndicator size='large' color='black'/>
       :
       <ScrollView style={styles.scrollView}>
 
-       <Text  style = {styles.headerText}>Your paraclinical data : inferior to 3 months : </Text>
+       <Text  style = {styles.headerText}>Paraclinical data : inferior to 3 months : </Text>
           <Text style={styles.label}>List analysis</Text>
           <Text style={styles.label}>Complete hemoleucogram</Text>
           <Picker
@@ -635,8 +643,7 @@ return (
             
             </TouchableOpacity>  
           </View>
-        }  
-          <Text style={styles.label}></Text>
+        }
           <Text style={styles.label}>For vertebral pain: you did MRI ?</Text>
           <View style={styles.checkboxview}>
             <View style={styles.containerbutton}>
@@ -765,9 +772,12 @@ export {Chapter7};
 
 const styles = StyleSheet.create({
   container:{
-    backgroundColor:'#18acb9',
+    backgroundColor:'white',
     paddingTop: StatusBar.currentHeight,
     flex :1,
+  },
+  logoPart:{
+    padding:"8%"
   },
   drop:{
     display:'flex',
@@ -777,7 +787,7 @@ const styles = StyleSheet.create({
     flex:1,
     paddingRight:10,
     fontSize: 16,
-    color: 'black',
+    color: '#18acb9',
     fontFamily:"Montserrat_700Bold",
     margin: 12,
   },
@@ -811,11 +821,11 @@ const styles = StyleSheet.create({
     width:"50%"
   },
   headerText: {
-    fontSize: 20,
-    color: 'white',
+    fontSize: 18,
+    color: '#18acb9',
     marginTop : 50,
     margin: 12,
-    fontFamily:"Montserrat_400Regular"
+    fontFamily:"Montserrat_700Bold"
   },
   headerText2: {
     fontSize: 16,
@@ -825,7 +835,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 16,
-    color: 'black',
+    color: '#18acb9',
     fontFamily:"Montserrat_700Bold",
     margin: 12,
   },
@@ -846,7 +856,7 @@ const styles = StyleSheet.create({
     fontFamily:"Montserrat_400Regular"
   },
   scrollView: {
-    backgroundColor: '#18acb9',
+    backgroundColor: 'white',
     marginHorizontal: 20,
   },
   dropdown: {

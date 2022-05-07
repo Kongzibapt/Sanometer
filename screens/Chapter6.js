@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import react , { useEffect } from 'react';
-import { StyleSheet, Text, View, Button, Linking,ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, Button, Linking,ActivityIndicator, Image } from 'react-native';
 import { SafeAreaView, TextInput, ScrollView, TouchableOpacity} from "react-native";
 import { Slider, Icon } from 'react-native-elements';
 import { RadioButton } from 'react-native-paper';
@@ -30,7 +30,11 @@ const Chapter6 = function({navigation}) {
   const [visible4, setVisible4] = react.useState(false);
   const [visible5, setVisible5] = react.useState(false);
   const [visible6, setVisible6] = react.useState(false);
-  const [borderColorInput,setBorderColorInput] = react.useState("black");
+  const [borderColorInputPeriod,setBorderColorInputPeriod] = react.useState("#BBBBBB");
+  const [borderColorInputAmount,setBorderColorInputAmount] = react.useState("#BBBBBB");
+  const [borderColorInputFreq,setBorderColorInputFreq] = react.useState("#BBBBBB");
+  const [borderColorInputAd,setBorderColorInputAd] = react.useState("#BBBBBB");
+  const [borderColorInputFrom,setBorderColorInputFrom] = react.useState("#BBBBBB");
   const [period, onChangeText_period] = react.useState(null);
   const [amount, onChangeText_amount] = react.useState(null);
   const [frequency, onChangeText_frequency] = react.useState(null);
@@ -131,12 +135,12 @@ const Chapter6 = function({navigation}) {
       <View>
           <Text style={styles.label}>Period:</Text>
           <TextInput
-            style={{...styles.input,borderColor:borderColorInput}}
+            style={{...styles.input,borderColor:borderColorInputPeriod}}
             onFocus={() => {
-              setBorderColorInput("cyan");
+              setBorderColorInputPeriod("cyan");
             }}
             onBlur={() => {
-              setBorderColorInput("black");
+              setBorderColorInputPeriod("#BBBBBB");
             }}
             onChangeText={onChangeText_period}
             value={period}
@@ -145,12 +149,12 @@ const Chapter6 = function({navigation}) {
           />
           <Text style={styles.label}>Amount per day:</Text>
           <TextInput
-            style={{...styles.input,borderColor:borderColorInput}}
+            style={{...styles.input,borderColor:borderColorInputAmount}}
             onFocus={() => {
-              setBorderColorInput("cyan");
+              setBorderColorInputAmount("cyan");
             }}
             onBlur={() => {
-              setBorderColorInput("black");
+              setBorderColorInputAmount("#BBBBBB");
             }}
             onChangeText={onChangeText_amount}
             value={amount}
@@ -187,12 +191,12 @@ const Chapter6 = function({navigation}) {
       <View>
           <Text style={styles.label}>Frequency:</Text>
           <TextInput
-            style={{...styles.input,borderColor:borderColorInput}}
+            style={{...styles.input,borderColor:borderColorInputFreq}}
             onFocus={() => {
-              setBorderColorInput("cyan");
+              setBorderColorInputFreq("cyan");
             }}
             onBlur={() => {
-              setBorderColorInput("black");
+              setBorderColorInputFreq("#BBBBBB");
             }}
             onChangeText={onChangeText_frequency}
             value={frequency}
@@ -201,12 +205,12 @@ const Chapter6 = function({navigation}) {
           />
           <Text style={styles.label}>Administration method:</Text>
           <TextInput
-            style={{...styles.input,borderColor:borderColorInput}}
+            style={{...styles.input,borderColor:borderColorInputAd}}
             onFocus={() => {
-              setBorderColorInput("cyan");
+              setBorderColorInputAd("cyan");
             }}
             onBlur={() => {
-              setBorderColorInput("black");
+              setBorderColorInputAd("#BBBBBB");
             }}
             onChangeText={onChangeText_method}
             value={method}
@@ -223,12 +227,12 @@ const Chapter6 = function({navigation}) {
       <View>
           <Text style={styles.label}>From what age:</Text>
           <TextInput
-            style={{...styles.input,borderColor:borderColorInput}}
+            style={{...styles.input,borderColor:borderColorInputFrom}}
             onFocus={() => {
-              setBorderColorInput("cyan");
+              setBorderColorInputFrom("cyan");
             }}
             onBlur={() => {
-              setBorderColorInput("black");
+              setBorderColorInputFrom("#BBBBBB");
             }}
             onChangeText={onChangeText_age}
             value={age}
@@ -301,11 +305,14 @@ const Chapter6 = function({navigation}) {
   };
   return (
     <SafeAreaView style={styles.container}>
+      <View style={styles.logoPart}>
+        <Image source={require('../assets/Logo.png')} style={styles.logo}/>
+      </View>
       {!dataIsReady ?
       <ActivityIndicator size='large' color='black'/>
       :
       <ScrollView style={styles.scrollView}>
-      <Text  style = {styles.headerText}>Enter your data about your life style: </Text>
+      <Text  style = {styles.headerText}>Life style</Text>
         <Text  style = {styles.label}>Tolerance to the effort: </Text>
         <Text style={styles.label}>Walking perimeter (flat):</Text>
         <Picker
@@ -616,9 +623,12 @@ export {Chapter6};
 
 const styles = StyleSheet.create({
   container:{
-    backgroundColor:'#18acb9',
+    backgroundColor:'white',
     paddingTop: StatusBar.currentHeight,
     flex :1,
+  },
+  logoPart:{
+    padding:"8%"
   },
   drop:{
     display:'flex',
@@ -628,7 +638,7 @@ const styles = StyleSheet.create({
     flex:1,
     paddingRight:10,
     fontSize: 16,
-    color: 'black',
+    color: '#18acb9',
     fontFamily:"Montserrat_700Bold",
     margin: 12,
   },
@@ -668,11 +678,11 @@ const styles = StyleSheet.create({
     width:"50%"
   },
   headerText: {
-    fontSize: 20,
-    color: 'white',
+    fontSize: 18,
+    color: '#18acb9',
     marginTop : 50,
     margin: 12,
-    fontFamily:"Montserrat_400Regular"
+    fontFamily:"Montserrat_700Bold"
   },
   headerText2: {
     fontSize: 16,
@@ -682,7 +692,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 16,
-    color: 'black',
+    color: '#18acb9',
     fontFamily:"Montserrat_700Bold",
     margin: 12,
   },
@@ -703,7 +713,7 @@ const styles = StyleSheet.create({
     fontFamily:"Montserrat_400Regular"
   },
   scrollView: {
-    backgroundColor: '#18acb9',
+    backgroundColor: 'white',
     marginHorizontal: 20,
   },
   dropdown: {

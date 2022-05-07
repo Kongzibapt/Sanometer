@@ -28,12 +28,12 @@ const Chapter1 = function({navigation}) {
   const [selectededuc, setSelectededuc] = react.useState("");
 
   // Style
-  const [borderColorInputLastName,setBorderColorInputLastName] = react.useState("black");
-  const [borderColorInputFirstName,setBorderColorInputFirstName] = react.useState("black");
-  const [borderColorInputBirthDate,setBorderColorInputBirthDate] = react.useState("black");
-  const [borderColorInputBirthPlace,setBorderColorInputBirthPlace] = react.useState("black");
-  const [borderColorInputBirthTown,setBorderColorInputBirthTown] = react.useState("black");
-  const [borderColorInputCountry,setBorderColorInputCountry] = react.useState("black");
+  const [borderColorInputLastName,setBorderColorInputLastName] = react.useState("#BBBBBB");
+  const [borderColorInputFirstName,setBorderColorInputFirstName] = react.useState("#BBBBBB");
+  const [borderColorInputBirthDate,setBorderColorInputBirthDate] = react.useState("#BBBBBB");
+  const [borderColorInputBirthPlace,setBorderColorInputBirthPlace] = react.useState("#BBBBBB");
+  const [borderColorInputBirthTown,setBorderColorInputBirthTown] = react.useState("#BBBBBB");
+  const [borderColorInputCountry,setBorderColorInputCountry] = react.useState("#BBBBBB");
   const [mode, setMode] = react.useState('date');
   const [show, setShow] = react.useState(false);
 
@@ -292,7 +292,7 @@ const Chapter1 = function({navigation}) {
                 size={20}
                 reverse
                 containerStyle={{ bottom: 20, right: 20 }}
-                color={'#fbe31c'}
+                color={'#18acb9'}
               />
               ),
             }}
