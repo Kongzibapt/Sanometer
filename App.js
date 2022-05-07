@@ -167,7 +167,7 @@ function HomeScreen({ navigation }) {
         <View style={{margin:10}}>
           <Button
             title="Get started"
-            onPress={() => navigation.navigate('Chapter 1')}
+            onPress={() => navigation.navigate('Chapter 2')}
             color="#18acb9"
           />
         </View>
@@ -328,7 +328,7 @@ export default function App() {
               return <Image source={require("./assets/Form.png")} style={{width: 30, height: 30}}/>
             })
           }} />
-          <Stack.Screen name="Chapter 1" component={Chapter1} />
+          <Stack.Screen name="Chapter 2" component={Chapter2} />
           {/* <Stack.Screen name="Chapter 1" component={Chapter1} />
           <Stack.Screen name="Chapter 2" component={Chapter2} />
           <Stack.Screen name="Chapter 3" component={Chapter3} />

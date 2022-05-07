@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import react, { useEffect } from 'react';
-import { StyleSheet, Text, View, Switch, Button} from 'react-native';
+import { StyleSheet, Text, View, Switch, Button, Image} from 'react-native';
 import { SafeAreaView, TextInput, ScrollView, TouchableOpacity} from "react-native";
 import { Slider, Icon } from 'react-native-elements';
 import { RadioButton } from 'react-native-paper';
@@ -820,9 +820,12 @@ const Chapter2 = function({navigation}) {
     if (visible_female){
       return(
         <View style={styles.containerDropdown}>
+          <View style={styles.logoPart}>
+            <Image source={require('../assets/Logo.png')} style={styles.logo}/>
+          </View>
             <Text style={styles.label}>Date of first menstruation (Menarha) </Text>
             <View style={styles.chooseDate}>
-              <Button color="black" onPress={showDatepicker_firstmenst} title="Choose" />
+              <Button color="#BBBBBB" onPress={showDatepicker_firstmenst} title="Choose" />
             </View>
             {show_firstmenst && (<DateTimePicker
               testID="dateTimePicker"
@@ -834,7 +837,7 @@ const Chapter2 = function({navigation}) {
             />)}
             <Text style={styles.label}>Date of last menstruation </Text>
             <View style={styles.chooseDate}>
-              <Button color="black" onPress={showDatepicker_lastmenst} title="Choose" />
+              <Button color="#BBBBBB" onPress={showDatepicker_lastmenst} title="Choose" />
             </View>
             {show_lastmenst && (<DateTimePicker
               testID="dateTimePicker"
@@ -875,7 +878,7 @@ const Chapter2 = function({navigation}) {
                     setBorderColorInput("cyan");
                   }}
                   onBlur={() => {
-                    setBorderColorInput("black");
+                    setBorderColorInput("#BBBBBB");
                   }}
                   onChangeText={onChangeText_menopausedate}
                   value={menopause_date}
@@ -912,7 +915,7 @@ const Chapter2 = function({navigation}) {
                         setBorderColorInput("cyan");
                       }}
                         onBlur={() => {
-                          setBorderColorInput("black");
+                          setBorderColorInput("#BBBBBB");
                         }}
                           onChangeText={onChangeText_medications_hormone}
                           value={medications_hormone}
@@ -927,7 +930,7 @@ const Chapter2 = function({navigation}) {
                         setBorderColorInput("cyan");
                       }}
                       onBlur={() => {
-                        setBorderColorInput("black");
+                        setBorderColorInput("#BBBBBB");
                       }}
                       onChangeText={onChangeText_medications_hormonedate}
                       value={hormonedate}
@@ -969,7 +972,7 @@ const Chapter2 = function({navigation}) {
                     setBorderColorInput("cyan");
                   }}
                   onBlur={() => {
-                    setBorderColorInput("black");
+                    setBorderColorInput("#BBBBBB");
                   }}
                   onChangeText={onChangeText_medications_contra}
                   value={medications_contra}
@@ -984,7 +987,7 @@ const Chapter2 = function({navigation}) {
                     setBorderColorInput("cyan");
                   }}
                   onBlur={() => {
-                    setBorderColorInput("black");
+                    setBorderColorInput("#BBBBBB");
                   }}
                   onChangeText={onChangeText_medications_contradate}
                   value={contradate}
@@ -1069,7 +1072,7 @@ const Chapter2 = function({navigation}) {
                         setBorderColorInput("cyan");
                       }}
                       onBlur={() => {
-                        setBorderColorInput("black");
+                        setBorderColorInput("#BBBBBB");
                       }}
                       onChangeText={onChangeText_caesarean}
                       value={caesareandate}
@@ -1083,7 +1086,7 @@ const Chapter2 = function({navigation}) {
                         setBorderColorInput("cyan");
                       }}
                       onBlur={() => {
-                        setBorderColorInput("black");
+                        setBorderColorInput("#BBBBBB");
                       }}
                       onChangeText={onChangeText_nbcaesarean}
                       value={nbcaesarean}
@@ -1125,7 +1128,7 @@ const Chapter2 = function({navigation}) {
                     setBorderColorInput("cyan");
                   }}
                   onBlur={() => {
-                    setBorderColorInput("black");
+                    setBorderColorInput("#BBBBBB");
                   }}
                   onChangeText={onChangeText_abortionwhen}
                   value={abortionwhen}
@@ -1139,7 +1142,7 @@ const Chapter2 = function({navigation}) {
                     setBorderColorInput("cyan");
                   }}
                   onBlur={() => {
-                    setBorderColorInput("black");
+                    setBorderColorInput("#BBBBBB");
                   }}
                   onChangeText={onChangeText_abortionhow}
                   value={abortionhow}
@@ -1153,7 +1156,7 @@ const Chapter2 = function({navigation}) {
                     setBorderColorInput("cyan");
                   }}
                   onBlur={() => {
-                    setBorderColorInput("black");
+                    setBorderColorInput("#BBBBBB");
                   }}
                   onChangeText={onChangeText_abortionmany}
                   value={abortionmany}
@@ -1193,7 +1196,7 @@ const Chapter2 = function({navigation}) {
                     setBorderColorInput("cyan");
                   }}
                   onBlur={() => {
-                    setBorderColorInput("black");
+                    setBorderColorInput("#BBBBBB");
                   }}
                   onChangeText={onChangeText_lostpregwhen}
                   value={lostpregwhen}
@@ -1207,7 +1210,7 @@ const Chapter2 = function({navigation}) {
                     setBorderColorInput("cyan");
                   }}
                   onBlur={() => {
-                    setBorderColorInput("black");
+                    setBorderColorInput("#BBBBBB");
                   }}
                   onChangeText={onChangeText_lostpreghow}
                   value={lostpreghow}
@@ -1221,7 +1224,7 @@ const Chapter2 = function({navigation}) {
                     setBorderColorInput("cyan");
                   }}
                   onBlur={() => {
-                    setBorderColorInput("black");
+                    setBorderColorInput("#BBBBBB");
                   }}
                   onChangeText={onChangeText_lostpregmany}
                   value={lostpregmany}
@@ -1261,7 +1264,7 @@ const Chapter2 = function({navigation}) {
                     setBorderColorInput("cyan");
                   }}
                   onBlur={() => {
-                    setBorderColorInput("black");
+                    setBorderColorInput("#BBBBBB");
                   }}
                   onChangeText={onChangeText_pathodate}
                   value={pathodate}
@@ -1275,7 +1278,7 @@ const Chapter2 = function({navigation}) {
                     setBorderColorInput("cyan");
                   }}
                   onBlur={() => {
-                    setBorderColorInput("black");
+                    setBorderColorInput("#BBBBBB");
                   }}
                   onChangeText={onChangeText_pathohow}
                   value={pathohow}
@@ -1289,7 +1292,7 @@ const Chapter2 = function({navigation}) {
                     setBorderColorInput("cyan");
                   }}
                   onBlur={() => {
-                    setBorderColorInput("black");
+                    setBorderColorInput("#BBBBBB");
                   }}
                   onChangeText={onChangeText_pathomany}
                   value={pathomany}
@@ -1352,7 +1355,7 @@ const Chapter2 = function({navigation}) {
                         setBorderColorInput("cyan");
                       }}
                       onBlur={() => {
-                        setBorderColorInput("black");
+                        setBorderColorInput("#BBBBBB");
                       }}
                       onChangeText={onChangeText_inspect}
                       value={inspect}
@@ -1423,7 +1426,7 @@ const Chapter2 = function({navigation}) {
                         setBorderColorInput("cyan");
                       }}
                       onBlur={() => {
-                        setBorderColorInput("black");
+                        setBorderColorInput("#BBBBBB");
                       }}
                       onChangeText={onChangeText_othersgynpb}
                       value={gynpb_others}
@@ -1465,7 +1468,7 @@ const Chapter2 = function({navigation}) {
                     setBorderColorInput("cyan");
                   }}
                   onBlur={() => {
-                    setBorderColorInput("black");
+                    setBorderColorInput("#BBBBBB");
                   }}
                   onChangeText={onChangeText_gyneco}
                   value={medications_gyneco}
@@ -1505,7 +1508,7 @@ const Chapter2 = function({navigation}) {
                     setBorderColorInput("cyan");
                   }}
                   onBlur={() => {
-                    setBorderColorInput("black");
+                    setBorderColorInput("#BBBBBB");
                   }}
                   onChangeText={onChangeText_papanicolau}
                   value={papanicolau}
@@ -1840,7 +1843,7 @@ const Chapter2 = function({navigation}) {
                         setBorderColorInput("cyan");
                       }}
                       onBlur={() => {
-                        setBorderColorInput("black");
+                        setBorderColorInput("#BBBBBB");
                       }}
                       onChangeText={onChangeText_treatother}
                       value={treatother}
@@ -1904,7 +1907,7 @@ const Chapter2 = function({navigation}) {
                         setBorderColorInput("cyan");
                       }}
                       onBlur={() => {
-                        setBorderColorInput("black");
+                        setBorderColorInput("#BBBBBB");
                       }}
                       onChangeText={onChangeText_treatnatureother}
                       value={treatnatureother}
@@ -1952,7 +1955,7 @@ const Chapter2 = function({navigation}) {
                     setBorderColorInput("cyan");
                   }}
                   onBlur={() => {
-                    setBorderColorInput("black");
+                    setBorderColorInput("#BBBBBB");
                   }}
                   onChangeText={onChangeText_loc}
                   value={loc_cancer}
@@ -1989,7 +1992,7 @@ const Chapter2 = function({navigation}) {
                         setBorderColorInput("cyan");
                       }}
                       onBlur={() => {
-                        setBorderColorInput("black");
+                        setBorderColorInput("#BBBBBB");
                       }}
                       onChangeText={onChangeText_begin}
                       value={begin_cancer}
@@ -2006,7 +2009,7 @@ const Chapter2 = function({navigation}) {
                           setBorderColorInput("cyan");
                         }}
                         onBlur={() => {
-                          setBorderColorInput("black");
+                          setBorderColorInput("#BBBBBB");
                         }}
                         onChangeText={onChangeText_end}
                         value={end_cancer}
@@ -2024,7 +2027,7 @@ const Chapter2 = function({navigation}) {
                     setBorderColorInput("cyan");
                   }}
                   onBlur={() => {
-                    setBorderColorInput("black");
+                    setBorderColorInput("#BBBBBB");
                   }}
                   onChangeText={onChangeText_treatment}
                   value={treatment_cancer}
@@ -2038,7 +2041,7 @@ const Chapter2 = function({navigation}) {
                     setBorderColorInput("cyan");
                   }}
                   onBlur={() => {
-                    setBorderColorInput("black");
+                    setBorderColorInput("#BBBBBB");
                   }}
                   onChangeText={onChangeText_phase}
                   value={phase_cancer}
@@ -2073,7 +2076,7 @@ const Chapter2 = function({navigation}) {
                     setBorderColorInput("cyan");
                   }}
                   onBlur={() => {
-                    setBorderColorInput("black");
+                    setBorderColorInput("#BBBBBB");
                   }}
                   onChangeText={onChangeText_treatment_hyper}
                   value={treatment_hyper}
@@ -2322,7 +2325,7 @@ const Chapter2 = function({navigation}) {
                     setBorderColorInput("cyan");
                   }}
                   onBlur={() => {
-                    setBorderColorInput("black");
+                    setBorderColorInput("#BBBBBB");
                   }}
                   onChangeText={onChangeText_diseasegenetic}
                   value={diseasegenetic}
@@ -3128,7 +3131,7 @@ const Chapter2 = function({navigation}) {
                 setBorderColorInput("cyan");
               }}
               onBlur={() => {
-                setBorderColorInput("black");
+                setBorderColorInput("#BBBBBB");
               }}
               onChangeText={onChangeText_vax_events}
               value={vax_events}
@@ -3161,7 +3164,7 @@ const Chapter2 = function({navigation}) {
                 setBorderColorInput("cyan");
               }}
               onBlur={() => {
-                setBorderColorInput("black");
+                setBorderColorInput("#BBBBBB");
               }}
               onChangeText={onChangeText_booster1}
               value={booster1}
@@ -3192,7 +3195,7 @@ const Chapter2 = function({navigation}) {
                 setBorderColorInput("cyan");
               }}
               onBlur={() => {
-                setBorderColorInput("black");
+                setBorderColorInput("#BBBBBB");
               }}
               onChangeText={onChangeText_booster2}
               value={booster2}
@@ -3223,7 +3226,7 @@ const Chapter2 = function({navigation}) {
                 setBorderColorInput("cyan");
               }}
               onBlur={() => {
-                setBorderColorInput("black");
+                setBorderColorInput("#BBBBBB");
               }}
               onChangeText={onChangeText_booster3}
               value={booster3}
@@ -3254,7 +3257,7 @@ const Chapter2 = function({navigation}) {
                 setBorderColorInput("cyan");
               }}
               onBlur={() => {
-                setBorderColorInput("black");
+                setBorderColorInput("#BBBBBB");
               }}
               onChangeText={onChangeText_booster4}
               value={booster4}
@@ -3285,7 +3288,7 @@ const Chapter2 = function({navigation}) {
                 setBorderColorInput("cyan");
               }}
               onBlur={() => {
-                setBorderColorInput("black");
+                setBorderColorInput("#BBBBBB");
               }}
               onChangeText={onChangeText_booster5}
               value={booster5}
@@ -3316,7 +3319,7 @@ const Chapter2 = function({navigation}) {
                 setBorderColorInput("cyan");
               }}
               onBlur={() => {
-                setBorderColorInput("black");
+                setBorderColorInput("#BBBBBB");
               }}
               onChangeText={onChangeText_booster6}
               value={booster6}
@@ -3347,7 +3350,7 @@ const Chapter2 = function({navigation}) {
                 setBorderColorInput("cyan");
               }}
               onBlur={() => {
-                setBorderColorInput("black");
+                setBorderColorInput("#BBBBBB");
               }}
               onChangeText={onChangeText_booster7}
               value={booster7}
@@ -3378,7 +3381,7 @@ const Chapter2 = function({navigation}) {
                 setBorderColorInput("cyan");
               }}
               onBlur={() => {
-                setBorderColorInput("black");
+                setBorderColorInput("#BBBBBB");
               }}
               onChangeText={onChangeText_booster8}
               value={booster8}
@@ -3409,7 +3412,7 @@ const Chapter2 = function({navigation}) {
                 setBorderColorInput("cyan");
               }}
               onBlur={() => {
-                setBorderColorInput("black");
+                setBorderColorInput("#BBBBBB");
               }}
               onChangeText={onChangeText_booster9}
               value={booster9}
@@ -3440,7 +3443,7 @@ const Chapter2 = function({navigation}) {
                 setBorderColorInput("cyan");
               }}
               onBlur={() => {
-                setBorderColorInput("black");
+                setBorderColorInput("#BBBBBB");
               }}
               onChangeText={onChangeText_booster10}
               value={booster10}
@@ -3471,7 +3474,7 @@ const Chapter2 = function({navigation}) {
                 setBorderColorInput("cyan");
               }}
               onBlur={() => {
-                setBorderColorInput("black");
+                setBorderColorInput("#BBBBBB");
               }}
               onChangeText={onChangeText_booster11}
               value={booster11}
@@ -3531,7 +3534,7 @@ const Chapter2 = function({navigation}) {
                   setBorderColorInput("cyan");
                 }}
                 onBlur={() => {
-                  setBorderColorInput("black");
+                  setBorderColorInput("#BBBBBB");
                 }}
                 onChangeText={onChangeText_allergies_food}
                 value={allergies_food}
@@ -3545,7 +3548,7 @@ const Chapter2 = function({navigation}) {
                   setBorderColorInput("cyan");
                 }}
                 onBlur={() => {
-                  setBorderColorInput("black");
+                  setBorderColorInput("#BBBBBB");
                 }}
                 onChangeText={onChangeText_medications_food}
                 value={medications_food}
@@ -3599,7 +3602,7 @@ const Chapter2 = function({navigation}) {
                   setBorderColorInput("cyan");
                 }}
                 onBlur={() => {
-                  setBorderColorInput("black");
+                  setBorderColorInput("#BBBBBB");
                 }}
                 onChangeText={onChangeText_allergies_drugs}
                 value={allergies_drugs}
@@ -3613,7 +3616,7 @@ const Chapter2 = function({navigation}) {
                   setBorderColorInput("cyan");
                 }}
                 onBlur={() => {
-                  setBorderColorInput("black");
+                  setBorderColorInput("#BBBBBB");
                 }}
                 onChangeText={onChangeText_medications_drugs}
                 value={medications_drugs}
@@ -3666,7 +3669,7 @@ const Chapter2 = function({navigation}) {
                   setBorderColorInput("cyan");
                 }}
                 onBlur={() => {
-                  setBorderColorInput("black");
+                  setBorderColorInput("#BBBBBB");
                 }}
                 onChangeText={onChangeText_allergies_seasonal}
                 value={allergies_seasonal}
@@ -3680,7 +3683,7 @@ const Chapter2 = function({navigation}) {
                   setBorderColorInput("cyan");
                 }}
                 onBlur={() => {
-                  setBorderColorInput("black");
+                  setBorderColorInput("#BBBBBB");
                 }}
                 onChangeText={onChangeText_medications_seasonal}
                 value={medications_seasonal}
@@ -3734,7 +3737,7 @@ const Chapter2 = function({navigation}) {
                   setBorderColorInput("cyan");
                 }}
                 onBlur={() => {
-                  setBorderColorInput("black");
+                  setBorderColorInput("#BBBBBB");
                 }}
                 onChangeText={onChangeText_allergies_others}
                 value={allergies_others}
@@ -3748,7 +3751,7 @@ const Chapter2 = function({navigation}) {
                   setBorderColorInput("cyan");
                 }}
                 onBlur={() => {
-                  setBorderColorInput("black");
+                  setBorderColorInput("#BBBBBB");
                 }}
                 onChangeText={onChangeText_medications_others}
                 value={medications_others}
@@ -3789,7 +3792,7 @@ const Chapter2 = function({navigation}) {
             <View style={styles.subcontainer2}>
               <Text style={styles.label}>When</Text>
               <View style={styles.chooseDate}>
-                <Button color="black" onPress={showDatepicker} title="Choose" />
+                <Button color="#BBBBBB" onPress={showDatepicker} title="Choose" />
               </View>
               {show && (<DateTimePicker
                 testID="dateTimePicker"
@@ -3806,7 +3809,7 @@ const Chapter2 = function({navigation}) {
                   setBorderColorInput("cyan");
                 }}
                 onBlur={() => {
-                  setBorderColorInput("black");
+                  setBorderColorInput("#BBBBBB");
                 }}
                 onChangeText={onChangeText_trigger}
                 value={trigger}
@@ -3846,6 +3849,9 @@ const Chapter2 = function({navigation}) {
 
   return (
     <SafeAreaView style={styles.container}>
+      <View style={styles.logoPart}>
+        <Image source={require('../assets/Logo.png')} style={styles.logo}/>
+      </View>
       {!dataIsReady ?
       <ActivityIndicator size='large' color='black'/>
       :
@@ -4208,17 +4214,20 @@ export {Chapter2};
 
 const styles = StyleSheet.create({
   containerDropdown:{
-    backgroundColor: "#4bcbd6",
+    backgroundColor: "white",
     borderWidth: 1,
     padding:5,
     display:'flex',
     justifyContent:'center'
   },
+  logoPart:{
+    padding:"8%"
+  },
   subcontainer:{
-    backgroundColor: '#4bcbd6',
+    backgroundColor: 'white',
   },
   subcontainer2:{
-    backgroundColor: '#79d1d9',
+    backgroundColor: 'white',
     paddingLeft:5,
     paddingRight:5,
   },
@@ -4237,7 +4246,7 @@ const styles = StyleSheet.create({
     flexDirection:'row'
   },
   container:{
-    backgroundColor:'#18acb9',
+    backgroundColor:'white',
     paddingTop: StatusBar.currentHeight,
     flex :1,
     
@@ -4283,11 +4292,11 @@ const styles = StyleSheet.create({
     width:"50%"
   },
   headerText: {
-    fontSize: 20,
-    color: 'white',
+    fontSize: 18,
+    color: '#18acb9',
     marginTop : 50,
     margin: 12,
-    fontFamily:"Montserrat_400Regular"
+    fontFamily:"Montserrat_700Bold"
   },
   headerText2: {
     fontSize: 16,
@@ -4297,7 +4306,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 16,
-    color: 'black',
+    color: '#18acb9',
     fontFamily:"Montserrat_700Bold",
     margin: 12,
   },
@@ -4306,7 +4315,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     marginVertical: 32,
     fontFamily:"Montserrat_400Regular",
-    backgroundColor: '#4bcbd6',
+    backgroundColor: 'white',
   },
   checkbox: {
     margin : 8,
@@ -4325,7 +4334,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   scrollView: {
-    backgroundColor: '#18acb9',
+    backgroundColor: 'white',
     marginHorizontal: 20,
   },
   dropdown: {
