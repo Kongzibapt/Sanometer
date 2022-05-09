@@ -115,7 +115,7 @@ const Chapter3 = function({navigation}) {
       :
       <ScrollView style={styles.scrollView}>
         <Text style = {styles.headerText}>Psychological data</Text>
-        <Text style={styles.label}>Did you do the Standard Progressive Matrices Test ?</Text>
+        <Text style={styles.label}>Have you done a Standard Progressive Matrices Test ?</Text>
         <View style={styles.checkboxview}>
           <View style={styles.containerbutton}>
             <Text style={styles.paragraph}>Yes</Text>
@@ -141,7 +141,7 @@ const Chapter3 = function({navigation}) {
               onPress={toggleDropdown1}
             >
               <View style={styles.drop}>
-                <Text style={styles.titledrop}>Fill in your info about the spm test.</Text>
+                <Text style={styles.titledrop}>Fill in the spm test result.</Text>
                 <Icon style={styles.symboldrop} type='font-awesome' name='chevron-down'/>
               </View>
 
@@ -150,7 +150,7 @@ const Chapter3 = function({navigation}) {
             </TouchableOpacity>  
           </View>
         }
-        <Text style={styles.label}>Did you do the Beck Depression Inventory (Second Edition) test ?</Text>
+        <Text style={styles.label}>Have you done a Beck Depression Inventory test ?</Text>
         <View style={styles.checkboxview}>
           <View style={styles.containerbutton}>
             <Text style={styles.paragraph}>Yes</Text>
@@ -176,7 +176,7 @@ const Chapter3 = function({navigation}) {
               onPress={toggleDropdown2}
             >
               <View style={styles.drop}>
-                <Text style={styles.titledrop}>Fill in your info about the BDI test.</Text>
+                <Text style={styles.titledrop}>Fill in the BDI test result.</Text>
                 <Icon style={styles.symboldrop} type='font-awesome' name='chevron-down'/>
               </View>
 

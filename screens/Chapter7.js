@@ -273,7 +273,7 @@ const Chapter7 = function({navigation}) {
     if (visible) {
     return (
       <View>
-          <Text style={styles.label}>Have you done the HbA1C and glucose challenge test ?</Text>
+          <Text style={styles.label}>Have you done a glucose challenge test ?</Text>
           <View style={styles.checkboxview}>
             <View style={styles.containerbutton}>
               <Text style={styles.paragraph}>Yes</Text>
@@ -301,7 +301,7 @@ const Chapter7 = function({navigation}) {
               onPress={toggleDropdownHb}
             >
               <View style={styles.drop}>
-                <Text style={styles.titledrop}>Fill in your info about your HbA1C test.</Text>
+                <Text style={styles.titledrop}>Fill in your info about your glucose challenge test.</Text>
                 <Icon style={styles.symboldrop} type='font-awesome' name='chevron-down'/>
               </View>
 
@@ -311,7 +311,7 @@ const Chapter7 = function({navigation}) {
           </View>
         }  
         {/*glycemie a jeun*/}
-        <Text style={styles.label}>What are your fasting blood sugar test results ?</Text>
+        <Text style={styles.label}>What are your blood sugar levels (on a empty stomach) ?</Text>
           <Picker
             selectedValue={selectedglucose}
             onValueChange={(itemValue, itemIndex) =>
@@ -322,7 +322,7 @@ const Chapter7 = function({navigation}) {
             <Picker.Item label="100 to 125mg/dL" value="prediabetes" />
             <Picker.Item label="126mg/dL or higher" value="diabetes" />
           </Picker>
-          <Text style={styles.label}>What your glucose challenge test results are ?</Text>
+          <Text style={styles.label}>What are your glucose test results?</Text>
           <Picker
             selectedValue={selectedcrp}
             onValueChange={(itemValue, itemIndex) =>
@@ -474,7 +474,7 @@ return (
       :
       <ScrollView style={styles.scrollView}>
 
-       <Text  style = {styles.headerText}>Paraclinical data : inferior to 3 months : </Text>
+       <Text  style = {styles.headerText}>Paraclinical data - based on the last three months : </Text>
           <Text style={styles.label}>List analysis</Text>
           <Text style={styles.label}>Complete hemoleucogram</Text>
           <Picker
@@ -607,7 +607,7 @@ return (
           
           {/*seulement pour les diabetiques*/}
 
-           <Text style={styles.label}>Are you diabetics ?</Text>
+           <Text style={styles.label}>Are you diabetic ?</Text>
           <View style={styles.checkboxview}>
             <View style={styles.containerbutton}>
               <Text style={styles.paragraph}>Yes</Text>
@@ -635,7 +635,7 @@ return (
               onPress={toggleDropdown}
             >
               <View style={styles.drop}>
-                <Text style={styles.titledrop}>Fill in your info about your diabetic.</Text>
+                <Text style={styles.titledrop}>Tell us more about your diabetis:</Text>
                 <Icon style={styles.symboldrop} type='font-awesome' name='chevron-down'/>
               </View>
 
@@ -682,7 +682,7 @@ return (
           </View>
         }
 
-          <Text style={styles.label}>For abdominal pain: did you make ultrasound ?</Text>
+          <Text style={styles.label}>For back pain: have you had an abdominal ultrasound ?</Text>
           <View style={styles.checkboxview}>
             <View style={styles.containerbutton}>
               <Text style={styles.paragraph}>Yes</Text>
@@ -720,7 +720,7 @@ return (
           </View>
         }
 
-          <Text style={styles.label}>For heart pain: Did you do ECG ?</Text>
+          <Text style={styles.label}>Have you had ECG ?</Text>
           <View style={styles.checkboxview}>
             <View style={styles.containerbutton}>
               <Text style={styles.paragraph}>Yes</Text>

@@ -107,7 +107,7 @@ const Advice = function({navigation}) {
         <Image source={require('../assets/Logo.png')} style={styles.logo}/>
       </View>
       <ScrollView style={styles.scrollView}>
-        <Text  style = {styles.headerText}>Advice</Text>
+        <Text  style = {styles.headerText}>Personalized advice for you</Text>
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', overflow: "scroll", flexGrow:3}}>
           <FlatList 
           data={advice}

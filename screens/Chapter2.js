@@ -2775,7 +2775,7 @@ const Chapter2 = function({navigation}) {
     if(visible_family){
       return (
         <View style={styles.containerDropdown}>
-          <Text style={styles.label}>Allergies antecedent? </Text>
+          <Text style={styles.label}>Do you have any allergies? </Text>
           <View style={styles.checkboxview}>
             <View style={styles.containerbutton}>
               <Text style={styles.paragraph}>Yes</Text>
@@ -3948,7 +3948,7 @@ const Chapter2 = function({navigation}) {
           </View>
         }
 
-        <Text style={styles.label}>Do you have any vaccines ? </Text>
+        <Text style={styles.label}>Have you had any vaccines? </Text>
         <View style={styles.checkboxview}>
           <View style={styles.containerbutton}>
             <Text style={styles.paragraph}>Yes</Text>
@@ -3990,7 +3990,7 @@ const Chapter2 = function({navigation}) {
         }
         
 
-        <Text style={styles.label}>Do you have/had any chronical disease ? </Text>
+        <Text style={styles.label}>Do you suffer/have you suffered from any chronical diseases? </Text>
         <View style={styles.checkboxview}>
           <View style={styles.containerbutton}>
             <Text style={styles.paragraph}>Yes</Text>
@@ -4054,7 +4054,7 @@ const Chapter2 = function({navigation}) {
           </View>
         </View> */}
 
-        <Text style={styles.label}> Did you had any Surgery </Text>
+        <Text style={styles.label}>Have you ever had surgery?</Text>
         <View style={styles.checkboxview}>
           <View style={styles.containerbutton}>
             <Text style={styles.paragraph}>Yes</Text>
@@ -4093,7 +4093,7 @@ const Chapter2 = function({navigation}) {
           
         }
 
-        <Text style={styles.label}> Did you had any injuries ? </Text>
+        <Text style={styles.label}>Have you had any significant injuries?</Text>
         <View style={styles.checkboxview}>
           <View style={styles.containerbutton}>
             <Text style={styles.paragraph}>Yes</Text>
@@ -4151,15 +4151,6 @@ const Chapter2 = function({navigation}) {
               color='cyan'
             />
           </View>
-          <View style={styles.containerbutton}>
-            <Text style={styles.paragraph}>Neutral</Text>
-            <RadioButton
-              value="neutral"
-              status={ checked === 'neutral' ? 'checked' : 'unchecked' }
-              onPress={() => setChecked('neutral')}
-              color='cyan'
-            /> 
-          </View>
         </View>  
 
         {checked=='female' &&
@@ -4196,7 +4187,7 @@ const Chapter2 = function({navigation}) {
           </View>
           
         }
-        <Text style={styles.label}>Are you under any other treatments than the ones cited before? </Text>
+        <Text style={styles.label}>Are you undergoing any treatments? </Text>
         <View style={styles.checkboxview}>
           <View style={styles.containerbutton}>
             <Text style={styles.paragraph}>Yes</Text>

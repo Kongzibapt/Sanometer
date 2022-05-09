@@ -20,6 +20,7 @@ const Chapter6 = function({navigation}) {
   const [checked, setChecked] = react.useState('');
   const [checked2, setChecked2] = react.useState('');
   const [checked3, setChecked3] = react.useState('');
+  const [checked31, setChecked31] = react.useState('');
   const [checked4, setChecked4] = react.useState('');
   const [checked5, setChecked5] = react.useState('');
   const [checked6, setChecked6] = react.useState('');
@@ -312,20 +313,20 @@ const Chapter6 = function({navigation}) {
       <ActivityIndicator size='large' color='black'/>
       :
       <ScrollView style={styles.scrollView}>
-      <Text  style = {styles.headerText}>Life style</Text>
+      <Text  style = {styles.headerText}>Lifestyle</Text>
         <Text  style = {styles.label}>Tolerance to the effort: </Text>
-        <Text style={styles.label}>Walking perimeter (flat):</Text>
+        <Text style={styles.label}>Walking distance (flat ground):</Text>
         <Picker
           selectedValue={selectedperim}
           onValueChange={(itemValue, itemIndex) =>
             setSelectedperim(itemValue)
           }
           mode='dropdown'>
-          <Picker.Item label="< 1km" value="<1km" />
-          <Picker.Item label="1-4km" value="1-4km" />
-          <Picker.Item label="> 4km" value=">4km" />
+          <Picker.Item label="< 10min" value="<10min" />
+          <Picker.Item label="10-30min" value="10-30min" />
+          <Picker.Item label="> 30min" value=">30min" />
         </Picker>
-        <Text style={styles.label}>Walking in the slope:</Text>
+        <Text style={styles.label}>Walking uphill:</Text>
         <Picker
           selectedValue={selectedslope}
           onValueChange={(itemValue, itemIndex) =>
@@ -345,9 +346,10 @@ const Chapter6 = function({navigation}) {
           mode='dropdown'>
           <Picker.Item label="Vegetarian" value="vegetarian" />
           <Picker.Item label="Vegan" value="vegan" />
-          <Picker.Item label="Normal" value="normal" />
+          <Picker.Item label="Regular" value="normal" />
+          <Picker.Item label="Other" value="other" />
         </Picker>
-        <Text style={styles.label}>Caloric intake</Text>
+        <Text style={styles.label}>Caloric intake (per day)</Text>
         <Text style={styles.link}
           onPress={() => Linking.openURL('https://www.freedieting.com/')}>
           Tool to calculate your caloric intake
@@ -362,7 +364,7 @@ const Chapter6 = function({navigation}) {
           <Picker.Item label="Between 2000 and 3000 calories" value="2000-3000cal" />
           <Picker.Item label="> 3000 calories" value=">3000cal" />
         </Picker>
-        <Text style={styles.label}>The quality of the food:</Text>
+        <Text style={styles.label}>Types of food:</Text>
         <Picker
           selectedValue={selectedslope}
           onValueChange={(itemValue, itemIndex) =>
@@ -411,7 +413,7 @@ const Chapter6 = function({navigation}) {
             </TouchableOpacity>  
           </View>
         }
-        <Text style={styles.label}>Do you take drugs ?</Text>
+        <Text style={styles.label}>Do you take recreational drugs ?</Text>
           <View style={styles.checkboxview}>
             <View style={styles.containerbutton}>
               <Text style={styles.paragraph}>Yes</Text>
@@ -430,9 +432,28 @@ const Chapter6 = function({navigation}) {
               />
             </View>
           </View>
+          <Text style={styles.label}>Do you take any medication ?</Text>
+          <View style={styles.checkboxview}>
+            <View style={styles.containerbutton}>
+              <Text style={styles.paragraph}>Yes</Text>
+              <RadioButton
+                value="yes"
+                status={ checked31 === 'yes' ? 'checked' : 'unchecked' }
+                onPress={() => setChecked31('yes')}
+              />
+            </View>
+            <View style={styles.containerbutton}>
+              <Text style={styles.paragraph}>No</Text>
+              <RadioButton
+                value="no"
+                status={ checked31 === 'no' ? 'checked' : 'unchecked' }
+                onPress={() => setChecked31('no')}
+              />
+            </View>
+          </View>
 
           {/*when ? result*/}
-          {(checked3==="yes") && 
+          {((checked3==="yes")||(checked31=="yes")) && 
           <View style={styles.container}>
             <TouchableOpacity
               style={styles.button}
@@ -448,155 +469,19 @@ const Chapter6 = function({navigation}) {
             </TouchableOpacity>  
           </View>
         }
-        <Text style={styles.label}>Do you take alcohol ?</Text>
-          <View style={styles.checkboxview}>
-            <View style={styles.containerbutton}>
-              <Text style={styles.paragraph}>Yes</Text>
-              <RadioButton
-                value="yes"
-                status={ checked4 === 'yes' ? 'checked' : 'unchecked' }
-                onPress={() => setChecked4('yes')}
-              />
-            </View>
-            <View style={styles.containerbutton}>
-              <Text style={styles.paragraph}>No</Text>
-              <RadioButton
-                value="no"
-                status={ checked4 === 'no' ? 'checked' : 'unchecked' }
-                onPress={() => setChecked4('no')}
-              />
-            </View>
-          </View>
+        <Text style={styles.label}>Do you drink alcohol ?</Text>
+        <Picker
+          selectedValue={selectedalco}
+          onValueChange={(itemValue, itemIndex) =>
+            setSelectedalco(itemValue)
+          }
+          mode='dropdown'>
+          <Picker.Item label="Heavy drinker" value="Heavy" />
+          <Picker.Item label="Moderate drinker" value="moderate" />
+          <Picker.Item label="Light drinker (1-3 glasses a week)" value="light" />
+        </Picker>
 
-          {/*when ? result*/}
-          {(checked4==="yes") && 
-          <View style={styles.container}>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={toggleDropdown3}
-            >
-              <View style={styles.drop}>
-                <Text style={styles.titledrop}>Fill in your info about alcohol.</Text>
-                <Icon style={styles.symboldrop} type='font-awesome' name='chevron-down'/>
-              </View>
-
-              {renderDropdown3()}
-            
-            </TouchableOpacity>  
-          </View>
-        }
-        <Text style={styles.label}>Do you take beer ?</Text>
-          <View style={styles.checkboxview}>
-            <View style={styles.containerbutton}>
-              <Text style={styles.paragraph}>Yes</Text>
-              <RadioButton
-                value="yes"
-                status={ checked5 === 'yes' ? 'checked' : 'unchecked' }
-                onPress={() => setChecked5('yes')}
-              />
-            </View>
-            <View style={styles.containerbutton}>
-              <Text style={styles.paragraph}>No</Text>
-              <RadioButton
-                value="no"
-                status={ checked5 === 'no' ? 'checked' : 'unchecked' }
-                onPress={() => setChecked5('no')}
-              />
-            </View>
-          </View>
-
-          {/*when ? result*/}
-          {(checked5==="yes") && 
-          <View style={styles.container}>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={toggleDropdown4}
-            >
-              <View style={styles.drop}>
-                <Text style={styles.titledrop}>Fill in your info about beer.</Text>
-                <Icon style={styles.symboldrop} type='font-awesome' name='chevron-down'/>
-              </View>
-
-              {renderDropdown4()}
-            
-            </TouchableOpacity>  
-          </View>
-        }
-        <Text style={styles.label}>Do you take wine ?</Text>
-          <View style={styles.checkboxview}>
-            <View style={styles.containerbutton}>
-              <Text style={styles.paragraph}>Yes</Text>
-              <RadioButton
-                value="yes"
-                status={ checked6 === 'yes' ? 'checked' : 'unchecked' }
-                onPress={() => setChecked6('yes')}
-              />
-            </View>
-            <View style={styles.containerbutton}>
-              <Text style={styles.paragraph}>No</Text>
-              <RadioButton
-                value="no"
-                status={ checked6 === 'no' ? 'checked' : 'unchecked' }
-                onPress={() => setChecked6('no')}
-              />
-            </View>
-          </View>
-
-          {/*when ? result*/}
-          {(checked6==="yes") && 
-          <View style={styles.container}>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={toggleDropdown5}
-            >
-              <View style={styles.drop}>
-                <Text style={styles.titledrop}>Fill in your info about wine.</Text>
-                <Icon style={styles.symboldrop} type='font-awesome' name='chevron-down'/>
-              </View>
-
-              {renderDropdown5()}
-            
-            </TouchableOpacity>  
-          </View>
-        }
-        <Text style={styles.label}>Do you take hard alcohol ?</Text>
-          <View style={styles.checkboxview}>
-            <View style={styles.containerbutton}>
-              <Text style={styles.paragraph}>Yes</Text>
-              <RadioButton
-                value="yes"
-                status={ checked7 === 'yes' ? 'checked' : 'unchecked' }
-                onPress={() => setChecked7('yes')}
-              />
-            </View>
-            <View style={styles.containerbutton}>
-              <Text style={styles.paragraph}>No</Text>
-              <RadioButton
-                value="no"
-                status={ checked7 === 'no' ? 'checked' : 'unchecked' }
-                onPress={() => setChecked7('no')}
-              />
-            </View>
-          </View>
-
-          {/*when ? result*/}
-          {(checked7==="yes") && 
-          <View style={styles.container}>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={toggleDropdown6}
-            >
-              <View style={styles.drop}>
-                <Text style={styles.titledrop}>Fill in your info about hard alcohol.</Text>
-                <Icon style={styles.symboldrop} type='font-awesome' name='chevron-down'/>
-              </View>
-
-              {renderDropdown6()}
-            
-            </TouchableOpacity>  
-          </View>
-        }
-        <Text style={styles.label}>Sports:</Text>
+        <Text style={styles.label}>Exercise:</Text>
         <Picker
           selectedValue={selectedsport}
           onValueChange={(itemValue, itemIndex) =>

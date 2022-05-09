@@ -95,7 +95,7 @@ const Chapter5 = function({navigation}) {
       :
       <ScrollView style={styles.scrollView}>
         <Text  style = {styles.headerText}>Physical parameters</Text>
-        <Text style={styles.label}>Height (cm)</Text>
+        <Text style={styles.label}>Height (cm/feet)</Text>
         <TextInput
           style={{...styles.input,borderColor:borderColorInputHeight}}
           onFocus={() => {
@@ -109,7 +109,7 @@ const Chapter5 = function({navigation}) {
           placeholder="Your height"
           keyboardType="numeric"
         />
-        <Text style={styles.label}>Weight (kg)</Text>
+        <Text style={styles.label}>Weight (kg/pounds)</Text>
         <TextInput
           style={{...styles.input,borderColor:borderColorInputWeight}}
           onFocus={() => {
@@ -137,21 +137,7 @@ const Chapter5 = function({navigation}) {
           placeholder="Your waist circumference"
           keyboardType="default"
         />
-        <Text style={styles.label}>Abdominal perimeter</Text>
-        <TextInput
-          style={{...styles.input,borderColor:borderColorInputAbdo}}
-          onFocus={() => {
-            setBorderColorInputAbdo("cyan");
-          }}
-          onBlur={() => {
-            setBorderColorInputAbdo('#BBBBBB');
-          }}
-          onChangeText={onChangeText3}
-          value={abdominal_param}
-          placeholder="Your abdominal perimeter"
-          keyboardType="default"
-        />
-        <Text style={styles.label}>Thigh perimeter</Text>
+        <Text style={styles.label}>Thigh circumference</Text>
         <TextInput
           style={{...styles.input,borderColor:borderColorInputThigh}}
           onFocus={() => {
@@ -165,7 +151,7 @@ const Chapter5 = function({navigation}) {
           placeholder="Your thigh perimeter"
           keyboardType="default"
         />
-        <Text style={styles.label}>Ankle perimeter</Text>
+        <Text style={styles.label}>Ankle circumference</Text>
         <TextInput
           style={{...styles.input,borderColor:borderColorInputAnkle}}
           onFocus={() => {
@@ -179,7 +165,7 @@ const Chapter5 = function({navigation}) {
           placeholder="Your ankle perimeter"
           keyboardType="default"
         />
-        <Text style={styles.label}>Pressure</Text>
+        <Text style={styles.label}>Blood pressure</Text>
         <TextInput
           style={{...styles.input,borderColor:borderColorInputPressure}}
           onFocus={() => {
@@ -208,10 +194,10 @@ const Chapter5 = function({navigation}) {
           keyboardType="default"
         />
         {(sex=="male") &&
-        <Text style={styles.label}>Your RFM is {64-(20*height/waist)}.</Text>
+        <Text style={styles.label}>Your RFM (Risk Factor Management) is {64-(20*height/waist)}.</Text>
         }
         {(sex=="female") &&
-        <Text style={styles.label}>Your RFM is {76-(20*height/waist)}.</Text>
+        <Text style={styles.label}>Your RFM (Risk Factor Management) is {76-(20*height/waist)}.</Text>
         }
         <Text style={styles.label}>Your Body Mass Index is {weight/((height/100)*(height/100))} kg/m².</Text>
         <View style={{margin:5}}>

@@ -266,7 +266,7 @@ const renderDropdown2 = () => {
       :
       <ScrollView style={styles.scrollView}>
       <Text  style = {styles.headerText}>Emotional profile</Text>
-      <Text style={styles.label}>Have you performed the MMSCEIT V 2.0 test ?</Text>
+      <Text style={styles.label}>Have you done an MMSCEIT V 2.0 test ?</Text>
         <View style={styles.checkboxview}>
           <View style={styles.containerbutton}>
             <Text style={styles.paragraph}>Yes</Text>
@@ -304,7 +304,7 @@ const renderDropdown2 = () => {
         </View>
       }
 
-      <Text style={styles.label}>Do you have pain ?</Text>
+      <Text style={styles.label}>Do you have any pain ?</Text>
         <View style={styles.checkboxview}>
           <View style={styles.containerbutton}>
             <Text style={styles.paragraph}>Yes</Text>

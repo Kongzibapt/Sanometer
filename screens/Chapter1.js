@@ -232,21 +232,21 @@ const Chapter1 = function({navigation}) {
         />
 
 
-        <Text style={styles.label}>Race</Text>
+        <Text style={styles.label}>Ethnicity</Text>
         <Picker
           selectedValue={selectedrace}
           onValueChange={(itemValue, itemIndex) =>
             setSelectedrace(itemValue)
           }
           mode='dropdown'>
-          <Picker.Item label="White" value="white" />
-          <Picker.Item label="Black" value="black" />
+          <Picker.Item label="Caucasian" value="white" />
+          <Picker.Item label="African" value="black" />
           <Picker.Item label="Asian" value="asian" />
-          <Picker.Item label="Metis" value="metis" />
-          <Picker.Item label="Ethnicity" value="ethnicity" />
+          {/* <Picker.Item label="Metis" value="metis" /> */}
+          <Picker.Item label="Others" value="ethnicity" />
         </Picker>
 
-        <Text style={styles.label}>Geographical form</Text>
+        <Text style={styles.label}>Geographical location</Text>
         <Picker
           selectedValue={selectedgeo}
           onValueChange={(itemValue, itemIndex) =>
@@ -260,7 +260,7 @@ const Chapter1 = function({navigation}) {
           <Picker.Item label="I'm not sure" value="" />
         </Picker>
 
-        <Text style={styles.label}>Urban area</Text>
+        <Text style={styles.label}>Population</Text>
         <Picker
           selectedValue={selectedarea}
           onValueChange={(itemValue, itemIndex) =>
@@ -299,7 +299,7 @@ const Chapter1 = function({navigation}) {
           <Text style={{ paddingTop: 10 }}>Value: {physicalEffort}</Text>
         </View>
 
-        <Text style={styles.label}>Major Professional change during the last 5 years</Text>
+        <Text style={styles.label}>Any major Professional change?</Text>
         <View style={styles.checkboxview}>
           <View style={styles.containerbutton}>
             <Text style={styles.paragraph}>Yes</Text>
@@ -318,7 +318,7 @@ const Chapter1 = function({navigation}) {
             />
           </View>
         </View>
-        <Text style={styles.label}>Education</Text>
+        <Text style={styles.label}>Education level</Text>
         <Picker
           selectedValue={selectededuc}
           onValueChange={(itemValue, itemIndex) =>

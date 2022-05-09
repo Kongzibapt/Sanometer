@@ -88,7 +88,7 @@ const Form = function({navigation}) {
         <Text></Text>
         <View style={styles.button}>
           <Button
-            title="Life style"
+            title="Lifestyle"
             style={styles.button}
             onPress={() => navigation.navigate('Chapter 6')}
             color="#18acb9"

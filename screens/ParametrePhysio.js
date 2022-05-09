@@ -90,7 +90,7 @@ const ParametrePhysio = function({navigation}) {
 
         <Text  style = {styles.headerText}>Enter your changes in Physiological parameters : </Text>
 
-        <Text style={styles.label}>Are you feeling an intense thirst (apart from high outside temperatures and physical exercise) ?</Text>
+        <Text style={styles.label}>Do you experience intense thirst (when not exercising/high heat) ?</Text>
         <View style={styles.checkboxview}>
           <View style={styles.containerbutton}>
             <Text style={styles.paragraph}>Yes</Text>
@@ -110,7 +110,7 @@ const ParametrePhysio = function({navigation}) {
           </View>
         </View>
 
-        <Text style={styles.label}>Are you feeling like you need to urinate more (frequent and occurs day and night, with abundant urine) ?</Text>
+        <Text style={styles.label}>Do you feel the need to urinate more frequently than usual ?</Text>
         <View style={styles.checkboxview}>
           <View style={styles.containerbutton}>
             <Text style={styles.paragraph}>Yes</Text>
@@ -130,7 +130,7 @@ const ParametrePhysio = function({navigation}) {
           </View>
         </View>
 
-        <Text style={styles.label}>Did you loose weight without a loss in apetite ?</Text>
+        <Text style={styles.label}>Have you lost any weight without any dietary changes ?</Text>
         <View style={styles.checkboxview}>
           <View style={styles.containerbutton}>
             <Text style={styles.paragraph}>Yes</Text>
@@ -150,7 +150,7 @@ const ParametrePhysio = function({navigation}) {
           </View>
         </View>
 
-        <Text style={styles.label}>Are you feeling really tired ?</Text>
+        <Text style={styles.label}>Do you feel tired or have blurred vision ?</Text>
         <View style={styles.checkboxview}>
           <View style={styles.containerbutton}>
             <Text style={styles.paragraph}>Yes</Text>
@@ -170,7 +170,7 @@ const ParametrePhysio = function({navigation}) {
           </View>
         </View>
 
-        <Text style={styles.label}>Do you have a blurred vision ?</Text>
+        {/* <Text style={styles.label}>Do you have a blurred vision ?</Text>
         <View style={styles.checkboxview}>
           <View style={styles.containerbutton}>
             <Text style={styles.paragraph}>Yes</Text>
@@ -188,10 +188,11 @@ const ParametrePhysio = function({navigation}) {
               onPress={() => setblurryvision('no')}
             />
           </View>
-        </View>
+        </View> */}
 
-        
-        {(blurryvision === "yes" && tired === "yes" && weightloss === "yes" && physiourinate === "yes"&& thirsty=== "yes") ?
+        {//(blurryvision === "yes" && tired === "yes" && weightloss === "yes" && physiourinate === "yes"&& thirsty=== "yes") ?
+}
+        {(tired === "yes" && weightloss === "yes" && physiourinate === "yes"&& thirsty=== "yes") ?
           <View>
             <View>
               <Text style={styles.label}>Your Blood Sugar Levels</Text>
@@ -281,7 +282,7 @@ const ParametrePhysio = function({navigation}) {
 
         
 
-        <Text style={styles.label}>Are you bothered in the groin with local swelling ?</Text>
+        <Text style={styles.label}>Do you have any pain or swelling in the groin area ?</Text>
         <View style={styles.checkboxview}>
           <View style={styles.containerbutton}>
             <Text style={styles.paragraph}>Yes</Text>
