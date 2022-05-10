@@ -64,7 +64,7 @@ export const  score_q2 = async () =>{
     var result="";
     var input = chapter6();
     if (((((((-1.9918921358721473) + ((input[0]) * (2.8419046587086836))) + ((input[1]) * (1.5731723233802648))) + ((input[2]) * (0.7065055102334576))) + ((input[3]) * (1.4594811627777624))) + ((input[4]) * (0.2914503494533588))) + ((input[5]) * (-1.6017957935641505))>=0.5){
-        result = " It is highly recommended to have a medical advise in max 10 days ";
+        result = " It is highly recommended to have a medical advice in max 10 days ";
     }
     return result;
 }
