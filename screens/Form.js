@@ -106,7 +106,7 @@ const Form = function({navigation}) {
         <Text></Text>
         <View style={styles.button}>
           <Button
-            title="Physiogical parameters"
+            title="Physiological parameters"
             style={styles.button}
             onPress={() => navigation.navigate('Parametre Physio')}
             color="#18acb9"
