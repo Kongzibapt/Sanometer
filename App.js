@@ -318,15 +318,17 @@ export default function App() {
               return <Image source={require("./assets/Form.png")} style={{width: 30, height: 30}}/>
             })
           }} />
-          <Stack.Screen name="Chapter 1" component={Chapter1} />
+          
+          {/* <Stack.Screen name="Chapter 1" component={Chapter1} />
           <Stack.Screen name="Chapter 2" component={Chapter2} />
           <Stack.Screen name="Chapter 3" component={Chapter3} />
           <Stack.Screen name="Chapter 4" component={Chapter4} />
           <Stack.Screen name="Chapter 5" component={Chapter5} />
           <Stack.Screen name="Chapter 6" component={Chapter6} />
           <Stack.Screen name="Chapter 7" component={Chapter7} />
-          <Stack.Screen name="Parametre Physio" component={ParametrePhysio} />
+          <Stack.Screen name="Parametre Physio" component={ParametrePhysio} /> */}
         </Tab.Navigator>
+        <Stack.Screen name="Chapter 1" component={Chapter1} />
       </NavigationContainer>
   );
   }

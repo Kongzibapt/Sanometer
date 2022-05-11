@@ -13,8 +13,6 @@ import { ParametrePhysio } from './ParametrePhysio.js';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 
-const Stack = createNativeStackNavigator();
-
 const Form = function({navigation}) {
 
   const FormMenu = () => {
