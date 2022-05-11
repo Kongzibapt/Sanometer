@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { SafeAreaView, StyleSheet, Text, View, Button, Image, FlatList } from 'react-native';
+import { TouchableOpacity,SafeAreaView, StyleSheet, Text, View, Button, Image, FlatList } from 'react-native';
 import { Chapter1 } from './screens/Chapter1.js';
 import { Chapter2 } from './screens/Chapter2.js';
 import { Chapter3 } from './screens/Chapter3.js';
@@ -146,33 +146,23 @@ function HomeScreen({ navigation }) {
         <Image source={require('./assets/Logo.png')} style={styles.logo}/>
       </View>
       <View style={styles.heroPart}>
-        <Text style={styles.heroTxt}>Your health is</Text>
+        <Text style={styles.heroTxt}>Your health is important to us</Text>
+      </View>
+      <View style={styles.health}>
+        <Image source={require('./assets/Image1.png')} style={styles.healthImg}/>
       </View>
       <View style={styles.heroPart}>
-        <Text style={styles.heroTxt}>important to us</Text>
-      </View>
-      <Image source={require('./assets/Image1.png')} style={{ width: 55, height: 46, top:10, left:159 }}/>
-      <Text></Text>
-      <View style={styles.heroPart}>
-        <Text></Text>
         <Text style={styles.hero2Txt}>How it works</Text>
       </View>
-      <Text></Text>
-      <Image source={require('./assets/Image2.png')} style={{ width: 240, height: 60, left:60 }}/>
-      <Text></Text>
-      <Text></Text>
-      <Text></Text>
-      <Text></Text>
-      <View style={styles.containerbutton}>
-        <View style={{margin:10}}>
-          <Button
-            title="Get started"
-            onPress={() => navigation.navigate('Chapter 1')}
-            color="#18acb9"
-          />
-        </View>
+      <View style={styles.schema}>
+        <Image source={require('./assets/Image2.png')} style={styles.schemaImg}/>
       </View>
-      <Image source={require('./assets/Image3.png')} style={{ width: 56.41, height: 72, bottom:60, left:159 }}/>
+       <View style={styles.containerbutton}>
+        <TouchableOpacity onPress={() => navigation.navigate('Chapter 1')} style={styles.startButton}>
+          <Text style={styles.startTxt}>Get started</Text>
+        </TouchableOpacity>
+        <Image source={require('./assets/Image3.png')} style={styles.startImg}/>
+      </View>
       {/* <View style={{ flex: 1,justifyContent: 'center',alignItems:'center', backgroundColor:'#18acb9', height:"130%", flexGrow:2}}>
         <Image source={require('./logo.png')} style={{ width: 100, height: 80, position:'absolute', top:200, left:20 }}/>
         <Text style={styles.labelname}>Hi {firstname} !</Text>
@@ -349,12 +339,29 @@ const styles = StyleSheet.create({
   logoPart:{
     padding:"8%"
   },
+  logo:{
+    width:210,
+    height:50
+  },
+  health:{
+    alignItems: 'center',
+    marginTop:20
+  },
+  healthImg:{
+    width:48,
+    height:40,
+    
+  },
   heroTxt:{
     fontSize: 21,
+    paddingHorizontal:"20%",
     fontFamily: "Montserrat_600SemiBold",
     textAlign:"center",
     color: '#17A8BC',
     fontWeight: "600"
+  },
+  heroPart:{
+    marginTop:40
   },
   hero2Txt:{
     fontSize: 21,
@@ -363,17 +370,37 @@ const styles = StyleSheet.create({
     color: '#18191F',
     fontWeight: "600"
   },
-  containerbutton : {
-    position:'relative',
-    width:"100%",
-    height:"20%"
+  schema:{
+    alignItems: 'center',
+    marginTop:20
   },
-  button:{
-    fontSize: 17.2,
-    fontFamily: "Montserrat_600SemiBold",
-    width:"100%",
-    justifyContent: 'center',
-    position:'relative'
+  schemaImg:{
+    width:300,
+    height:75,
+    
+  },
+  containerbutton : {
+    marginTop:50,
+    alignItems: 'center',
+  },
+  startButton:{
+    backgroundColor:"#18acb9",
+    marginHorizontal:"15%",
+    paddingHorizontal:"5%",
+    paddingVertical:"2%",
+    borderRadius:5,
+    alignItems: 'center',
+  },
+  startTxt:{
+    fontSize:18,
+    color:"white",
+    fontFamily:"Montserrat_600SemiBold",
+    textAlign:"center"
+  },
+  startImg:{
+    marginTop:20,
+    width:40,
+    height:51
   }
   // container: {
   //   flex: 1,
@@ -383,7 +410,7 @@ const styles = StyleSheet.create({
   // },
   // button: {
   //   fontSize: 14,
-  //   fontFamily:"Montserrat_400Regular",
+  //   
   //   width:"100%",
   //   justifyContent: 'center',
   //   position:'relative',

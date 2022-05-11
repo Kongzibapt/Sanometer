@@ -114,7 +114,16 @@ const Chapter3 = function({navigation}) {
       <ActivityIndicator size='large' color='black'/>
       :
       <ScrollView style={styles.scrollView}>
-        <Text style = {styles.headerText}>Psychological data</Text>
+       <View style={styles.arrows}>
+          <Text  style = {styles.headerText}>Psychological data</Text>
+          <TouchableOpacity style={styles.prevArrow} onPress={()=>navigation.navigate("Chapter 2")}>
+            <Image source={require('../assets/prevArrow.png')} style={styles.prevImg}/>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.nextArrow}  onPress={()=>navigation.navigate("Chapter 4")}>
+            <Image source={require('../assets/nextArrow.png')} style={styles.nextImg}/>
+          </TouchableOpacity>
+        </View>
+        <View style = {styles.barre}></View>
         <Text style={styles.label}>Have you done a Standard Progressive Matrices Test ?</Text>
         <View style={styles.checkboxview}>
           <View style={styles.containerbutton}>
@@ -188,9 +197,6 @@ const Chapter3 = function({navigation}) {
         <View style={{margin:5}}>
           <Button title="Submit" onPress={submitChapter3} color="#4bcbd6"/>
         </View>
-        <View style={{margin:5}}>
-          <Button title="Home" onPress={() => navigation.navigate("Home")} color="#4bcbd6"/>
-      </View>
       </ScrollView>
     }
     </SafeAreaView>
@@ -208,10 +214,19 @@ const styles = StyleSheet.create({
   logoPart:{
     padding:"8%"
   },
+  logo:{
+    width:210,
+    height:50
+  },
+  arrows:{
+    flexDirection:'row',
+    alignItems:'center',
+  },
   headerText: {
+    width:"75%",
     fontSize: 18,
     color: '#18acb9',
-    marginTop : 50,
+    marginTop : 20,
     margin: 12,
     fontFamily:"Montserrat_700Bold"
   },
@@ -220,6 +235,12 @@ const styles = StyleSheet.create({
     color: '#18acb9',
     margin: 12,
     fontFamily:"Montserrat_400Regular"
+  },
+  barre:{
+    backgroundColor: '#BBBBBB',
+    height:1,
+    width:"95%",
+    marginBottom:20
   },
   input: {
     height: 40,
@@ -271,9 +292,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     marginHorizontal: 20,
   },
-  dropdown: {
-    position: 'absolute',
-    backgroundColor: '#fff',
-    top: 50,
-  },
+  dropdown:{
+    borderWidth:1,
+    borderRadius:6,
+    borderColor: '#BBBBBB',
+  }
 });

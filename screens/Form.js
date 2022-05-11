@@ -11,23 +11,15 @@ import { Chapter6 } from './Chapter6.js';
 import { Chapter7 } from './Chapter7.js';
 import { ParametrePhysio } from './ParametrePhysio.js';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
 
 const Stack = createNativeStackNavigator();
 
 const Form = function({navigation}) {
 
-  
-
-  useEffect(()=>{
-    // getChapterInfos().then(()=>{
-    //   setDataIsReady(true);
-    // });
-  },[])
-
-  
-
-  return (
-    <SafeAreaView style={styles.container}>
+  const FormMenu = () => {
+    return (
+      <SafeAreaView style={styles.container}>
       {/* {!dataIsReady ?
       <ActivityIndicator size='large' color='black'/>
       : */}
@@ -118,6 +110,31 @@ const Form = function({navigation}) {
       </ScrollView>
     {/* } */}
     </SafeAreaView>
+    )
+  }
+
+  useEffect(()=>{
+    // getChapterInfos().then(()=>{
+    //   setDataIsReady(true);
+    // });
+  },[])
+
+  const Stack = createNativeStackNavigator();
+
+  return (
+    // <NavigationContainer independent={true}>
+      <Stack.Navigator initialRouteName="FormMenu">
+        <Stack.Screen name="FormMenu" component={FormMenu}  options={{ headerShown: false }}/>
+        <Stack.Screen name="Chapter 1" component={Chapter1}  options={{ headerShown: false }}/>
+        <Stack.Screen name="Chapter 2" component={Chapter2}  options={{ headerShown: false }}/>
+        <Stack.Screen name="Chapter 3" component={Chapter3}  options={{ headerShown: false }}/>
+        <Stack.Screen name="Chapter 4" component={Chapter4}  options={{ headerShown: false }}/>
+        <Stack.Screen name="Chapter 5" component={Chapter5}  options={{ headerShown: false }}/>
+        <Stack.Screen name="Chapter 6" component={Chapter6}  options={{ headerShown: false }}/>
+        <Stack.Screen name="Chapter 7" component={Chapter7}  options={{ headerShown: false }}/>
+        <Stack.Screen name="Parametre Physio" component={ParametrePhysio} options={{ headerShown: false }}/>
+      </Stack.Navigator>
+    // </NavigationContainer>
   );
 }
 
@@ -129,6 +146,13 @@ const styles = StyleSheet.create({
     // backgroundColor:'#18acb9',
     paddingTop: StatusBar.currentHeight,
     flex :1,
+  },
+  logoPart:{
+    padding:"8%"
+  },
+  logo:{
+    width:210,
+    height:50
   },
   names:{
     display:'flex',

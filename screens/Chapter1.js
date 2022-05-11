@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import react, { useEffect } from 'react';
-import { StyleSheet, Text, View, Button, ActivityIndicator, Image} from 'react-native';
+import { TouchableOpacity,StyleSheet, Text, View, Button, ActivityIndicator, Image} from 'react-native';
 import { SafeAreaView, TextInput, ScrollView} from "react-native";
 import { Slider, Icon } from 'react-native-elements';
 import { RadioButton } from 'react-native-paper';
@@ -110,8 +110,16 @@ const Chapter1 = function({navigation}) {
       <ActivityIndicator size='large' color='black'/>
       :
       <ScrollView style={styles.scrollView}>
-        <Text  style = {styles.headerText}>Personal data</Text>
-        <Text style = {styles.barre}>__________________________________________________</Text>
+        <View style={styles.arrows}>
+          <Text  style = {styles.headerText}>Personal data</Text>
+          <TouchableOpacity style={styles.prevArrow} onPress={()=>navigation.navigate("FormMenu")}>
+            <Image source={require('../assets/prevArrow.png')} style={styles.prevImg}/>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.nextArrow}  onPress={()=>navigation.navigate("Chapter 2")}>
+            <Image source={require('../assets/nextArrow.png')} style={styles.nextImg}/>
+          </TouchableOpacity>
+        </View>
+        <View style = {styles.barre}></View>
         <View style={styles.names}>
           <View style={styles.firstname}>
             <Text style={styles.label}>First Name</Text>
@@ -319,6 +327,7 @@ const Chapter1 = function({navigation}) {
           </View>
         </View>
         <Text style={styles.label}>Education level</Text>
+        <View style={styles.dropdown}>
         <Picker
           selectedValue={selectededuc}
           onValueChange={(itemValue, itemIndex) =>
@@ -331,11 +340,9 @@ const Chapter1 = function({navigation}) {
           <Picker.Item label="Bachelor" value="bachelor" />
           <Picker.Item label="Master Phd" value="master_phd" />
         </Picker>
-        <View style={{margin:5}}>
-          <Button title="Submit" onPress={submitChapter1} color="#4bcbd6"/>
         </View>
-        <View style={{margin:5}}>
-          <Button title="Home" onPress={() => navigation.navigate("Home")} color="#4bcbd6"/>
+        <View style={{margin:20}}>
+          <Button title="Submit" onPress={submitChapter1} color="#4bcbd6"/>
         </View>
       </ScrollView>
       }
@@ -355,8 +362,16 @@ const styles = StyleSheet.create({
     display:'flex',
     justifyContent:'center'
   },
+  arrows:{
+    flexDirection:'row',
+    alignItems:'center',
+  },
   logoPart:{
     padding:"8%"
+  },
+  logo:{
+    width:210,
+    height:50
   },
   names:{
     display:'flex',
@@ -398,12 +413,16 @@ const styles = StyleSheet.create({
   headerText: {
     fontSize: 18,
     color: '#18acb9',
-    marginTop : 50,
+    marginTop : 20,
     margin: 12,
-    fontFamily:"Montserrat_700Bold"
+    fontFamily:"Montserrat_700Bold",
+    width:"75%"
   },
   barre:{
-    color: '#BBBBBB'
+    backgroundColor: '#BBBBBB',
+    height:1,
+    width:"95%",
+    marginBottom:20
   },
   headerText2: {
     fontSize: 16,
@@ -437,4 +456,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     marginHorizontal: 20,
   },
+  dropdown:{
+    borderWidth:1,
+    borderRadius:6,
+    borderColor: '#BBBBBB',
+  }
 });

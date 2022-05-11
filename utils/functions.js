@@ -30,21 +30,21 @@ export const sexAndAgeAdvices = async () => {
         
         if (sex == "female"){
             if (age >= 21 && age <= 29){
-                advice += "The USPSTF (US Preventive Services Task Force) recommends screening for cervical cancer every 3 years with cervical cytology alone in women aged 21 to 29 years."
+                advice += "The USPSTF (US Preventive Services Task Force) recommends screening for cervical cancer every 3 years with cervical cytology alone in women aged 21 to 29 years. "
             } 
             if (age >= 30 && age <= 65){
-                advice += "The USPSTF recommends screening every 3 years with cervical cytology alone, every 5 years with high-risk human papillomavirus (hrHPV) testing alone, or every 5 years with hrHPV testing in combination with cytology (cotesting)"
+                advice += "The USPSTF recommends screening every 3 years with cervical cytology alone, every 5 years with high-risk human papillomavirus (hrHPV) testing alone, or every 5 years with hrHPV testing in combination with cytology (cotesting). "
             } 
             if (age >= 50 && age <= 74){
-                advice += "The French Health Authority recommends a mammography every 2 years"
+                advice += "The French Health Authority recommends a mammography every 2 years. "
             }
             if (age >= 50 && age <= 75){
-                advice += "The French Health Authority recommends a screening stool test every 2 years : the high-sensitivity guaiac fecal occult blood test (gFOBT) or fecal immunochemical test (FIT)"
+                advice += "The French Health Authority recommends a screening stool test every 2 years : the high-sensitivity guaiac fecal occult blood test (gFOBT) or fecal immunochemical test (FIT). "
             }
             
         } else if (sex == "male"){
             if (age >= 50 && age <= 75){
-                advice += "The French Health Authority recommends a home screening stool test every 2 years : the high-sensitivity guaiac fecal occult blood test (gFOBT) or fecal immunochemical test (FIT)"
+                advice += "The French Health Authority recommends a home screening stool test every 2 years : the high-sensitivity guaiac fecal occult blood test (gFOBT) or fecal immunochemical test (FIT). "
             }
         }
     }

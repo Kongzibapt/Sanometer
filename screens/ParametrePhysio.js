@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import react, { useEffect } from 'react';
-import { StyleSheet, Text, View, Button, ActivityIndicator} from 'react-native';
+import { Image, TouchableOpacity, StyleSheet, Text, View, Button, ActivityIndicator} from 'react-native';
 import { SafeAreaView, TextInput, ScrollView} from "react-native";
 import { Slider, Icon } from 'react-native-elements';
 import { RadioButton } from 'react-native-paper';
@@ -45,7 +45,7 @@ const ParametrePhysio = function({navigation}) {
       groinpain && await AsyncStorage.setItem('groinpain',groinpain.toString());
       groinpainsympt && await AsyncStorage.setItem('groinpainsympt',groinpainsympt.toString());
       
-      navigation.navigate("Home");
+      navigation.navigate("FormMenu");
   }
   catch (error) {
       console.log(error)
@@ -83,12 +83,23 @@ const ParametrePhysio = function({navigation}) {
 
   return (
     <SafeAreaView style={styles.container}>
+      <View style={styles.logoPart}>
+        <Image source={require('../assets/Logo.png')} style={styles.logo}/>
+      </View>
       {!dataIsReady ?
       <ActivityIndicator size='large' color='black'/>
       :
       <ScrollView style={styles.scrollView}>
-
-        <Text  style = {styles.headerText}>Enter your changes in Physiological parameters : </Text>
+<View style={styles.arrows}>
+          <Text  style = {styles.headerText}>Enter your changes in Physiological parameters : </Text>
+          <TouchableOpacity style={styles.prevArrow} onPress={()=>navigation.navigate("Chapter 7")}>
+            <Image source={require('../assets/prevArrow.png')} style={styles.prevImg}/>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.nextArrow}  onPress={()=>navigation.navigate("FormMenu")}>
+            <Image source={require('../assets/nextArrow.png')} style={styles.nextImg}/>
+          </TouchableOpacity>
+        </View>
+       <View style = {styles.barre}></View>
 
         <Text style={styles.label}>Do you experience intense thirst (when not exercising/high heat) ?</Text>
         <View style={styles.checkboxview}>
@@ -157,7 +168,7 @@ const ParametrePhysio = function({navigation}) {
             <RadioButton
               value="yes"
               status={ tired === 'yes' ? 'checked' : 'unchecked' }
-              onPress={() => settiredvision('yes')}
+              onPress={() => settired('yes')}
             />
           </View>
           <View style={styles.containerbutton}>
@@ -331,9 +342,6 @@ const ParametrePhysio = function({navigation}) {
         <View style={{margin:5}}>
           <Button title="Submit" onPress={submitParametrePhysio} color="#4bcbd6"/>
         </View>
-        <View style={{margin:5}}>
-          <Button title="Home" onPress={() => navigation.navigate("Home")} color="#4bcbd6"/>
-        </View>
       </ScrollView>
       }
     </SafeAreaView>
@@ -346,15 +354,20 @@ export {ParametrePhysio};
 
 const styles = StyleSheet.create({
   container:{
-    backgroundColor:'#18acb9',
+    backgroundColor:'white',
     paddingTop: StatusBar.currentHeight,
     flex :1,
-    display:'flex',
-    justifyContent:'center'
   },
   names:{
     display:'flex',
     flexDirection:'row'
+  },
+  logoPart:{
+    padding:"8%"
+  },
+  logo:{
+    width:210,
+    height:50
   },
   checkboxview:{
     display:'flex',
@@ -388,12 +401,23 @@ const styles = StyleSheet.create({
   chooseDate: {
     width:"50%"
   },
+  barre:{
+    backgroundColor: '#BBBBBB',
+    height:1,
+    width:"95%",
+    marginBottom:20
+  },
+  arrows:{
+    flexDirection:'row',
+    alignItems:'center',
+  },
   headerText: {
-    fontSize: 20,
-    color: 'white',
-    marginTop : 50,
+    width:"75%",
+    fontSize: 18,
+    color: '#18acb9',
+    marginTop : 20,
     margin: 12,
-    fontFamily:"Montserrat_400Regular"
+    fontFamily:"Montserrat_700Bold"
   },
   headerText2: {
     fontSize: 16,
@@ -424,7 +448,6 @@ const styles = StyleSheet.create({
     fontFamily:"Montserrat_400Regular"
   },
   scrollView: {
-    backgroundColor: '#18acb9',
     marginHorizontal: 20,
   },
 });

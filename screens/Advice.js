@@ -7,22 +7,11 @@ import {score_q1, score_q2, score_q3} from "../utils/modelIA_ParaPhysio.js";
 import {scoreC1_q1, scoreC1_q2, scoreC1_q3, scoreC1_q4, scoreC1_q5} from "../utils/modelIA_C1.js";
 import { useIsFocused } from "@react-navigation/native";
 import React from 'react';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Advice = function({navigation}) {
 
   const [advice,setAdvice] = React.useState([]);
-  
-  const getInfos = async () => {
-    try {
-      const lastname = await AsyncStorage.getItem('lastname');
-      setLastname(lastname);
-      const firstname = await AsyncStorage.getItem('firstname');
-      setFirstname(firstname);
-    }
-    catch (error) {
-        console.log(error)
-    }
-  }
 
   fillAdvice = () => {
     console.log("fillAdvice");
@@ -80,6 +69,7 @@ const Advice = function({navigation}) {
     })
     
     console.log(advice.length);
+    console.log(advice);
   }
 
   const isFocused = useIsFocused();
@@ -89,10 +79,6 @@ const Advice = function({navigation}) {
     //   setDataIsReady(true);
     // });
     setAdvice([]);
-    const unsubscribe = navigation.addListener('focus',() =>{
-      getInfos();
-    });
-    getInfos();
     fillAdvice();
   },[isFocused])
 
@@ -108,17 +94,12 @@ const Advice = function({navigation}) {
       </View>
       <ScrollView style={styles.scrollView}>
         <Text  style = {styles.headerText}>Personalized advice for you</Text>
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', overflow: "scroll", flexGrow:3}}>
-          <FlatList 
-          data={advice}
-          renderItem={({item,index,separators}) =>(
-            item ? 
-            <View key={index}>
-              <Text  style={styles.advice}>{item}</Text>
+        <View style={styles.ads}>
+          {advice.map((ad,index)=>(
+            <View style={styles.ad} key={index}>
+              <Text  style={styles.advice}>{ad}</Text>
             </View>
-            :
-            null
-        )} />
+          ))}
         </View>
       </ScrollView>
     {/* } */}
@@ -137,6 +118,12 @@ const styles = StyleSheet.create({
   names:{
     display:'flex',
     flexDirection:'row'
+  },
+  ad:{
+    marginVertical:10
+  },
+  advice:{
+    textAlign:'justify',
   },
   checkboxview:{
     display:'flex',
@@ -173,6 +160,10 @@ const styles = StyleSheet.create({
   },
   logoPart:{
     padding:"8%"
+  },
+  logo:{
+    width:210,
+    height:50
   },
   headerText: {
     fontSize: 18,

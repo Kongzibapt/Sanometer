@@ -11,6 +11,8 @@ export const chapter6 = async () => {
     const tired = await AsyncStorage.getItem('tired');
     const blurryvision = await AsyncStorage.getItem('blurryvision');
 
+    var tab = [];
+
     if (bloodsugar > 1,26 && bloodsugar2 > 1,26) {
         tab[0] = 1;
     } else {
