@@ -12,6 +12,8 @@ import { Chapter7 } from './Chapter7.js';
 import { ParametrePhysio } from './ParametrePhysio.js';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+const Stack = createNativeStackNavigator();
+
 const Form = function({navigation}) {
 
   
