@@ -16,6 +16,7 @@ const Chapter6 = function({navigation}) {
   const [selectedfreq2, setSelectedfreq2] = react.useState();
   const [selectedcaloric, setSelectedcaloric] = react.useState();
   const [selectedsport, setSelectedsport] = react.useState();
+  const [selectedalco, setSelectedalco] = react.useState();
   const [energy, onChangeText2] = react.useState(null);
   const [checked, setChecked] = react.useState('');
   const [checked2, setChecked2] = react.useState('');
@@ -249,6 +250,7 @@ const Chapter6 = function({navigation}) {
     return (
       <View>
           <Text style={styles.label}>Frequency:</Text>
+        <View style={styles.dropdown}>
         <Picker
           selectedValue={selectedfreq}
           onValueChange={(itemValue, itemIndex) =>
@@ -260,6 +262,7 @@ const Chapter6 = function({navigation}) {
           <Picker.Item label="1 per day" value="1_day" />
           <Picker.Item label="2 or + per day" value="2_day" />
         </Picker>
+        </View>
       </View>
     );
   }
@@ -269,6 +272,7 @@ const Chapter6 = function({navigation}) {
     return (
       <View>
           <Text style={styles.label}>Frequency:</Text>
+        <View style={styles.dropdown}>
         <Picker
           selectedValue={selectedfreq2}
           onValueChange={(itemValue, itemIndex) =>
@@ -280,6 +284,7 @@ const Chapter6 = function({navigation}) {
           <Picker.Item label="1 glass per day" value="1_day" />
           <Picker.Item label="2 or + per day" value="2_day" />
         </Picker>
+        </View>
       </View>
     );
   }
@@ -289,6 +294,7 @@ const Chapter6 = function({navigation}) {
     return (
       <View>
           <Text style={styles.label}>Frequency:</Text>
+        <View style={style.dropdown}>
         <Picker
           selectedValue={selectedfreq2}
           onValueChange={(itemValue, itemIndex) =>
@@ -300,6 +306,7 @@ const Chapter6 = function({navigation}) {
           <Picker.Item label="1 glass per day" value="1_day" />
           <Picker.Item label="2 or + per day" value="2_day" />
         </Picker>
+        </View>
       </View>
     );
   }
@@ -313,9 +320,19 @@ const Chapter6 = function({navigation}) {
       <ActivityIndicator size='large' color='black'/>
       :
       <ScrollView style={styles.scrollView}>
-      <Text  style = {styles.headerText}>Lifestyle</Text>
+      <View style={styles.arrows}>
+          <Text  style = {styles.headerText}>Lifestyle</Text>
+          <TouchableOpacity style={styles.prevArrow} onPress={()=>navigation.navigate("Chapter 5")}>
+            <Image source={require('../assets/prevArrow.png')} style={styles.prevImg}/>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.nextArrow}  onPress={()=>navigation.navigate("Chapter 7")}>
+            <Image source={require('../assets/nextArrow.png')} style={styles.nextImg}/>
+          </TouchableOpacity>
+        </View>
+      <View style = {styles.barre}></View>
         <Text  style = {styles.label}>Tolerance to the effort: </Text>
         <Text style={styles.label}>Walking distance (flat ground):</Text>
+        <View style={styles.dropdown}>
         <Picker
           selectedValue={selectedperim}
           onValueChange={(itemValue, itemIndex) =>
@@ -326,7 +343,9 @@ const Chapter6 = function({navigation}) {
           <Picker.Item label="10-30min" value="10-30min" />
           <Picker.Item label="> 30min" value=">30min" />
         </Picker>
+        </View>
         <Text style={styles.label}>Walking uphill:</Text>
+        <View style={styles.dropdown}>
         <Picker
           selectedValue={selectedslope}
           onValueChange={(itemValue, itemIndex) =>
@@ -337,7 +356,9 @@ const Chapter6 = function({navigation}) {
           <Picker.Item label="10-30min" value="10-30min" />
           <Picker.Item label="> 30min" value=">30min" />
         </Picker>
+        </View>
         <Text style={styles.label}>Diet:</Text>
+        <View style={styles.dropdown}>
         <Picker
           selectedValue={selectedanalysis}
           onValueChange={(itemValue, itemIndex) =>
@@ -349,11 +370,13 @@ const Chapter6 = function({navigation}) {
           <Picker.Item label="Regular" value="normal" />
           <Picker.Item label="Other" value="other" />
         </Picker>
+        </View>
         <Text style={styles.label}>Caloric intake (per day)</Text>
         <Text style={styles.link}
           onPress={() => Linking.openURL('https://www.freedieting.com/')}>
           Tool to calculate your caloric intake
         </Text>
+        <View style={styles.dropdown}>
         <Picker
           selectedValue={selectedcaloric}
           onValueChange={(itemValue, itemIndex) =>
@@ -364,7 +387,9 @@ const Chapter6 = function({navigation}) {
           <Picker.Item label="Between 2000 and 3000 calories" value="2000-3000cal" />
           <Picker.Item label="> 3000 calories" value=">3000cal" />
         </Picker>
+        </View>
         <Text style={styles.label}>Types of food:</Text>
+        <View style={styles.dropdown}>
         <Picker
           selectedValue={selectedslope}
           onValueChange={(itemValue, itemIndex) =>
@@ -375,6 +400,7 @@ const Chapter6 = function({navigation}) {
           <Picker.Item label="Cooked at home" value="Cooked_at_home" />
           <Picker.Item label="Fastfood" value="Fastfood" />
         </Picker>
+        </View>
         <Text style={styles.label}>Risk factors:</Text>
         <Text style={styles.label}>Do you smoke ?</Text>
           <View style={styles.checkboxview}>
@@ -470,6 +496,7 @@ const Chapter6 = function({navigation}) {
           </View>
         }
         <Text style={styles.label}>Do you drink alcohol ?</Text>
+        <View style={styles.dropdown}>
         <Picker
           selectedValue={selectedalco}
           onValueChange={(itemValue, itemIndex) =>
@@ -480,8 +507,9 @@ const Chapter6 = function({navigation}) {
           <Picker.Item label="Moderate drinker" value="moderate" />
           <Picker.Item label="Light drinker (1-3 glasses a week)" value="light" />
         </Picker>
-
+        </View>
         <Text style={styles.label}>Exercise:</Text>
+        <View style={styles.dropdown}>
         <Picker
           selectedValue={selectedsport}
           onValueChange={(itemValue, itemIndex) =>
@@ -492,11 +520,9 @@ const Chapter6 = function({navigation}) {
           <Picker.Item label="Basketball" value="basketball" />
           <Picker.Item label="Running" value="running" />
         </Picker>
-        <View style={{margin:5}}>
-          <Button title="Submit" onPress={submitChapter6} color="#4bcbd6"/>
         </View>
         <View style={{margin:5}}>
-          <Button title="Home" onPress={() => navigation.navigate("Home")} color="#4bcbd6"/>
+          <Button title="Submit" onPress={submitChapter6} color="#4bcbd6"/>
         </View>
       </ScrollView>
       }
@@ -515,9 +541,19 @@ const styles = StyleSheet.create({
   logoPart:{
     padding:"8%"
   },
+  logo:{
+    width:210,
+    height:50
+  },
   drop:{
     display:'flex',
     flexDirection:'row'
+  },
+  barre:{
+    backgroundColor: '#BBBBBB',
+    height:1,
+    width:"95%",
+    marginBottom:20
   },
   titledrop:{
     flex:1,
@@ -562,10 +598,15 @@ const styles = StyleSheet.create({
   chooseDate: {
     width:"50%"
   },
+  arrows:{
+    flexDirection:'row',
+    alignItems:'center',
+  },
   headerText: {
+    width:"75%",
     fontSize: 18,
     color: '#18acb9',
-    marginTop : 50,
+    marginTop : 20,
     margin: 12,
     fontFamily:"Montserrat_700Bold"
   },
@@ -601,9 +642,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     marginHorizontal: 20,
   },
-  dropdown: {
-    position: 'absolute',
-    backgroundColor: '#fff',
-    top: 50,
-  },
+  dropdown:{
+    borderWidth:1,
+    borderRadius:6,
+    borderColor: '#BBBBBB',
+  }
 });

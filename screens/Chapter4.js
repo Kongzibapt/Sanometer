@@ -164,6 +164,7 @@ const renderDropdown2 = () => {
   return (
     <View>
         <Text style={styles.label}>Pain location :</Text>
+        <View style={styles.dropdown}>
         <Picker
           selectedValue={selectedPainLocation}
           onValueChange={(itemValue, itemIndex) =>
@@ -180,6 +181,7 @@ const renderDropdown2 = () => {
           <Picker.Item label="feet" value="feet" />
           <Picker.Item label="other" value="other" />
         </Picker>
+        </View>
 
         <Text style={styles.label}>Pain intensity :</Text>
         <Slider
@@ -207,6 +209,7 @@ const renderDropdown2 = () => {
         <Text style={{ paddingTop: 10 }}>Value: {painIntensity}</Text>
 
         <Text style={styles.label}>Duration:</Text>
+        <View style={styles.dropdown}>
         <Picker
           selectedValue={painDurationTime}
           onValueChange={(itemValue, itemIndex) =>
@@ -219,7 +222,8 @@ const renderDropdown2 = () => {
           <Picker.Item label="evening" value="evening" />
           <Picker.Item label="other" value="other" />
         </Picker>
-
+        </View>
+        <View style={styles.dropdown}>
         <Picker
           selectedValue={painDurationSituation}
           onValueChange={(itemValue, itemIndex) =>
@@ -230,8 +234,9 @@ const renderDropdown2 = () => {
           <Picker.Item label="rest" value="rest" />
           <Picker.Item label="other" value="other" />
         </Picker>
-
+        </View>
         <Text style={styles.label}>Which medicines cancel the pain :</Text>
+        <View style={styles.dropdown}>
         <Picker
           selectedValue={medicineTaken}
           onValueChange={(itemValue, itemIndex) =>
@@ -247,7 +252,7 @@ const renderDropdown2 = () => {
           <Picker.Item label="other" value="other" />
           <Picker.Item label="none" value="none" />
         </Picker>
-
+        </View>
 
 
     </View>
@@ -265,7 +270,16 @@ const renderDropdown2 = () => {
       <ActivityIndicator size='large' color='black'/>
       :
       <ScrollView style={styles.scrollView}>
-      <Text  style = {styles.headerText}>Emotional profile</Text>
+      <View style={styles.arrows}>
+          <Text  style = {styles.headerText}>Emotional profile</Text>
+          <TouchableOpacity style={styles.prevArrow} onPress={()=>navigation.navigate("Chapter 3")}>
+            <Image source={require('../assets/prevArrow.png')} style={styles.prevImg}/>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.nextArrow}  onPress={()=>navigation.navigate("Chapter 5")}>
+            <Image source={require('../assets/nextArrow.png')} style={styles.nextImg}/>
+          </TouchableOpacity>
+        </View>
+      <View style = {styles.barre}></View>
       <Text style={styles.label}>Have you done an MMSCEIT V 2.0 test ?</Text>
         <View style={styles.checkboxview}>
           <View style={styles.containerbutton}>
@@ -344,9 +358,6 @@ const renderDropdown2 = () => {
       <View style={{margin:5}}>
         <Button title="Submit" onPress={submitChapter4} color="#4bcbd6"/>
       </View>
-      <View style={{margin:5}}>
-          <Button title="Home" onPress={() => navigation.navigate("Home")} color="#4bcbd6"/>
-      </View>
       </ScrollView>
     }
     </SafeAreaView>
@@ -363,6 +374,16 @@ const styles = StyleSheet.create({
   },
   logoPart:{
     padding:"8%"
+  },
+  logo:{
+    width:210,
+    height:50
+  },
+  barre:{
+    backgroundColor: '#BBBBBB',
+    height:1,
+    width:"95%",
+    marginBottom:20
   },
   drop:{
     display:'flex',
@@ -405,10 +426,15 @@ const styles = StyleSheet.create({
   chooseDate: {
     width:"50%"
   },
+  arrows:{
+    flexDirection:'row',
+    alignItems:'center',
+  },
   headerText: {
+    width:"75%",
     fontSize: 18,
     color: '#18acb9',
-    marginTop : 50,
+    marginTop : 20,
     margin: 12,
     fontFamily:"Montserrat_700Bold"
   },
@@ -444,9 +470,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     marginHorizontal: 20,
   },
-  dropdown: {
-    position: 'absolute',
-    backgroundColor: '#fff',
-    top: 50,
-  },
+  dropdown:{
+    borderWidth:1,
+    borderRadius:6,
+    borderColor: '#BBBBBB',
+  }
 });

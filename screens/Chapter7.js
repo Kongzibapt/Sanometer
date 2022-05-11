@@ -255,6 +255,7 @@ const Chapter7 = function({navigation}) {
             onChange={onChange}
           />)}
           <Text style={styles.label}>Result:</Text>
+          <View style={styles.dropdown}>
           <Picker
             selectedValue={selectedhemo}
             onValueChange={(itemValue, itemIndex) =>
@@ -265,6 +266,7 @@ const Chapter7 = function({navigation}) {
             <Picker.Item label="5,7 - 6,4%" value="prediabetes" />
             <Picker.Item label="> 6,4%" value="diabetes" />
           </Picker>
+          </View>
       </View>
     );
   }
@@ -312,6 +314,7 @@ const Chapter7 = function({navigation}) {
         }  
         {/*glycemie a jeun*/}
         <Text style={styles.label}>What are your blood sugar levels (on a empty stomach) ?</Text>
+        <View style={styles.dropdown}>
           <Picker
             selectedValue={selectedglucose}
             onValueChange={(itemValue, itemIndex) =>
@@ -322,7 +325,9 @@ const Chapter7 = function({navigation}) {
             <Picker.Item label="100 to 125mg/dL" value="prediabetes" />
             <Picker.Item label="126mg/dL or higher" value="diabetes" />
           </Picker>
+          </View>
           <Text style={styles.label}>What are your glucose test results?</Text>
+          <View style={styles.dropdown}>
           <Picker
             selectedValue={selectedcrp}
             onValueChange={(itemValue, itemIndex) =>
@@ -333,6 +338,7 @@ const Chapter7 = function({navigation}) {
             <Picker.Item label="Higher than the standard" value=">standard" />
             <Picker.Item label="Lower than the standard" value="<standard" />
           </Picker>
+          </View>
       </View>
     );
   }
@@ -473,10 +479,19 @@ return (
       <ActivityIndicator size='large' color='black'/>
       :
       <ScrollView style={styles.scrollView}>
-
-       <Text  style = {styles.headerText}>Paraclinical data - based on the last three months : </Text>
+        <View style={styles.arrows}>
+          <Text  style = {styles.headerText}>Paraclinical data - based on the last three months : </Text>
+          <TouchableOpacity style={styles.prevArrow} onPress={()=>navigation.navigate("Chapter 6")}>
+            <Image source={require('../assets/prevArrow.png')} style={styles.prevImg}/>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.nextArrow}  onPress={()=>navigation.navigate("Parametre Physio")}>
+            <Image source={require('../assets/nextArrow.png')} style={styles.nextImg}/>
+          </TouchableOpacity>
+        </View>
+       <View style = {styles.barre}></View>
           <Text style={styles.label}>List analysis</Text>
           <Text style={styles.label}>Complete hemoleucogram</Text>
+          <View style={styles.dropdown}>
           <Picker
             selectedValue={selectedhemo}
             onValueChange={(itemValue, itemIndex) =>
@@ -487,7 +502,9 @@ return (
             <Picker.Item label="Higher than the standard" value=">standard" />
             <Picker.Item label="Lower than the standard" value="<standard" />
           </Picker>
+          </View>
           <Text style={styles.label}>CRP</Text>
+          <View style={styles.dropdown}>
           <Picker
             selectedValue={selectedcrp}
             onValueChange={(itemValue, itemIndex) =>
@@ -498,7 +515,9 @@ return (
             <Picker.Item label="Higher than the standard" value=">standard" />
             <Picker.Item label="Lower than the standard" value="<standard" />
           </Picker>
+          </View>
           <Text style={styles.label}>Urea</Text>
+          <View style={styles.dropdown}>
           <Picker
             selectedValue={selectedurea}
             onValueChange={(itemValue, itemIndex) =>
@@ -509,7 +528,9 @@ return (
             <Picker.Item label="Higher than the standard" value=">standard" />
             <Picker.Item label="Lower than the standard" value="<standard" />
           </Picker>
+          </View>
           <Text style={styles.label}>Creatinine</Text>
+          <View style={styles.dropdown}>
           <Picker
             selectedValue={selectedcrea}
             onValueChange={(itemValue, itemIndex) =>
@@ -520,7 +541,9 @@ return (
             <Picker.Item label="Higher than the standard" value=">standard" />
             <Picker.Item label="Lower than the standard" value="<standard" />
           </Picker>
+          </View>
           <Text style={styles.label}>Full lipidogram</Text>
+          <View style={styles.dropdown}>
           <Picker
             selectedValue={selectedlipi}
             onValueChange={(itemValue, itemIndex) =>
@@ -531,7 +554,9 @@ return (
             <Picker.Item label="Higher than the standard" value=">standard" />
             <Picker.Item label="Lower than the standard" value="<standard" />
           </Picker>
+          </View>
           <Text style={styles.label}>GOT</Text>
+          <View style={styles.dropdown}>
           <Picker
             selectedValue={selectedgot}
             onValueChange={(itemValue, itemIndex) =>
@@ -542,7 +567,9 @@ return (
             <Picker.Item label="Higher than the standard" value=">standard" />
             <Picker.Item label="Lower than the standard" value="<standard" />
           </Picker>
+          </View>
           <Text style={styles.label}>GPT</Text>
+          <View style={styles.dropdown}>
           <Picker
             selectedValue={selectedgpt}
             onValueChange={(itemValue, itemIndex) =>
@@ -553,7 +580,9 @@ return (
             <Picker.Item label="Higher than the standard" value=">standard" />
             <Picker.Item label="Lower than the standard" value="<standard" />
           </Picker>
+          </View>
           <Text style={styles.label}>GGT</Text>
+          <View style={styles.dropdown}>
           <Picker
             selectedValue={selectedggt}
             onValueChange={(itemValue, itemIndex) =>
@@ -564,7 +593,9 @@ return (
             <Picker.Item label="Higher than the standard" value=">standard" />
             <Picker.Item label="Lower than the standard" value="<standard" />
           </Picker>
+          </View>
           <Text style={styles.label}>VIT D3</Text>
+          <View style={styles.dropdown}>
           <Picker
             selectedValue={selectedvit}
             onValueChange={(itemValue, itemIndex) =>
@@ -575,7 +606,9 @@ return (
             <Picker.Item label="Higher than the standard" value=">standard" />
             <Picker.Item label="Lower than the standard" value="<standard" />
           </Picker>
+          </View>
           <Text style={styles.label}>TSH</Text>
+          <View style={styles.dropdown}>
           <Picker
             selectedValue={selectedtsh}
             onValueChange={(itemValue, itemIndex) =>
@@ -586,6 +619,7 @@ return (
             <Picker.Item label="Higher than the standard" value=">standard" />
             <Picker.Item label="Lower than the standard" value="<standard" />
           </Picker>
+          </View>
 
           {/*if it is a men > 65 years old, ask for the PSA : &&(Chapter1.checked === 'male')*/}
           {/* {((birthdate-currentDate)>65) && 
@@ -759,9 +793,6 @@ return (
       <View style={{margin:5}}>
         <Button title="Submit" onPress={submitChapter7} color="#4bcbd6"/>
       </View>
-      <View style={{margin:5}}>
-          <Button title="Home" onPress={() => navigation.navigate("Home")} color="#4bcbd6"/>
-      </View>
       </ScrollView>
     }
     </SafeAreaView>
@@ -779,9 +810,19 @@ const styles = StyleSheet.create({
   logoPart:{
     padding:"8%"
   },
+  logo:{
+    width:210,
+    height:50
+  },
   drop:{
     display:'flex',
     flexDirection:'row'
+  },
+  barre:{
+    backgroundColor: '#BBBBBB',
+    height:1,
+    width:"95%",
+    marginBottom:20
   },
   titledrop:{
     flex:1,
@@ -820,10 +861,15 @@ const styles = StyleSheet.create({
   chooseDate: {
     width:"50%"
   },
+  arrows:{
+    flexDirection:'row',
+    alignItems:'center',
+  },
   headerText: {
+    width:"75%",
     fontSize: 18,
     color: '#18acb9',
-    marginTop : 50,
+    marginTop : 20,
     margin: 12,
     fontFamily:"Montserrat_700Bold"
   },
@@ -859,9 +905,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     marginHorizontal: 20,
   },
-  dropdown: {
-    position: 'absolute',
-    backgroundColor: '#fff',
-    top: 50,
-  },
+  dropdown:{
+    borderWidth:1,
+    borderRadius:6,
+    borderColor: '#BBBBBB',
+  }
 });

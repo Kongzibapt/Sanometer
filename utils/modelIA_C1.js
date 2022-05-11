@@ -14,7 +14,7 @@ export const chapter1 = async () => {
     
     const sex = await AsyncStorage.getItem('sex');
     const birth_date = await AsyncStorage.getItem('birthdate');
-    const country = await AsyncStorage.getItem('country');
+    var country = await AsyncStorage.getItem('country');
     const race = await AsyncStorage.getItem('selectedrace');
     const area = await AsyncStorage.getItem('selectedarea');
     const geo = await AsyncStorage.getItem('selectedgeo');
@@ -45,7 +45,7 @@ export const chapter1 = async () => {
     tab[3]=age;
 
     //Country of birth
-    console.log(country);
+    country == null ? country = "Unknown" : null;
     var country2 = country.toLowerCase();
 
     tab[4]=0;

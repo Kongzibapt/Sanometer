@@ -1712,6 +1712,7 @@ const Chapter2 = function({navigation}) {
       return(
         <View style={styles.containerDropdown}>
             <Text style={styles.label}> Your age range </Text>
+            <View style={styles.dropdown}>
             <Picker
               selectedValue={selectedage}
               onValueChange={(itemValue, itemIndex) =>
@@ -1723,6 +1724,7 @@ const Chapter2 = function({navigation}) {
               <Picker.Item label="Age >65" value="more_65" />
 
             </Picker>
+            </View>
 
             {selectedage =='less_40' &&
               <View style={styles.subcontainer2}>
@@ -2708,6 +2710,7 @@ const Chapter2 = function({navigation}) {
               <View style={styles.subcontainer2}>
                 
                 <Text style={styles.label}>How many hours do you sleep ?</Text>
+                <View style={styles.dropdown}>
                 <Picker
                   selectedValue={selectedsleep}
                   onValueChange={(itemValue, itemIndex) =>
@@ -2719,6 +2722,7 @@ const Chapter2 = function({navigation}) {
                   <Picker.Item label=">6h" value="more_6" />
   
                 </Picker>
+                </View>
                 <Text style={styles.label}> Sleep discontinuously ? </Text>
                 <View style={styles.checkboxview}>
                   <View style={styles.containerbutton}>
@@ -3907,8 +3911,16 @@ const Chapter2 = function({navigation}) {
       :
       <ScrollView style={styles.scrollView}>
 
-        <Text  style = {styles.headerText}>Medical Data</Text>
- 
+        <View style={styles.arrows}>
+          <Text  style = {styles.headerText}>Medical data</Text>
+          <TouchableOpacity style={styles.prevArrow} onPress={()=>navigation.navigate("Chapter 1")}>
+            <Image source={require('../assets/prevArrow.png')} style={styles.prevImg}/>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.nextArrow}  onPress={()=>navigation.navigate("Chapter 3")}>
+            <Image source={require('../assets/nextArrow.png')} style={styles.nextImg}/>
+          </TouchableOpacity>
+        </View>
+        <View style = {styles.barre}></View>
         <Text style={styles.label}>Do you have allergies ? </Text>
         <View style={styles.checkboxview}>
           <View style={styles.containerbutton}>
@@ -4243,9 +4255,6 @@ const Chapter2 = function({navigation}) {
           <View style={{margin:5}}>
             <Button title="Submit" onPress={submitChapter2} color="#4bcbd6"/>
           </View>
-          <View style={{margin:5}}>
-            <Button title="Home" onPress={() => navigation.navigate("Home")} color="#4bcbd6"/>
-          </View>
       </ScrollView>}
     </SafeAreaView>
   );
@@ -4261,8 +4270,22 @@ const styles = StyleSheet.create({
     display:'flex',
     justifyContent:'center'
   },
+  arrows:{
+    flexDirection:'row',
+    alignItems:'center',
+  },
   logoPart:{
     padding:"8%"
+  },
+  logo:{
+    width:210,
+    height:50
+  },
+  barre:{
+    backgroundColor: '#BBBBBB',
+    height:1,
+    width:"95%",
+    marginBottom:20
   },
   subcontainer:{
     backgroundColor: 'white',
@@ -4333,9 +4356,10 @@ const styles = StyleSheet.create({
     width:"50%"
   },
   headerText: {
+    width:"75%",
     fontSize: 18,
     color: '#18acb9',
-    marginTop : 50,
+    marginTop : 20,
     margin: 12,
     fontFamily:"Montserrat_700Bold"
   },
@@ -4391,5 +4415,10 @@ const styles = StyleSheet.create({
     flex:1,
     paddingRight:10
   },
+  dropdown:{
+    borderWidth:1,
+    borderRadius:6,
+    borderColor: '#BBBBBB',
+  }
 });
 

@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import react , { useEffect }from 'react';
-import { StyleSheet, Text, View , ActivityIndicator, Button, Image} from 'react-native';
+import {TouchableOpacity, StyleSheet, Text, View , ActivityIndicator, Button, Image} from 'react-native';
 import { SafeAreaView, TextInput, ScrollView} from "react-native";
 import { Slider, Icon } from 'react-native-elements';
 import { RadioButton } from 'react-native-paper';
@@ -94,7 +94,16 @@ const Chapter5 = function({navigation}) {
       <ActivityIndicator size='large' color='black'/>
       :
       <ScrollView style={styles.scrollView}>
-        <Text  style = {styles.headerText}>Physical parameters</Text>
+        <View style={styles.arrows}>
+          <Text  style = {styles.headerText}>Physical parameters</Text>
+          <TouchableOpacity style={styles.prevArrow} onPress={()=>navigation.navigate("Chapter 4")}>
+            <Image source={require('../assets/prevArrow.png')} style={styles.prevImg}/>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.nextArrow}  onPress={()=>navigation.navigate("Chapter 6")}>
+            <Image source={require('../assets/nextArrow.png')} style={styles.nextImg}/>
+          </TouchableOpacity>
+        </View>
+        <View style = {styles.barre}></View>
         <Text style={styles.label}>Height (cm/feet)</Text>
         <TextInput
           style={{...styles.input,borderColor:borderColorInputHeight}}
@@ -203,9 +212,6 @@ const Chapter5 = function({navigation}) {
         <View style={{margin:5}}>
           <Button title="Submit" onPress={submitChapter5} color="#4bcbd6"/>
         </View>
-        <View style={{margin:5}}>
-          <Button title="Home" onPress={() => navigation.navigate("Home")} color="#4bcbd6"/>
-        </View>
       </ScrollView>
     }
     </SafeAreaView>
@@ -223,6 +229,11 @@ const styles = StyleSheet.create({
   logoPart:{
     padding:"8%"
   },
+  logo:{
+    width:210,
+    height:50
+  },
+  
   names:{
     display:'flex',
     flexDirection:'row'
@@ -260,10 +271,15 @@ const styles = StyleSheet.create({
   chooseDate: {
     width:"50%"
   },
+  arrows:{
+    flexDirection:'row',
+    alignItems:'center',
+  },
   headerText: {
+    width:"75%",
     fontSize: 18,
     color: '#18acb9',
-    marginTop : 50,
+    marginTop : 20,
     margin: 12,
     fontFamily:"Montserrat_700Bold"
   },
@@ -272,6 +288,12 @@ const styles = StyleSheet.create({
     color: 'white',
     margin: 12,
     fontFamily:"Montserrat_400Regular"
+  },
+  barre:{
+    backgroundColor: '#BBBBBB',
+    height:1,
+    width:"95%",
+    marginBottom:20
   },
   label: {
     fontSize: 16,
@@ -299,4 +321,5 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     marginHorizontal: 20,
   },
+  
 });
