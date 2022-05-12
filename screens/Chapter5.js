@@ -209,6 +209,7 @@ const Chapter5 = function({navigation}) {
         <Text style={styles.label}>Your RFM (Risk Factor Management) is {76-(20*height/waist)}.</Text>
         }
         <Text style={styles.label}>Your Body Mass Index is {weight/((height/100)*(height/100))} kg/m².</Text>
+        <Text style={styles.label}>BMI needs to be just 29.8 or rounded up.</Text>
         <View style={{margin:5}}>
           <Button title="Submit" onPress={submitChapter5} color="#4bcbd6"/>
         </View>
