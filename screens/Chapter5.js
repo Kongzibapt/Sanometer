@@ -132,7 +132,7 @@ const Chapter5 = function({navigation}) {
           placeholder="Your weight"
           keyboardType="numeric"
         />
-        <Text style={styles.label}>Waist circumference</Text>
+        {/* <Text style={styles.label}>Waist circumference</Text>
         <TextInput
           style={{...styles.input,borderColor:borderColorInputWaist}}
           onFocus={() => {
@@ -144,6 +144,20 @@ const Chapter5 = function({navigation}) {
           onChangeText={onChangeText8}
           value={waist}
           placeholder="Your waist circumference"
+          keyboardType="default"
+        /> */}
+        <Text style={styles.label}>Abdominal perimeter</Text>
+        <TextInput
+          style={{...styles.input,borderColor:borderColorInputAbdo}}
+          onFocus={() => {
+            setBorderColorInputAbdo("cyan");
+          }}
+          onBlur={() => {
+            setBorderColorInputAbdo('#BBBBBB');
+          }}
+          onChangeText={onChangeText3}
+          value={abdominal_param}
+          placeholder="Your abdominal perimeter"
           keyboardType="default"
         />
         <Text style={styles.label}>Thigh circumference</Text>
