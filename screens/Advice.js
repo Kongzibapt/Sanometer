@@ -3,8 +3,8 @@ import react , { useEffect }from 'react';
 import { StyleSheet, Text, View , ActivityIndicator, Button, Image, FlatList} from 'react-native';
 import { SafeAreaView, TextInput, ScrollView} from "react-native";
 import { IMCAdvices, metabolicAdvice, sexAndAgeAdvices, smokeAdvices, bloodSugarAdvices, bloodSugarLevelAdvices, groinAdvices, contraceptionAdvices, BMIAdvices } from '../utils/functions.js';
-import {score_q1, score_q2, score_q3} from "../utils/modelIA_ParaPhysio.js";
-import {scoreC1_q1, scoreC1_q2, scoreC1_q3, scoreC1_q4, scoreC1_q5} from "../utils/modelIA_C1.js";
+import {score_param} from "../utils/modelIA_ParaPhysio.js";
+import {score_chapter1} from "../utils/modelIA_C1.js";
 import { useIsFocused } from "@react-navigation/native";
 import React from 'react';
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -17,6 +17,7 @@ const Advice = function({navigation}) {
     console.log("fillAdvice");
     
     sexAndAgeAdvices().then((response)=>{
+     
       response && setAdvice(oldAdvice => [...oldAdvice,response]);
     })
     IMCAdvices().then((response)=>{
@@ -43,30 +44,16 @@ const Advice = function({navigation}) {
     BMIAdvices().then((response)=>{
       response && setAdvice(oldAdvice => [...oldAdvice,response]);
     })
-    scoreC1_q1().then((response)=>{
+    score_chapter1().then((response)=>{
+      console.log("IA_chap1");
       response && setAdvice(oldAdvice => [...oldAdvice,response]);
     })
-    scoreC1_q2().then((response)=>{
+    
+    score_param().then((response)=>{
+      console.log("IA_param");
       response && setAdvice(oldAdvice => [...oldAdvice,response]);
     })
-    scoreC1_q3().then((response)=>{
-      response && setAdvice(oldAdvice => [...oldAdvice,response]);
-    })
-    scoreC1_q4().then((response)=>{
-      response && setAdvice(oldAdvice => [...oldAdvice,response]);
-    })
-    scoreC1_q5().then((response)=>{
-      response && setAdvice(oldAdvice => [...oldAdvice,response]);
-    })
-    score_q1().then((response)=>{
-      response && setAdvice(oldAdvice => [...oldAdvice,response]);
-    })
-    score_q2().then((response)=>{
-      response && setAdvice(oldAdvice => [...oldAdvice,response]);
-    })
-    score_q3().then((response)=>{
-      response && setAdvice(oldAdvice => [...oldAdvice,response]);
-    })
+    
     
     console.log(advice.length);
     console.log(advice);

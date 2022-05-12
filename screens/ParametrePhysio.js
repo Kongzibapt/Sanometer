@@ -263,7 +263,7 @@ const ParametrePhysio = function({navigation}) {
               </View>
             </View>
 
-            {(glysymp==="no" && emptysto==="yes")?
+            {(emptysto==="yes")?
               
               <View>
                 <Text style={styles.label}>Your Second measure of your Blood Sugar Levels </Text>

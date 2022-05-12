@@ -73,21 +73,26 @@ export const IMCAdvices = async () => {
 }
 
 export const metabolicAdvice = async () => {
-    const diabetes = await AsyncStorage.getItem('isEnabled_diabetes');
     var res10 = "";
+    
+    const diabetes = await AsyncStorage.getItem('isEnabled_diabetes');
+
     const bloodPressure = await AsyncStorage.getItem('pressure');
     const weight = await AsyncStorage.getItem('weight');
     const height = await AsyncStorage.getItem('height');
+
     var sbp = parseInt(bloodPressure.split('/')[0]);
     var dbp = parseInt(bloodPressure.split('/')[1]);
     const hbp = sbp>90 || dbp>140 ;
     var imc = weight / (height*height);
-  
-  
+
+
     const obesity = imc>30;//si l'IMC est supérieur à 30 le sujet est en obésité modérée
     if (diabetes && hbp && obesity){
-      res10 = "metabolic syndrome->make the SCORE test for CardioVascular risk factors";
+    res10 = "metabolic syndrome->make the SCORE test for CardioVascular risk factors";
     }
+      
+    
 
     return res10;
   }
