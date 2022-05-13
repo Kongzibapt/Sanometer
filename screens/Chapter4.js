@@ -22,6 +22,7 @@ const [dataIsReady,setDataIsReady] = useState(false);
   const [MMSCEIT4, setMMSCEIT4] = useState(-1);
   const [checked, setChecked] = react.useState('');
   const [checked2, setChecked2] = react.useState('');
+  const [checkedc, setCheckedc] = react.useState('');
   const [visible, setVisible] = react.useState(false);
   const [visible2, setVisible2] = react.useState(false);
   const [borderColorInputMM,setBorderColorInputMM] = react.useState("#BBBBBB");
@@ -318,7 +319,7 @@ const renderDropdown2 = () => {
         </View>
       }
 
-      <Text style={styles.label}>Do you have any pain ?</Text>
+      <Text style={styles.label}>Do you have any back pain ?</Text>
         <View style={styles.checkboxview}>
           <View style={styles.containerbutton}>
             <Text style={styles.paragraph}>Yes</Text>
@@ -355,6 +356,27 @@ const renderDropdown2 = () => {
           </TouchableOpacity>
         </View>
       }
+
+      <Text style={styles.label}>Do you have chest pain ?</Text>
+        <View style={styles.checkboxview}>
+          <View style={styles.containerbutton}>
+            <Text style={styles.paragraph}>Yes</Text>
+            <RadioButton
+              value="yes"
+              status={ checkedc === 'yes' ? 'checked' : 'unchecked' }
+              onPress={() => setCheckedc('yes')}
+            />
+          </View>
+          <View style={styles.containerbutton}>
+            <Text style={styles.paragraph}>No</Text>
+            <RadioButton
+              value="no"
+              status={ checkedc === 'no' ? 'checked' : 'unchecked' }
+              onPress={() => setCheckedc('no')}
+            />
+          </View>
+        </View>
+
       <View style={{margin:5}}>
         <Button title="Submit" onPress={submitChapter4} color="#4bcbd6"/>
       </View>
