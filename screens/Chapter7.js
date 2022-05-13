@@ -106,8 +106,8 @@ const Chapter7 = function({navigation}) {
       show2 && await AsyncStorage.setItem('show2',show2);
       show3 && await AsyncStorage.setItem('show3',show3);
       show4 && await AsyncStorage.setItem('show4',show4);
-
-      navigation.navigate("Home");
+      
+      navigation.navigate("Parametre Physio");
       
   }
   catch (error) {
