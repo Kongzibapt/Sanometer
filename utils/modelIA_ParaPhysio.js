@@ -13,7 +13,8 @@ export const score_param = async () => {
 
     var tab = [];
 
-    if (bloodsugar > 1,26 && bloodsugar2 > 1,26) {
+    if (bloodsugar > 1.26 && bloodsugar2 > 1.26) {
+        //console.log("bloodsuf " + bloodsugar + " my" +  bloodsugar2);
         tab[0] = 1;
     } else {
         tab[0] = 0;
@@ -48,18 +49,21 @@ export const score_param = async () => {
     } else {
         tab[5] = 0;
     }
-    //console.log("taba"+tab);
+    //console.log("tab "+tab);
     
-    //console.log("test advice" + (((((((-2.243025274145117) + ((tab[0]) * (-2.1579231525670735))) + ((tab[1]) * (2.565373064267963))) + ((tab[2]) * (0.7881891310279248))) + ((tab[3]) * (1.2598088769272828))) + ((tab[4]) * (0.05091127023054371))) + ((tab[5]) * (-1.4815667901918235))) );
+    //console.log("test physio advice " + ((((((-1.9918921358721473) + ((tab[0]) * (2.8419046587086836))) + ((tab[1]) * (1.5731723233802648))) + ((tab[2]) * (0.7065055102334576))) + ((tab[3]) * (1.4594811627777624))) + ((tab[4]) * (0.2914503494533588))) + ((tab[5]) * (-1.6017957935641505)));
 
     if ((((((((-2.243025274145117) + ((tab[0]) * (-2.1579231525670735))) + ((tab[1]) * (2.565373064267963))) + ((tab[2]) * (0.7881891310279248))) + ((tab[3]) * (1.2598088769272828))) + ((tab[4]) * (0.05091127023054371))) + ((tab[5]) * (-1.4815667901918235)))>=0.5){
+        console.log("cas 1");
         result += "It is recommended to have a fasting blood sugar level control urgently.  ";
     }
     if (((((((-1.9918921358721473) + ((tab[0]) * (2.8419046587086836))) + ((tab[1]) * (1.5731723233802648))) + ((tab[2]) * (0.7065055102334576))) + ((tab[3]) * (1.4594811627777624))) + ((tab[4]) * (0.2914503494533588))) + ((tab[5]) * (-1.6017957935641505))>=0.5){
         result += "It is highly recommended to have a medical advice in max 10 days. ";
+        console.log("cas 2");
     }
     if (((((((-1.5930076977272303) + ((tab[0]) * (3.4299627694870325))) + ((tab[1]) * (1.3806726041804105))) + ((tab[2]) * (0.6165462833579349))) + ((tab[3]) * (1.3177291416524413))) + ((tab[4]) * (-0.24085144480620613))) + ((tab[5]) * (-1.0872168895206806))>=0.5){
         result += "It is recommended to have an A1c blood test. ";
+        console.log("cas 3");
     }
 
     return result;
