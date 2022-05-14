@@ -28,7 +28,7 @@ const Chapter5 = function({navigation}) {
   const [borderColorInputAnkle,setBorderColorInputAnkle] = react.useState("#BBBBBB");
   const [borderColorInputPressure,setBorderColorInputPressure] = react.useState("#BBBBBB");
   const [borderColorInputPulse,setBorderColorInputPulse] = react.useState("#BBBBBB");
-
+ 
   const submitChapter5 = async () => {
     try {     
       height && await AsyncStorage.setItem('height',height);

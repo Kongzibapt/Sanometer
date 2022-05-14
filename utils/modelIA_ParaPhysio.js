@@ -7,13 +7,12 @@ export const score_param = async () => {
     const thirsty = await AsyncStorage.getItem('thirsty');
     const poliuria = await AsyncStorage.getItem('physiourinate');
     const weightloss = await AsyncStorage.getItem('weightloss');
-
+    const emptysto = await AsyncStorage.getItem('emptysto');
     const tired = await AsyncStorage.getItem('tired');
     const blurryvision = await AsyncStorage.getItem('blurryvision');
 
     var tab = [];
-
-    if (bloodsugar > 1.26 && bloodsugar2 > 1.26) {
+    if (emptysto==="yes" && tired === "yes" && weightloss === "yes" && poliuria === "yes"&& thirsty=== "yes" && bloodsugar > 1.26 && bloodsugar2 > 1.26) {
         //console.log("bloodsuf " + bloodsugar + " my" +  bloodsugar2);
         tab[0] = 1;
     } else {
@@ -32,7 +31,7 @@ export const score_param = async () => {
         tab[2] = 0;
     }
 
-    if (bloodsugar >2) {
+    if (tired === "yes" && weightloss === "yes" && poliuria === "yes"&& thirsty=== "yes" && bloodsugar >2) {
         tab[3] = 1;
     } else {
         tab[3] = 0;
@@ -49,7 +48,7 @@ export const score_param = async () => {
     } else {
         tab[5] = 0;
     }
-    //console.log("tab "+tab);
+    console.log("tab "+tab);
     
     //console.log("test physio advice " + ((((((-1.9918921358721473) + ((tab[0]) * (2.8419046587086836))) + ((tab[1]) * (1.5731723233802648))) + ((tab[2]) * (0.7065055102334576))) + ((tab[3]) * (1.4594811627777624))) + ((tab[4]) * (0.2914503494533588))) + ((tab[5]) * (-1.6017957935641505)));
 

@@ -18,6 +18,7 @@ const Chapter3 = function({navigation}) {
   const [visible2, setVisible2] = react.useState(false);
   const [borderColorInput,setBorderColorInput] = react.useState("#BBBBBB");
   const [borderColorInput2,setBorderColorInput2] = react.useState("#BBBBBB");
+  //const sex = route.params.checked_sex;
 
   const submitChapter3 = async () => {
     try {     

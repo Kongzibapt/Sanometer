@@ -10,7 +10,7 @@ import React from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Chapter7 = function({navigation}) {
-
+  //const sex = route.params.checked_sex;
   const [date, onChangeText_date] = react.useState(null);
   const [where, onChangeText_where] = react.useState(null);
   const [where2, onChangeText_where2] = react.useState(null);

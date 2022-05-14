@@ -14,8 +14,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ActivityIndicator } from 'react-native';
 
 
+
 const Chapter2 = function({navigation}) {
 
+  //const sex = route.params.checked_sex;
   const [dataIsReady,setDataIsReady] = react.useState(false);
 
   const [isEnabled_treatmentinfection, setIsEnabled_treatmentinfection] = react.useState(false);
@@ -351,7 +353,7 @@ const Chapter2 = function({navigation}) {
   const [borderColorInputMed4,setBorderColorInputMed4] = react.useState("#BBBBBB");
   const [borderColorInputTrig,setBorderColorInputTrig] = react.useState("#BBBBBB");
   const [borderColorInputDiph,setBorderColorInputDiph] = react.useState("#BBBBBB");
-
+  
   
 
   const onChange = (event, selectedDate) => {
@@ -463,7 +465,7 @@ const Chapter2 = function({navigation}) {
       value && await AsyncStorage.setItem('value',value.toString());
       checked_urinate && await AsyncStorage.setItem('checked_urinate',checked_urinate);
 
-      checked && await AsyncStorage.setItem('checked',checked);
+      //checked && await AsyncStorage.setItem('checked_sex',checked);
       checked_menopause && await AsyncStorage.setItem('checked_menopause',checked_menopause);
       checked_hormone && await AsyncStorage.setItem('checked_hormone',checked_hormone);
       checked_contra && await AsyncStorage.setItem('checked_contra',checked_contra);
@@ -682,7 +684,7 @@ const Chapter2 = function({navigation}) {
         {pEff !== null ? setValue(parseInt(pEff)) : null};
       setChecked_urinate(await AsyncStorage.getItem('checked_urinate'));
 
-      setChecked(await AsyncStorage.getItem('checked'));
+      setChecked(await AsyncStorage.getItem('sex'));
       setChecked_menopause(await AsyncStorage.getItem('checked_menopause'));
       setChecked_hormone(await AsyncStorage.getItem('checked_hormone'));
       setChecked_contra(await AsyncStorage.getItem('checked_contra'));
@@ -4143,30 +4145,12 @@ const Chapter2 = function({navigation}) {
           </View>
           
         }
-        <Text style={styles.label}>Sex</Text>
-        <View style={styles.checkboxview}>
-          <View style={styles.containerbutton}>
-            <Text style={styles.paragraph}>Male</Text>
-            <RadioButton
-              value="male"
-              status={ checked === 'male' ? 'checked' : 'unchecked' }
-              onPress={() => setChecked('male')}
-              color='cyan'
-            />
-          </View>
-          <View style={styles.containerbutton}>
-            <Text style={styles.paragraph}>Female</Text>
-            <RadioButton
-              value="female"
-              status={ checked === 'female' ? 'checked' : 'unchecked' }
-              onPress={() => setChecked('female')}
-              color='cyan'
-            />
-          </View>
-        </View>  
-
-        {checked=='female' &&
+        
+        <Text style={styles.label}>Your Sex : {checked}</Text>
+        {console.log("sex = "+checked)}
+        {checked==='female' &&
           <View style={styles.container}>
+            
             <TouchableOpacity
               style={styles.button}
               onPress={toggleDropdown6}
@@ -4182,8 +4166,9 @@ const Chapter2 = function({navigation}) {
           </View>
           
         }
-        {checked=='male' &&
+        {checked==='male' &&
           <View style={styles.container}>
+          
             <TouchableOpacity
               style={styles.button}
               onPress={toggleDropdown5}

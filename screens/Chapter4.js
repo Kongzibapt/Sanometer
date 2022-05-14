@@ -13,13 +13,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const Chapter4 = function({navigation}) {
 
 const [dataIsReady,setDataIsReady] = useState(false);
-
+//const sex = route.params.checked_sex;
   const [isTestPerformed, setIsTestPerformed] = useState(false);
   const toggleSwitch = () => setIsTestPerformed(previousState => !previousState);
-  const [MMSCEIT1, setMMSCEIT1] = useState(-1);
-  const [MMSCEIT2, setMMSCEIT2] = useState(-1);
-  const [MMSCEIT3, setMMSCEIT3] = useState(-1);
-  const [MMSCEIT4, setMMSCEIT4] = useState(-1);
+  const [MMSCEIT1, setMMSCEIT1] = useState(0);
+  const [MMSCEIT2, setMMSCEIT2] = useState(0);
+  const [MMSCEIT3, setMMSCEIT3] = useState(0);
+  const [MMSCEIT4, setMMSCEIT4] = useState(0);
   const [checked, setChecked] = react.useState('');
   const [checked2, setChecked2] = react.useState('');
   const [checkedc, setCheckedc] = react.useState('');
@@ -30,20 +30,20 @@ const [dataIsReady,setDataIsReady] = useState(false);
   const [borderColorInputMM3,setBorderColorInputMM3] = react.useState("#BBBBBB");
   const [borderColorInputMM4,setBorderColorInputMM4] = react.useState("#BBBBBB");
   const [selectedPainLocation, setSelectedPainLocation] = react.useState();
-  const [painIntensity, setPainIntensity] = react.useState(-1);
+  const [painIntensity, setPainIntensity] = react.useState(0);
   const [painDurationTime, setPainDurationTime] = react.useState();
   const [painDurationSituation, setPainDurationSituation] = react.useState();
   const [medicineTaken, setMedicineTaken] = react.useState();
 
   const submitChapter4 = async () => {
     try {
-      isTestPerformed && await AsyncStorage.setItem('isTestPerformed',isTestPerformed);
-      MMSCEIT1 && await AsyncStorage.setItem('MMSCEIT1',MMSCEIT1);
-      MMSCEIT2 && await AsyncStorage.setItem('MMSCEIT2',MMSCEIT2);
-      MMSCEIT3 && await AsyncStorage.setItem('MMSCEIT3',MMSCEIT3);
-      MMSCEIT4 && await AsyncStorage.setItem('MMSCEIT4',MMSCEIT4);
+      isTestPerformed && await AsyncStorage.setItem('isTestPerformed',isTestPerformed.toString());
+      MMSCEIT1 && await AsyncStorage.setItem('MMSCEIT1',MMSCEIT1.toString());
+      MMSCEIT2 && await AsyncStorage.setItem('MMSCEIT2',MMSCEIT2.toString());
+      MMSCEIT3 && await AsyncStorage.setItem('MMSCEIT3',MMSCEIT3.toString());
+      MMSCEIT4 && await AsyncStorage.setItem('MMSCEIT4',MMSCEIT4.toString());
       selectedPainLocation && await AsyncStorage.setItem('selectedPainLocation',selectedPainLocation);
-      painIntensity && await AsyncStorage.setItem('painIntensity',painIntensity);
+      painIntensity && await AsyncStorage.setItem('painIntensity',painIntensity.toString());
       painDurationTime && await AsyncStorage.setItem('painDurationTime',painDurationTime);
       painDurationSituation && await AsyncStorage.setItem('painDurationSituation',painDurationSituation);
       medicineTaken && await AsyncStorage.setItem('medicineTaken',medicineTaken);
@@ -57,13 +57,23 @@ const [dataIsReady,setDataIsReady] = useState(false);
 
   const getChapterInfos = async () => {
     try {
-        setIsTestPerformed(await AsyncStorage.getItem('isTestPerformed'));
-        setMMSCEIT1(await AsyncStorage.getItem('MMSCEIT1'));
-        setMMSCEIT2(await AsyncStorage.getItem('MMSCEIT2'));
-        setMMSCEIT3(await AsyncStorage.getItem('MMSCEIT3'));
-        setMMSCEIT4(await AsyncStorage.getItem('MMSCEIT4'));
+        setIsTestPerformed(await AsyncStorage.getItem('isTestPerformed')=='true');
+        //setMMSCEIT1(await AsyncStorage.getItem('MMSCEIT1'));
+        const pEff1 = await AsyncStorage.getItem('MMSCEIT1');
+        {pEff1 !== null ? setMMSCEIT1(parseInt(pEff1)) : null};
+        //setMMSCEIT2(await AsyncStorage.getItem('MMSCEIT2'));
+        const pEff2 = await AsyncStorage.getItem('MMSCEIT2');
+        {pEff2 !== null ? setMMSCEIT2(parseInt(pEff2)) : null};
+        //setMMSCEIT3(await AsyncStorage.getItem('MMSCEIT3'));
+        const pEff3 = await AsyncStorage.getItem('MMSCEIT3');
+        {pEff3 !== null ? setMMSCEIT3(parseInt(pEff3)) : null};
+        //setMMSCEIT4(await AsyncStorage.getItem('MMSCEIT4'));
+        const pEff4 = await AsyncStorage.getItem('MMSCEIT4');
+        {pEff4 !== null ? setMMSCEIT4(parseInt(pEff4)) : null};
         setSelectedPainLocation(await AsyncStorage.getItem('setSelectedPainLocation'));
-        setPainIntensity(await AsyncStorage.getItem('painIntensity'));
+        //setPainIntensity(await AsyncStorage.getItem('painIntensity'));
+        const pEff5 = await AsyncStorage.getItem('painIntensity');
+        {pEff5 !== null ? setPainIntensity(parseInt(pEff5)) : null};
         setPainDurationTime(await AsyncStorage.getItem('painDurationTime'));
         setPainDurationSituation(await AsyncStorage.getItem('painDurationSituation'));
         setMedicineTaken(await AsyncStorage.getItem('medicineTaken'));

@@ -8,7 +8,7 @@ import {Picker} from '@react-native-picker/picker';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Chapter6 = function({navigation}) {
-  
+  //const sex = route.params.checked_sex;
   const [selectedanalysis, setSelectedanalysis] = react.useState();
   const [selectedperim, setSelectedperim] = react.useState();
   const [selectedslope, setSelectedslope] = react.useState();

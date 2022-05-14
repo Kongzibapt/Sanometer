@@ -115,7 +115,7 @@ const Chapter1 = function({navigation}) {
           <TouchableOpacity style={styles.prevArrow} onPress={()=>navigation.navigate("FormMenu")}>
             <Image source={require('../assets/prevArrow.png')} style={styles.prevImg}/>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.nextArrow}  onPress={()=>navigation.navigate("Chapter 2")}>
+          <TouchableOpacity style={styles.nextArrow}  onPress={()=>navigation.navigate("Chapter 2",{checked_sex: sex})}>
             <Image source={require('../assets/nextArrow.png')} style={styles.nextImg}/>
           </TouchableOpacity>
         </View>

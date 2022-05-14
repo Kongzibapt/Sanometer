@@ -76,22 +76,23 @@ export const metabolicAdvice = async () => {
     var res10 = "";
     
     const diabetes = await AsyncStorage.getItem('isEnabled_diabetes');
-
+    const checked_chro = await AsyncStorage.getItem('checked_chro');
     const bloodPressure = await AsyncStorage.getItem('pressure');
     const weight = await AsyncStorage.getItem('weight');
     const height = await AsyncStorage.getItem('height');
 
-    var sbp = parseInt(bloodPressure.split('/')[0]);
-    var dbp = parseInt(bloodPressure.split('/')[1]);
-    const hbp = sbp>90 || dbp>140 ;
-    var imc = weight / (height*height);
+    if (bloodPressure) {
+        var sbp = parseInt(bloodPressure.split('/')[0]);
+        var dbp = parseInt(bloodPressure.split('/')[1]);
+        const hbp = sbp>90 || dbp>140 ;
+        var imc = weight / (height*height);
 
 
-    const obesity = imc>30;//si l'IMC est supérieur à 30 le sujet est en obésité modérée
-    if (diabetes && hbp && obesity){
-    res10 = "metabolic syndrome->make the SCORE test for CardioVascular risk factors";
+        const obesity = imc>30;//si l'IMC est supérieur à 30 le sujet est en obésité modérée
+        if (checked_chro==="yes" &&diabetes && hbp && obesity){
+        res10 = "metabolic syndrome->make the SCORE test for CardioVascular risk factors";
+        }
     }
-      
     
 
     return res10;
@@ -99,10 +100,11 @@ export const metabolicAdvice = async () => {
 
   export const bloodSugarAdvices = async () => {
     var result = "";
+    const diabetic = await AsyncStorage.getItem('checked');
     const glocoseLevel = await AsyncStorage.getItem('selectedglucose');
     const checkedHb = await AsyncStorage.getItem('checkedHb');
 
-    if (glocoseLevel !== "normal" && checkedHb === 'no') {
+    if ( diabetic==='yes' && glocoseLevel !== "normal" && checkedHb === 'no') {
         result = "You are recommended to do the A1C test or the Glucose Tolerance Test";
     }
 
@@ -146,11 +148,12 @@ export const bloodSugarLevelAdvices = async () => {
 
     if ( thirsty==="yes" && physiourinate==='yes' && weigthloss==="yes" && blurryvision==="yes" & tired==='yes') {
         result = "It is recommended that you check your blood sugar levels as a matter of urgency on an empty stomach (minimum 8 hours after your last meal)";
+        if ((bloodsugarlevel>2 && glysymp==="yes")||(bloodsugarlevel>=1.26 && bloodsugarlevel2>=1.26 && glysymp==="no" && emptysto==="yes")){
+            result+="You should consult your doctor.";
+        }
     }
 
-    if ((bloodsugarlevel>2 && glysymp==="yes")||(bloodsugarlevel>=1.26 && bloodsugarlevel2>=1.26 && glysymp==="no" && emptysto==="yes")){
-        result+="You should consult your doctor.";
-    }
+    
 
     return result;
 }
@@ -170,10 +173,11 @@ export const groinAdvices = async () => {
 
 export const contraceptionAdvices = async () => {
     var result = "";
+    const checked = AsyncStorage.getItem('sex');
     const contraception = await AsyncStorage.getItem('checked_contra');
     const smoke = await AsyncStorage.getItem('smoke');
 
-    if ( contraception==="yes" && smoke==="yes") {
+    if ( checked === 'female' && contraception==="yes" && smoke==="yes") {
         result = "Please fill in the form \"Emotional profile\" for your pain symptoms.";
     }
 
@@ -187,17 +191,26 @@ export const BMIAdvices = async () => {
     var bmi = weight/((height/100)*(height/100));
     const bloodsugarlevel = parseFloat(await AsyncStorage.getItem('bloodsugar'));
     const abdominal_perim = await AsyncStorage.getItem('abdominal_param');
+    const thirsty = await AsyncStorage.getItem('thirsty');
+    const physiourinate = await AsyncStorage.getItem('physiourinate');
+    const weigthloss = await AsyncStorage.getItem('weightloss');
+    const blurryvision = await AsyncStorage.getItem('blurryvision');
+    const tired = await AsyncStorage.getItem('tired');
+    const emptysto = await AsyncStorage.getItem('emptysto');
+    const glysymp = await AsyncStorage.getItem('glysymp');
 
-    if (bmi<19) {
-        result = "Urgent medical advice needed (risk of malnutrition). ";
-    } else if (bmi>30 && bloodsugarlevel>2) {
-        result = "Metabolic syndrome suspected, you need a screening for high blood pressure You will be able to calculate your risk for cardiovascular disease. ";
-    } else if (bmi>30 && bmi<34.9) {
-        result = "You have a moderate obésity, you will receive the individualise illness risk factors. ";
-    } else if (bmi<39.9 && bmi>35) {
-        result = "You have a mild obésity, you will receive the individualise illness risk factors. ";
-    } else if (bmi>40){
-        result = "You have a severe obésity, you will receive the individualise illness risk factors and you have a formal indication for bariatric surgery. ";
+    if ( thirsty==="yes" && physiourinate==='yes' && weigthloss==="yes" && blurryvision==="yes" & tired==='yes') {
+        if (bmi<19) {
+            result = "Urgent medical advice needed (risk of malnutrition). ";
+        } else if (bmi>30 && bloodsugarlevel>2) {
+            result = "Metabolic syndrome suspected, you need a screening for high blood pressure You will be able to calculate your risk for cardiovascular disease. ";
+        } else if (bmi>30 && bmi<34.9) {
+            result = "You have a moderate obésity, you will receive the individualise illness risk factors. ";
+        } else if (bmi<39.9 && bmi>35) {
+            result = "You have a mild obésity, you will receive the individualise illness risk factors. ";
+        } else if (bmi>40){
+            result = "You have a severe obésity, you will receive the individualise illness risk factors and you have a formal indication for bariatric surgery. ";
+        }
     }
     
     if (abdominal_perim>88){
