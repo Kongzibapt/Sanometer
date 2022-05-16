@@ -7,8 +7,7 @@ import { RadioButton } from 'react-native-paper';
 import {Picker} from '@react-native-picker/picker';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import Select from "react-select";
-import countryList from "react-select-country-list";
+import * as data from '../utils/data'
 
 
 
@@ -17,7 +16,7 @@ const Chapter1 = function({navigation}) {
   const [dataIsReady,setDataIsReady] = react.useState(false);
   
   const [value, setValue] = react.useState('')
-  const options = react.useMemo(() => countryList().getData(), [])
+  // const options = react.useMemo(() => countryList().getData(), [])
 
   const changeHandler = value => {
     setValue(value)
@@ -28,7 +27,7 @@ const Chapter1 = function({navigation}) {
   const [birthdate, setBirthdate] = react.useState(new Date());
   const [birthcountry, setBirthcountry] = react.useState("");
   const [birthtown, setBirthtown] = react.useState("");
-  const [country, setCountry] = react.useState("");
+  const [country, setCountry] = react.useState("France");
   const [sex, setSex] = react.useState("");
   const [selectedgeo, setSelectedgeo] = react.useState();
   const [selectedrace, setSelectedrace] = react.useState();
@@ -180,21 +179,21 @@ const Chapter1 = function({navigation}) {
           onChange={onChange}
         />)}
         <Text style={styles.label}>Birth place</Text>
+        <View style={styles.dropdown}>
+        <Picker
+          selectedValue={birthcountry}
+          onValueChange={(itemValue, itemIndex) =>
+            setBirthcountry(itemValue)
+          }
+          mode='dropdown'>
+          {data.countries.map((country,index)=>
+            <Picker.Item key={index} label={country.name} value={country.code} />
+          )}
+        </Picker>
+          </View>
+        
         <TextInput
-         style={{...styles.input,borderColor:borderColorInputBirthPlace}}
-         onFocus={() => {
-           setBorderColorInputBirthPlace("cyan");
-         }}
-         onBlur={() => {
-           setBorderColorInputBirthPlace('#BBBBBB');
-         }}
-          onChangeText={setBirthcountry}
-          value={birthcountry}
-          placeholder="Country"
-          keyboardType="default"
-        />
-        <TextInput
-         style={{...styles.input,borderColor:borderColorInputBirthTown}}
+         style={{...styles.input,borderColor:borderColorInputBirthTown,marginTop:20}}
          onFocus={() => {
           setBorderColorInputBirthTown("cyan");
         }}
@@ -237,8 +236,18 @@ const Chapter1 = function({navigation}) {
         </View>
 
         <Text style={styles.label}>Your country of residence</Text>
-        <Select options={options} value={value} onChange={changeHandler} />
-        
+        <View style={styles.dropdown}>
+        <Picker
+          selectedValue={country}
+          onValueChange={(itemValue, itemIndex) =>
+            setCountry(itemValue)
+          }
+          mode='dropdown'>
+          {data.countries.map((country,index)=>
+            <Picker.Item key={index} label={country.name} value={country.code} />
+          )}
+        </Picker>
+          </View>
         {/*
         <TextInput
           style={{...styles.input,borderColor:borderColorInputCountry}}
@@ -257,6 +266,7 @@ const Chapter1 = function({navigation}) {
 
 
         <Text style={styles.label}>Ethnicity</Text>
+          <View style={styles.dropdown}>
         <Picker
           selectedValue={selectedrace}
           onValueChange={(itemValue, itemIndex) =>
@@ -269,8 +279,9 @@ const Chapter1 = function({navigation}) {
           {/* <Picker.Item label="Metis" value="metis" /> */}
           <Picker.Item label="Others" value="ethnicity" />
         </Picker>
-
+          </View>
         <Text style={styles.label}>Geographical location</Text>
+        <View style={styles.dropdown}>
         <Picker
           selectedValue={selectedgeo}
           onValueChange={(itemValue, itemIndex) =>
@@ -283,8 +294,9 @@ const Chapter1 = function({navigation}) {
           <Picker.Item label="Sea" value="sea" />
           <Picker.Item label="I'm not sure" value="" />
         </Picker>
-
+        </View>
         <Text style={styles.label}>Population</Text>
+        <View style={styles.dropdown}>
         <Picker
           selectedValue={selectedarea}
           onValueChange={(itemValue, itemIndex) =>
@@ -295,7 +307,7 @@ const Chapter1 = function({navigation}) {
           <Picker.Item label="100.01 - 1.000.000" value="equal" />
           <Picker.Item label="Above 1.000.000" value="above" />
         </Picker>
-
+        </View>
         <Text style={styles.label}>Physical effort related to your job</Text>
         <View style={[styles.contentView]}>
           <Slider

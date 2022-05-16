@@ -158,7 +158,7 @@ function HomeScreen({ navigation }) {
         <Image source={require('./assets/Image2.png')} style={styles.schemaImg}/>
       </View>
        <View style={styles.containerbutton}>
-        <TouchableOpacity onPress={() => navigation.navigate('Chapter 1')} style={styles.startButton}>
+        <TouchableOpacity onPress={() => navigation.navigate('Form')} style={styles.startButton}>
           <Text style={styles.startTxt}>Get started</Text>
         </TouchableOpacity>
         <Image source={require('./assets/Image3.png')} style={styles.startImg}/>
