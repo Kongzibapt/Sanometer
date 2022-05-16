@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import react, { useEffect } from 'react';
+import react, { useEffect,useMemo } from 'react';
 import { TouchableOpacity,StyleSheet, Text, View, Button, ActivityIndicator, Image} from 'react-native';
 import { SafeAreaView, TextInput, ScrollView} from "react-native";
 import { Slider, Icon } from 'react-native-elements';
@@ -7,12 +7,22 @@ import { RadioButton } from 'react-native-paper';
 import {Picker} from '@react-native-picker/picker';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import Select from "react-select";
+import countryList from "react-select-country-list";
+
 
 
 const Chapter1 = function({navigation}) {
 
   const [dataIsReady,setDataIsReady] = react.useState(false);
   
+  const [value, setValue] = react.useState('')
+  const options = react.useMemo(() => countryList().getData(), [])
+
+  const changeHandler = value => {
+    setValue(value)
+  }
+
   const [lastname, setLastname] = react.useState("");
   const [firstname, setFirstname] = react.useState("");
   const [birthdate, setBirthdate] = react.useState(new Date());
@@ -51,6 +61,7 @@ const Chapter1 = function({navigation}) {
       physicalEffort && await AsyncStorage.setItem('physicalEffort',physicalEffort.toString());
       professionalChange && await AsyncStorage.setItem('professionalChange',professionalChange);
       selectededuc && await AsyncStorage.setItem('selectededuc',selectededuc);
+      value && await AsyncStorage.setItem('value',value);
       navigation.navigate("Chapter 2");
   }
   catch (error) {
@@ -74,6 +85,7 @@ const Chapter1 = function({navigation}) {
         {pEff !== null ? setPhysicalEffort(parseInt(pEff)) : null};
         setProfessionalChange(await AsyncStorage.getItem('professionalChange'));
         setSelectededuc(await AsyncStorage.getItem('selectededuc'));
+        setValue(await AsyncStorage.getItem('value'));
     }
     catch (error) {
         console.log(error)
@@ -225,6 +237,9 @@ const Chapter1 = function({navigation}) {
         </View>
 
         <Text style={styles.label}>Your country of residence</Text>
+        <Select options={options} value={value} onChange={changeHandler} />
+        
+        {/*
         <TextInput
           style={{...styles.input,borderColor:borderColorInputCountry}}
           onFocus={() => {
@@ -237,7 +252,8 @@ const Chapter1 = function({navigation}) {
           value={country}
           placeholder="Your country of residence"
           keyboardType="default"
-        />
+        /> */}
+        
 
 
         <Text style={styles.label}>Ethnicity</Text>
