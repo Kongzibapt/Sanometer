@@ -3,6 +3,7 @@ import react, { useEffect } from 'react';
 import { StyleSheet, Text, View, Switch, Button, Image} from 'react-native';
 import { SafeAreaView, TextInput, ScrollView, TouchableOpacity} from "react-native";
 import { Slider, Icon } from 'react-native-elements';
+import {calculateAge} from "../utils/functions.js";
 import { RadioButton } from 'react-native-paper';
 import {Picker} from '@react-native-picker/picker';
 import SelectMultiple from 'react-native-select-multiple'
@@ -4145,7 +4146,7 @@ const Chapter2 = function({navigation}) {
           </View>
           
         }
-        
+        {/* <Text style={styles.label}>Your age : {calculateAge(birthdate)}</Text> */}
         <Text style={styles.label}>Your Sex : {checked}</Text>
         {console.log("sex = "+checked)}
         {checked==='female' &&
