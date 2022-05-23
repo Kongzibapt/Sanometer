@@ -21,7 +21,7 @@ const ParametrePhysio = function({navigation}) {
   const [physiourinate, setphysiourinate] = react.useState("");
   const [weightloss, setweightloss] = react.useState("");
   const [tired, settired] = react.useState("");
-  const [blurryvision, setblurryvision] = react.useState("");
+  //const [blurryvision, setblurryvision] = react.useState("");
   const [emptysto, setemptysto] = react.useState("");
   const [glysymp, setglysymp] = react.useState("");
   const [groinpain, setgroinpain] = react.useState("");
@@ -39,7 +39,7 @@ const ParametrePhysio = function({navigation}) {
       physiourinate && await AsyncStorage.setItem('physiourinate',physiourinate.toString());
       weightloss && await AsyncStorage.setItem('weightloss',weightloss.toString());
       tired && await AsyncStorage.setItem('tired',tired.toString());
-      blurryvision && await AsyncStorage.setItem('blurryvision',blurryvision.toString());
+      //blurryvision && await AsyncStorage.setItem('blurryvision',blurryvision.toString());
       emptysto && await AsyncStorage.setItem('emptysto',emptysto.toString());
       glysymp && await AsyncStorage.setItem('glysymp',glysymp.toString());
       groinpain && await AsyncStorage.setItem('groinpain',groinpain.toString());
@@ -60,7 +60,7 @@ const ParametrePhysio = function({navigation}) {
       setphysiourinate(await AsyncStorage.getItem('physiourinate'));
       setweightloss(await AsyncStorage.getItem('weightloss'));
       settired(await AsyncStorage.getItem('tired'));
-      setblurryvision(await AsyncStorage.getItem('blurryvision'));
+      //setblurryvision(await AsyncStorage.getItem('blurryvision'));
       
       setemptysto(await AsyncStorage.getItem('emptysto'));
       setglysymp(await AsyncStorage.getItem('glysymp'));
@@ -358,10 +358,6 @@ const styles = StyleSheet.create({
     paddingTop: StatusBar.currentHeight,
     flex :1,
   },
-  names:{
-    display:'flex',
-    flexDirection:'row'
-  },
   logoPart:{
     padding:"8%"
   },
@@ -369,21 +365,42 @@ const styles = StyleSheet.create({
     width:210,
     height:50
   },
+  drop:{
+    display:'flex',
+    flexDirection:'row'
+  },
+  barre:{
+    backgroundColor: '#BBBBBB',
+    height:1,
+    width:"95%",
+    marginBottom:20
+  },
+  titledrop:{
+    flex:1,
+    paddingRight:10,
+    fontSize: 16,
+    color: '#18acb9',
+    fontFamily:"Montserrat_700Bold",
+    margin: 12,
+  },
+  link:{
+    fontSize: 16,
+    color: 'blue',
+    fontFamily:"Montserrat_400Regular",
+    margin: 10,
+  },
+  symboldrop:{
+    flex:1,
+    paddingRight:10
+  },
   checkboxview:{
     display:'flex',
     flexDirection:'row',
     margin:'auto',
+    alignItems:'center',
     justifyContent:'center'
   },
   containerbutton:{
-    flex:1,
-    paddingRight:10
-  },
-  firstname:{
-    flex:1,
-    paddingRight:10
-  },
-  lastname:{
     flex:1,
     paddingRight:10
   },
@@ -400,12 +417,6 @@ const styles = StyleSheet.create({
   },
   chooseDate: {
     width:"50%"
-  },
-  barre:{
-    backgroundColor: '#BBBBBB',
-    height:1,
-    width:"95%",
-    marginBottom:20
   },
   arrows:{
     flexDirection:'row',
@@ -427,7 +438,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 16,
-    color: 'black',
+    color: '#18acb9',
     fontFamily:"Montserrat_700Bold",
     margin: 12,
   },
@@ -448,6 +459,12 @@ const styles = StyleSheet.create({
     fontFamily:"Montserrat_400Regular"
   },
   scrollView: {
+    backgroundColor: 'white',
     marginHorizontal: 20,
   },
+  dropdown:{
+    borderWidth:1,
+    borderRadius:6,
+    borderColor: '#BBBBBB',
+  }
 });

@@ -89,11 +89,7 @@ const Chapter7 = function({navigation}) {
       checked2 !== null && await AsyncStorage.setItem('checked2',checked2);
       checked3 !== null && await AsyncStorage.setItem('checked3',checked3);
       checked4 !== null && await AsyncStorage.setItem('checked4',checked4);
-      visible && await AsyncStorage.setItem('visible',visible);
-      visibleHb && await AsyncStorage.setItem('visibleHb',visibleHb);
-      visible2 && await AsyncStorage.setItem('visible2',visible2);
-      visible3 && await AsyncStorage.setItem('visible3',visible3);
-      visible4 && await AsyncStorage.setItem('visible4',visible4);
+     
       date_result && await AsyncStorage.setItem('date_result',date_result.toString());
       date_result2 && await AsyncStorage.setItem('date_result2',date_result2.toString());
       date_result3 && await AsyncStorage.setItem('date_result3',date_result3.toString());
@@ -134,11 +130,7 @@ const Chapter7 = function({navigation}) {
       setChecked2(await AsyncStorage.getItem('checked2'));   
       setChecked3(await AsyncStorage.getItem('checked3'));   
       setChecked4(await AsyncStorage.getItem('checked4'));   
-      setVisible(await AsyncStorage.getItem('visible'));   
-      setVisibleHb(await AsyncStorage.getItem('visibleHb'));   
-      setVisible2(await AsyncStorage.getItem('visible2'));    
-      setVisible3(await AsyncStorage.getItem('visible3'));   
-      setVisible4(await AsyncStorage.getItem('visible4'));   
+      
       setDate(await AsyncStorage.getItem('date'));   
       setDate2(await AsyncStorage.getItem('date2'));   
       setDate3(await AsyncStorage.getItem('date3'));   

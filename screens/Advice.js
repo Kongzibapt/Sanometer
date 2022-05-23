@@ -20,9 +20,10 @@ const Advice = function({navigation}) {
      
       response && setAdvice(oldAdvice => [...oldAdvice,response]);
     })
+    /*
     IMCAdvices().then((response)=>{
       response && setAdvice(oldAdvice => [...oldAdvice,response]);
-    })
+    })*/
     metabolicAdvice().then((response)=>{
       response && setAdvice(oldAdvice => [...oldAdvice,response]);
     })

@@ -14,6 +14,7 @@ const Chapter6 = function({navigation}) {
   const [selectedslope, setSelectedslope] = react.useState();
   const [selectedfreq, setSelectedfreq] = react.useState();
   const [selectedfreq2, setSelectedfreq2] = react.useState();
+  const [selectedtype, setSelectedtype] = react.useState();
   const [selectedcaloric, setSelectedcaloric] = react.useState();
   const [selectedsport, setSelectedsport] = react.useState();
   const [selectedalco, setSelectedalco] = react.useState();
@@ -54,10 +55,14 @@ const Chapter6 = function({navigation}) {
       selectedcaloric && await AsyncStorage.setItem('selectedcaloric',selectedcaloric);
       selectedsport && await AsyncStorage.setItem('selectedsport',selectedsport);
       selectedanalysis && await AsyncStorage.setItem('selectedanalysis',selectedanalysis);
+      selectedalco && await AsyncStorage.setItem('selectedalco',selectedalco);
+      selectedtype && await AsyncStorage.setItem('selectedtype',selectedtype);
 
+      energy && await AsyncStorage.setItem('energy',energy);
       checked && await AsyncStorage.setItem('checked',checked);
       checked2 && await AsyncStorage.setItem('checked2',checked2);
       checked3&& await AsyncStorage.setItem('checked3',checked3);
+      checked31&& await AsyncStorage.setItem('checked31',checked31);
       checked4&& await AsyncStorage.setItem('checked4',checked4);
       checked5&& await AsyncStorage.setItem('checked5',checked5);
       checked6&& await AsyncStorage.setItem('checked6',checked6);
@@ -87,7 +92,10 @@ const Chapter6 = function({navigation}) {
         setSelectedfreq2(await AsyncStorage.getItem('selectedfreq2'));
         setSelectedcaloric(await AsyncStorage.getItem('selectedcaloric'));
         setSelectedsport(await AsyncStorage.getItem('selectedsport'));
-
+        setSelectedalco(await AsyncStorage.getItem('selectedalco'));
+        setSelectedtype(await AsyncStorage.getItem('selectedtype'));
+        onChangeText2(await AsyncStorage.getItem('energy'));
+        setChecked31(await AsyncStorage.getItem('checked31'));
         setChecked(await AsyncStorage.getItem('checked'));
         setChecked2(await AsyncStorage.getItem('checked2'));
         setChecked3(await AsyncStorage.getItem('checked3'));
@@ -391,9 +399,9 @@ const Chapter6 = function({navigation}) {
         <Text style={styles.label}>Types of food:</Text>
         <View style={styles.dropdown}>
         <Picker
-          selectedValue={selectedslope}
+          selectedValue={selectedtype}
           onValueChange={(itemValue, itemIndex) =>
-            setSelectedanalysis(itemValue)
+            setSelectedtype(itemValue)
           }
           mode='dropdown'>
           <Picker.Item label="Restaurant/delivery" value="Restaurant/delivery" />

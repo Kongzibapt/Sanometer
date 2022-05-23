@@ -188,8 +188,10 @@ const Chapter1 = function({navigation}) {
           mode='dropdown'>
           {data.countries.map((country,index)=>
             <Picker.Item key={index} label={country.name} value={country.code} />
-          )}
+          )
+          }
         </Picker>
+        
           </View>
         
         <TextInput

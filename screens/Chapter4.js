@@ -12,14 +12,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Chapter4 = function({navigation}) {
 
-const [dataIsReady,setDataIsReady] = useState(false);
+const [dataIsReady,setDataIsReady] = react.useState(false);
 //const sex = route.params.checked_sex;
-  const [isTestPerformed, setIsTestPerformed] = useState(false);
+  const [isTestPerformed, setIsTestPerformed] = react.useState(false);
   const toggleSwitch = () => setIsTestPerformed(previousState => !previousState);
-  const [MMSCEIT1, setMMSCEIT1] = useState(0);
-  const [MMSCEIT2, setMMSCEIT2] = useState(0);
-  const [MMSCEIT3, setMMSCEIT3] = useState(0);
-  const [MMSCEIT4, setMMSCEIT4] = useState(0);
+  const [MMSCEIT1, setMMSCEIT1] = react.useState(0);
+  const [MMSCEIT2, setMMSCEIT2] = react.useState(0);
+  const [MMSCEIT3, setMMSCEIT3] = react.useState(0);
+  const [MMSCEIT4, setMMSCEIT4] = react.useState(0);
   const [checked, setChecked] = react.useState('');
   const [checked2, setChecked2] = react.useState('');
   const [checkedc, setCheckedc] = react.useState('');
@@ -37,6 +37,9 @@ const [dataIsReady,setDataIsReady] = useState(false);
 
   const submitChapter4 = async () => {
     try {
+      checked && await AsyncStorage.setItem('checked',checked);
+      checked2 && await AsyncStorage.setItem('checked2',checked2);
+      checkedc && await AsyncStorage.setItem('checkedc',checkedc);
       isTestPerformed && await AsyncStorage.setItem('isTestPerformed',isTestPerformed.toString());
       MMSCEIT1 && await AsyncStorage.setItem('MMSCEIT1',MMSCEIT1.toString());
       MMSCEIT2 && await AsyncStorage.setItem('MMSCEIT2',MMSCEIT2.toString());
@@ -57,6 +60,9 @@ const [dataIsReady,setDataIsReady] = useState(false);
 
   const getChapterInfos = async () => {
     try {
+      setChecked(await AsyncStorage.getItem('checked'));
+      setChecked2(await AsyncStorage.getItem('checked2'));
+      setCheckedc(await AsyncStorage.getItem('checkedc'));
         setIsTestPerformed(await AsyncStorage.getItem('isTestPerformed')=='true');
         //setMMSCEIT1(await AsyncStorage.getItem('MMSCEIT1'));
         const pEff1 = await AsyncStorage.getItem('MMSCEIT1');
@@ -70,7 +76,7 @@ const [dataIsReady,setDataIsReady] = useState(false);
         //setMMSCEIT4(await AsyncStorage.getItem('MMSCEIT4'));
         const pEff4 = await AsyncStorage.getItem('MMSCEIT4');
         {pEff4 !== null ? setMMSCEIT4(parseInt(pEff4)) : null};
-        setSelectedPainLocation(await AsyncStorage.getItem('setSelectedPainLocation'));
+        setSelectedPainLocation(await AsyncStorage.getItem('selectedPainLocation'));
         //setPainIntensity(await AsyncStorage.getItem('painIntensity'));
         const pEff5 = await AsyncStorage.getItem('painIntensity');
         {pEff5 !== null ? setPainIntensity(parseInt(pEff5)) : null};
@@ -95,7 +101,7 @@ const [dataIsReady,setDataIsReady] = useState(false);
   };
 
   const toggleDropdown2 = () => {
-    setVisible(!visible);
+    setVisible2(!visible2);
   };
 
   const renderDropdown = () => {
@@ -171,7 +177,7 @@ const [dataIsReady,setDataIsReady] = useState(false);
 };
 
 const renderDropdown2 = () => {
-  if (visible) {
+  if (visible2) {
   return (
     <View>
         <Text style={styles.label}>Pain location :</Text>
@@ -299,6 +305,7 @@ const renderDropdown2 = () => {
               value="yes"
               status={ checked === 'yes' ? 'checked' : 'unchecked' }
               onPress={() => setChecked('yes')}
+              color='cyan'
             />
           </View>
           <View style={styles.containerbutton}>
@@ -307,6 +314,7 @@ const renderDropdown2 = () => {
               value="no"
               status={ checked === 'no' ? 'checked' : 'unchecked' }
               onPress={() => setChecked('no')}
+              color='cyan'
             />
           </View>
         </View>
@@ -337,6 +345,7 @@ const renderDropdown2 = () => {
               value="yes"
               status={ checked2 === 'yes' ? 'checked' : 'unchecked' }
               onPress={() => setChecked2('yes')}
+              color='cyan'
             />
           </View>
           <View style={styles.containerbutton}>
@@ -345,6 +354,7 @@ const renderDropdown2 = () => {
               value="no"
               status={ checked2 === 'no' ? 'checked' : 'unchecked' }
               onPress={() => setChecked2('no')}
+              color='cyan'
             />
           </View>
         </View>
@@ -375,6 +385,7 @@ const renderDropdown2 = () => {
               value="yes"
               status={ checkedc === 'yes' ? 'checked' : 'unchecked' }
               onPress={() => setCheckedc('yes')}
+              color='cyan'
             />
           </View>
           <View style={styles.containerbutton}>
@@ -383,6 +394,7 @@ const renderDropdown2 = () => {
               value="no"
               status={ checkedc === 'no' ? 'checked' : 'unchecked' }
               onPress={() => setCheckedc('no')}
+              color='cyan'
             />
           </View>
         </View>

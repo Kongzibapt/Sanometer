@@ -35,7 +35,7 @@ export const sexAndAgeAdvices = async () => {
             if (age >= 30 && age <= 65){
                 advice += "The USPSTF recommends screening every 3 years with cervical cytology alone, every 5 years with high-risk human papillomavirus (hrHPV) testing alone, or every 5 years with hrHPV testing in combination with cytology (cotesting). "
             } 
-            if (age >= 50 && age <= 74){
+            if (age >= 45){
                 advice += "The French Health Authority recommends a mammography every 2 years. "
             }
             if (age >= 50 && age <= 75){
@@ -52,6 +52,7 @@ export const sexAndAgeAdvices = async () => {
     return advice;
 }
 
+/*
 export const IMCAdvices = async () => {
     var result="";
 
@@ -70,7 +71,7 @@ export const IMCAdvices = async () => {
 
     }
     return result;
-}
+}*/
 
 export const metabolicAdvice = async () => {
     var res10 = "";
@@ -141,12 +142,12 @@ export const bloodSugarLevelAdvices = async () => {
     const thirsty = await AsyncStorage.getItem('thirsty');
     const physiourinate = await AsyncStorage.getItem('physiourinate');
     const weigthloss = await AsyncStorage.getItem('weightloss');
-    const blurryvision = await AsyncStorage.getItem('blurryvision');
+    //const blurryvision = await AsyncStorage.getItem('blurryvision');
     const tired = await AsyncStorage.getItem('tired');
     const emptysto = await AsyncStorage.getItem('emptysto');
     const glysymp = await AsyncStorage.getItem('glysymp');
 
-    if ( thirsty==="yes" && physiourinate==='yes' && weigthloss==="yes" && blurryvision==="yes" & tired==='yes') {
+    if ( thirsty==="yes" && physiourinate==='yes' && weigthloss==="yes" && tired==='yes') {
         result = "It is recommended that you check your blood sugar levels as a matter of urgency on an empty stomach (minimum 8 hours after your last meal)";
         if ((bloodsugarlevel>2 && glysymp==="yes")||(bloodsugarlevel>=1.26 && bloodsugarlevel2>=1.26 && glysymp==="no" && emptysto==="yes")){
             result+="You should consult your doctor.";
@@ -194,28 +195,33 @@ export const BMIAdvices = async () => {
     const thirsty = await AsyncStorage.getItem('thirsty');
     const physiourinate = await AsyncStorage.getItem('physiourinate');
     const weigthloss = await AsyncStorage.getItem('weightloss');
-    const blurryvision = await AsyncStorage.getItem('blurryvision');
     const tired = await AsyncStorage.getItem('tired');
     const emptysto = await AsyncStorage.getItem('emptysto');
     const glysymp = await AsyncStorage.getItem('glysymp');
 
-    if ( thirsty==="yes" && physiourinate==='yes' && weigthloss==="yes" && blurryvision==="yes" & tired==='yes') {
-        if (bmi<19) {
-            result = "Urgent medical advice needed (risk of malnutrition). ";
-        } else if (bmi>30 && bloodsugarlevel>2) {
-            result = "Metabolic syndrome suspected, you need a screening for high blood pressure You will be able to calculate your risk for cardiovascular disease. ";
-        } else if (bmi>30 && bmi<34.9) {
-            result = "You have a moderate obésity, you will receive the individualise illness risk factors. ";
-        } else if (bmi<39.9 && bmi>35) {
-            result = "You have a mild obésity, you will receive the individualise illness risk factors. ";
-        } else if (bmi>40){
-            result = "You have a severe obésity, you will receive the individualise illness risk factors and you have a formal indication for bariatric surgery. ";
-        }
+    if (bmi<19) {
+        result = "Urgent medical advice needed (risk of malnutrition). ";
+    } else if (bmi>=30 && bmi<=34.9) {
+        result = "You have a moderate obésity, you will receive the individualise illness risk factors. ";
+    } else if (bmi<=39.9 && bmi>=35) {
+        result = "You have a mild obésity, you will receive the individualise illness risk factors. ";
+    } else if (bmi>40){
+        result = "You have a severe obésity, you will receive the individualise illness risk factors and you have a formal indication for bariatric surgery. ";
+    }
+
+  
+    if ( thirsty==="yes" && physiourinate==='yes' && weigthloss==="yes" && tired==='yes') {
+        
+        if (bmi>30 && bloodsugarlevel>2) {
+            result += "Metabolic syndrome suspected, you need a screening for high blood pressure You will be able to calculate your risk for cardiovascular disease. ";
+        } 
+        
     }
     
     if (abdominal_perim>88){
         result += "You have a higher risk for cardiovascular disease.  ";
     }
+    
 
     return result;
 }
