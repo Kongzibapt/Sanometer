@@ -300,7 +300,7 @@ const Chapter2 = function({navigation}) {
   const [visible_surgery, setVisible7] = react.useState(false);
   const [visible_injuries, setVisible8] = react.useState(false);
   const [visible_treatment, setVisible9] = react.useState(false);
-
+  const [age,setAge] = react.useState("");
   
   
   
@@ -861,9 +861,10 @@ const Chapter2 = function({navigation}) {
 
       
       var age;
-      const birth_date = setBirthdate(new Date(await AsyncStorage.getItem('birthdate')));
-      var bod = new Date(birth_date);
-      age = calculateAge(birth_date);
+      const birthDate = await AsyncStorage.getItem('birthdate');
+      var bod = new Date(birthDate);
+      age = calculateAge(bod);
+      setAge(age);
     }
     catch(error){
       console.log(error)
