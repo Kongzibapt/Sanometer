@@ -19,6 +19,7 @@ import { ActivityIndicator } from 'react-native';
 const Chapter2 = function({navigation}) {
 
   //const sex = route.params.checked_sex;
+
   const [dataIsReady,setDataIsReady] = react.useState(false);
 
   const [isEnabled_treatmentinfection, setIsEnabled_treatmentinfection] = react.useState(false);
@@ -804,6 +805,7 @@ const Chapter2 = function({navigation}) {
       setChecked_treat_sleep(await AsyncStorage.getItem('checked_treat_sleep'));
       
       setDate(new Date(await AsyncStorage.getItem('date')));
+      //setDate_birthdate(new Date(await AsyncStorage.getItem('birthdate')));
       
       setChecked_chro(await AsyncStorage.getItem('checked_chro'));
       setIsEnabled_cancer(await AsyncStorage.getItem('isEnabled_cancer')=='true');
@@ -857,6 +859,11 @@ const Chapter2 = function({navigation}) {
       setChecked_smell(await AsyncStorage.getItem('isChecked_smell')=='true');
       setChecked_hearing(await AsyncStorage.getItem('isChecked_hearing')=='true');
 
+      
+      var age;
+      const birth_date = setBirthdate(new Date(await AsyncStorage.getItem('birthdate')));
+      var bod = new Date(birth_date);
+      age = calculateAge(birth_date);
     }
     catch(error){
       console.log(error)
@@ -870,6 +877,9 @@ const Chapter2 = function({navigation}) {
   },[])
 
   const renderDropdown_female = () => {
+
+    
+
     if (visible_female){
       return(
         <View style={styles.containerDropdown}>
@@ -4146,7 +4156,7 @@ const Chapter2 = function({navigation}) {
           </View>
           
         }
-        {/* <Text style={styles.label}>Your age : {calculateAge(birthdate)}</Text> */}
+        <Text style={styles.label}>Your age : {age}</Text>
         <Text style={styles.label}>Your Sex : {checked}</Text>
         {console.log("sex = "+checked)}
         {checked==='female' &&
